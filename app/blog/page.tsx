@@ -3,9 +3,15 @@ import prisma from "@/libs/prisma";
 import Link from "next/link";
 
 export default async function BlogPage() {
-  const blogs = await prisma.blog.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  let blogs: any[] = []; // 
+
+  try {
+    blogs = await prisma.blog.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+  } catch (error) {
+    console.error("DB ERROR:", error);
+  }
 
   return (
     <div className="max-w-5xl mx-auto py-16 px-6">
