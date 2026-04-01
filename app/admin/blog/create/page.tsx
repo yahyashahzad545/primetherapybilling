@@ -1,7 +1,13 @@
 "use client";
 export const dynamic = "force-dynamic";
+
 import { useState } from "react";
-import Editor from "@/components/Editor";
+import dynamicImport from "next/dynamic";
+
+// FIX: Editor ko SSR off ke sath load karo
+const Editor = dynamicImport(() => import("@/components/Editor"), {
+  ssr: false,
+});
 
 export default function CreateBlog() {
   const [form, setForm] = useState({
@@ -24,12 +30,12 @@ export default function CreateBlog() {
       .replace(/\s+/g, "-");
   };
 
-  // 🔧 Handle input change
+  // Handle input change
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Image Upload Handler (FIX ADDED)
+  // Image Upload Handler
   const handleImageUpload = async (file: File) => {
     try {
       const formData = new FormData();
@@ -46,7 +52,6 @@ export default function CreateBlog() {
         ...prev,
         featuredImg: data.url,
       }));
-
     } catch (error) {
       console.log(error);
       alert("Image upload failed ❌");
@@ -71,7 +76,6 @@ export default function CreateBlog() {
     if (res.ok) {
       alert("Blog Created ");
 
-      // 🔄 Reset form
       setForm({
         title: "",
         slug: "",
@@ -187,7 +191,7 @@ export default function CreateBlog() {
         onClick={handleSubmit}
         className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
       >
-        Publish Blog 
+        Publish Blog
       </button>
     </div>
   );
