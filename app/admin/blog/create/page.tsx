@@ -16,7 +16,7 @@ export default function CreateBlog() {
     content: "",
   });
 
-  // 🔥 Auto slug generator
+  // Auto slug generator
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
@@ -29,7 +29,31 @@ export default function CreateBlog() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 🚀 Submit blog
+  // Image Upload Handler (FIX ADDED)
+  const handleImageUpload = async (file: File) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      setForm((prev) => ({
+        ...prev,
+        featuredImg: data.url,
+      }));
+
+    } catch (error) {
+      console.log(error);
+      alert("Image upload failed ❌");
+    }
+  };
+
+  // Submit blog
   const handleSubmit = async () => {
     if (!form.title || !form.content) {
       alert("Title aur content required hain ❌");
@@ -39,13 +63,13 @@ export default function CreateBlog() {
     const res = await fetch("/api/blog/create", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // ✅ FIXED
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(form),
     });
 
     if (res.ok) {
-      alert("Blog Created ✅");
+      alert("Blog Created ");
 
       // 🔄 Reset form
       setForm({
@@ -60,7 +84,7 @@ export default function CreateBlog() {
         content: "",
       });
     } else {
-      alert("Error creating blog ❌");
+      alert("Error creating blog ");
     }
   };
 
@@ -77,7 +101,7 @@ export default function CreateBlog() {
           handleChange(e);
           setForm((prev) => ({
             ...prev,
-            slug: generateSlug(e.target.value), // 🔥 auto slug
+            slug: generateSlug(e.target.value),
           }));
         }}
         className="w-full border p-2"
@@ -112,11 +136,13 @@ export default function CreateBlog() {
 
       {/* Featured Image */}
       <input
-        name="featuredImg"
-        placeholder="Featured Image URL"
-        value={form.featuredImg}
-        onChange={handleChange}
+        type="file"
         className="w-full border p-2"
+        onChange={(e) => {
+          if (e.target.files?.[0]) {
+            handleImageUpload(e.target.files[0]);
+          }
+        }}
       />
 
       {/* Image Alt */}
@@ -161,7 +187,7 @@ export default function CreateBlog() {
         onClick={handleSubmit}
         className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
       >
-        Publish Blog 🚀
+        Publish Blog 
       </button>
     </div>
   );
