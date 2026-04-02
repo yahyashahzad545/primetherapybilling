@@ -208,7 +208,7 @@ export default function Home() {
   return (
     <>
       {/* SEO TITLE & DESCRIPTION */}
-      <title>MedSole RCM is good</title>
+      <title>Medical Billing Services in USA | MedSole RCM</title>
       <meta
         name="description"
         content="Maximize revenue, reduce denials, and streamline your practice with expert medical billing services in the USA. Trusted RCM partner for healthcare providers."
