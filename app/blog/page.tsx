@@ -1,22 +1,21 @@
-export const dynamic = "force-dynamic";
-
 import prisma from "@/libs/prisma";
 import Link from "next/link";
-import { unstable_noStore } from "next/cache";
 import { Blog } from "@prisma/client";
 
-export default async function BlogPage() {
-  unstable_noStore();
+// 👉 ISR (best for production)
+export const revalidate = 10;
 
+export default async function BlogPage() {
   let blogs: Blog[] = [];
 
   try {
     blogs = await prisma.blog.findMany({
       orderBy: { createdAt: "desc" },
     });
+
+    console.log("BLOGS LIST:", blogs); // debug (remove later)
   } catch (error) {
     console.error("Prisma Error:", error);
-    blogs = [];
   }
 
   return (
