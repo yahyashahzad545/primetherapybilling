@@ -3,11 +3,12 @@ export const dynamic = "force-dynamic";
 import prisma from "@/libs/prisma";
 import Link from "next/link";
 import { unstable_noStore } from "next/cache";
+import { Blog } from "@prisma/client";
 
 export default async function BlogPage() {
   unstable_noStore();
 
-  let blogs = [];
+  let blogs: Blog[] = [];
 
   try {
     blogs = await prisma.blog.findMany({
@@ -31,7 +32,6 @@ export default async function BlogPage() {
               key={blog.id}
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition"
             >
-              {/* Image */}
               {blog.featuredImg && (
                 <img
                   src={blog.featuredImg}
@@ -40,7 +40,6 @@ export default async function BlogPage() {
                 />
               )}
 
-              {/* Content */}
               <div className="p-5">
                 <h2 className="text-lg font-semibold mb-2 text-green-700">
                   {blog.title}
