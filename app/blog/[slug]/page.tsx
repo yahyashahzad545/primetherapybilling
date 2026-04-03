@@ -1,25 +1,20 @@
+export const dynamic = "force-dynamic";
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
 
 export default async function BlogDetail({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string } | Promise<{ slug: string }>;
 }) {
-  const slug = params.slug;
+  const resolvedParams = await params;
+  const slug = resolvedParams?.slug;
 
   if (!slug) return notFound();
 
-  let blog;
-
-  try {
-    blog = await prisma.blog.findUnique({
-      where: { slug },
-    });
-  } catch (error) {
-    console.error("DB Error:", error);
-    return notFound(); // prevent crash
-  }
+  const blog = await prisma.blog.findUnique({
+    where: { slug },
+  });
 
   if (!blog) return notFound();
 
