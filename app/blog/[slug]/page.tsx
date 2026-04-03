@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";

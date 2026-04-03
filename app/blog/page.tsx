@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 import prisma from "@/libs/prisma";
 import Link from "next/link";
 import { Blog } from "@prisma/client";
