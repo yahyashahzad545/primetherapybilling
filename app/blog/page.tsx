@@ -1,11 +1,17 @@
 export const dynamic = "force-dynamic";
+
 import prisma from "@/libs/prisma";
 import Link from "next/link";
+import { unstable_noStore } from "next/cache";
 
 export default async function BlogPage() {
+  unstable_noStore(); // 🔥 important fix
+
   const blogs = await prisma.blog.findMany({
     orderBy: { createdAt: "desc" },
   });
+
+  if (!blogs) return null; // safety
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-6">
