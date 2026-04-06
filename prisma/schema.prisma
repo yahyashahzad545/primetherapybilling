@@ -1,28 +1,22 @@
-datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-model Blog {
-  id          String   @id @default(cuid())
-  title       String
-  slug        String   @unique
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
+model Blog {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
   metaTitle       String?
   metaDescription String?
-
-  content     String   // HTML from editor
-
-  featuredImg String?  // image URL
-  imgAlt      String?
-
-  author      String?
-
-  category    String?  // simple version (later relation bana sakte ho)
-
-  createdAt   DateTime @default(now())
+  content         String
+  featuredImg     String?
+  imgAlt          String?
+  author          String?
+  category        String?
+  createdAt       DateTime @default(now())
 }
