@@ -1,3 +1,4 @@
+export const runtime = "nodejs";
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
 
