@@ -19,16 +19,16 @@ export default async function BlogDetail({
   let blog;
 
   try {
-  console.log("DB URL:", process.env.DATABASE_URL);
+    console.log("DB URL:", process.env.DATABASE_URL);
 
-  blogs = await prisma.blog.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+    blog = await prisma.blog.findUnique({
+      where: { slug },
+    });
 
-  console.log("BLOGS LIST:", blogs);
-} catch (error) {
-  console.error("Prisma Error:", error);
-}
+    console.log("BLOG DETAIL:", blog);
+  } catch (error) {
+    console.error("Prisma Error:", error);
+  }
 
   if (!blog) return notFound();
 
