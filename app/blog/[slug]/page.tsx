@@ -1,9 +1,9 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
 
-// ✅ stable ISR
 export const revalidate = 10;
 
 export default async function BlogDetail({
@@ -11,22 +11,24 @@ export default async function BlogDetail({
 }: {
   params: { slug: string };
 }) {
-  const slug = params.slug;
+  // ✅ FIX HERE
+  const slug = decodeURIComponent(params.slug).trim();
 
   if (!slug) return notFound();
 
   let blog;
 
   try {
-    blog = await prisma.blog.findUnique({
-      where: { slug },
-    });
+  console.log("DB URL:", process.env.DATABASE_URL);
 
-    console.log("BLOG DETAIL:", blog); // debug
-  } catch (error) {
-    console.error("DB Error:", error);
-    return notFound(); // crash avoid
-  }
+  blogs = await prisma.blog.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
+  console.log("BLOGS LIST:", blogs);
+} catch (error) {
+  console.error("Prisma Error:", error);
+}
 
   if (!blog) return notFound();
 

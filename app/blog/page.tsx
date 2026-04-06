@@ -1,9 +1,9 @@
 export const runtime = "nodejs";
+
 import prisma from "@/libs/prisma";
 import Link from "next/link";
 import { Blog } from "@prisma/client";
 
-// 👉 ISR (best for production)
 export const revalidate = 10;
 
 export default async function BlogPage() {
@@ -14,9 +14,13 @@ export default async function BlogPage() {
       orderBy: { createdAt: "desc" },
     });
 
-    console.log("BLOGS LIST:", blogs); // debug (remove later)
-  } catch (error) {
-    console.error("Prisma Error:", error);
+    // Debug (remove later)
+    console.log("DB URL:", process.env.DATABASE_URL);
+  } catch (error: any) {
+    console.error("❌ DB ERROR:", error.message);
+
+    // ❗ IMPORTANT: DB fail ho to fallback empty array
+    blogs = [];
   }
 
   return (
@@ -64,7 +68,7 @@ export default async function BlogPage() {
           ))
         ) : (
           <p className="text-center col-span-3 text-gray-500">
-            No blogs found
+            No blogs found or database not connected
           </p>
         )}
       </div>
