@@ -1,51 +1,21 @@
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
 
-export const revalidate = 10;
+export const dynamic = "force-dynamic";
 
-export default async function BlogDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  // ✅ FIX HERE
-  const slug = decodeURIComponent(params.slug).trim();
-
-  if (!slug) return notFound();
-
-  let blog;
-
-  try {
-    console.log("DB URL:", process.env.DATABASE_URL);
-
-    blog = await prisma.blog.findUnique({
-      where: { slug },
-    });
-
-    console.log("BLOG DETAIL:", blog);
-  } catch (error) {
-    console.error("Prisma Error:", error);
-  }
+export default async function Page({ params }: any) {
+  const blog = await prisma.blog.findFirst({
+    where: {
+      slug: params.slug,
+    },
+  });
 
   if (!blog) return notFound();
 
   return (
-    <div className="max-w-3xl mx-auto py-16 px-6">
-      <h1 className="text-4xl font-bold mb-6">
-        {blog.title}
-      </h1>
-
-      <p className="text-gray-500 mb-4">
-        {new Date(blog.createdAt).toDateString()}
-      </p>
-
-      <div
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: blog.content }}
-      />
+    <div>
+      <h1>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: blog.content }} />
     </div>
   );
 }
