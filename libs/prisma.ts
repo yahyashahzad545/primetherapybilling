@@ -8,14 +8,10 @@ export const prisma =
   globalForPrisma.prisma ||
   new PrismaClient({
     log: ["query"],
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL + "?pgbouncer=true&connection_limit=1&pool_timeout=6"
-      }
-    }
   });
 
-if (process.env.NODE_ENV !== "production")
+if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma;
+}
 
 export default prisma;
