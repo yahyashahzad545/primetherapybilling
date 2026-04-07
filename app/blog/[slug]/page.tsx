@@ -1,19 +1,56 @@
 export const runtime = "nodejs";
+
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+// ✅ SEO (Meta Title & Description - page par show nahi honge)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const blog = await prisma.blog.findFirst({
+    where: {
+      slug: {
+        equals: slug,
+        mode: "insensitive",
+      },
+    },
+  });
+
+  if (!blog) return {};
+
+  return {
+    title: blog.metaTitle || blog.title,
+    description: blog.metaDescription || "",
+  };
+}
 
 export default async function Page({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = await prisma.blog.findUnique({
-    where: {
-      slug: params.slug,
-    },
-  });
+  const { slug } = await params;
+
+  if (!slug) return notFound();
+
+  let blog;
+
+  try {
+    blog = await prisma.blog.findFirst({
+      where: {
+        slug: {
+          equals: slug,
+          mode: "insensitive",
+        },
+      },
+    });
+  } catch (error) {
+    return notFound();
+  }
 
   if (!blog) return notFound();
 
@@ -31,6 +68,7 @@ export default async function Page({
         <h1 style={{ fontSize: "28px", fontWeight: "bold" }}>
           {blog.title}
         </h1>
+
         <p style={{ marginTop: "10px" }}>
           Category: {blog.category || "Medical Coding"}
         </p>
@@ -81,6 +119,37 @@ export default async function Page({
 
         {/* ✅ RIGHT SIDEBAR */}
         <div style={{ flex: 1 }}>
+          {/* CTA BOX */}
+          <div
+            style={{
+              background: "#2e7d6b",
+              color: "white",
+              padding: "20px",
+              borderRadius: "10px",
+              marginBottom: "20px",
+            }}
+          >
+            <h3>Certified Medical Billing Services</h3>
+            <p style={{ fontSize: "14px", marginTop: "10px" }}>
+              Improve claim accuracy and maximize reimbursements.
+            </p>
+
+            <button
+              style={{
+                marginTop: "10px",
+                background: "white",
+                color: "#2e7d6b",
+                padding: "10px",
+                borderRadius: "6px",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Get Billing Quote
+            </button>
+          </div>
+
+          {/* FORM */}
           <div
             style={{
               border: "1px solid #ddd",
@@ -103,6 +172,8 @@ export default async function Page({
                 color: "white",
                 padding: "10px",
                 borderRadius: "6px",
+                border: "none",
+                cursor: "pointer",
               }}
             >
               Submit
@@ -114,6 +185,7 @@ export default async function Page({
   );
 }
 
+// ✅ Reusable input style
 const inputStyle = {
   width: "100%",
   padding: "10px",
