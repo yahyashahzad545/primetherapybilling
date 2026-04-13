@@ -56,6 +56,39 @@ export default async function Page({
 
   return (
     <div>
+      {/* ✅ Table Styles for Blog Content */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            .blog-content table {
+              width: 100%;
+              border-collapse: collapse;
+              margin: 20px 0;
+              font-size: 15px;
+            }
+            .blog-content table thead {
+              background-color: #2e7d6b;
+              color: #ffffff;
+            }
+            .blog-content table th,
+            .blog-content table td {
+              border: 1px solid #ddd;
+              padding: 12px 15px;
+              text-align: left;
+            }
+            .blog-content table th {
+              font-weight: 600;
+            }
+            .blog-content table tbody tr:nth-child(even) {
+              background-color: #f9f9f9;
+            }
+            .blog-content table tbody tr:hover {
+              background-color: #f1f1f1;
+            }
+          `,
+        }}
+      />
+
       {/* ✅ HERO SECTION */}
       <div
         style={{
@@ -107,6 +140,7 @@ export default async function Page({
 
           {/* CONTENT */}
           <div
+            className="blog-content"
             style={{
               lineHeight: "1.8",
               fontSize: "16px",
