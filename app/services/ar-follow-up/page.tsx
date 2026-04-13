@@ -4,10 +4,37 @@ import { useState } from "react";
 export default function ARFollowUpPage() {
   const [open, setOpen] = useState(false);
 
-  // ✅ NEW STATES
+  // ✅ EXISTING STATES
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [practice, setPractice] = useState("");
+
+  // ✅ NEW STATES
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  // ✅ ✅ PHONE FORMAT FUNCTION (USA FORMAT)
+  const formatPhone = (value: string) => {
+    const cleaned = value.replace(/\D/g, "").slice(0, 10);
+
+    const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+
+    if (!match) return value;
+
+    let formatted = "";
+
+    if (match[1]) {
+      formatted = "(" + match[1];
+    }
+    if (match[2]) {
+      formatted += ") " + match[2];
+    }
+    if (match[3]) {
+      formatted += "-" + match[3];
+    }
+
+    return formatted;
+  };
 
   // ✅ SUBMIT FUNCTION
   const handleSubmit = async (e: any) => {
@@ -19,6 +46,8 @@ export default function ARFollowUpPage() {
         name,
         email,
         practice,
+        phone,
+        message,
         company: "", // honeypot
       }),
     });
@@ -31,8 +60,10 @@ export default function ARFollowUpPage() {
       setName("");
       setEmail("");
       setPractice("");
+      setPhone("");
+      setMessage("");
     } else {
-      alert("Error sending message");
+      alert(data.error || "Error sending message");
     }
   };
 
@@ -108,7 +139,6 @@ export default function ARFollowUpPage() {
 
             <h2 className="text-xl font-bold mb-4">Get Free Audit</h2>
 
-            {/* ✅ FORM ADDED */}
             <form onSubmit={handleSubmit}>
 
               <input
@@ -138,7 +168,26 @@ export default function ARFollowUpPage() {
                 required
               />
 
-              {/* hidden honeypot */}
+              {/* ✅ PHONE (AUTO FORMAT) */}
+              <input
+                type="tel"
+                placeholder="(123) 456-7890"
+                value={phone}
+                onChange={(e) => setPhone(formatPhone(e.target.value))}
+                className="w-full border p-2 mb-3 rounded"
+                required
+              />
+
+              {/* ✅ MESSAGE */}
+              <textarea
+                placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full border p-2 mb-3 rounded"
+                rows={3}
+                required
+              />
+
               <input type="text" name="company" style={{ display: "none" }} />
 
               <button

@@ -4,18 +4,24 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, practice } = body;
+    const { name, email, practice, phone, message } = body;
 
     // ✅ validation
-    if (!name || !email || !practice) {
+    if (!name || !email || !practice || !phone || !message) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+    }
+
+    // ✅ USA phone validation (basic)
+    const usPhoneRegex = /^(\+1\s?)?(\(?\d{3}\)?[\s.-]?)\d{3}[\s.-]?\d{4}$/;
+    if (!usPhoneRegex.test(phone)) {
+      return NextResponse.json({ error: "Invalid US phone number" }, { status: 400 });
     }
 
     // ✅ transporter (HOSTINGER SMTP CORRECT CONFIG)
     const transporter = nodemailer.createTransport({
       host: "smtp.hostinger.com",
       port: 587,
-      secure: false, // ❗ 587 = false (IMPORTANT)
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -33,6 +39,8 @@ export async function POST(req: Request) {
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>Practice:</b> ${practice}</p>
+        <p><b>Phone:</b> ${phone}</p>
+        <p><b>Message:</b> ${message}</p>
       `,
 
       replyTo: email,
@@ -41,7 +49,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
 
   } catch (error: any) {
-    console.log("EMAIL ERROR:", error); // 🔍 debug
+    console.log("EMAIL ERROR:", error);
     return NextResponse.json(
       { error: error.message || "Server error" },
       { status: 500 }
