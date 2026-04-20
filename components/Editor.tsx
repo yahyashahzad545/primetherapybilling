@@ -2,16 +2,16 @@
 
 import dynamic from "next/dynamic";
 import { useMemo } from "react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default function Editor({
   onChange,
 }: {
   onChange: (data: string) => void;
 }) {
-  // ✅ CKEditor ko sirf client side pe load karo
-  const CKEditor = useMemo(
+  const CKEditorComponent = useMemo(
     () =>
-      dynamic(
+      dynamic<any>(
         async () => {
           const mod = await import("@ckeditor/ckeditor5-react");
           return mod.CKEditor;
@@ -21,14 +21,9 @@ export default function Editor({
     []
   );
 
-  const ClassicEditor = useMemo(
-    () => require("@ckeditor/ckeditor5-build-classic"),
-    []
-  );
-
   return (
     <div className="bg-white border rounded p-2">
-      <CKEditor
+      <CKEditorComponent
         editor={ClassicEditor}
         data=""
         config={{
