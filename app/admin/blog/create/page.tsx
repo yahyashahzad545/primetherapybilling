@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import { useState } from "react";
 import dynamicImport from "next/dynamic";
 
-// FIX: Editor ko SSR off ke sath load karo
+// Editor (SSR off)
 const Editor = dynamicImport(() => import("@/components/Editor"), {
   ssr: false,
 });
@@ -35,25 +35,33 @@ export default function CreateBlog() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Image Upload Handler
+  // ✅ FIXED Image Upload Handler
   const handleImageUpload = async (file: File) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await fetch("/api/upload", {
+      const res = await fetch("/api/uploads", { // ✅ FIXED ROUTE
         method: "POST",
         body: formData,
       });
 
       const data = await res.json();
 
+      // ✅ CHECK RESPONSE
+      if (!res.ok) {
+        console.error(data);
+        throw new Error(data.error || "Upload failed");
+      }
+
+      // ✅ SET IMAGE URL ONLY IF SUCCESS
       setForm((prev) => ({
         ...prev,
         featuredImg: data.url,
       }));
+
     } catch (error) {
-      console.log(error);
+      console.error(error);
       alert("Image upload failed ❌");
     }
   };
@@ -74,7 +82,7 @@ export default function CreateBlog() {
     });
 
     if (res.ok) {
-      alert("Blog Created ");
+      alert("Blog Created ✅");
 
       setForm({
         title: "",
@@ -88,7 +96,7 @@ export default function CreateBlog() {
         content: "",
       });
     } else {
-      alert("Error creating blog ");
+      alert("Error creating blog ❌");
     }
   };
 
