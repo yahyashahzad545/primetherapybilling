@@ -75,11 +75,11 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center mb-4">
             <Image
-            src="/primetherapylogo.svg"
+            src="/primetherapylogo1.svg"
             alt="Prime Therapy Billing Logo"
             width={260}
             height={80}
-            className="h-16 md:h-18 w-auto"
+            className="h-16 md:h-20 w-auto"
             />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
