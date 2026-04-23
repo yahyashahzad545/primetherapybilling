@@ -1,8 +1,8 @@
-// app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Prime Therapy Billing",
   },
   description:
-    "Prime Therapy Billing offers specialized medical billing services.",
+    "Prime Therapy Billing offers specialized medical billing services for therapists across the USA.",
 };
 
 export const viewport: Viewport = {
@@ -43,24 +43,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-900 bg-gray-50 flex flex-col min-h-screen`}
       >
         <Header />
-
-        {/*
-          pt-20  = mobile  (nav ~80px, no top-bar)
-          md:pt-24 = tablet
-          lg:pt-[115px] = desktop at rest (35px top offset + 80px nav)
-        */}
-        <main className="flex-1 pt-20 md:pt-24 lg:pt-[115px]">
+        <main className="flex-1 pt-20 lg:pt-[80px]">
           {children}
         </main>
-
-        <footer className="bg-gray-900 text-gray-300">
-          <div className="max-w-7xl mx-auto px-4 py-10">
-            <p className="text-center text-sm text-gray-400">
-              © {new Date().getFullYear()} Prime Therapy Billing. All rights
-              reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
