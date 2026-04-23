@@ -1,35 +1,15 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+// app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.primetherapybilling.com"),
-  title: {
-    default: "Prime Therapy Billing | Medical Billing for Therapists in USA",
-    template: "%s | Prime Therapy Billing",
-  },
-  description:
-    "Prime Therapy Billing offers specialized medical billing services for therapists across the USA.",
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: "#113356",
+  title: "Prime Therapy Billing",
+  description: "Professional therapy billing services",
 };
 
 export default function RootLayout({
@@ -38,14 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-900 bg-gray-50 flex flex-col min-h-screen`}
-      >
+    <html lang="en">
+      <body className={inter.className}>
         <Header />
-        <main className="flex-1 pt-20 lg:pt-[80px]">
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

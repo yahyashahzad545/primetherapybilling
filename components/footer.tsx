@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+
 // ─── Social Icons ─────────────────────────────────────────
 function LinkedInIcon() {
   return (
@@ -10,6 +11,7 @@ function LinkedInIcon() {
   );
 }
 
+
 function TwitterIcon() {
   return (
     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -17,6 +19,7 @@ function TwitterIcon() {
     </svg>
   );
 }
+
 
 function FacebookIcon() {
   return (
@@ -26,6 +29,7 @@ function FacebookIcon() {
   );
 }
 
+
 function InstagramIcon() {
   return (
     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -33,6 +37,7 @@ function InstagramIcon() {
     </svg>
   );
 }
+
 
 // ─── Footer Link ──────────────────────────────────────────
 function FooterLink({ href, label }: { href: string; label: string }) {
@@ -61,15 +66,18 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+
 // ─── Footer Component ─────────────────────────────────────
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
 
   return (
     <footer className="bg-[#0a1f38] text-gray-300">
       {/* ── Main Footer Body ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+
 
           {/* Col 1 — Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
@@ -87,6 +95,7 @@ export default function Footer() {
               health providers across the USA. Let us handle the billing so you
               can focus on care.
             </p>
+
 
             {/* Social */}
             <div className="flex items-center gap-3">
@@ -129,6 +138,7 @@ export default function Footer() {
             </div>
           </div>
 
+
           {/* Col 2 — Quick Links */}
           <div>
             <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-5">
@@ -142,6 +152,7 @@ export default function Footer() {
               <FooterLink href="/contact" label="Contact Us" />
             </ul>
           </div>
+
 
           {/* Col 3 — Services */}
           <div>
@@ -157,6 +168,7 @@ export default function Footer() {
               <FooterLink href="/services/payment-posting" label="Payment Posting" />
             </ul>
           </div>
+
 
           {/* Col 4 — Contact */}
           <div>
@@ -181,6 +193,7 @@ export default function Footer() {
                 </a>
               </li>
 
+
               <li>
                 <a
                   href="mailto:info@primetherapybilling.com"
@@ -200,6 +213,7 @@ export default function Footer() {
                 </a>
               </li>
 
+
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0">
                   <svg className="w-3.5 h-3.5 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
@@ -217,6 +231,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
 
       {/* ── Divider ──────────────────────────────────── */}
       <div className="border-t border-white/5">
@@ -249,3 +264,4 @@ export default function Footer() {
     </footer>
   );
 }
+
