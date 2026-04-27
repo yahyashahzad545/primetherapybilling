@@ -94,12 +94,12 @@ export default function ContactPage() {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="inline-block bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-            🚀 Fast Response Guaranteed
+             Fast Response. Real Results
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-            Let&apos;s Talk About Your
+            Let’s Grow Your
             <span className="block mt-2 bg-gradient-to-r from-teal-300 to-cyan-200 bg-clip-text text-transparent">
-              Practice Growth
+              Therapy Practice Revenue
             </span>
           </h1>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto text-purple-100 leading-relaxed">

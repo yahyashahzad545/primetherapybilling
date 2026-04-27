@@ -24,7 +24,7 @@ export default async function BlogPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-16 px-6">
+    <div className="max-w-7xl mx-auto py-16 px-6 pt-32">
       <h1 className="text-4xl font-bold text-center mb-12">
         Our Latest Blog
       </h1>
@@ -37,17 +37,21 @@ export default async function BlogPage() {
               className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition"
             >
               {blog.featuredImg && (
-                <img
-                  src={blog.featuredImg}
-                  alt={blog.imgAlt || blog.title}
-                  className="w-full h-48 object-cover"
-                />
+                <Link href={`/blog/${blog.slug}`}>
+                  <img
+                    src={blog.featuredImg}
+                    alt={blog.imgAlt || blog.title}
+                    className="w-full h-48 object-cover cursor-pointer"
+                  />
+                </Link>
               )}
 
               <div className="p-5">
-                <h2 className="text-lg font-semibold mb-2 text-green-700">
-                  {blog.title}
-                </h2>
+                <Link href={`/blog/${blog.slug}`}>
+                  <h2 className="text-lg font-semibold mb-2 text-green-700 cursor-pointer hover:underline">
+                    {blog.title}
+                  </h2>
+                </Link>
 
                 <p className="text-gray-600 text-sm mb-4">
                   {blog.content

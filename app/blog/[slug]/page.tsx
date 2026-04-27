@@ -95,6 +95,7 @@ export default async function Page({
           background: "linear-gradient(to right, #2e7d6b, #3aa88f)",
           color: "white",
           padding: "40px",
+          paddingTop: "120px",
           textAlign: "center",
         }}
       >
