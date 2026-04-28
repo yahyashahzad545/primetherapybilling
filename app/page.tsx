@@ -1046,7 +1046,7 @@ export default function Home() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-4 text-xs font-semibold" style={{ color: "#93c5fd" }}>
-                  {["🔒 HIPAA Compliant", "⚡ 7–10 Day Onboarding", "📊 No Setup Fees", "📞 No Long-Term Contracts"].map((b, i) => (
+                  {[" HIPAA Compliant", " 7–10 Day Onboarding", " No Setup Fees", " No Long-Term Contracts"].map((b, i) => (
                     <span
                       key={i}
                       className="bg-white/10 px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/15 transition-colors duration-200 cursor-default"

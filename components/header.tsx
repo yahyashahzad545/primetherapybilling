@@ -319,8 +319,8 @@ export default function Header() {
             <Image
               src="/primetherapylogo.svg"
               alt="Prime Therapy Billing Logo"
-              width={200}
-              height={85}
+              width={260}
+              height={80}
               priority
               className="object-contain h-auto w-[140px] sm:w-[160px] lg:w-[180px]"
             />
