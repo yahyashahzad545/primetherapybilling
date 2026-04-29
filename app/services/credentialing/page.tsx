@@ -13,6 +13,8 @@ function PopupModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -27,31 +29,34 @@ function PopupModal({
 
   // Lock body scroll when open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  // Reset form when closed
+  // Close on Escape key
   useEffect(() => {
-    if (!isOpen) {
-      setTimeout(() => {
-        setFormData({
-          first_name: "",
-          last_name: "",
-          work_email: "",
-          phone: "",
-          provider_type: "",
-          contact_message_custom: "",
-        });
-        setSubmitted(false);
-        setError("");
-      }, 300);
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen, onClose]);
+
+  // Reset form + states every time modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setSubmitted(false);
+      setError("");
+      setFormData({
+        first_name: "",
+        last_name: "",
+        work_email: "",
+        phone: "",
+        provider_type: "",
+        contact_message_custom: "",
+      });
     }
   }, [isOpen]);
 
@@ -80,11 +85,13 @@ function PopupModal({
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+
     const digits = formData.phone.replace(/\D/g, "");
     if (digits.length !== 10) {
       setError("Please enter a valid 10-digit US phone number.");
       return;
     }
+
     setLoading(true);
     try {
       const res = await fetch("/api/contact", {
@@ -95,22 +102,31 @@ function PopupModal({
           email: formData.work_email,
           phone: formData.phone,
           practice: formData.provider_type,
-          message: `Provider Type: ${formData.provider_type} | ${formData.contact_message_custom}`,
-          source: "Credentialing Page - Popup Form",
+          message: `Provider Type: ${formData.provider_type}\n\n${formData.contact_message_custom}`,
+          source: "Credentialing Page — Popup Form",
         }),
       });
+
       const json = await res.json();
+
       if (res.ok) {
         setSubmitted(true);
       } else {
         setError(json.error || "Submission failed. Please try again.");
       }
     } catch {
-      setError("Server error. Please try again.");
+      setError("Server error. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
   }
+
+  // Close only when clicking the dark backdrop
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      onClose();
+    }
+  };
 
   const providerTypes = [
     "Physicians (MD / DO)",
@@ -147,12 +163,14 @@ function PopupModal({
   return (
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-      style={{ backgroundColor: "rgba(0,0,0,0.65)", backdropFilter: "blur(4px)" }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+      style={{
+        backgroundColor: "rgba(0,0,0,0.65)",
+        backdropFilter: "blur(4px)",
       }}
+      onClick={handleBackdropClick}
     >
       <div
+        ref={modalRef}
         className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
         style={{ background: ptbGradient }}
       >
@@ -207,13 +225,18 @@ function PopupModal({
                 </svg>
               </div>
               <h3 className="text-white text-xl font-extrabold mb-3">
-                Thank You!
+                Thank You,{" "}
+                <span className="capitalize">{formData.first_name}</span>!
               </h3>
               <p className="text-white/90 text-sm leading-relaxed mb-2">
                 Your credentialing request has been received.
               </p>
               <p className="text-white/90 text-sm leading-relaxed mb-6">
-                A specialist will contact you within{" "}
+                A specialist will contact you at{" "}
+                <span className="font-bold text-white">
+                  {formData.work_email}
+                </span>{" "}
+                within{" "}
                 <span className="font-bold text-white">24 business hours</span>.
               </p>
               <div className="p-4 bg-white/10 rounded-2xl border border-white/20 mb-6">
@@ -324,7 +347,9 @@ function PopupModal({
                   value={formData.provider_type}
                   onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl border-2 border-transparent bg-white text-[14px] outline-none transition-all duration-200"
-                  style={{ color: formData.provider_type ? "#0e3256" : "#9ca3af" }}
+                  style={{
+                    color: formData.provider_type ? "#0e3256" : "#9ca3af",
+                  }}
                   onFocus={inputFocus}
                   onBlur={inputBlur}
                 >
@@ -355,16 +380,31 @@ function PopupModal({
                 />
               </div>
 
+              {/* Error Message */}
               {error && (
-                <p className="text-red-200 text-sm mb-3 bg-red-900/30 px-3 py-2 rounded-lg">
+                <div className="flex items-start gap-2 bg-red-900/30 border border-red-400/40 text-red-200 text-sm px-3 py-2.5 rounded-xl mb-4">
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
                   {error}
-                </p>
+                </div>
               )}
 
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-white font-extrabold text-sm uppercase tracking-wide py-4 rounded-full border-none cursor-pointer mt-1 shadow-lg hover:-translate-y-[2px] hover:shadow-xl active:translate-y-0 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+                className="w-full bg-white font-extrabold text-sm uppercase tracking-wide py-4 rounded-full border-none cursor-pointer mt-1 shadow-lg hover:-translate-y-[2px] hover:shadow-xl active:translate-y-0 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2"
                 style={{ color: "#0e3256" }}
                 onMouseEnter={(e) => {
                   if (!loading) {
@@ -377,7 +417,32 @@ function PopupModal({
                   e.currentTarget.style.color = "#0e3256";
                 }}
               >
-                {loading ? "Submitting…" : "GET FREE CONSULTATION"}
+                {loading ? (
+                  <>
+                    <svg
+                      className="w-4 h-4 animate-spin"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      />
+                    </svg>
+                    Submitting…
+                  </>
+                ) : (
+                  "GET FREE CONSULTATION"
+                )}
               </button>
 
               {/* Trust row */}
@@ -444,11 +509,13 @@ function CredentialingFormSection({
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+
     const digits = formData.phone.replace(/\D/g, "");
     if (digits.length !== 10) {
       setError("Please enter a valid 10-digit US phone number.");
       return;
     }
+
     setLoading(true);
     try {
       const res = await fetch("/api/contact", {
@@ -459,10 +526,12 @@ function CredentialingFormSection({
           email: formData.work_email,
           phone: formData.phone,
           message: formData.contact_message_custom,
-          source: "Credentialing Page - Top Form",
+          source: "Credentialing Page — Top Form",
         }),
       });
+
       const json = await res.json();
+
       if (res.ok) {
         setSubmitted(true);
         setTimeout(() => {
@@ -472,11 +541,24 @@ function CredentialingFormSection({
         setError(json.error || "Submission failed. Please try again.");
       }
     } catch {
-      setError("Server error. Please try again.");
+      setError("Server error. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
   }
+
+  const fieldFocus = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.currentTarget.style.borderColor = "#3e8ad6";
+    e.currentTarget.style.boxShadow = "0 0 0 3px rgba(62,138,214,0.25)";
+  };
+  const fieldBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.currentTarget.style.borderColor = "transparent";
+    e.currentTarget.style.boxShadow = "none";
+  };
 
   return (
     <section className="w-full bg-white py-14 sm:py-16 lg:py-20 px-5 sm:px-10 lg:px-24 overflow-x-hidden">
@@ -600,6 +682,7 @@ function CredentialingFormSection({
           </div>
 
           {submitted ? (
+            /* ── Success State ── */
             <div ref={successRef} className="py-8 text-center">
               <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-5">
                 <svg
@@ -617,13 +700,18 @@ function CredentialingFormSection({
                 </svg>
               </div>
               <h3 className="text-white text-xl font-extrabold mb-3">
-                Thank You!
+                Thank You,{" "}
+                <span className="capitalize">{formData.first_name}</span>!
               </h3>
               <p className="text-white/90 text-sm leading-relaxed mb-2">
                 Your credentialing request has been received.
               </p>
               <p className="text-white/90 text-sm leading-relaxed">
-                A specialist will contact you within{" "}
+                A specialist will contact you at{" "}
+                <span className="font-bold text-white">
+                  {formData.work_email}
+                </span>{" "}
+                within{" "}
                 <span className="font-bold text-white">24 business hours</span>.
               </p>
               <div className="mt-6 p-4 bg-white/10 rounded-2xl border border-white/20">
@@ -640,6 +728,7 @@ function CredentialingFormSection({
               </div>
             </div>
           ) : (
+            /* ── Form ── */
             <form onSubmit={handleSubmit} noValidate>
               {/* Name Row */}
               <div className="flex gap-3 mb-4">
@@ -656,15 +745,8 @@ function CredentialingFormSection({
                     onChange={handleChange}
                     className="w-full px-4 py-3.5 rounded-xl border-2 border-transparent bg-white text-[15px] outline-none placeholder:text-gray-400 transition-all duration-200"
                     style={{ color: "#0e3256" }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = "#3e8ad6";
-                      e.currentTarget.style.boxShadow =
-                        "0 0 0 3px rgba(62,138,214,0.25)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "transparent";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
+                    onFocus={fieldFocus}
+                    onBlur={fieldBlur}
                   />
                 </div>
                 <div className="flex-1 flex flex-col gap-1.5">
@@ -680,15 +762,8 @@ function CredentialingFormSection({
                     onChange={handleChange}
                     className="w-full px-4 py-3.5 rounded-xl border-2 border-transparent bg-white text-[15px] outline-none placeholder:text-gray-400 transition-all duration-200"
                     style={{ color: "#0e3256" }}
-                    onFocus={(e) => {
-                      e.currentTarget.style.borderColor = "#3e8ad6";
-                      e.currentTarget.style.boxShadow =
-                        "0 0 0 3px rgba(62,138,214,0.25)";
-                    }}
-                    onBlur={(e) => {
-                      e.currentTarget.style.borderColor = "transparent";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
+                    onFocus={fieldFocus}
+                    onBlur={fieldBlur}
                   />
                 </div>
               </div>
@@ -707,15 +782,8 @@ function CredentialingFormSection({
                   onChange={handleChange}
                   className="w-full px-4 py-3.5 rounded-xl border-2 border-transparent bg-white text-[15px] outline-none placeholder:text-gray-400 transition-all duration-200"
                   style={{ color: "#0e3256" }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = "#3e8ad6";
-                    e.currentTarget.style.boxShadow =
-                      "0 0 0 3px rgba(62,138,214,0.25)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = "transparent";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
+                  onFocus={fieldFocus}
+                  onBlur={fieldBlur}
                 />
               </div>
 
@@ -733,15 +801,8 @@ function CredentialingFormSection({
                   onChange={handlePhoneChange}
                   className="w-full px-4 py-3.5 rounded-xl border-2 border-transparent bg-white text-[15px] outline-none placeholder:text-gray-400 transition-all duration-200"
                   style={{ color: "#0e3256" }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = "#3e8ad6";
-                    e.currentTarget.style.boxShadow =
-                      "0 0 0 3px rgba(62,138,214,0.25)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = "transparent";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
+                  onFocus={fieldFocus}
+                  onBlur={fieldBlur}
                 />
               </div>
 
@@ -758,28 +819,36 @@ function CredentialingFormSection({
                   rows={3}
                   className="w-full px-4 py-3.5 rounded-xl border-2 border-transparent bg-white text-[15px] outline-none resize-y placeholder:text-gray-400 transition-all duration-200 min-h-[90px]"
                   style={{ color: "#0e3256" }}
-                  onFocus={(e) => {
-                    e.currentTarget.style.borderColor = "#3e8ad6";
-                    e.currentTarget.style.boxShadow =
-                      "0 0 0 3px rgba(62,138,214,0.25)";
-                  }}
-                  onBlur={(e) => {
-                    e.currentTarget.style.borderColor = "transparent";
-                    e.currentTarget.style.boxShadow = "none";
-                  }}
+                  onFocus={fieldFocus}
+                  onBlur={fieldBlur}
                 />
               </div>
 
+              {/* Error Message */}
               {error && (
-                <p className="text-red-200 text-sm mb-3 bg-red-900/30 px-3 py-2 rounded-lg">
+                <div className="flex items-start gap-2 bg-red-900/30 border border-red-400/40 text-red-200 text-sm px-3 py-2.5 rounded-xl mb-4">
+                  <svg
+                    className="w-4 h-4 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
                   {error}
-                </p>
+                </div>
               )}
 
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-white font-extrabold text-base uppercase tracking-wide py-[18px] rounded-full border-none cursor-pointer mt-2 shadow-lg hover:-translate-y-[3px] hover:shadow-xl active:-translate-y-[1px] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+                className="w-full bg-white font-extrabold text-base uppercase tracking-wide py-[18px] rounded-full border-none cursor-pointer mt-2 shadow-lg hover:-translate-y-[3px] hover:shadow-xl active:-translate-y-[1px] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0 flex items-center justify-center gap-2"
                 style={{ color: "#0e3256" }}
                 onMouseEnter={(e) => {
                   if (!loading) {
@@ -792,7 +861,32 @@ function CredentialingFormSection({
                   e.currentTarget.style.color = "#0e3256";
                 }}
               >
-                {loading ? "Submitting…" : "BOOK NOW"}
+                {loading ? (
+                  <>
+                    <svg
+                      className="w-4 h-4 animate-spin"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      />
+                    </svg>
+                    Submitting…
+                  </>
+                ) : (
+                  "BOOK NOW"
+                )}
               </button>
             </form>
           )}
@@ -898,7 +992,7 @@ export default function CredentialingPage() {
           phone: bottomForm.phone,
           practice: bottomForm.providerType,
           message: `Provider Type: ${bottomForm.providerType} | Providers: ${bottomForm.numProviders} | ${bottomForm.message}`,
-          source: "Credentialing Page - Bottom Form",
+          source: "Credentialing Page — Bottom Form",
         }),
       });
       const data = await res.json();
@@ -1454,7 +1548,6 @@ export default function CredentialingPage() {
             className="max-w-[1500px] mx-auto rounded-[14px] py-10 px-6 sm:px-[60px] pb-14 sm:pb-[60px] xl:py-[50px] xl:px-[70px] xl:pb-[70px] lg:max-w-[1200px] lg:px-12 lg:pb-14 bg-white"
             style={{ color: "#0e3256" }}
           >
-            {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6">
               <h2
                 className="text-xl sm:text-2xl font-bold leading-[1.4] m-0"
@@ -1482,7 +1575,6 @@ export default function CredentialingPage() {
               </button>
             </div>
 
-            {/* Subtext */}
             <p
               className="mt-[18px] text-[15px] opacity-90 leading-relaxed"
               style={{ color: "#0e3256" }}
@@ -1496,13 +1588,11 @@ export default function CredentialingPage() {
               flow — guaranteed.
             </p>
 
-            {/* Divider */}
             <hr
               className="border-0 border-b-2 my-[22px]"
               style={{ borderColor: "#3e8ad6" }}
             />
 
-            {/* Features */}
             <div className="flex flex-col sm:flex-row sm:flex-nowrap items-start gap-6 sm:gap-10 lg:gap-7 max-w-[320px] sm:max-w-none mx-auto sm:mx-0">
               {[
                 "Stop losing revenue",
