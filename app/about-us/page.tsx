@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 // ── Animated counter hook ─────────────────────────────────────────
-function useCountUp(target: number, duration = 2000, suffix = "") {
+function useCountUp(target: number, duration = 2000, decimals = 0) {
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -29,13 +29,13 @@ function useCountUp(target: number, duration = 2000, suffix = "") {
         setCount(target);
         clearInterval(timer);
       } else {
-        setCount(Math.floor(start));
+        setCount(parseFloat(start.toFixed(decimals)));
       }
     }, 16);
     return () => clearInterval(timer);
-  }, [started, target, duration]);
+  }, [started, target, duration, decimals]);
 
-  return { count, ref, suffix };
+  return { count, ref };
 }
 
 // ── Stat card ─────────────────────────────────────────────────────
@@ -46,6 +46,7 @@ function StatCard({
   label,
   sub,
   duration,
+  decimals,
 }: {
   target: number;
   suffix?: string;
@@ -53,17 +54,21 @@ function StatCard({
   label: string;
   sub: string;
   duration?: number;
+  decimals?: number;
 }) {
-  const { count, ref } = useCountUp(target, duration ?? 2000);
+  const resolvedDecimals = decimals ?? 0;
+  const { count, ref } = useCountUp(target, duration ?? 2000, resolvedDecimals);
+
+  const displayValue =
+    resolvedDecimals > 0 ? count.toFixed(resolvedDecimals) : count;
+
   return (
     <div
       ref={ref}
       className="bg-white rounded-2xl p-7 text-center shadow-xl border border-gray-100 hover:-translate-y-2 transition-transform duration-300"
     >
       <p className="text-4xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
-        {prefix ?? ""}
-        {count}
-        {suffix ?? ""}
+        {`${prefix ?? ""}${displayValue}${suffix ?? ""}`}
       </p>
       <p className="text-base font-bold mb-1" style={{ color: "#1a5fa8" }}>
         {label}
@@ -212,7 +217,7 @@ function ConsultationModal({
               "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
           }}
         >
-          {/* Decorative blobs — pointer-events-none so they never block clicks */}
+          {/* Decorative blobs */}
           <div
             className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10 blur-2xl pointer-events-none"
             style={{ background: "#ffffff" }}
@@ -222,7 +227,7 @@ function ConsultationModal({
             style={{ background: "#3e8ad6" }}
           />
 
-          {/* ── Close button — sits on top of everything in the header ── */}
+          {/* ── Close button ── */}
           <button
             type="button"
             onClick={(e) => {
@@ -567,7 +572,7 @@ export default function AboutPage() {
   const values = [
     {
       title: "Transparency First",
-      desc: "No hidden fees, no surprise invoices. Our 2.99% billing rate and $99 credentialing fee are straightforward — what you see is exactly what you pay.",
+      desc: "No hidden fees, no surprise invoices. Our 3.99% billing rate and $99 credentialing fee are straightforward — what you see is exactly what you pay.",
       icon: (
         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -707,7 +712,7 @@ export default function AboutPage() {
   ];
 
   const comparisonRows = [
-    { feature: "Billing Rate", prime: "2.99%", industry: "5–7%" },
+    { feature: "Billing Rate", prime: "3.99%", industry: "5–7%" },
     { feature: "Credentialing Fee", prime: "$99/payer", industry: "$150–$400+" },
     { feature: "Contracts Required", prime: "None", industry: "12–24 months" },
     { feature: "Claim Turnaround", prime: "Daily", industry: "3–5 days" },
@@ -822,279 +827,303 @@ export default function AboutPage() {
                 <span>→</span>
               </button>
               <a
-                href="tel:+18005550199"
+                href="tel:+13464604441"
                 className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-6 py-3 rounded-full text-sm font-semibold text-white hover:bg-white/25 transition-all duration-300"
               >
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (800) 555-0199
+                (346) 460-4441
               </a>
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            STATS STRIP
+            STATS
         ════════════════════════════════════════════════ */}
-        <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            <StatCard target={299} prefix="" suffix="%" label="Billing Rate" sub="Most competitive in the USA" duration={1800} />
-            <StatCard target={99} suffix="%" label="Clean Claim Rate" sub="Paid on first submission" duration={1600} />
-            <StatCard target={40} suffix="%" label="Denial Reduction" sub="Achieved within 90 days" duration={1400} />
-            <StatCard target={99} prefix="$" label="Credentialing Fee" sub="Flat rate per insurance payer" duration={1200} />
+        <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <StatCard
+              target={99}
+              suffix="%"
+              label="First-Pass Claim Acceptance"
+              sub="Clean claims submitted daily"
+              duration={2000}
+            />
+            {/* ✅ FIXED: target=99.8, decimals=1 → animates 0.0 → 99.8% */}
+            <StatCard
+              target={99.8}
+              suffix="%"
+              decimals={1}
+              label="Coding Accuracy Rate"
+              sub="Certified coders on every claim"
+              duration={2000}
+            />
+            <StatCard
+              target={40}
+              suffix="%"
+              label="Denial Rate Reduction"
+              sub="Avg. improvement after onboarding"
+              duration={2000}
+            />
+            <StatCard
+              target={3.99}
+              suffix="%"
+              decimals={2}
+              label="Simple Billing Rate"
+              sub="No hidden fees, ever"
+              duration={2000}
+            />
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            WHO WE ARE
+            MISSION
         ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <section className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-5 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
+              >
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+                Our Mission
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight"
+                style={{ color: "#0e3256" }}
+              >
+                We Free Therapists to Do What They Do Best — Heal
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                Prime Therapy Billing was founded with a simple mission: remove
+                the financial and administrative burden from therapy practices
+                so clinicians can focus entirely on their patients.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                We saw how independent therapists, group practices, and
+                behavioral health organizations were losing thousands of dollars
+                each month to claim errors, denials, and slow credentialing —
+                not because they lacked skill, but because billing is a
+                full-time job that requires specialized expertise.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                So we built a team of certified coders, credentialing
+                specialists, and AR experts — all dedicated exclusively to the
+                therapy industry. Today, we serve practices across all 50
+                states, handling every aspect of the revenue cycle so you never
+                have to worry about a claim again.
+              </p>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
+                }}
+              >
+                Work With Us
+                <span>→</span>
+              </button>
+            </div>
 
-              {/* Left — text */}
-              <div>
-                <span
-                  className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
-                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+            {/* Visual card stack */}
+            <div className="relative h-[440px] hidden lg:block">
+              <div
+                className="absolute top-0 right-6 w-72 h-48 rounded-2xl shadow-xl p-6 text-white"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 100%)",
+                }}
+              >
+                <p className="text-xs font-semibold opacity-70 mb-1">
+                  MONTHLY REVENUE RECOVERED
+                </p>
+                <p className="text-4xl font-extrabold mb-3">$2.4M+</p>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400" />
+                  <span className="text-xs opacity-80">
+                    Across active practices
+                  </span>
+                </div>
+              </div>
+              <div
+                className="absolute top-36 left-0 w-64 h-44 rounded-2xl shadow-xl p-6"
+                style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
+              >
+                <p
+                  className="text-xs font-semibold mb-1"
+                  style={{ color: "#1a5fa8" }}
                 >
-                  Who We Are
-                </span>
-                <h2
-                  className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
+                  CLAIMS PROCESSED
+                </p>
+                <p
+                  className="text-4xl font-extrabold mb-3"
                   style={{ color: "#0e3256" }}
                 >
-                  Your Practice&apos;s Invisible{" "}
-                  <span style={{ color: "#3e8ad6" }}>Revenue Engine</span>
-                </h2>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  Prime Therapy Billing is a team of certified RCM specialists,
-                  therapy coding experts, and compliance officers — built
-                  exclusively to serve mental health, physical therapy,
-                  occupational therapy, and behavioral health practices across
-                  the United States.
+                  500K+
                 </p>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  We exist because independent therapy practices deserve the
-                  same enterprise-level billing support that large hospital
-                  networks enjoy — without the enterprise price tag. We are your
-                  invisible back office: handling ICD-10 coding, denial
-                  management, payer negotiations, and everything in between so
-                  you can focus entirely on your patients.
-                </p>
-                <blockquote
-                  className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
-                  style={{ borderColor: "#3e8ad6" }}
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-blue-400" />
+                  <span className="text-xs text-gray-500">
+                    Since founding in 2018
+                  </span>
+                </div>
+              </div>
+              <div
+                className="absolute bottom-0 right-0 w-68 h-44 rounded-2xl shadow-xl p-6"
+                style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
+              >
+                <p
+                  className="text-xs font-semibold mb-1"
+                  style={{ color: "#1a5fa8" }}
                 >
-                  &ldquo;We don&apos;t wait for denials to happen. We scrub every claim
-                  using advanced algorithms to ensure it is paid on the first
-                  submission — every single time.&rdquo;
-                </blockquote>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {[
-                    "HIPAA Compliant",
-                    "No Long-Term Contracts",
-                    "All 50 States",
-                    "5-Star Rated",
-                  ].map((badge) => (
-                    <span
-                      key={badge}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border"
-                      style={{
-                        color: "#1a5fa8",
-                        borderColor: "#d0e4f7",
-                        background: "#f0f6ff",
-                      }}
-                    >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: "#3e8ad6" }}
-                      />
-                      {badge}
-                    </span>
-                  ))}
+                  PRACTICES SERVED
+                </p>
+                <p
+                  className="text-4xl font-extrabold mb-3"
+                  style={{ color: "#0e3256" }}
+                >
+                  200+
+                </p>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400" />
+                  <span className="text-xs text-gray-500">
+                    Across all 50 states
+                  </span>
                 </div>
               </div>
-
-              {/* Right — card stack */}
-              <div className="relative">
-                <div className="pt-10 pb-16 px-8">
-
-                  {/* Floating accent — TOP RIGHT */}
-                  <div
-                    className="absolute top-0 right-0 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 animate-float z-20"
-                    style={{ animationDelay: "1.5s" }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-                        style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% Clean Claims</p>
-                        <p className="text-xs text-gray-400">First submission</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Main card */}
-                  <div
-                    className="rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl z-10"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0e3256 0%, #1a5fa8 60%, #3e8ad6 100%)",
-                    }}
-                  >
-                    <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#ffffff" }} />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-extrabold mb-4">
-                        Why Therapists Choose Us
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          "Therapy-exclusive billing expertise",
-                          "Lowest billing rate in the industry at 2.99%",
-                          "Dedicated account manager from day one",
-                          "Real-time reporting and financial dashboards",
-                          "Proven denial reduction within 90 days",
-                          "No setup fees. No hidden charges.",
-                        ].map((point, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            </span>
-                            <span className="text-sm leading-relaxed" style={{ color: "#bfdbfe" }}>
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Floating accent — BOTTOM LEFT */}
-                  <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
-                    <p className="text-xs font-semibold text-gray-500 mb-1">Average Revenue Increase</p>
-                    <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
-                    <p className="text-xs text-gray-400 mt-1">Within the first 6 months</p>
-                  </div>
-
-                </div>
+              {/* Floating badge */}
+              <div
+                className="absolute top-28 right-0 bg-white rounded-xl shadow-lg px-4 py-2.5 text-xs font-bold animate-float border"
+                style={{ color: "#0e3256", borderColor: "#e5e7eb" }}
+              >
+                ⭐ 4.9 / 5 Client Rating
               </div>
-
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            MISSION & VISION
+            VALUES
         ════════════════════════════════════════════════ */}
         <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+          className="py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
         >
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
               >
-                Our Purpose
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
-                Mission &amp; <span style={{ color: "#3e8ad6" }}>Vision</span>
+                What Drives Us
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-4"
+                style={{ color: "#0e3256" }}
+              >
+                Our Core Values
               </h2>
+              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+                These principles guide every decision we make — from how we
+                handle a claim to how we talk to our clients.
+              </p>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {values.map((v) => (
+                <div
+                  key={v.title}
+                  className="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100"
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-white"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
+                    }}
+                  >
+                    {v.icon}
+                  </div>
+                  <h3
+                    className="text-base font-extrabold mb-2"
+                    style={{ color: "#0e3256" }}
+                  >
+                    {v.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    {v.desc}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Mission</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  To democratize access to high-quality revenue cycle management
-                  for therapy providers. We are committed to delivering
-                  enterprise-level billing solutions at a price point that
-                  empowers small and mid-sized therapy practices to thrive.
-                  Transparency, speed, and accuracy are not optional extras —
-                  they are the foundation of everything we do. No provider
-                  should ever leave money on the table.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #3e8ad6, #0e3256)" }} />
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #3e8ad6, #0e3256)" }}>
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Vision</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  To become the automatic recommendation for every therapy
-                  provider in the United States seeking reliable, fast, and
-                  affordable billing. We envision a future where Prime Therapy
-                  Billing is synonymous with practice growth — universally
-                  recognized for our 2.99% billing model, our commitment to
-                  therapist success, and our unwavering standard of excellence
-                  in revenue cycle management.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            CORE VALUES
+            SERVICES
         ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-20 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
               >
-                The Prime Advantage
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                How We Are <span style={{ color: "#3e8ad6" }}>Different</span>
+                What We Do
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-4"
+                style={{ color: "#0e3256" }}
+              >
+                Everything Your Practice Needs
               </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Six principles that define every client relationship and every
-                claim we submit on your behalf.
+              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+                From first claim to final payment — and everything in between.
               </p>
             </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {values.map((val, i) => (
-                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover group">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {services.map((s) => (
+                <div
+                  key={s.title}
+                  className="card-hover bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex gap-4"
+                >
                   <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                    className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-white mt-0.5"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
+                    }}
                   >
-                    {val.icon}
+                    {s.icon}
                   </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: "#0e3256" }}>{val.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
+                  <div>
+                    <h3
+                      className="text-sm font-extrabold mb-1"
+                      style={{ color: "#0e3256" }}
+                    >
+                      {s.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                      {s.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1105,98 +1134,64 @@ export default function AboutPage() {
             COMPARISON TABLE
         ════════════════════════════════════════════════ */}
         <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+          className="py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
         >
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
               >
-                Side by Side
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                Prime Therapy Billing vs{" "}
-                <span style={{ color: "#3e8ad6" }}>Industry Average</span>
+                How We Stack Up
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-4"
+                style={{ color: "#0e3256" }}
+              >
+                Prime vs. The Industry Average
               </h2>
-              <p className="text-gray-500 max-w-xl mx-auto">
-                See exactly why hundreds of therapy practices across the country
-                are making the switch.
+              <p className="text-gray-500 text-sm max-w-lg mx-auto">
+                See why hundreds of therapy practices choose Prime Therapy
+                Billing over traditional billing companies.
               </p>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
               <div
-                className="grid grid-cols-3 text-white text-sm font-bold"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                className="grid grid-cols-3 text-xs font-bold text-white px-6 py-4"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
+                }}
               >
-                <div className="p-5">Feature</div>
-                <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
-                <div className="p-5 text-center border-l border-white/20">Industry Average</div>
+                <span>Feature</span>
+                <span className="text-center">Prime Therapy Billing</span>
+                <span className="text-center">Industry Average</span>
               </div>
-
               {comparisonRows.map((row, i) => (
                 <div
-                  key={i}
-                  className={`grid grid-cols-3 text-sm border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}`}
+                  key={row.feature}
+                  className={`grid grid-cols-3 px-6 py-4 text-sm items-center ${
+                    i % 2 === 0 ? "bg-white" : "bg-blue-50/40"
+                  }`}
                 >
-                  <div className="p-5 font-semibold" style={{ color: "#0e3256" }}>{row.feature}</div>
-                  <div className="p-5 text-center border-l border-gray-100">
-                    <span
-                      className="inline-flex items-center gap-1.5 font-bold text-sm px-3 py-1 rounded-full"
-                      style={{ color: "#0e6633", background: "#d1fae5" }}
-                    >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {row.prime}
-                    </span>
-                  </div>
-                  <div className="p-5 text-center border-l border-gray-100 text-gray-400 font-medium">{row.industry}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            SERVICES OVERVIEW
-        ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Our Services
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                Full-Service Therapy{" "}
-                <span style={{ color: "#3e8ad6" }}>Revenue Cycle Management</span>
-              </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Everything your therapy practice needs to bill accurately, get
-                paid faster, and grow confidently — starting at just 2.99%.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {services.map((svc, i) => (
-                <div key={i} className="group rounded-2xl p-7 border border-gray-100 bg-gray-50 card-hover cursor-default relative overflow-hidden">
-                  <div
-                    className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
-                  />
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                  <span className="font-semibold text-gray-700 text-xs">
+                    {row.feature}
+                  </span>
+                  <span
+                    className="text-center font-extrabold text-sm"
+                    style={{ color: "#0e3256" }}
                   >
-                    {svc.icon}
-                  </div>
-                  <h3 className="text-base font-bold mb-2" style={{ color: "#0e3256" }}>{svc.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
+                    {row.prime}
+                  </span>
+                  <span className="text-center text-gray-400 text-xs">
+                    {row.industry}
+                  </span>
                 </div>
               ))}
             </div>
@@ -1206,40 +1201,60 @@ export default function AboutPage() {
         {/* ════════════════════════════════════════════════
             TEAM
         ════════════════════════════════════════════════ */}
-        <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-        >
-          <div className="max-w-7xl mx-auto">
+        <section className="py-20 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
               >
-                Our Team
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                The Experts Behind{" "}
-                <span style={{ color: "#3e8ad6" }}>Your Revenue</span>
+                The Experts Behind the Work
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-4"
+                style={{ color: "#0e3256" }}
+              >
+                Meet Our Leadership Team
               </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Certified coders, credentialing specialists, and compliance
-                officers who treat your practice as if it were their own.
+              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+                Our team combines decades of healthcare billing experience with
+                a passion for helping therapy practices thrive.
               </p>
             </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
-              {teamMembers.map((member, i) => (
-                <div key={i} className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100 card-hover text-center group">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {teamMembers.map((member) => (
+                <div
+                  key={member.name}
+                  className="card-hover bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100"
+                >
                   <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-extrabold text-lg mx-auto mb-4 shadow-lg"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
+                    }}
                   >
                     {member.initials}
                   </div>
-                  <h3 className="text-base font-extrabold mb-1" style={{ color: "#0e3256" }}>{member.name}</h3>
-                  <p className="text-xs font-semibold mb-4" style={{ color: "#3e8ad6" }}>{member.role}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
+                  <h3
+                    className="text-sm font-extrabold mb-0.5"
+                    style={{ color: "#0e3256" }}
+                  >
+                    {member.name}
+                  </h3>
+                  <p
+                    className="text-xs font-semibold mb-3"
+                    style={{ color: "#1a5fa8" }}
+                  >
+                    {member.role}
+                  </p>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    {member.bio}
+                  </p>
                 </div>
               ))}
             </div>
@@ -1249,52 +1264,75 @@ export default function AboutPage() {
         {/* ════════════════════════════════════════════════
             TESTIMONIALS
         ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
+        <section
+          className="py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
+        >
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
+                style={{
+                  background: "rgba(14,50,86,0.07)",
+                  color: "#0e3256",
+                  borderColor: "rgba(14,50,86,0.15)",
+                }}
               >
-                Client Testimonials
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                What Our Clients{" "}
-                <span style={{ color: "#3e8ad6" }}>Say About Us</span>
+                Real Clients, Real Results
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold mb-4"
+                style={{ color: "#0e3256" }}
+              >
+                What Therapists Say About Us
               </h2>
-              <p className="text-gray-500 max-w-xl mx-auto">
-                Consistently rated 5 stars for reliability, affordability, and
-                results.
-              </p>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-7">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover relative">
-                  <div className="text-6xl font-serif leading-none mb-4 select-none" style={{ color: "#d0e4f7" }}>
-                    &ldquo;
-                  </div>
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#f59e0b">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {testimonials.map((t) => (
+                <div
+                  key={t.name}
+                  className="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100 flex flex-col"
+                >
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-4 h-4"
+                        fill="#f59e0b"
+                        viewBox="0 0 20 20"
+                      >
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
+                  <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5 italic">
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <div className="flex items-center gap-3 mt-auto">
+                  <div className="flex items-center gap-3">
                     <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow"
-                      style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                      className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-extrabold flex-shrink-0"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #0e3256, #3e8ad6)",
+                      }}
                     >
                       {t.initials}
                     </div>
                     <div>
-                      <p className="text-sm font-bold" style={{ color: "#0e3256" }}>{t.name}</p>
-                      <p className="text-xs text-gray-500">{t.role}</p>
-                      <p className="text-xs font-semibold" style={{ color: "#3e8ad6" }}>{t.practice}</p>
+                      <p
+                        className="text-xs font-extrabold"
+                        style={{ color: "#0e3256" }}
+                      >
+                        {t.name}
+                      </p>
+                      <p className="text-xs text-gray-400">{t.role}</p>
+                      <p
+                        className="text-xs font-semibold"
+                        style={{ color: "#1a5fa8" }}
+                      >
+                        {t.practice}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1304,79 +1342,620 @@ export default function AboutPage() {
         </section>
 
         {/* ════════════════════════════════════════════════
-            BOTTOM CTA
+            CTA
         ════════════════════════════════════════════════ */}
-        <section
-          className="py-20 px-4 sm:px-6 relative overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-          }}
-        >
-          <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-          <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
+        <section className="py-24 px-4 sm:px-6 text-center relative overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
+            }}
+          />
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
+            <div className="absolute top-10 left-1/4 w-64 h-64 rounded-full blur-3xl" style={{ background: "#ffffff" }} />
+            <div className="absolute bottom-10 right-1/4 w-48 h-48 rounded-full blur-3xl" style={{ background: "#3e8ad6" }} />
+          </div>
 
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              No Long-Term Contracts — Cancel Anytime
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-white mb-6 border border-white/25">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              Start in as little as 48 hours
             </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-              Ready to Stop Leaving{" "}
-              <span className="shimmer-text">Money on the Table?</span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
+              Ready to Stop Leaving Money on the Table?
             </h2>
-
             <p
-              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg mb-10 leading-relaxed"
               style={{ color: "#bfdbfe" }}
             >
-              Join hundreds of therapy practices across the United States that
-              trust Prime Therapy Billing to protect their revenue, reduce their
-              denials, and handle the billing complexity they shouldn&apos;t
-              have to deal with.
+              Join 200+ therapy practices that trust Prime Therapy Billing to
+              protect their revenue, reduce their denials, and simplify their
+              operations — all at the industry&apos;s lowest rate.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-wrap justify-center gap-4">
               <button
                 onClick={() => setModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-white font-bold px-8 py-4 rounded-full shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300 text-sm"
                 style={{ color: "#0e3256" }}
               >
-                Schedule Your Free Consultation
+                Schedule My Free Consultation
                 <span>→</span>
               </button>
               <a
-                href="tel:+18005550199"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
+                href="tel:+13464604441"
+                className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-8 py-4 rounded-full text-sm font-semibold text-white hover:bg-white/25 transition-all duration-300"
               >
-                <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (800) 555-0199
+                Call (346) 460-4441
               </a>
             </div>
+            <p className="text-xs mt-6" style={{ color: "#93c5fd" }}>
+              Free consultation · No contracts · HIPAA-compliant
+            </p>
+          </div>
+        </section>
 
-            <div className="flex flex-wrap justify-center gap-6 mt-10">
+        {/* ════════════════════════════════════════════════
+            STATS STRIP
+        ════════════════════════════════════════════════ */}
+        <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+        <StatCard
+          target={3.99}
+          suffix="%"
+          label="Billing Rate"
+          sub="Most competitive in the USA"
+          duration={1800}
+          decimals={2}
+        />
+        <StatCard
+          target={99.8}
+          suffix="%"
+          label="Coding Accuracy Rate"
+          sub="Industry-leading precision"
+          duration={1600}
+          decimals={1}
+        />
+        <StatCard target={99} suffix="%" label="Clean Claim Rate" sub="Paid on first submission" duration={1600} />
+        <StatCard target={40} suffix="%" label="Denial Reduction" sub="Achieved within 90 days" duration={1400} />
+        <StatCard target={99} prefix="$" label="Credentialing Fee" sub="Flat rate per insurance payer" duration={1200} />
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        WHO WE ARE
+    ════════════════════════════════════════════════ */}
+    <section className="py-16 sm:py-20 px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+          {/* Left — text */}
+          <div>
+            <span
+              className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
+              style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+            >
+              Who We Are
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
+              style={{ color: "#0e3256" }}
+            >
+              Your Practice&apos;s Invisible{" "}
+              <span style={{ color: "#3e8ad6" }}>Revenue Engine</span>
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              Prime Therapy Billing is a team of certified RCM specialists,
+              therapy coding experts, and compliance officers — built
+              exclusively to serve mental health, physical therapy,
+              occupational therapy, and behavioral health practices across
+              the United States.
+            </p>
+            <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              We exist because independent therapy practices deserve the
+              same enterprise-level billing support that large hospital
+              networks enjoy — without the enterprise price tag. We are your
+              invisible back office: handling ICD-10 coding, denial
+              management, payer negotiations, and everything in between so
+              you can focus entirely on your patients.
+            </p>
+            <blockquote
+              className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
+              style={{ borderColor: "#3e8ad6" }}
+            >
+              &ldquo;We don&apos;t wait for denials to happen. We scrub every claim
+              using advanced algorithms to ensure it is paid on the first
+              submission — every single time.&rdquo;
+            </blockquote>
+            <div className="mt-8 flex flex-wrap gap-3">
               {[
                 "HIPAA Compliant",
-                "100% Secure",
-                "No Hidden Fees",
-                "5-Star Rated",
+                "No Long-Term Contracts",
                 "All 50 States",
+                "5-Star Rated",
               ].map((badge) => (
-                <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
-                  <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
+                <span
+                  key={badge}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border"
+                  style={{
+                    color: "#1a5fa8",
+                    borderColor: "#d0e4f7",
+                    background: "#f0f6ff",
+                  }}
+                >
+                  <span
+                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: "#3e8ad6" }}
+                  />
                   {badge}
-                </div>
+                </span>
               ))}
             </div>
           </div>
-        </section>
-      </main>
+
+          {/* Right — card stack */}
+          <div className="relative">
+            <div className="pt-10 pb-16 px-8">
+
+              {/* Floating accent — TOP RIGHT */}
+              <div
+                className="absolute top-0 right-0 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 animate-float z-20"
+                style={{ animationDelay: "1.5s" }}
+              >
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% Clean Claims</p>
+                    <p className="text-xs text-gray-400">First submission</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Main card */}
+              <div
+                className="rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl z-10"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 60%, #3e8ad6 100%)",
+                }}
+              >
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#ffffff" }} />
+                <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#3e8ad6" }} />
+
+                <div className="relative z-10">
+                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                    <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-extrabold mb-4">
+                    Why Therapists Choose Us
+                  </h3>
+                  <ul className="space-y-3">
+                    {[
+                      "Therapy-exclusive billing expertise",
+                      "Lowest billing rate in the industry at 3.99%",
+                      "Dedicated account manager from day one",
+                      "Real-time reporting and financial dashboards",
+                      "Proven denial reduction within 90 days",
+                      "No setup fees. No hidden charges.",
+                    ].map((point, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span className="text-sm leading-relaxed" style={{ color: "#bfdbfe" }}>
+                          {point}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Floating accent — BOTTOM LEFT */}
+              <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
+                <p className="text-xs font-semibold text-gray-500 mb-1">Average Revenue Increase</p>
+                <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
+                <p className="text-xs text-gray-400 mt-1">Within the first 6 months</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        MISSION & VISION
+    ════════════════════════════════════════════════ */}
+    <section
+      className="py-16 sm:py-20 px-4 sm:px-6"
+      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            Our Purpose
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
+            Mission &amp; <span style={{ color: "#3e8ad6" }}>Vision</span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Mission</h3>
+            <p className="text-gray-600 leading-relaxed">
+              To democratize access to high-quality revenue cycle management
+              for therapy providers. We are committed to delivering
+              enterprise-level billing solutions at a price point that
+              empowers small and mid-sized therapy practices to thrive.
+              Transparency, speed, and accuracy are not optional extras —
+              they are the foundation of everything we do. No provider
+              should ever leave money on the table.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #3e8ad6, #0e3256)" }} />
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #3e8ad6, #0e3256)" }}>
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Vision</h3>
+            <p className="text-gray-600 leading-relaxed">
+              To become the automatic recommendation for every therapy
+              provider in the United States seeking reliable, fast, and
+              affordable billing. We envision a future where Prime Therapy
+              Billing is synonymous with practice growth — universally
+              recognized for our 3.99% billing model, our commitment to
+              therapist success, and our unwavering standard of excellence
+              in revenue cycle management.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        CORE VALUES
+    ════════════════════════════════════════════════ */}
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            The Prime Advantage
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+            How We Are <span style={{ color: "#3e8ad6" }}>Different</span>
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+            Six principles that define every client relationship and every
+            claim we submit on your behalf.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          {values.map((val, i) => (
+            <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover group">
+              <div
+                className="w-14 h-14 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                {val.icon}
+              </div>
+              <h3 className="text-lg font-bold mb-2" style={{ color: "#0e3256" }}>{val.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        COMPARISON TABLE
+    ════════════════════════════════════════════════ */}
+    <section
+      className="py-16 sm:py-20 px-4 sm:px-6"
+      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+    >
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            Side by Side
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+            Prime Therapy Billing vs{" "}
+            <span style={{ color: "#3e8ad6" }}>Industry Average</span>
+          </h2>
+          <p className="text-gray-500 max-w-xl mx-auto">
+            See exactly why hundreds of therapy practices across the country
+            are making the switch.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+          <div
+            className="grid grid-cols-3 text-white text-sm font-bold"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            <div className="p-5">Feature</div>
+            <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
+            <div className="p-5 text-center border-l border-white/20">Industry Average</div>
+          </div>
+
+          {comparisonRows.map((row, i) => (
+            <div
+              key={i}
+              className={`grid grid-cols-3 text-sm border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}`}
+            >
+              <div className="p-5 font-semibold" style={{ color: "#0e3256" }}>{row.feature}</div>
+              <div className="p-5 text-center border-l border-gray-100">
+                <span
+                  className="inline-flex items-center gap-1.5 font-bold text-sm px-3 py-1 rounded-full"
+                  style={{ color: "#0e6633", background: "#d1fae5" }}
+                >
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {row.prime}
+                </span>
+              </div>
+              <div className="p-5 text-center border-l border-gray-100 text-gray-400 font-medium">{row.industry}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        SERVICES OVERVIEW
+    ════════════════════════════════════════════════ */}
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            Our Services
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+            Full-Service Therapy{" "}
+            <span style={{ color: "#3e8ad6" }}>Revenue Cycle Management</span>
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+            Everything your therapy practice needs to bill accurately, get
+            paid faster, and grow confidently — starting at just 3.99%.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          {services.map((svc, i) => (
+            <div key={i} className="group rounded-2xl p-7 border border-gray-100 bg-gray-50 card-hover cursor-default relative overflow-hidden">
+              <div
+                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
+              />
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                {svc.icon}
+              </div>
+              <h3 className="text-base font-bold mb-2" style={{ color: "#0e3256" }}>{svc.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        TEAM
+    ════════════════════════════════════════════════ */}
+    <section
+      className="py-16 sm:py-20 px-4 sm:px-6"
+      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            Our Team
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+            The Experts Behind{" "}
+            <span style={{ color: "#3e8ad6" }}>Your Revenue</span>
+          </h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+            Certified coders, credentialing specialists, and compliance
+            officers who treat your practice as if it were their own.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+          {teamMembers.map((member, i) => (
+            <div key={i} className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100 card-hover text-center group">
+              <div
+                className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                {member.initials}
+              </div>
+              <h3 className="text-base font-extrabold mb-1" style={{ color: "#0e3256" }}>{member.name}</h3>
+              <p className="text-xs font-semibold mb-4" style={{ color: "#3e8ad6" }}>{member.role}</p>
+              <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        TESTIMONIALS
+    ════════════════════════════════════════════════ */}
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <span
+            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+          >
+            Client Testimonials
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+            What Our Clients{" "}
+            <span style={{ color: "#3e8ad6" }}>Say About Us</span>
+          </h2>
+          <p className="text-gray-500 max-w-xl mx-auto">
+            Consistently rated 5 stars for reliability, affordability, and
+            results.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-7">
+          {testimonials.map((t, i) => (
+            <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover relative">
+              <div className="text-6xl font-serif leading-none mb-4 select-none" style={{ color: "#d0e4f7" }}>
+                &ldquo;
+              </div>
+              <div className="flex gap-0.5 mb-4">
+                {Array.from({ length: 5 }).map((_, s) => (
+                  <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#f59e0b">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+              <div className="flex items-center gap-3 mt-auto">
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow"
+                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                >
+                  {t.initials}
+                </div>
+                <div>
+                  <p className="text-sm font-bold" style={{ color: "#0e3256" }}>{t.name}</p>
+                  <p className="text-xs text-gray-500">{t.role}</p>
+                  <p className="text-xs font-semibold" style={{ color: "#3e8ad6" }}>{t.practice}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ════════════════════════════════════════════════
+        BOTTOM CTA
+    ════════════════════════════════════════════════ */}
+    <section
+      className="py-20 px-4 sm:px-6 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
+      }}
+    >
+      <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
+      <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+          No Long-Term Contracts — Cancel Anytime
+        </div>
+
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
+          Ready to Stop Leaving{" "}
+          <span className="shimmer-text">Money on the Table?</span>
+        </h2>
+
+        <p
+          className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
+          style={{ color: "#bfdbfe" }}
+        >
+          Join hundreds of therapy practices across the United States that
+          trust Prime Therapy Billing to protect their revenue, reduce their
+          denials, and handle the billing complexity they shouldn&apos;t
+          have to deal with.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onClick={() => setModalOpen(true)}
+            className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
+            style={{ color: "#0e3256" }}
+          >
+            Schedule Your Free Consultation
+            <span>→</span>
+          </button>
+          <a
+            href="tel:+13464604441"
+            className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
+          >
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            (346) 460-4441
+          </a>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-6 mt-10">
+          {[
+            "HIPAA Compliant",
+            "100% Secure",
+            "No Hidden Fees",
+            "5-Star Rated",
+            "All 50 States",
+          ].map((badge) => (
+            <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
+              <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+              {badge}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
     </>
   );
 }

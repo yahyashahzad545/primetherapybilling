@@ -112,7 +112,7 @@ function ConsultationPopup({ isOpen, onClose, title = "Get Your Free Denial Asse
               <div className="p-4 rounded-2xl border mb-6" style={{ background: "#f0f6ff", borderColor: "#d0e4f7" }}>
                 <p className="text-xs font-medium" style={{ color: "#1a5fa8" }}>
                   Need immediate help? Call us at{" "}
-                  <a href="tel:+16025635281" className="font-bold underline" style={{ color: "#0e3256" }}>+1 (602) 563-5281</a>
+                  <a href="tel:+13464604441" className="font-bold underline" style={{ color: "#0e3256" }}>+1(346) 460-4441</a>
                 </p>
               </div>
               <button
@@ -511,13 +511,13 @@ export default function DenialManagementPage() {
                 <span>→</span>
               </button>
               <a
-                href="tel:+16025635281"
+                href="tel:+13464604441"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
               >
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                +1 (602) 563-5281
+                +1(346) 460-4441
               </a>
             </div>
           </div>
@@ -916,13 +916,13 @@ export default function DenialManagementPage() {
                   Schedule Free Consultation →
                 </button>
                 <a
-                  href="tel:+16025635281"
+                  href="tel:+13464604441"
                   className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300"
                 >
                   <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  Call Now: +1 (602) 563-5281
+                  Call Now: +1(346) 460-4441
                 </a>
               </div>
             </div>
@@ -1381,13 +1381,13 @@ export default function DenialManagementPage() {
                 Get Your Free Denial Assessment →
               </button>
               <a
-                href="tel:+16025635281"
+                href="tel:+13464604441"
                 className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
               >
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                +1 (602) 563-5281
+                +1(346) 460-4441
               </a>
             </div>
 

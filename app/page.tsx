@@ -809,7 +809,7 @@ export default function Home() {
     { question: "How quickly can you start billing for my therapy practice?", answer: "Most practices complete the transition to Prime Therapy Billing and begin live claim submissions within 7 to 10 days. This includes reviewing your EHR, payer mix, fee schedules, and denial history, assigning your dedicated billing team, and configuring HIPAA-compliant access. Nothing changes on your end." },
     { question: "What EHR and practice management systems do you work with?", answer: "Prime Therapy Billing operates inside your existing EHR from day one. We have hands-on experience with SimplePractice, TherapyNotes, athenahealth, eClinicalWorks, Kareo (Tebra), DrChrono, AdvancedMD, NextGen, Allscripts, ModMed, Practice Fusion, and 40+ additional systems." },
     { question: "How do you handle denied therapy claims?", answer: "Our denial management process includes root cause analysis, timely appeal preparation with supporting clinical documentation, resubmission tracking, and upstream correction to prevent the same denial from recurring. We categorize every denial by reason code and maintain a clear resolution timeline." },
-    { question: "What does Prime Therapy Billing charge?", answer: "Our standard medical billing service starts at 2.99% of collections. Credentialing is $99 per enrollment. There are no setup fees, no long-term contracts, and no add-on line items. Every service is included in one rate. You pay only on what we actually collect." },
+    { question: "What does Prime Therapy Billing charge?", answer: "Our standard medical billing service starts at 3.99% of collections. Credentialing is $99 per enrollment. There are no setup fees, no long-term contracts, and no add-on line items. Every service is included in one rate. You pay only on what we actually collect." },
     { question: "Is my patient data secure with Prime Therapy Billing?", answer: "Absolutely. We are fully HIPAA compliant and use enterprise-grade encryption, secure servers, multi-factor authentication, and regular security audits. All staff undergo rigorous HIPAA training and background checks." },
     { question: "Do you handle therapy-specific billing rules like time-based codes and prior authorizations?", answer: "Yes. Therapy billing has specific coding requirements that general billing companies routinely miss — time-based add-on codes, session documentation standards, behavioral health prior authorization workflows, and payer-specific rules for CPT codes like 90837, 90847, 90791, and 96130." },
     { question: "What reporting will I receive?", answer: "You receive regular performance reports showing collections by payer, denial rates by category, days in A/R by aging bucket, clean claim rates, and recommended adjustments. You also get access to a real-time analytics dashboard." },
@@ -1010,7 +1010,7 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-4 mb-8">
                   {[
-                    { value: "@2.99%", label: "Medical Billing" },
+                    { value: "@3.99%", label: "Medical Billing" },
                     { value: "$99", label: "Per Credentialing" },
                     { value: "HIPAA", label: "Compliant & Secure" },
                   ].map((item, i) => (
@@ -1308,12 +1308,12 @@ export default function Home() {
                 className={`mt-12 text-center transition-all duration-700 delay-500 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <p className="text-gray-600 mb-5 text-base">
-                  Every service above is included starting at <strong style={{ color: "#0e3256" }}>2.99% of collections</strong>. No setup fees. No long-term contracts.
+                  Every service above is included starting at <strong style={{ color: "#0e3256" }}>3.99% of collections</strong>. No setup fees. No long-term contracts.
                 </p>
                 <GradientBtn
                   onClick={() => openPopup(
                     "Get Your Free Billing Analysis",
-                    "Every service included at 2.99% of collections. No setup fees. No long-term contracts."
+                    "Every service included at 3.99% of collections. No setup fees. No long-term contracts."
                   )}
                 >
                   Get Your Free Billing Analysis
@@ -1355,12 +1355,12 @@ export default function Home() {
                     Book Free Analysis →
                   </button>
                   <a
-                    href="tel:+18005550199"
+                    href="tel:+13464604441"
                     className="flex items-center justify-center gap-2 border-2 px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 whitespace-nowrap hover:bg-blue-50"
                     style={{ borderColor: "#0e3256", color: "#0e3256" }}
                   >
                     <Icons.Phone />
-                    Call (800) 555-0199
+                    Call (346) 460-4441
                   </a>
                 </div>
               </div>
@@ -1736,7 +1736,7 @@ export default function Home() {
                   <p className="text-gray-500 text-xs mb-5">Annual Collection: $1,000,000</p>
                   <div className="space-y-3 mb-6">
                     {[
-                      { label: "RCM Service (2.99%)", val: "$29,900" },
+                      { label: "RCM Service (3.99%)", val: "$39,900" },
                       { label: "Implementation", val: "$0" },
                       { label: "Support & Analytics", val: "$0" },
                     ].map((item, i) => (
@@ -2184,17 +2184,17 @@ export default function Home() {
                       </span>
                     </button>
                     <a
-                      href="tel:+18005550199"
+                      href="tel:+13464604441"
                       className="flex items-center justify-center gap-2 border-2 border-white/50 text-white px-7 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 text-base backdrop-blur-sm"
                     >
                       <Icons.Phone />
-                      (800) 555-0199
+                      (346) 460-4441
                     </a>
                   </div>
 
                   <div className="mt-6 flex gap-4 flex-wrap">
                     {[
-                      { value: "@2.99%", label: "Medical Billing" },
+                      { value: "@3.99%", label: "Medical Billing" },
                       { value: "$99", label: "Per Credentialing" },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-2 glass-card rounded-xl px-4 py-2.5 card-hover">

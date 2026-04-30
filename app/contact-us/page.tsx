@@ -68,9 +68,9 @@ export default function ContactPage() {
   const contactMethods = [
     {
       title: "Call Us Directly",
-      details: "(800) 555-0199",
+      details: "(346) 460-4441",
       subtext: "Mon – Fri, 9am – 6pm EST",
-      href: "tel:+18005550199",
+      href: "tel:+13464604441",
       icon: (
         <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -229,13 +229,13 @@ export default function ContactPage() {
             {/* Clickable pills */}
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               <a
-                href="tel:+18005550199"
+                href="tel:+13464604441"
                 className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-5 py-2.5 rounded-full text-sm font-semibold text-white hover:bg-white/25 transition-all duration-300"
               >
                 <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                (800) 555-0199
+                (346) 460-4441
               </a>
               <a
                 href="mailto:info@primetherapybilling.com"
@@ -374,7 +374,7 @@ export default function ContactPage() {
                   </h4>
 
                   {/* Phone */}
-                  <a href="tel:+18005550199" className="flex items-center gap-3 group">
+                  <a href="tel:+13464604441" className="flex items-center gap-3 group">
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform duration-300 shadow"
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
@@ -386,7 +386,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs text-gray-500 font-medium">Call Us</p>
                       <p className="font-bold text-base group-hover:underline" style={{ color: "#0e3256" }}>
-                        (800) 555-0199
+                        (346) 460-4441
                       </p>
                     </div>
                   </a>
@@ -494,11 +494,11 @@ export default function ContactPage() {
                       <p className="text-xs font-medium" style={{ color: "#1a5fa8" }}>
                         💡 In the meantime, feel free to call us at{" "}
                         <a
-                          href="tel:+18005550199"
+                          href="tel:+13464604441"
                           className="font-bold underline"
                           style={{ color: "#0e3256" }}
                         >
-                          (800) 555-0199
+                          (346) 460-4441
                         </a>{" "}
                         for immediate assistance.
                       </p>
@@ -722,14 +722,14 @@ export default function ContactPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
                 <a
-                  href="tel:+18005550199"
+                  href="tel:+13464604441"
                   className="inline-flex items-center justify-center gap-2 bg-white px-7 py-3.5 rounded-xl font-bold text-sm shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
                   style={{ color: "#0e3256" }}
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  (800) 555-0199
+                  (346) 460-4441
                 </a>
 
                 <a

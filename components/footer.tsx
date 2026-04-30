@@ -178,7 +178,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li>
                 <a
-                  href="tel:+18005551234"
+                  href="tel:+13464604441"
                   className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors group"
                 >
                   <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1a4a7a] transition-colors">
@@ -188,7 +188,7 @@ export default function Footer() {
                   </span>
                   <div>
                     <p className="text-xs text-gray-500 font-medium mb-0.5">Phone</p>
-                    <p className="text-sm font-semibold text-gray-300">+1 (800) 555-1234</p>
+                    <p className="text-sm font-semibold text-gray-300">+1 (346) 460-4441</p>
                   </div>
                 </a>
               </li>
@@ -223,7 +223,7 @@ export default function Footer() {
                 <div>
                   <p className="text-xs text-gray-500 font-medium mb-0.5">Location</p>
                   <p className="text-sm font-semibold text-gray-300">
-                    Serving All 50 States, USA
+                    27120 Fulshear Bend Dr ste 900 116, Fulshear, TX 77441, United States
                   </p>
                 </div>
               </li>
