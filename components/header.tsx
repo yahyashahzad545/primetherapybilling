@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // ─── Navigation Data ──────────────────────────────────────────────────────────
 const THERAPY_SPECIALTIES = [
@@ -214,6 +215,7 @@ function MobileAccordion({
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   // ── Scroll detection ──
   useEffect(() => {
@@ -237,6 +239,15 @@ export default function Header() {
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
   }, []);
+
+  // ── Handle home link click — scroll to top if already on home ──
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setMobileOpen(false);
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
@@ -315,7 +326,7 @@ export default function Header() {
         <div className="container mx-auto px-4 flex items-center justify-between h-16 relative">
 
           {/* LOGO */}
-          <Link href="/" aria-label="Prime Therapy Billing — Go to homepage" className="flex-shrink-0">
+          <Link href="/" onClick={handleHomeClick} aria-label="Prime Therapy Billing — Go to homepage" className="flex-shrink-0">
             <Image
               src="/primetherapylogo.svg"
               alt="Prime Therapy Billing Logo"
@@ -329,7 +340,7 @@ export default function Header() {
           {/* ── DESKTOP NAV ── */}
           <nav className="hidden lg:flex items-center h-full ml-auto" aria-label="Main navigation">
 
-            <Link href="/" className="flex items-center h-full px-3 xl:px-4 text-sm font-semibold text-gray-700 hover:text-[#113356] transition-colors">
+            <Link href="/" onClick={handleHomeClick} className="flex items-center h-full px-3 xl:px-4 text-sm font-semibold text-gray-700 hover:text-[#113356] transition-colors">
               Home
             </Link>
 
@@ -478,7 +489,7 @@ export default function Header() {
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between p-4 bg-[#113356] flex-shrink-0">
-          <Link href="/" onClick={() => setMobileOpen(false)} aria-label="Home">
+          <Link href="/" onClick={handleHomeClick} aria-label="Home">
             <Image
               src="/primetherapylogo.svg"
               alt="Prime Therapy Billing"
@@ -503,7 +514,7 @@ export default function Header() {
         <div className="flex-1 overflow-y-auto">
           <nav className="p-4 flex flex-col" aria-label="Mobile navigation">
 
-            <Link href="/" onClick={() => setMobileOpen(false)} className="py-3 px-4 border-b border-gray-100 text-gray-800 font-semibold hover:text-[#113356] hover:bg-gray-50 transition-colors rounded">
+            <Link href="/" onClick={handleHomeClick} className="py-3 px-4 border-b border-gray-100 text-gray-800 font-semibold hover:text-[#113356] hover:bg-gray-50 transition-colors rounded">
               Home
             </Link>
 
