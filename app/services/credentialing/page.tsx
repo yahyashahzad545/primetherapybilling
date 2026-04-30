@@ -241,7 +241,7 @@ function PopupModal({
               </p>
               <div className="p-4 bg-white/10 rounded-2xl border border-white/20 mb-6">
                 <p className="text-xs text-white/80 font-medium">
-                  💡 For immediate help, call us at{" "}
+                   For immediate help, call us at{" "}
                   <a
                     href="tel:+18005550199"
                     className="font-bold underline text-white"

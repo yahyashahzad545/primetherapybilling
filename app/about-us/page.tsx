@@ -167,7 +167,6 @@ function ConsultationModal({
           email: formData.email,
           phone: formData.phone,
           practice: formData.practice,
-          // send practiceType as the specialty field your API expects
           message: `Specialty: ${formData.practiceType}\n\n${formData.message}`,
           source: "About Page — Free Consultation",
         }),
@@ -188,26 +187,22 @@ function ConsultationModal({
     }
   };
 
-  // Close only when clicking the dark backdrop, not the modal box
-  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      onClose();
-    }
-  };
-
   return (
+    /* ── Backdrop ── */
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
       style={{
         backgroundColor: "rgba(14,50,86,0.75)",
         backdropFilter: "blur(6px)",
       }}
-      onClick={handleBackdropClick}
+      onClick={onClose}
     >
+      {/* ── Modal Box ── */}
       <div
         ref={modalRef}
         className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
         style={{ animation: "fadeUp 0.35s ease both" }}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* ── Modal Header ── */}
         <div
@@ -217,6 +212,7 @@ function ConsultationModal({
               "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
           }}
         >
+          {/* Decorative blobs — pointer-events-none so they never block clicks */}
           <div
             className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10 blur-2xl pointer-events-none"
             style={{ background: "#ffffff" }}
@@ -226,10 +222,15 @@ function ConsultationModal({
             style={{ background: "#3e8ad6" }}
           />
 
-          {/* Close button */}
+          {/* ── Close button — sits on top of everything in the header ── */}
           <button
-            onClick={onClose}
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center transition-colors duration-200 z-10"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center transition-colors duration-200 cursor-pointer"
+            style={{ zIndex: 9999 }}
             aria-label="Close modal"
           >
             <svg
@@ -300,6 +301,7 @@ function ConsultationModal({
                 within 24 hours to schedule your free consultation.
               </p>
               <button
+                type="button"
                 onClick={onClose}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-white font-bold text-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300"
                 style={{
@@ -332,9 +334,7 @@ function ConsultationModal({
                     onFocus={(e) =>
                       (e.currentTarget.style.borderColor = "#3e8ad6")
                     }
-                    onBlur={(e) =>
-                      (e.currentTarget.style.borderColor = "")
-                    }
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                   />
                 </div>
                 <div>
@@ -355,9 +355,7 @@ function ConsultationModal({
                     onFocus={(e) =>
                       (e.currentTarget.style.borderColor = "#3e8ad6")
                     }
-                    onBlur={(e) =>
-                      (e.currentTarget.style.borderColor = "")
-                    }
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "")}
                   />
                 </div>
               </div>
