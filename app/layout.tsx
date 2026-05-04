@@ -10,6 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Prime Therapy Billing",
   description: "Professional therapy billing services",
+  icons: {
+    icon: "/prime nav.png", // 👈 add your favicon in public folder
+  },
 };
 
 export default function RootLayout({

@@ -512,9 +512,18 @@ function PopupTextarea({ placeholder, label }: { placeholder: string; label?: st
 function AnimatedStat({
   number, label, start,
 }: { number: string; label: string; start: boolean }) {
-  const isNumeric = /^\d+/.test(number);
-  const numericPart = isNumeric ? parseInt(number.replace(/\D/g, "")) : 0;
-  const suffix = number.replace(/[\d,]/g, "");
+  const isNumeric = /^-?\d+(\.\d+)?/.test(number);
+
+  let numericPart = 0;
+  let suffix = "";
+
+  if (isNumeric) {
+    const match = number.match(/^(\d+(\.\d+)?)(.*)$/);
+  if (match) {
+    numericPart = parseFloat(match[1]); // keeps decimal (99.8)
+    suffix = match[3]; // % or +
+  }
+  }
   const count = useCountUp(numericPart, 2000, start);
 
   return (
