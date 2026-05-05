@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/yahyashahzad545/primetherapybilling#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-react": "^11.1.2",
     "@prisma/client": "^5.22.0",
     "lucide-react": "^1.14.0",
     "next": "^16.2.4",
