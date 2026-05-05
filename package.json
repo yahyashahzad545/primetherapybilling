@@ -1,7 +1,7 @@
 {
   "name": "mysite",
   "version": "1.0.0",
-  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "description": "This is a Next.js project",
   "main": "test-supabase-connection.js",
   "scripts": {
     "dev": "next dev",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/yahyashahzad545/primetherapybilling#readme",
   "dependencies": {
     "next": "^16.2.4",
+    "nodemailer": "^6.9.13",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
