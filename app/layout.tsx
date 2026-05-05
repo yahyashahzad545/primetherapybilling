@@ -11,10 +11,7 @@ export const metadata: Metadata = {
   title: "Prime Therapy Billing",
   description: "Professional therapy billing services",
   icons: {
-    icon: "/prime nav.png",
-  },
-  verification: {
-    google: "zHjdHSKtEvqSF2N1WK0PqpAkHvwc-qXkrNb8CGT5xS8",
+    icon: "/prime nav.png", // 👈 add your favicon in public folder
   },
 };
 
