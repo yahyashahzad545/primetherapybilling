@@ -1,38 +1,36 @@
 {
   "name": "mysite",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "main": "test-supabase-connection.js",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
-    "postinstall": "prisma generate"
+    "build": "next build",
+    "start": "next start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yahyashahzad545/primetherapybilling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yahyashahzad545/primetherapybilling/issues"
+  },
+  "homepage": "https://github.com/yahyashahzad545/primetherapybilling#readme",
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^39.0.2",
-    "@ckeditor/ckeditor5-react": "^5.1.0",
-    "@prisma/client": "^5.22.0",
-    "@supabase/ssr": "^0.10.0",
-    "@supabase/supabase-js": "^2.101.1",
-    "@tiptap/react": "^3.22.0",
-    "@tiptap/starter-kit": "^3.22.0",
-    "lucide-react": "^1.14.0",
     "next": "^16.2.4",
-    "nodemailer": "^8.0.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "sharp": "^0.34.5"
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/nodemailer": "^8.0.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.1",
-    "prisma": "^5.22.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^6.0.3"
   }
 }
