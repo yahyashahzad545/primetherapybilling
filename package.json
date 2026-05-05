@@ -20,30 +20,19 @@
   },
   "homepage": "https://github.com/yahyashahzad545/primetherapybilling#readme",
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "lucide-react": "^1.14.0",
     "next": "^16.2.4",
     "nodemailer": "^6.9.13",
+    "prisma": "^5.22.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
-<<<<<<< HEAD
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
-    "autoprefixer": "^10.5.0",
-    "postcss": "^8.5.14",
     "tailwindcss": "^4.2.4",
     "typescript": "^6.0.3"
-=======
-    "@types/node": "^20",
-    "@types/nodemailer": "^8.0.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.1",
-    "prisma": "^5.22.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
->>>>>>> 6ddb47c (fix tailwind v4 config)
   }
 }
