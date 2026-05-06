@@ -979,266 +979,266 @@ export default function Home() {
             HERO SECTION
         ================================================================ */}
         <section
-          className="relative text-white pt-20 pb-0 sm:pt-28 px-4 sm:px-6 overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)" }}
-        >
-          <FloatingParticles />
+  className="relative text-white pt-20 pb-0 sm:pt-28 px-4 sm:px-6 overflow-hidden"
+  style={{ background: "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)" }}
+>
+  <FloatingParticles />
 
-          {/* Decorative rings */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-full pointer-events-none" style={{ animation: "rotateSlow 15s linear infinite reverse" }} />
+  {/* Decorative rings */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-full pointer-events-none" style={{ animation: "rotateSlow 15s linear infinite reverse" }} />
 
-          <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-10 blur-3xl animate-pulse pointer-events-none" style={{ background: "#3e8ad6" }} />
-          <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl animate-pulse pointer-events-none" style={{ background: "#3e8ad6", animationDelay: "1s" }} />
+  <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-10 blur-3xl animate-pulse pointer-events-none" style={{ background: "#3e8ad6" }} />
+  <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl animate-pulse pointer-events-none" style={{ background: "#3e8ad6", animationDelay: "1s" }} />
 
-          {/* Geometric decorations */}
-          <div className="absolute top-20 right-20 w-16 h-16 border-2 border-white/10 rounded-xl rotate-12 animate-rotateSlow pointer-events-none" />
-          <div className="absolute bottom-40 left-16 w-10 h-10 border-2 border-white/10 rounded-full pointer-events-none animate-bounceGentle" />
-          <div className="absolute top-1/3 right-1/4 w-8 h-8 border border-white/10 rotate-45 animate-bounceGentle pointer-events-none" style={{ animationDelay: "1s" }} />
+  {/* Geometric decorations */}
+  <div className="absolute top-20 right-20 w-16 h-16 border-2 border-white/10 rounded-xl rotate-12 animate-rotateSlow pointer-events-none" />
+  <div className="absolute bottom-40 left-16 w-10 h-10 border-2 border-white/10 rounded-full pointer-events-none animate-bounceGentle" />
+  <div className="absolute top-1/3 right-1/4 w-8 h-8 border border-white/10 rotate-45 animate-bounceGentle pointer-events-none" style={{ animationDelay: "1s" }} />
 
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pb-16 sm:pb-20">
+  <div className="relative z-10 max-w-7xl mx-auto">
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center pb-16 sm:pb-20">
 
-              {/* Left Content */}
-              <div
-                className={`transition-all duration-1000 ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
-              >
-                <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-                  Trusted by 500+ Therapy & Behavioral Health Providers
-                </div>
+      {/* Left Content */}
+      <div
+        className={`transition-all duration-1000 ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+      >
+        <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
+          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+          Powering Revenue Growth for 500+ Mental Health & Behavioral Practices
+        </div>
 
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
-                  The Therapy Billing Company That{" "}
-                  <span className="shimmer-text">Catches What Your Current Process Misses</span>
-                </h1>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-5 leading-tight tracking-tight">
+          Precision-Driven Therapy Billing Services That{" "}
+          <span className="shimmer-text">Recover Every Dollar You Earn</span>
+        </h1>
 
-                <p className="text-base sm:text-lg mb-6 leading-relaxed" style={{ color: "#bfdbfe" }}>
-                  Prime Therapy Billing delivers end-to-end revenue cycle management built to find and fix the billing gaps that quietly cost your practice money. We handle eligibility verification, coding review, claim submission, payment posting, denial management, credentialing, and A/R recovery — everything inside your existing EHR.
+        <p className="text-base sm:text-lg mb-6 leading-relaxed" style={{ color: "#bfdbfe" }}>
+          Stop letting claim denials, coding errors, and unpaid insurance claims for therapists drain your behavioral health practice. Our specialized mental health billing and behavioral health RCM solution covers real-time eligibility checks, CPT/ICD-10 coding audits, electronic claim submission, ERA payment posting, aggressive denial resolution, provider credentialing, and full A/R recovery — all seamlessly integrated into your current EHR workflow.
+        </p>
+
+        <div className="flex flex-wrap gap-4 mb-8">
+          {[
+            { value: "@3.99%", label: "Therapy Billing" },
+            { value: "$99", label: "Per Credentialing" },
+            { value: "HIPAA", label: "Compliant & Secure" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="glass-card rounded-xl px-5 py-3 text-center card-hover"
+              style={{ animationDelay: `${i * 0.2}s` }}
+            >
+              <div className="text-xl font-extrabold text-white">{item.value}</div>
+              <div className="text-xs font-medium mt-0.5" style={{ color: "#93c5fd" }}>{item.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button
+            onClick={() => openPopup(
+              "Claim Your Free Revenue Audit",
+              "Discover hidden billing leaks and recover lost income — zero obligation, real insights."
+            )}
+            className="group relative bg-white px-7 py-3.5 rounded-xl font-bold shadow-2xl hover:-translate-y-1 hover:shadow-white/20 transition-all duration-300 text-base overflow-hidden"
+            style={{ color: "#0e3256" }}
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              Claim Your Free Revenue Audit
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </button>
+          <button className="border-2 border-white/50 text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 text-base backdrop-blur-sm">
+            Explore Our Process ↓
+          </button>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-4 text-xs font-semibold" style={{ color: "#93c5fd" }}>
+          {[" HIPAA Compliant", " 7–10 Day Onboarding", " Zero Setup Fees", " Cancel Anytime"].map((b, i) => (
+            <span
+              key={i}
+              className="bg-white/10 px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/15 transition-colors duration-200 cursor-default"
+            >
+              {b}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Right: Lead Form */}
+      <div
+        className={`transition-all duration-1000 delay-300 ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+      >
+        <div className="bg-white rounded-3xl p-7 sm:p-8 shadow-2xl border border-white/10 relative overflow-hidden">
+          {/* Decorative top gradient */}
+          <div
+            className="absolute top-0 left-0 right-0 h-1"
+            style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
+          />
+
+          {heroSuccess ? (
+            /* ── Hero Form Thank You Message ── */
+            <div className="py-8 text-center">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-extrabold mb-3" style={{ color: "#0e3256" }}>
+                Request Received!
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed mb-2">
+                Your free revenue audit request has been submitted successfully.
+              </p>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                A specialist will reach out within{" "}
+                <span className="font-semibold text-gray-700">24–48 business hours</span>{" "}
+                to walk through your billing performance and identify revenue opportunities.
+              </p>
+              <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                <p className="text-xs text-blue-700 font-medium">
+                  💡 While you wait, browse our therapy billing services or call us directly for immediate support.
                 </p>
-
-                <div className="flex flex-wrap gap-4 mb-8">
-                  {[
-                    { value: "@3.99%", label: "Medical Billing" },
-                    { value: "$99", label: "Per Credentialing" },
-                    { value: "HIPAA", label: "Compliant & Secure" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className="glass-card rounded-xl px-5 py-3 text-center card-hover"
-                      style={{ animationDelay: `${i * 0.2}s` }}
-                    >
-                      <div className="text-xl font-extrabold text-white">{item.value}</div>
-                      <div className="text-xs font-medium mt-0.5" style={{ color: "#93c5fd" }}>{item.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={() => openPopup(
-                      "Get Your Free Billing Analysis",
-                      "Find out exactly where your practice is losing revenue — no commitment required."
-                    )}
-                    className="group relative bg-white px-7 py-3.5 rounded-xl font-bold shadow-2xl hover:-translate-y-1 hover:shadow-white/20 transition-all duration-300 text-base overflow-hidden"
-                    style={{ color: "#0e3256" }}
-                  >
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      Get Your Free Billing Analysis
-                      <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </span>
-                  </button>
-                  <button className="border-2 border-white/50 text-white px-7 py-3.5 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 text-base backdrop-blur-sm">
-                    See How It Works ↓
-                  </button>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-4 text-xs font-semibold" style={{ color: "#93c5fd" }}>
-                  {[" HIPAA Compliant", " 7–10 Day Onboarding", " No Setup Fees", " No Long-Term Contracts"].map((b, i) => (
-                    <span
-                      key={i}
-                      className="bg-white/10 px-3 py-1.5 rounded-full border border-white/10 hover:bg-white/15 transition-colors duration-200 cursor-default"
-                    >
-                      {b}
-                    </span>
-                  ))}
-                </div>
+              </div>
+            </div>
+          ) : (
+            /* ── Hero Form ── */
+            <>
+              <div className="mb-5">
+                <span
+                  className="inline-block text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3"
+                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                >
+                  Free Revenue Audit
+                </span>
+                <h2 className="text-xl font-extrabold" style={{ color: "#0e3256" }}>
+                  Claim Your Free Revenue Audit
+                </h2>
+                <p className="text-gray-500 text-sm mt-1">
+                  Uncover hidden billing leaks and see how much your practice could recover — no strings attached.
+                </p>
               </div>
 
-              {/* Right: Lead Form */}
-              <div
-                className={`transition-all duration-1000 delay-300 ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+              <form
+                className="space-y-3.5"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setLoadingHero(true);
+                  try {
+                    const res = await fetch("/api/contact", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        ...heroForm,
+                        source: "Hero Form",
+                      }),
+                    });
+                    const data = await res.json();
+                    if (!res.ok) {
+                      alert(data.error || "Something went wrong");
+                      return;
+                    }
+                    // ✅ Show inline thank you — no alert
+                    setHeroSuccess(true);
+                    setHeroForm({
+                      name: "",
+                      email: "",
+                      phone: "",
+                      practice: "",
+                      message: "",
+                    });
+                  } catch (err) {
+                    alert("❌ Failed to send");
+                  } finally {
+                    setLoadingHero(false);
+                  }
+                }}
               >
-                <div className="bg-white rounded-3xl p-7 sm:p-8 shadow-2xl border border-white/10 relative overflow-hidden">
-                  {/* Decorative top gradient */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-1"
-                    style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
-                  />
+                {/* NAME */}
+                <StyledInput
+                  type="text"
+                  placeholder="Full Name"
+                  value={heroForm.name}
+                  onChange={(e: any) => setHeroForm({ ...heroForm, name: e.target.value })}
+                />
 
-                  {heroSuccess ? (
-                    /* ── Hero Form Thank You Message ── */
-                    <div className="py-8 text-center">
-                      <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                        <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <h3 className="text-2xl font-extrabold mb-3" style={{ color: "#0e3256" }}>
-                        Thank You!
-                      </h3>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-2">
-                        Your request has been received successfully.
-                      </p>
-                      <p className="text-gray-500 text-sm leading-relaxed">
-                        Our team will contact you within{" "}
-                        <span className="font-semibold text-gray-700">24–48 business hours</span>{" "}
-                        to schedule your free billing analysis.
-                      </p>
-                      <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                        <p className="text-xs text-blue-700 font-medium">
-                          💡 In the meantime, feel free to explore our services or call us directly for immediate assistance.
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    /* ── Hero Form ── */
-                    <>
-                      <div className="mb-5">
-                        <span
-                          className="inline-block text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3"
-                          style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                        >
-                          Free Billing Audit
-                        </span>
-                        <h2 className="text-xl font-extrabold" style={{ color: "#0e3256" }}>
-                          Schedule Your Free Billing Analysis
-                        </h2>
-                        <p className="text-gray-500 text-sm mt-1">
-                          Find out exactly where your practice is losing revenue — no commitment required.
-                        </p>
-                      </div>
+                {/* PHONE (USA FORMAT) */}
+                <StyledInput
+                  type="tel"
+                  placeholder="(555) 123-4567"
+                  value={heroForm.phone}
+                  onChange={(e: any) => {
+                    let input = e.target.value.replace(/\D/g, "");
+                    if (input.length > 10) input = input.slice(0, 10);
+                    let formatted = input;
+                    if (input.length > 6) {
+                      formatted = `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
+                    } else if (input.length > 3) {
+                      formatted = `(${input.slice(0, 3)}) ${input.slice(3)}`;
+                    } else if (input.length > 0) {
+                      formatted = `(${input}`;
+                    }
+                    setHeroForm({ ...heroForm, phone: formatted });
+                  }}
+                />
 
-                      <form
-                        className="space-y-3.5"
-                        onSubmit={async (e) => {
-                          e.preventDefault();
-                          setLoadingHero(true);
-                          try {
-                            const res = await fetch("/api/contact", {
-                              method: "POST",
-                              headers: { "Content-Type": "application/json" },
-                              body: JSON.stringify({
-                                ...heroForm,
-                                source: "Hero Form",
-                              }),
-                            });
-                            const data = await res.json();
-                            if (!res.ok) {
-                              alert(data.error || "Something went wrong");
-                              return;
-                            }
-                            // ✅ Show inline thank you — no alert
-                            setHeroSuccess(true);
-                            setHeroForm({
-                              name: "",
-                              email: "",
-                              phone: "",
-                              practice: "",
-                              message: "",
-                            });
-                          } catch (err) {
-                            alert("❌ Failed to send");
-                          } finally {
-                            setLoadingHero(false);
-                          }
-                        }}
-                      >
-                        {/* NAME */}
-                        <StyledInput
-                          type="text"
-                          placeholder="Full Name"
-                          value={heroForm.name}
-                          onChange={(e: any) => setHeroForm({ ...heroForm, name: e.target.value })}
-                        />
+                {/* EMAIL */}
+                <StyledInput
+                  type="email"
+                  placeholder="Email Address"
+                  value={heroForm.email}
+                  onChange={(e: any) => setHeroForm({ ...heroForm, email: e.target.value })}
+                />
 
-                        {/* PHONE (USA FORMAT) */}
-                        <StyledInput
-                          type="tel"
-                          placeholder="(555) 123-4567"
-                          value={heroForm.phone}
-                          onChange={(e: any) => {
-                            let input = e.target.value.replace(/\D/g, "");
-                            if (input.length > 10) input = input.slice(0, 10);
-                            let formatted = input;
-                            if (input.length > 6) {
-                              formatted = `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
-                            } else if (input.length > 3) {
-                              formatted = `(${input.slice(0, 3)}) ${input.slice(3)}`;
-                            } else if (input.length > 0) {
-                              formatted = `(${input}`;
-                            }
-                            setHeroForm({ ...heroForm, phone: formatted });
-                          }}
-                        />
+                {/* SPECIALTY */}
+                <StyledSelect
+                  options={specialtyNames}
+                  value={heroForm.practice}
+                  onChange={(e: any) => setHeroForm({ ...heroForm, practice: e.target.value })}
+                />
 
-                        {/* EMAIL */}
-                        <StyledInput
-                          type="email"
-                          placeholder="Email Address"
-                          value={heroForm.email}
-                          onChange={(e: any) => setHeroForm({ ...heroForm, email: e.target.value })}
-                        />
+                {/* MESSAGE */}
+                <StyledTextarea
+                  placeholder="Tell us about your practice's billing challenges"
+                  value={heroForm.message}
+                  onChange={(e: any) => setHeroForm({ ...heroForm, message: e.target.value })}
+                />
 
-                        {/* SPECIALTY */}
-                        <StyledSelect
-                          options={specialtyNames}
-                          value={heroForm.practice}
-                          onChange={(e: any) => setHeroForm({ ...heroForm, practice: e.target.value })}
-                        />
+                {/* SUBMIT BUTTON */}
+                <button
+                  type="submit"
+                  disabled={loadingHero}
+                  className="w-full text-white py-3.5 rounded-xl font-bold text-base hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 group relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                >
+                  <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="relative">
+                    {loadingHero ? "Submitting..." : "Get My Free Audit"}
+                    <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+                  </span>
+                </button>
 
-                        {/* MESSAGE */}
-                        <StyledTextarea
-                          placeholder="How can we help your practice?"
-                          value={heroForm.message}
-                          onChange={(e: any) => setHeroForm({ ...heroForm, message: e.target.value })}
-                        />
+                <p className="text-center text-xs text-gray-400">
+                  🔒 Your data is fully protected under HIPAA regulations
+                </p>
+              </form>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
 
-                        {/* SUBMIT BUTTON */}
-                        <button
-                          type="submit"
-                          disabled={loadingHero}
-                          className="w-full text-white py-3.5 rounded-xl font-bold text-base hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 group relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
-                          style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                        >
-                          <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <span className="relative">
-                            {loadingHero ? "Sending..." : "Book My Free Analysis"}
-                            <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-                          </span>
-                        </button>
-
-                        <p className="text-center text-xs text-gray-400">
-                          🔒 Your information is 100% secure and HIPAA compliant
-                        </p>
-                      </form>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Stats Bar */}
-            <div ref={statsRef} className="border-t border-white/10 py-8">
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-                {stats.map((stat, index) => (
-                  <AnimatedStat key={index} number={stat.number} label={stat.label} start={statsInView} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+    {/* Stats Bar */}
+    <div ref={statsRef} className="border-t border-white/10 py-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+        {stats.map((stat, index) => (
+          <AnimatedStat key={index} number={stat.number} label={stat.label} start={statsInView} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* ================================================================
               SERVICES SECTION
@@ -1257,13 +1257,13 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge>Complete Revenue Cycle Management</Badge>
+                <Badge>End-to-End Behavioral Health RCM</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5" style={{ color: "#0e3256" }}>
-                  Everything Your Revenue Cycle Needs,{" "}
-                  <span className="block sm:inline">Under One Team, One Rate</span>
+                  Comprehensive Therapy Billing Services Built to Protect Your Revenue{" "}
+                  <span className="block sm:inline">Single Team. Single Flat Rate. Zero Gaps.</span>
                 </h2>
                 <p className="text-gray-600 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Prime Therapy Billing covers every stage of your revenue cycle, from the moment a patient schedules an appointment to the final dollar posted to your account. Every service below is included in one flat rate — no add-ons, no line-item invoicing, no surprises.
+                  Stop juggling multiple vendors for your mental health billing needs. From initial patient eligibility verification through final payment posting, our behavioral health RCM specialists manage the entire financial lifecycle of your practice. Every critical function—including denial management, coding compliance, and insurance claims for therapists—is consolidated into one predictable pricing model with zero hidden costs.
                 </p>
               </div>
 
@@ -1317,15 +1317,15 @@ export default function Home() {
                 className={`mt-12 text-center transition-all duration-700 delay-500 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <p className="text-gray-600 mb-5 text-base">
-                  Every service above is included starting at <strong style={{ color: "#0e3256" }}>3.99% of collections</strong>. No setup fees. No long-term contracts.
+                  Access our complete suite of therapy billing services starting at just <strong style={{ color: "#0e3256" }}>3.99% of collected revenue</strong>. No onboarding fees. Cancel anytime.
                 </p>
                 <GradientBtn
                   onClick={() => openPopup(
-                    "Get Your Free Billing Analysis",
-                    "Every service included at 3.99% of collections. No setup fees. No long-term contracts."
+                    "Claim Your Free Billing Audit",
+                    "Discover how our all-inclusive mental health billing services recover lost revenue at just 3.99%."
                   )}
                 >
-                  Get Your Free Billing Analysis
+                  Claim Your Free Billing Audit
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </GradientBtn>
               </div>
@@ -1346,22 +1346,22 @@ export default function Home() {
 
                 <div className="relative z-10">
                   <h3 className="text-lg sm:text-xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
-                    Not sure where your billing is leaking revenue?
+                    Is Your Behavioral Health RCM Leaving Money on the Table?
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    A 20-minute billing analysis call shows you exactly where the gaps are and what they&apos;re costing you.
+                    Our complimentary therapy billing services audit takes just 20 minutes to expose the denied insurance claims for therapists and coding gaps silently draining your cash flow.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0 relative z-10">
                   <button
                     onClick={() => openPopup(
-                      "Book Your Free Billing Analysis",
-                      "A 20-minute call shows you exactly where the gaps are and what they're costing you."
+                      "Claim Your Free Billing Audit",
+                      "In just 20 minutes, we'll expose the hidden revenue leaks in your mental health billing process."
                     )}
                     className="text-white px-6 py-3 rounded-xl font-bold text-sm hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
                     style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                   >
-                    Book Free Analysis →
+                    Claim Your Free Audit →
                   </button>
                   <a
                     href="tel:+13464604441"
@@ -1388,12 +1388,12 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${processInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge>Our Process</Badge>
+                <Badge>Streamlined Onboarding</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5" style={{ color: "#0e3256" }}>
-                  From First Call to First Clean Claim
+                  Your Mental Health Billing Journey, Engineered for Maximum Revenue
                 </h2>
                 <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Most practices complete the transition to Prime Therapy Billing and begin live claim submissions within 7 to 10 days. Here&apos;s exactly how your revenue cycle works when we manage it.
+                  Practices typically transition to our therapy billing services and see their first clean claims drop within just 7 to 10 days. Below is the exact framework we use to optimize your behavioral health RCM from day one.
                 </p>
               </div>
 
@@ -1454,11 +1454,11 @@ export default function Home() {
               <div className="mt-10 text-center">
                 <GradientBtn
                   onClick={() => openPopup(
-                    "Ready to Start? Get Your Free Billing Analysis",
-                    "Most practices go live within 7–10 days. Let's find out exactly how we can help your revenue cycle."
+                    "Launch Your Revenue Transformation — Get Your Free Audit",
+                    "Go live in as little as 7–10 days. Discover how our mental health billing experts can maximize your insurance claims for therapists and boost collections."
                   )}
                 >
-                  Ready to Start? Get Your Free Billing Analysis
+                  Launch Your Revenue Transformation — Get Your Free Audit
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </GradientBtn>
               </div>
@@ -1480,12 +1480,12 @@ export default function Home() {
               <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
                 {/* Left */}
                 <div>
-                  <Badge light>Revenue Leak Detection</Badge>
+                  <Badge light>Hidden Revenue Recovery</Badge>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 leading-tight">
-                    Most Billing Problems Do Not Announce Themselves
+                    Silent Revenue Leaks Are Draining Your Behavioral Health Practice
                   </h2>
                   <p className="text-blue-100 text-base sm:text-lg mb-8 leading-relaxed">
-                    Your billing may be running, but running and running right are two different operations. The gaps that cost therapy practices the most money rarely appear obvious — they show as slightly lower collections, slightly higher denial rates, and A/R reports that age without intervention.
+                    A functioning mental health billing process doesn't always mean a profitable one. The most damaging financial losses in therapy practices rarely trigger immediate alarms—instead, they hide inside steadily declining reimbursement rates, creeping claim denials, and stagnant accounts receivable that seem to age indefinitely.
                   </p>
 
                   <div className="space-y-4 mb-8">
@@ -1509,14 +1509,14 @@ export default function Home() {
                   </div>
 
                   <div className="glass-card rounded-2xl p-5">
-                    <p className="text-white font-semibold text-sm mb-3">Which of these challenges are you facing?</p>
+                    <p className="text-white font-semibold text-sm mb-3">Are these behavioral health RCM blind spots impacting your clinic?</p>
                     <div className="space-y-2">
                       {[
-                        "Inadequate follow-up on claims and payments",
-                        "Accounts receivable aging past 90/120+ days",
-                        "Rising patient balances causing financial strain",
-                        "Lack of transparency and reporting from your biller",
-                        "Overall decline in collections impacting revenue",
+                        "Delayed or absent follow-up on unpaid insurance claims for therapists",
+                        "Outstanding accounts receivable aging beyond 90 or 120 days",
+                        "Accumulating patient balances creating financial friction",
+                        "Poor visibility and vague reporting from your current billing partner",
+                        "A steady downward trend in overall practice collections",
                       ].map((item, i) => (
                         <label key={i} className="flex items-start gap-3 cursor-pointer group">
                           <input type="checkbox" className="mt-0.5 rounded accent-blue-400 cursor-pointer flex-shrink-0" />
@@ -1536,10 +1536,10 @@ export default function Home() {
                       className="inline-block text-white text-xs font-bold px-3 py-1.5 rounded-full mb-3"
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                     >
-                      Free Revenue Cycle Analysis
+                      Complimentary RCM Audit
                     </span>
-                    <h3 className="text-xl font-extrabold" style={{ color: "#0e3256" }}>See What Your Billing Is Missing</h3>
-                    <p className="text-gray-500 text-sm mt-1">No commitment required. Get specific gap identification within your first billing cycle.</p>
+                    <h3 className="text-xl font-extrabold" style={{ color: "#0e3256" }}>Uncover Your Lost Practice Revenue</h3>
+                    <p className="text-gray-500 text-sm mt-1">Zero obligations required. Receive a detailed breakdown of your billing vulnerabilities within your first operational cycle.</p>
                   </div>
 
                   <form className="space-y-3.5" onSubmit={(e) => e.preventDefault()}>
@@ -1552,9 +1552,9 @@ export default function Home() {
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                     >
                       <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="relative">See What My Billing Is Missing →</span>
+                      <span className="relative">Expose My Revenue Leaks →</span>
                     </button>
-                    <p className="text-center text-xs text-gray-400">🔒 HIPAA compliant · No setup fees · No long-term contracts</p>
+                    <p className="text-center text-xs text-gray-400">🔒 Strict HIPAA compliance · Zero onboarding fees · Cancel anytime</p>
                   </form>
                 </div>
               </div>
@@ -1574,26 +1574,26 @@ export default function Home() {
                 <div
                   className={`transition-all duration-700 ${credInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
                 >
-                  <Badge>Provider Credentialing Services</Badge>
+                  <Badge>Expert Provider Credentialing</Badge>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5 leading-tight" style={{ color: "#0e3256" }}>
-                    Every Week Your Provider Isn&apos;t Enrolled Is Revenue You Can&apos;t Bill
+                    Delayed Payer Enrollments Are Silently Draining Your Practice Revenue
                   </h2>
                   <p className="text-gray-600 text-base sm:text-lg mb-5 leading-relaxed">
-                    Credentialing delays are among the most underestimated revenue problems in therapy practices. Say a provider generates $8,000 per week in billable services and stays unenrolled for eight weeks. That&apos;s $64,000 in services that can&apos;t be submitted. Not delayed. Gone.
+                    When behavioral health practices wait on payer enrollment, the financial impact is immediate and permanent. Consider a therapist generating $8,000 weekly—eight weeks of unenrolled status translates to $64,000 in forfeited revenue. Not delayed. Simply lost. Without active network status, you cannot submit clean insurance claims for therapists, making rapid enrollment a critical pillar of behavioral health RCM.
                   </p>
                   <p className="text-gray-600 text-base mb-8 leading-relaxed">
-                    Prime Therapy Billing handles the full payer enrollment process — from application through confirmation — getting your providers enrolled in 30 to 60 days, starting at just <strong style={{ color: "#0e3256" }}>$99 per enrollment</strong>.
+                    Our dedicated therapy billing services team manages the entire credentialing lifecycle—from initial application submission to final approval. We secure your providers&apos; active status within 30 to 60 days, ensuring your mental health billing operations capture revenue faster, all for a straightforward fee of just <strong style={{ color: "#0e3256" }}>$99 per enrollment</strong>.
                   </p>
 
                   <div className="rounded-2xl p-6 border mb-6" style={{ borderColor: "#e2eaf3", background: "#f8faff" }}>
-                    <h4 className="font-extrabold mb-4" style={{ color: "#0e3256" }}>What&apos;s Included at $99 Per Enrollment</h4>
+                    <h4 className="font-extrabold mb-4" style={{ color: "#0e3256" }}>What You Receive for $99 Per Enrollment</h4>
                     <ul className="space-y-3">
                       {[
-                        "CAQH profile creation, cleanup, and attestation management — handled entirely by Prime Therapy Billing",
-                        "Payer enrollment application submission with complete documentation review before it goes out",
-                        "Proactive weekly follow-up on application status — we call the payers so your staff doesn't have to",
-                        "Recredentialing deadline tracking with advance notice before expiration",
-                        "Status updates at every milestone until enrollment confirmation is in hand",
+                        "Complete CAQH profile setup, optimization, and ongoing attestation management handled end-to-end by our specialists",
+                        "Rigorous documentation verification and flawless payer enrollment application submission to prevent immediate rejections",
+                        "Consistent weekly follow-ups with insurance carriers—we handle the hold times and paperwork so your team can focus on patient care",
+                        "Automated tracking of recredentialing deadlines with proactive alerts long before expiration dates approach",
+                        "Transparent milestone reporting so you know exactly where each provider stands until final approval is secured",
                       ].map((item, i) => (
                         <li
                           key={i}
@@ -1614,7 +1614,7 @@ export default function Home() {
 
                   <div className="rounded-2xl p-5" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
                     <p className="text-white text-sm font-medium italic">
-                      &ldquo;An incomplete application is the most common reason credentialing takes longer than it should. Ours don&apos;t go out incomplete.&rdquo;
+                      &ldquo;Rejected applications are the leading cause of credentialing bottlenecks. We eliminate that risk by ensuring every submission is flawless before it reaches the payer.&rdquo;
                     </p>
                   </div>
                 </div>
@@ -1632,11 +1632,11 @@ export default function Home() {
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                     >
                       <div className="text-4xl font-extrabold text-white">$99</div>
-                      <div className="text-blue-200 text-sm mt-1 font-medium">per enrollment · 30–60 day timeline</div>
+                      <div className="text-blue-200 text-sm mt-1 font-medium">per enrollment · 30–60 day turnaround</div>
                     </div>
 
                     <h4 className="font-extrabold text-center mb-6 text-base" style={{ color: "#0e3256" }}>
-                      Your Enrollment Timeline: 30–60 Days
+                      The Path to Active Network Status: 30–60 Days
                     </h4>
 
                     <div className="space-y-0">
@@ -1667,14 +1667,14 @@ export default function Home() {
 
                     <button
                       onClick={() => openPopup(
-                        "Start Billing Sooner — Enroll for $99",
-                        "Get your providers credentialed in 30–60 days. Complete application, weekly follow-up, zero delays."
+                        "Activate Your Providers — Enroll for $99",
+                        "Secure your providers' network status in 30–60 days with flawless applications and proactive payer follow-ups."
                       )}
                       className="w-full mt-6 text-white py-4 rounded-xl font-bold text-base hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                     >
                       <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="relative">Start Billing Sooner — Enroll for $99 →</span>
+                      <span className="relative">Activate Your Providers — Enroll for $99 →</span>
                     </button>
                   </div>
                 </div>
@@ -1697,12 +1697,12 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${calcInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge light>Pricing &amp; Savings</Badge>
+                <Badge light>Cost Comparison &amp; ROI</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
-                  Discover Your True Billing Costs — And How Much You Can Save
+                  Uncover the Real Cost of Your Mental Health Billing Operations — and Your Potential Savings
                 </h2>
                 <p className="max-w-2xl mx-auto text-base sm:text-lg leading-relaxed" style={{ color: "#bfdbfe" }}>
-                  Compare your in-house billing costs with Prime Therapy Billing&apos;s transparent, percentage-based pricing that covers everything from eligibility through reporting.
+                  Measure your current administrative overhead against our transparent therapy billing services. We offer a flat percentage-based model that encompasses every aspect of behavioral health RCM, from initial eligibility verification to comprehensive financial reporting.
                 </p>
               </div>
 
@@ -1711,12 +1711,12 @@ export default function Home() {
                 <div
                   className={`glass-card rounded-3xl p-7 transition-all duration-700 card-hover ${calcInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
-                  <h3 className="text-white font-extrabold text-lg mb-1">In-House Billing</h3>
-                  <p className="text-blue-200 text-xs mb-5">Annual Collection: $1,000,000</p>
+                  <h3 className="text-white font-extrabold text-lg mb-1">Traditional In-House Operations</h3>
+                  <p className="text-blue-200 text-xs mb-5">Baseline Annual Revenue: $1,000,000</p>
                   <div className="space-y-3 mb-6">
                     {[
-                      { label: "Billing Staff Salary", val: "$60,000" },
-                      { label: "Training & Overhead", val: "$2,400" },
+                      { label: "Billing Personnel Salaries", val: "$60,000" },
+                      { label: "Continuing Education & Overhead", val: "$2,400" },
                     ].map((item, i) => (
                       <div key={i} className="flex justify-between items-center text-sm border-b border-white/10 pb-3">
                         <span className="text-blue-200">{item.label}</span>
@@ -1725,7 +1725,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="rounded-xl p-4 border border-white/20 bg-white/10">
-                    <div className="text-blue-200 text-xs mb-1">Total Annual Cost</div>
+                    <div className="text-blue-200 text-xs mb-1">Cumulative Annual Expense</div>
                     <div className="text-3xl font-extrabold text-white">$62,400</div>
                   </div>
                 </div>
@@ -1741,13 +1741,13 @@ export default function Home() {
                   >
                     ⭐ Best Value
                   </div>
-                  <h3 className="font-extrabold text-lg mb-1" style={{ color: "#0e3256" }}>Prime Therapy Billing</h3>
-                  <p className="text-gray-500 text-xs mb-5">Annual Collection: $1,000,000</p>
+                  <h3 className="font-extrabold text-lg mb-1" style={{ color: "#0e3256" }}>Prime Therapy Billing Solutions</h3>
+                  <p className="text-gray-500 text-xs mb-5">Baseline Annual Revenue: $1,000,000</p>
                   <div className="space-y-3 mb-6">
                     {[
-                      { label: "RCM Service (3.99%)", val: "$39,900" },
-                      { label: "Implementation", val: "$0" },
-                      { label: "Support & Analytics", val: "$0" },
+                      { label: "Comprehensive RCM Fee (3.99%)", val: "$39,900" },
+                      { label: "Onboarding & Setup", val: "$0" },
+                      { label: "Reporting & Support", val: "$0" },
                     ].map((item, i) => (
                       <div key={i} className="flex justify-between items-center text-sm border-b border-gray-100 pb-3">
                         <span className="text-gray-600">{item.label}</span>
@@ -1756,7 +1756,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="rounded-xl p-4" style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}>
-                    <div className="text-gray-500 text-xs mb-1">Total Annual Cost</div>
+                    <div className="text-gray-500 text-xs mb-1">Total Annual Investment</div>
                     <div className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>$29,900</div>
                   </div>
                 </div>
@@ -1765,15 +1765,15 @@ export default function Home() {
                 <div
                   className={`glass-card rounded-3xl p-7 text-center flex flex-col justify-center transition-all duration-700 delay-200 card-hover ${calcInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                 >
-                  <div className="text-blue-200 text-sm mb-2">Average Client Savings</div>
+                  <div className="text-blue-200 text-sm mb-2">Your Projected ROI</div>
                   <div className="text-5xl font-extrabold text-white mb-3 shimmer-text">$32,500</div>
-                  <div className="text-blue-200 text-sm mb-6">Saved per year when switching from in-house billing</div>
+                  <div className="text-blue-200 text-sm mb-6">Recaptured annually by outsourcing your mental health billing</div>
                   <div className="space-y-2.5 text-left">
                     {[
-                      "Dedicated billing team with specialty expertise",
-                      "Real-time analytics dashboard & denial tracking",
-                      "Patient statements & payment plans handled",
-                      "Credentialing included — no separate vendor",
+                      "Specialized experts handling insurance claims for therapists",
+                      "Live performance dashboards and proactive denial management",
+                      "Complete patient billing, statements, and payment plan administration",
+                      "Integrated provider credentialing management",
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-2 text-xs text-blue-100">
                         <Icons.CheckGreen />
@@ -1789,14 +1789,14 @@ export default function Home() {
                 <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
 
                 <h3 className="font-extrabold text-xl mb-2 text-center" style={{ color: "#0e3256" }}>
-                  Revenue Savings Calculator
+                  Interactive Behavioral Health RCM Savings Estimator
                 </h3>
-                <p className="text-gray-500 text-sm text-center mb-8">Adjust the sliders to see your personalized savings estimate.</p>
+                <p className="text-gray-500 text-sm text-center mb-8">Modify the parameters below to calculate your customized cost reduction.</p>
 
                 <div className="grid sm:grid-cols-3 gap-6 mb-8">
                   {[
                     {
-                      label: "Annual Collections",
+                      label: "Gross Annual Collections",
                       value: `$${annualCollections.toLocaleString()}`,
                       min: 100000, max: 5000000, step: 50000,
                       current: annualCollections,
@@ -1804,7 +1804,7 @@ export default function Home() {
                       minLabel: "$100K", maxLabel: "$5M",
                     },
                     {
-                      label: "In-House Billing Cost",
+                      label: "Current Billing Overhead %",
                       value: `${inHouseCost.toFixed(1)}%`,
                       min: 3, max: 12, step: 0.5,
                       current: inHouseCost,
@@ -1812,7 +1812,7 @@ export default function Home() {
                       minLabel: "3%", maxLabel: "12%",
                     },
                     {
-                      label: "Extra Overhead",
+                      label: "Additional Administrative Costs",
                       value: `$${extraOverhead.toLocaleString()}`,
                       min: 0, max: 20000, step: 500,
                       current: extraOverhead,
@@ -1843,9 +1843,9 @@ export default function Home() {
 
                 <div className="grid sm:grid-cols-3 gap-5">
                   {[
-                    { label: "In-House Billing Cost", val: `$${Math.round(inHouseBillingCost).toLocaleString()}`, bg: "#fff0f0", color: "#dc2626", sub: null },
-                    { label: "Prime Therapy Billing Cost", val: `$${Math.round(rcmBillingCost).toLocaleString()}`, bg: "#f0f6ff", color: "#0e3256", sub: null },
-                    { label: "Estimated Annual Savings", val: `$${Math.round(Math.max(0, estimatedSavings)).toLocaleString()}`, bg: "linear-gradient(135deg, #0e3256, #3e8ad6)", color: "#fff", sub: "per year" },
+                    { label: "Current In-House Expense", val: `$${Math.round(inHouseBillingCost).toLocaleString()}`, bg: "#fff0f0", color: "#dc2626", sub: null },
+                    { label: "Outsourced RCM Investment", val: `$${Math.round(rcmBillingCost).toLocaleString()}`, bg: "#f0f6ff", color: "#0e3256", sub: null },
+                    { label: "Projected Annual Savings", val: `$${Math.round(Math.max(0, estimatedSavings)).toLocaleString()}`, bg: "linear-gradient(135deg, #0e3256, #3e8ad6)", color: "#fff", sub: "per year" },
                   ].map((item, i) => (
                     <div
                       key={i}
@@ -1862,11 +1862,11 @@ export default function Home() {
                 <div className="mt-8 text-center">
                   <GradientBtn
                     onClick={() => openPopup(
-                      "Get My Personalized Savings Report",
-                      "Based on your calculator results, let's build a custom savings plan for your practice."
+                      "Request My Custom ROI Analysis",
+                      "Using your estimator results, let's design a tailored cost-reduction strategy for your practice."
                     )}
                   >
-                    Get My Personalized Savings Report
+                    Request My Custom ROI Analysis
                     <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                   </GradientBtn>
                 </div>
@@ -1885,12 +1885,12 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${specialtiesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge>Specialty Expertise</Badge>
+                <Badge>Therapy Billing Specialties</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5" style={{ color: "#0e3256" }}>
-                  Specialty-Specific Billing That Knows Your Payer Rules
+                  Precision Billing for Every Therapy Discipline — Built on Payer-Specific Intelligence
                 </h2>
                 <p className="text-gray-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Most billing companies list your specialty and call it coverage. Prime Therapy Billing knows your specialty by its denial triggers, modifier requirements, coding edge cases, and payer-specific documentation standards.
+                  Generic billing support fails therapy practices. Our therapy billing services are engineered around the exact reimbursement logic, authorization protocols, and coding frameworks unique to your clinical discipline — so every claim gets paid correctly the first time.
                 </p>
               </div>
 
@@ -1930,15 +1930,15 @@ export default function Home() {
                 className={`mt-10 text-center transition-all duration-700 delay-500 ${specialtiesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
                 <p className="text-gray-600 mb-5 text-sm">
-                  Don&apos;t see your specialty? We&apos;ve handled claims across <strong style={{ color: "#0e3256" }}>100+ clinical areas</strong>.
+                  Your practice type isn&apos;t listed? We&apos;ve successfully managed mental health billing and behavioral health RCM across <strong style={{ color: "#0e3256" }}>100+ distinct clinical specialties</strong>.
                 </p>
                 <GradientBtn
                   onClick={() => openPopup(
-                    "View All Specialties & Get Started",
-                    "We've handled claims across 100+ clinical areas. Tell us about your specialty and we'll show you exactly how we can help."
+                    "Discover Your Specialty & Start Billing Smarter",
+                    "From mental health billing to ABA and beyond, we've managed insurance claims for therapists across 100+ clinical disciplines. Share your specialty and we'll outline a custom billing strategy."
                   )}
                 >
-                  View All Specialties
+                  Explore All Specialties
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </GradientBtn>
               </div>
@@ -1961,12 +1961,12 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${testimonialsInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge light>Client Success Stories</Badge>
+                <Badge light>Proven Therapy Billing Outcomes</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
-                  What Providers Say After Their Billing Gaps Get Fixed
+                  How Therapists Transformed Their Revenue Cycles and Reduced Denials
                 </h2>
                 <p className="max-w-2xl mx-auto text-base sm:text-lg leading-relaxed" style={{ color: "#bfdbfe" }}>
-                  We work with providers across 100+ specialties. Most come to us with the same frustration: claims unpaid, denials recurring, revenue down, and nobody can explain why.
+                  Behavioral health practices partner with us when stalled insurance claims for therapists, mounting denials, and unexplained revenue drops threaten their clinical focus. Through dedicated mental health billing expertise and advanced behavioral health RCM strategies, we deliver the financial clarity they deserve.
                 </p>
 
                 {/* Platform badges */}
@@ -2029,17 +2029,17 @@ export default function Home() {
 
               <div className="mt-12 text-center">
                 <p className="text-blue-200 mb-6 text-sm">
-                  Trusted by <strong className="text-white">500+ healthcare providers</strong> nationwide.
+                  Delivering measurable growth for <strong className="text-white">500+ therapy practices</strong> nationwide.
                 </p>
                 <button
                   onClick={() => openPopup(
-                    "Join 500+ Providers — Get Your Free Billing Analysis",
-                    "See the same billing gap results our clients experience. No commitment. Just clarity."
+                    "Uncover Hidden Revenue — Free Billing Audit",
+                    "Find out exactly how our therapy billing services can recover your lost revenue. No obligations, just actionable insights."
                   )}
                   className="inline-flex items-center gap-2 bg-white px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-base group"
                   style={{ color: "#0e3256" }}
                 >
-                  Let&apos;s Find Out — Get Free Billing Analysis
+                  Get Your Free Billing Audit Today
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
               </div>
@@ -2057,12 +2057,12 @@ export default function Home() {
               <div
                 className={`text-center mb-14 transition-all duration-700 ${faqInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               >
-                <Badge>Support Center</Badge>
+                <Badge>Therapy Billing FAQs</Badge>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5" style={{ color: "#0e3256" }}>
-                  Questions Practices Ask Before Switching
+                  Essential Questions Therapists Ask Before Outsourcing Their Billing
                 </h2>
                 <p className="text-gray-600 max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Everything you need to know about our services, pricing, onboarding, and how we protect and grow your revenue cycle.
+                  From onboarding timelines to how we optimize behavioral health RCM, get straightforward answers about our therapy billing services, pricing structures, and revenue protection methods.
                 </p>
               </div>
 
@@ -2111,15 +2111,15 @@ export default function Home() {
               </div>
 
               <div className="mt-10 text-center">
-                <p className="text-gray-600 mb-4 text-sm">Still have questions? Our billing specialists are ready to walk you through every detail.</p>
+                <p className="text-gray-600 mb-4 text-sm">Need more details? Speak directly with a mental health billing specialist who understands how to maximize your insurance claims for therapists.</p>
                 <GradientBtn
                   className="px-7 py-3.5 text-sm"
                   onClick={() => openPopup(
-                    "Contact Our Billing Team",
-                    "Our billing specialists are ready to walk you through every detail of our services."
+                    "Connect with a Therapy Billing Specialist",
+                    "Discover how our tailored therapy billing services can streamline your revenue cycle and increase collections."
                   )}
                 >
-                  Contact Our Team →
+                  Speak to a Billing Specialist →
                 </GradientBtn>
               </div>
             </div>
@@ -2146,26 +2146,26 @@ export default function Home() {
                 <div
                   className={`transition-all duration-700 ${ctaInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
                 >
-                  <Badge light>Revenue Cycle Audit</Badge>
+                  <Badge light>Behavioral Health RCM Audit</Badge>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 leading-tight">
-                    Your Billing Is Running.{" "}
+                    Claims Get Submitted Daily.{" "}
                     <span className="shimmer-text block mt-2">
-                      But Is Every Dollar Making It to Your Account?
+                      But Is Every Earned Dollar Hitting Your Bank Account?
                     </span>
                   </h2>
                   <p className="text-blue-100 text-base sm:text-lg mb-6 leading-relaxed">
-                    Practices that outsource billing to Prime Therapy Billing see specific gap identification within the first billing cycle. Not vague promises. Not a pitch deck. Actual findings from your actual data, with a clear path to fix what&apos;s leaking.
+                    Therapists who switch to our therapy billing services don't get guesswork—they receive a granular revenue leak diagnostic during their very first billing cycle. We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix.
                   </p>
                   <p className="text-blue-100 text-base mb-8 leading-relaxed">
-                    A 20-minute billing analysis call shows you exactly where the gaps are and what they&apos;re costing you. No commitment. No pressure. Just the numbers your practice needs to make an informed decision.
+                    In just 20 minutes, our specialists will map out your revenue bottlenecks and quantify the income you’re leaving on the table. Zero obligations, no high-pressure sales tactics—just the hard numbers your practice needs to scale confidently.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     {[
-                      { icon: "🚫", label: "No Setup Fees" },
-                      { icon: "📋", label: "No Long-Term Contracts" },
-                      { icon: "🔒", label: "HIPAA Compliant" },
-                      { icon: "⚡", label: "Results in First Cycle" },
+                      { icon: "🚫", label: "Zero Onboarding Fees" },
+                      { icon: "📋", label: "No Lock-In Agreements" },
+                      { icon: "🔒", label: "Strict HIPAA Security" },
+                      { icon: "⚡", label: "First-Cycle Impact" },
                     ].map((item, i) => (
                       <div
                         key={i}
@@ -2180,15 +2180,15 @@ export default function Home() {
                   <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       onClick={() => openPopup(
-                        "Get My Free Billing Analysis",
-                        "Actual findings from your actual data — with a clear path to fix what's leaking."
+                        "Claim My Free Revenue Analysis",
+                        "We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix."
                       )}
                       className="group bg-white px-7 py-4 rounded-xl font-bold shadow-2xl hover:-translate-y-1 hover:shadow-white/20 transition-all duration-300 text-base relative overflow-hidden"
                       style={{ color: "#0e3256" }}
                     >
                       <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <span className="relative flex items-center justify-center gap-2">
-                        Get My Free Billing Analysis
+                        Claim My Free Revenue Analysis
                         <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                       </span>
                     </button>
@@ -2203,8 +2203,8 @@ export default function Home() {
 
                   <div className="mt-6 flex gap-4 flex-wrap">
                     {[
-                      { value: "@3.99%", label: "Medical Billing" },
-                      { value: "$99", label: "Per Credentialing" },
+                      { value: "@3.99%", label: "Therapy Billing" },
+                      { value: "$99", label: "Provider Credentialing" },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-2 glass-card rounded-xl px-4 py-2.5 card-hover">
                         <div className="text-white font-extrabold text-lg">{item.value}</div>
@@ -2221,10 +2221,10 @@ export default function Home() {
                   <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
 
                   <h3 className="text-xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
-                    Let&apos;s Talk About Your Billing Needs
+                    Optimize Your Mental Health Billing Today
                   </h3>
                   <p className="text-gray-500 text-sm mb-6">
-                    Fill out the form and our billing experts will get back to you within 24 hours with a customized solution for your practice.
+                    Share your practice details below. One of our insurance claims for therapists specialists will craft a customized revenue recovery strategy within 24 hours.
                   </p>
 
                   <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
@@ -2243,10 +2243,10 @@ export default function Home() {
                     >
                       <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       <span className="relative">
-                        Send Message & Book Free Analysis →
+                        Request My Free Analysis →
                       </span>
                     </button>
-                    <p className="text-center text-xs text-gray-400">🔒 Your information is 100% secure and HIPAA compliant</p>
+                    <p className="text-center text-xs text-gray-400">🔒 100% HIPAA-Compliant Data Security</p>
                   </form>
                 </div>
               </div>
