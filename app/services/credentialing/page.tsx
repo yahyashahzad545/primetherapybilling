@@ -588,7 +588,7 @@ function CredentialingFormSection({
             className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-7 leading-tight tracking-tight"
             style={{ color: "#0e3256" }}
           >
-            Provider Enrollment &amp; Credentialing Services{" "}
+            Therapy Credentialing & Provider Enrollment Solutions{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #0e3256, #3e8ad6)",
@@ -596,7 +596,7 @@ function CredentialingFormSection({
                 WebkitTextFillColor: "transparent",
               }}
             >
-              That Get You Approved Fast
+              Built for Behavioral Health Practices
             </span>
           </h2>
 
@@ -604,42 +604,25 @@ function CredentialingFormSection({
             className="text-base leading-[1.8] mb-5"
             style={{ color: "#0e3256", opacity: 0.9 }}
           >
-            For over a decade, we've helped healthcare providers eliminate
-            credentialing delays. One missing signature, one outdated form, and
-            payers halt the process. We step in early, correct every detail,
-            maintain CAQH accuracy, and manage end-to-end provider enrollment
-            credentialing services so approvals flow smoothly and revenue never
-            stalls.
+            A single documentation error can stall your payer enrollment for months, disrupting your behavioral health RCM before it even begins. Our therapy billing services team intercepts these roadblocks early. We maintain your CAQH profile, validate every clinical detail, and manage end-to-end provider enrollment credentialing services so your approvals flow smoothly and your revenue stays on track.
           </p>
           <p
             className="text-base leading-[1.8] mb-5"
             style={{ color: "#0e3256", opacity: 0.9 }}
           >
-            You work directly with a dedicated health insurance credentialing
-            specialist who owns your case from intake to final approval. They
-            prepare applications, enforce payer-specific requirements, and
-            sustain momentum with weekly follow-ups. From complex insurance
-            paneling to routine provider credentialing and enrollment services,
-            we eliminate bottlenecks before they become revenue problems.
+            You are paired with a dedicated mental health billing and credentialing specialist who drives your application from submission to final approval. They navigate payer-specific mandates, conduct rigorous weekly follow-ups, and ensure your insurance claims for therapists are never compromised by enrollment gaps. Whether you require complex insurance paneling or routine credentialing support, we eliminate the friction that costs you money.
           </p>
           <p
             className="text-base leading-[1.8] mb-5"
             style={{ color: "#0e3256", opacity: 0.9 }}
           >
-            Our methodology centers on precision and speed. We verify
-            credentials, track every payer enrollment request in real time, and
-            prevent credentialing gaps that disrupt billing cycles. Whether you
-            fully outsource credentialing services or need strategic support
-            across select insurance plans, we drive your approvals forward until
-            every payer confirms enrollment.
+            Accuracy and velocity define our methodology. We continuously monitor your payer enrollment status, preemptively resolve verification issues, and protect your revenue cycle from administrative disruptions. Whether you fully outsource credentialing services to us or need strategic support for specific insurance plans, we secure your active participation across every target network.
           </p>
           <p
             className="text-base leading-[1.8] mb-8"
             style={{ color: "#0e3256", opacity: 0.9 }}
           >
-            Launch your enrollment now or consult with a credentialing
-            specialist who will architect the entire journey—from initial data
-            audit to contracted payer participation.
+            Initiate your provider enrollment today. Speak directly with a credentialing strategist who will map out a clear timeline—from your initial documentation audit to full, contracted payer status.
           </p>
 
           {/* Pricing Pulse Box */}
@@ -654,10 +637,10 @@ function CredentialingFormSection({
               }}
             >
               <p className="text-white text-base font-normal mb-1 leading-tight">
-                Credentialing Service Fees Starting
+                Credentialing Services Starting
               </p>
               <b className="text-white text-2xl font-extrabold leading-tight">
-                As Low As $99 Per Insurance
+                As Low As $99 Per Payer
               </b>
             </button>
           </div>
@@ -674,10 +657,10 @@ function CredentialingFormSection({
         >
           <div className="text-center mb-6">
             <h3 className="text-white text-xl sm:text-2xl font-bold mb-2">
-              Get Started Today
+              Accelerate Your Enrollment
             </h3>
             <p className="text-white/90 text-sm">
-              Free consultation with a credentialing expert
+              Complimentary credentialing strategy session
             </p>
           </div>
 
@@ -700,14 +683,14 @@ function CredentialingFormSection({
                 </svg>
               </div>
               <h3 className="text-white text-xl font-extrabold mb-3">
-                Thank You,{" "}
+                Request Received,{" "}
                 <span className="capitalize">{formData.first_name}</span>!
               </h3>
               <p className="text-white/90 text-sm leading-relaxed mb-2">
-                Your credentialing request has been received.
+                Your credentialing inquiry is being processed.
               </p>
               <p className="text-white/90 text-sm leading-relaxed">
-                A specialist will contact you at{" "}
+                A therapy billing services expert will reach out to{" "}
                 <span className="font-bold text-white">
                   {formData.work_email}
                 </span>{" "}
@@ -716,14 +699,14 @@ function CredentialingFormSection({
               </p>
               <div className="mt-6 p-4 bg-white/10 rounded-2xl border border-white/20">
                 <p className="text-xs text-white/80 font-medium">
-                  💡 In the meantime, call us at{" "}
+                  💡 Need answers now? Call us directly at{" "}
                   <a
                     href="tel:+13464604441"
                     className="font-bold underline text-white"
                   >
                     (346) 460-4441
                   </a>{" "}
-                  for immediate assistance.
+                  for immediate support.
                 </p>
               </div>
             </div>
@@ -809,11 +792,11 @@ function CredentialingFormSection({
               {/* Message */}
               <div className="flex flex-col gap-1.5 mb-4">
                 <label className="text-white text-[13px] font-semibold ml-1">
-                  How can we help?
+                  How can we support your practice?
                 </label>
                 <textarea
                   name="contact_message_custom"
-                  placeholder="Tell us about your credentialing needs..."
+                  placeholder="Describe your credentialing or enrollment goals..."
                   value={formData.contact_message_custom}
                   onChange={handleChange}
                   rows={3}
@@ -937,7 +920,7 @@ function CredentialingFormSection({
               <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
             </svg>
             <span className="text-white text-xs">
-              Your information is secure &amp; confidential
+              Your data remains strictly secure and confidential
             </span>
           </div>
         </div>
@@ -1461,17 +1444,10 @@ export default function CredentialingPage() {
         >
           <div className="text-center mb-10 sm:mb-14 max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-              What Makes Prime Therapy Billing the Best Credentialing Company
-              for Healthcare Providers
+              Why Mental Health Providers Trust Our Therapy Billing Services for Seamless Credentialing
             </h2>
             <p className="text-white/90 text-sm sm:text-base leading-relaxed">
-              Providers choose Prime Therapy Billing as the best provider
-              credentialing services partner because we keep enrollment
-              predictable, fast, and fully managed. Every credentialing file
-              gets personal attention, clear communication, and clean
-              documentation. You always know where your payer enrollment
-              applications stand, and you never lose time waiting on updates or
-              chasing insurance companies on your own.
+              Behavioral health RCM begins with flawless payer enrollment. Practices partner with Prime Therapy Billing because we make provider credentialing predictable, rapid, and entirely hands-off. Every application receives individualized oversight, transparent communication, and meticulous documentation. By integrating our mental health billing expertise with strict payer standards, we ensure your insurance claims for therapists are never stalled by enrollment gaps—giving you real-time visibility into every submission without the burden of chasing insurance companies.
             </p>
           </div>
 
@@ -1553,8 +1529,7 @@ export default function CredentialingPage() {
                 className="text-xl sm:text-2xl font-bold leading-[1.4] m-0"
                 style={{ color: "#0e3256" }}
               >
-                Tired of Waiting, Chasing Payers, and Losing Money? We Fix All
-                of it.
+                End Payer Delays and Revenue Leaks. Our Behavioral Health RCM Experts Resolve Them.
               </h2>
               <button
                 onClick={openPopup}
@@ -1571,7 +1546,7 @@ export default function CredentialingPage() {
                   e.currentTarget.style.borderColor = "#3e8ad6";
                 }}
               >
-                Book a Demo
+                Request a Strategy Call
               </button>
             </div>
 
@@ -1579,13 +1554,7 @@ export default function CredentialingPage() {
               className="mt-[18px] text-[15px] opacity-90 leading-relaxed"
               style={{ color: "#0e3256" }}
             >
-              Your practice can&apos;t grow if you&apos;re stuck waiting on
-              payer approvals. Our accelerated credentialing workflow unlocks{" "}
-              <span className="hidden sm:inline">
-                <br />
-              </span>
-              faster reimbursements, more contracts, and a stronger monthly cash
-              flow — guaranteed.
+              Your mental health billing operations cannot thrive if credentialing bottlenecks hold back your insurance claims for therapists. Our specialized therapy billing services and expedited enrollment framework secure faster reimbursements, expand your payer contracts, and stabilize your monthly cash flow — guaranteed.
             </p>
 
             <hr
@@ -1595,10 +1564,10 @@ export default function CredentialingPage() {
 
             <div className="flex flex-col sm:flex-row sm:flex-nowrap items-start gap-6 sm:gap-10 lg:gap-7 max-w-[320px] sm:max-w-none mx-auto sm:mx-0">
               {[
-                "Stop losing revenue",
-                "Faster approvals = cash",
-                "Earn sooner, grow faster",
-                "Unlock higher payments",
+                "Eliminate revenue leakage",
+                "Accelerate payer approvals",
+                "Stabilize monthly cash flow",
+                "Maximize reimbursement rates",
               ].map((text, i) => (
                 <div
                   key={i}
@@ -1629,22 +1598,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
                 style={{ background: ptbGradient }}
               >
-                Our Services
+                Credentialing & Enrollment Solutions
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Comprehensive Provider Enrollment & Credentialing Services for
-                U.S. Healthcare Providers
+                End-to-End Credentialing & Provider Enrollment for Mental Health Practices
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-                Prime Therapy Billing runs a hands-on, end-to-end provider
-                enrollment and credentialing system that keeps your practice
-                compliant, contracted, and cash-positive. We manage every
-                detail from clean NPI setup and CAQH attestation to payer
-                enrollment services, insurance credentialing and contracting,
-                and revalidations.
+                Sustaining a healthy behavioral health RCM starts with flawless credentialing. Our therapy billing services team executes a fully managed enrollment process—handling NPI registration, CAQH profile attestation, payer-specific applications, and insurance credentialing for therapists—so your practice remains compliant, contracted, and financially secure.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -1719,7 +1682,7 @@ export default function CredentialingPage() {
                 className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-xl font-bold text-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group cursor-pointer border-none"
                 style={{ background: ptbGradient }}
               >
-                Get Your Credentialing Assessment Today
+                Request Your Credentialing Evaluation
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   →
                 </span>
@@ -1741,19 +1704,16 @@ export default function CredentialingPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <span className="inline-block bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-4 border border-white/20">
-                Our Proven Process
+                Strategic Enrollment Framework
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-                Prime Therapy Billing's Complete Provider Enrollment &
-                Credentialing Workflow
+                Our Systematic Approach to Provider Credentialing and Behavioral Health RCM
               </h2>
               <p
                 className="max-w-3xl mx-auto text-lg leading-relaxed"
                 style={{ color: "#bfdbfe" }}
               >
-                Healthcare providers want credentialing that feels simple,
-                predictable, and fast. Our proven enrollment and credentialing
-                services system is built to handle it from start to finish.
+                Therapy practices demand a credentialing experience that is transparent, rapid, and reliable. Our structured methodology ensures your insurance claims for therapists are never delayed by administrative hurdles, delivering seamless therapy billing services and robust mental health billing operations from the outset.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -1820,21 +1780,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Payer Expertise
+                Payer Credentialing Authority
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Credentialing Expertise for Medicaid, Medicare & Commercial
-                Payers
+                Expert Therapy Billing Services & Credentialing for Medicaid, Medicare, and Commercial Payers
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-                Delays happen when data doesn't match, documents are incomplete,
-                or payers stop responding. Our provider enrollment &
-                credentialing team resolves these problems with clean
-                submissions, consistent follow-ups, and a workflow built to
-                accelerate approvals.
+                Revenue disruptions in behavioral health RCM often start with enrollment bottlenecks. Our dedicated provider credentialing team eliminates these hurdles through precise documentation, relentless follow-ups, and a proven framework designed to secure your insurance claims for therapists without unnecessary delays.
               </p>
             </div>
 
@@ -1869,49 +1824,41 @@ export default function CredentialingPage() {
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#0e3256" }}
                 >
-                  Medicaid Credentialing
+                  Medicaid Provider Credentialing
                 </h3>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Why Medicaid Creates the Most Delays
+                  Why Medicaid Enrollment Stagnates
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  Medicaid rules change often, and even small errors like NPI,
-                  TIN, bank details, or malpractice information can delay
-                  applications for months. Providers usually don't get updates,
-                  which causes wasted time and delayed payments.
+                  Medicaid regulations fluctuate constantly across states. Minor discrepancies—such as mismatched NPI numbers, outdated TINs, or expired malpractice policies—can freeze an application for months. Left in the dark, providers lose significant revenue waiting for a resolution.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  How We Solve Medicaid Issues
+                  How We Expedite Medicaid Approvals
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  We prepare state-specific applications, verify every document,
-                  correct inconsistencies, and apply credentialing in medical
-                  billing standards to prevent rejections. Our team handles all
-                  revalidations and keeps your enrollment compliant year-round.
+                  We craft state-specific applications, cross-verify every data point, and apply rigorous behavioral health RCM standards to catch errors before submission. Our specialists also manage ongoing revalidations to guarantee uninterrupted compliance.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Our Medicaid Advantage
+                  The Prime Therapy Billing Medicaid Edge
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  We follow up with payers every week, raise issues if files get
-                  stuck, and ensure full transparency from submission to
-                  approval.
+                  We execute weekly payer follow-ups, immediately escalate stalled files, and provide complete transparency from initial submission to final activation.
                 </p>
                 <button
                   onClick={openPopup}
                   className="block w-full text-center text-white px-6 py-3 rounded-xl font-bold hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer border-none"
                   style={{ background: ptbGradient }}
                 >
-                  Secure Medicaid Today
+                  Activate Medicaid Enrollment
                 </button>
               </div>
 
@@ -1945,46 +1892,41 @@ export default function CredentialingPage() {
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#0e3256" }}
                 >
-                  Medicare Credentialing (PECOS)
+                  Medicare Enrollment (PECOS)
                 </h3>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Why Medicare Applications Get Rejected
+                  Why PECOS Submissions Fail
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  PECOS rejects files instantly for wrong taxonomy, mismatched
-                  addresses, broken reassignment links, or incorrect action
-                  types. These errors stop Medicare payments before they start.
+                  The PECOS system immediately rejects filings containing mismatched taxonomy codes, unlinked reassignment agreements, or incorrect action types. A single misstep prevents Medicare reimbursements from ever flowing.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  How We Fix PECOS Problems
+                  Our PECOS Optimization Process
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  We align your PECOS, NPPES, and CAQH data, correct expired or
-                  missing credentials, and select the proper action—new
-                  enrollment, reassignment, or revalidation.
+                  We synchronize your PECOS, NPPES, and CAQH profiles, rectify lapsed credentials, and accurately designate the correct enrollment action—whether it is a new application, a reassignment, or a routine revalidation.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Our Medicare Advantage
+                  The Prime Therapy Billing Medicare Edge
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  Daily tracking, proactive MAC communication, and structured
-                  escalation ensure your enrollment keeps moving.
+                  Through daily status monitoring, proactive MAC correspondence, and structured escalation protocols, we keep your Medicare enrollment advancing steadily toward approval.
                 </p>
                 <button
                   onClick={openPopup}
                   className="block w-full text-center text-white px-6 py-3 rounded-xl font-bold hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer border-none"
                   style={{ background: ptbGradient }}
                 >
-                  Start Medicare Now
+                  Launch Medicare Enrollment
                 </button>
               </div>
 
@@ -2018,49 +1960,41 @@ export default function CredentialingPage() {
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#0e3256" }}
                 >
-                  Commercial Insurance Enrollment
+                  Commercial Insurance Credentialing
                 </h3>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Why Commercial Payers Cause Frustration
+                  Why Commercial Payers Stall Onboarding
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  Each payer has different forms, timelines, and documentation
-                  needs. Closed panels, inconsistent data, and missing
-                  attachments lead to vague rejections that slow onboarding and
-                  disrupt cash flow.
+                  Every major carrier demands unique forms, adheres to distinct timelines, and requires specific supporting documents. Closed panels, mismatched data, and missing attachments result in ambiguous denials that throttle your cash flow.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  How We Manage Commercial Payer Enrollment
+                  Our Commercial Payer Strategy
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  We prepare clean submissions for BCBS, Aetna, UHC, Cigna, and
-                  Humana; match every detail to payer systems; and apply our
-                  medical insurance credentialing checklist to eliminate errors
-                  before they happen.
+                  We deliver flawless submissions for major carriers like BCBS, Aetna, UHC, Cigna, and Humana. By aligning your data with each payer’s system and deploying our proprietary credentialing checklist, we neutralize errors before they trigger rejections.
                 </p>
                 <h4
                   className="text-sm font-bold uppercase mb-2"
                   style={{ color: "#1a5fa8" }}
                 >
-                  Our Commercial Payer Advantage
+                  The Prime Therapy Billing Commercial Edge
                 </h4>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                  We appeal closed panels when possible, negotiate CPT fee
-                  schedules, and confirm participation so insurance credentialing
-                  becomes faster and more predictable.
+                  When feasible, we challenge closed-panel decisions, negotiate CPT fee schedules, and confirm your active participation—ensuring your insurance claims for therapists are processed without delay and your practice thrives.
                 </p>
                 <button
                   onClick={openPopup}
                   className="block w-full text-center text-white px-6 py-3 rounded-xl font-bold hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer border-none"
                   style={{ background: ptbGradient }}
                 >
-                  Get Credentialed Now
+                  Secure Commercial Panels
                 </button>
               </div>
             </div>
@@ -2077,21 +2011,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Outsourcing
+                Credentialing Outsourcing
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Outsource Provider Enrollment & Credentialing Without Losing
-                Control
+                Delegate Your Provider Enrollment and Credentialing While Retaining Full Visibility
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-                Learning how to outsource medical credentialing effectively
-                starts with choosing the right partner. Prime Therapy Billing
-                delivers fully managed provider enrollment and credentialing
-                services while keeping you informed, protected, and in control
-                at every stage.
+                Securing the right partner is the first step in successfully outsourcing your behavioral health RCM. Prime Therapy Billing delivers fully managed therapy billing services and credentialing, ensuring your insurance claims for therapists flow uninterrupted—while you maintain complete transparency and command over every decision.
               </p>
             </div>
 
@@ -2099,43 +2028,43 @@ export default function CredentialingPage() {
               {[
                 {
                   num: "01",
-                  title: "Dedicated Account Manager",
-                  text: "You work with one credentialing specialist who knows your providers, payers, and timelines. No ticket systems. No handoffs. Just one accountable point of contact managing your provider enrollment and credentialing from intake to final approval.",
+                  title: "Personal Credentialing Specialist",
+                  text: "A single, dedicated expert oversees your entire credentialing landscape—understanding your providers, target payers, and critical deadlines. We eliminate frustrating handoffs and ticket queues, giving you one accountable professional guiding your mental health billing from initial intake through final payer approval.",
                   iconPath:
                     "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
                 },
                 {
                   num: "02",
-                  title: "Cost-Effective Enrollment Support",
-                  text: "Outsourcing medical credentialing should save money, not create hidden costs. Our pricing replaces internal admin hours, repeat submissions, and delayed revenue while delivering clean enrollment and credentialing services that move faster and cost less over time.",
+                  title: "Financially Efficient Enrollment",
+                  text: "Delegating your credentialing should reduce overhead, not introduce surprise fees. Our transparent pricing absorbs the burden of internal administrative labor, duplicate filings, and stalled revenue—delivering precise enrollment solutions that accelerate your behavioral health RCM and lower long-term costs.",
                   iconPath:
                     "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
                 },
                 {
                   num: "03",
-                  title: "Bi-Weekly Status Updates",
-                  text: "You never have to ask where things stand. We provide clear, scheduled updates on every payer, every application, and every follow-up so you always know what's approved, pending, or waiting on action.",
+                  title: "Scheduled Progress Reports",
+                  text: "Never chase down payer statuses again. We deliver structured, bi-weekly briefings detailing the exact position of every application, follow-up, and payer response—ensuring you always know which insurance claims for therapists are approved, pending, or requiring action.",
                   iconPath:
                     "M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
                 },
                 {
                   num: "04",
-                  title: "Clean Payer Submissions",
-                  text: "Most delays start with small mismatches that payers reject silently. We audit NPIs, licenses, tax data, and banking details before submission so your medical credentialing files align with payer systems and move forward without unnecessary corrections.",
+                  title: "Error-Free Application Filing",
+                  text: "The majority of enrollment bottlenecks stem from minor data discrepancies that trigger silent rejections. We rigorously verify NPIs, state licenses, tax identifiers, and banking details prior to submission, ensuring your therapy billing services align perfectly with payer system requirements.",
                   iconPath:
                     "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
                 },
                 {
                   num: "05",
-                  title: "No Admin Load",
-                  text: "When you outsource provider enrollment to Prime Therapy Billing, paperwork disappears from your day. We handle forms, portals, documentation, and insurance credentialing services so your team can focus on patient care and operations instead of enrollment tasks.",
+                  title: "Zero Administrative Overhead",
+                  text: "Entrust your provider enrollment to our team, and watch credentialing paperwork vanish from your daily operations. We manage all forms, portal entries, and documentation—liberating your staff to concentrate on patient care and clinical excellence rather than administrative roadblocks.",
                   iconPath:
                     "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
                 },
                 {
                   num: "06",
-                  title: "Faster Payer Decisions",
-                  text: "Enrollment should keep moving. Our team follows up regularly, records every step, and pushes stuck files so approvals come faster for Medicare, Medicaid, and commercial insurance plans.",
+                  title: "Accelerated Payer Approvals",
+                  text: "Momentum is critical in enrollment. Our specialists conduct persistent follow-ups, log every interaction, and aggressively escalate stalled applications—driving faster resolutions across Medicare, Medicaid, and commercial payer networks for your mental health billing operations.",
                   iconPath: "M13 10V3L4 14h7v7l9-11h-7z",
                 },
               ].map((item, i) => (
@@ -2198,20 +2127,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Provider Specialties
+                Discipline-Specific Credentialing
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Prime Therapy Billing's Specialty-Focused Credentialing Services
+                Tailored Therapy Billing Services and Credentialing for Every Behavioral Health Discipline
               </h2>
               <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-                Credentialing is never one-size-fits-all. Each specialty faces
-                different payer rules, documentation standards, and approval
-                risks. We structure provider enrollment and credentialing by
-                specialty, not assumptions, so applications move faster and
-                approvals stick.
+                Payer requirements vary drastically across clinical disciplines. A generalized approach to provider enrollment often results in costly denials and stalled revenue. Our behavioral health RCM specialists engineer credentialing pathways customized to your specific practice area, ensuring documentation aligns precisely with payer mandates so your insurance claims for therapists are approved without unnecessary friction.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -2261,7 +2186,7 @@ export default function CredentialingPage() {
                 className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-xl font-bold text-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group cursor-pointer border-none"
                 style={{ background: ptbGradient }}
               >
-                Get In-Network Faster for Your Specialty
+                Secure Your Specialty Payer Contracts Today
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   →
                 </span>
@@ -2281,13 +2206,13 @@ export default function CredentialingPage() {
                   className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                   style={{ background: ptbGradient }}
                 >
-                  Required Documents
+                  Enrollment Documentation
                 </span>
                 <h2
                   className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
                   style={{ color: "#0e3256" }}
                 >
-                  Required Details for{" "}
+                  Essential Documentation for{" "}
                   <span
                     style={{
                       background: ptbGradient,
@@ -2295,23 +2220,18 @@ export default function CredentialingPage() {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Credentialing and Enrollment
+                    Therapy Billing Services & Enrollment
                   </span>
                 </h2>
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                  Medical credentialing and provider enrollment usually fall
-                  apart for one reason: paperwork that doesn't line up. A
-                  missing form, an old address, or a mismatch between systems is
-                  often enough to stall an application for weeks. When provider
-                  and practice details are reviewed carefully at the start,
-                  approvals move with fewer interruptions.
+                  Payer enrollment applications typically stall for one reason: inconsistent documentation. An expired license, a mismatched tax identifier, or an outdated CAQH profile can freeze your behavioral health RCM pipeline for weeks. Our mental health billing specialists rigorously audit every detail before submission, ensuring your insurance claims for therapists are approved without costly delays or administrative friction.
                 </p>
                 <button
                   onClick={openPopup}
                   className="inline-flex items-center gap-2 text-white px-6 py-3 rounded-xl font-semibold hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 group cursor-pointer border-none"
                   style={{ background: ptbGradient }}
                 >
-                  Download Document Checklist
+                  Get the Document Checklist
                   <span className="group-hover:translate-x-1 transition-transform duration-300">
                     ↓
                   </span>
@@ -2370,18 +2290,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Insurance Network
+                Extensive Payer Network
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                We Work With All Major Payers
+                Trusted by Every Major Payer for Mental Health Billing & Credentialing
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                We have established relationships with 200+ insurance payers
-                nationwide, ensuring smooth and efficient enrollment for your
-                practice.
+                Our behavioral health RCM specialists maintain active partnerships with over 200 commercial, Medicare, and Medicaid payers across the country. We guarantee seamless provider enrollment so your insurance claims for therapists are processed without delay.
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -2429,7 +2347,7 @@ export default function CredentialingPage() {
             </div>
             <div className="mt-8 text-center">
               <p className="text-gray-500 text-sm">
-                + 180 more regional and specialty insurance carriers nationwide
+                Plus 180+ regional and specialty carriers supporting your therapy billing services and revenue growth
               </p>
             </div>
           </div>
@@ -2445,17 +2363,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Timeline
+                Enrollment Roadmap
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Credentialing Timeline
+                Your Provider Credentialing & Therapy Billing Services Roadmap
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                Here's what to expect when you partner with Prime Therapy
-                Billing for your credentialing needs.
+                Gain complete transparency into our behavioral health RCM process. See exactly how we accelerate your enrollment, secure your insurance claims for therapists, and drive your mental health billing forward from day one through final payer approval.
               </p>
             </div>
             <div className="relative">
@@ -2517,18 +2434,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                Why Choose Us
+                Credentialing Authority
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Why Choose Prime Therapy Billing for Credentialing?
+                Why Behavioral Health Practices Trust Our Therapy Billing Services for Credentialing
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                We combine industry expertise, proven processes, and
-                cutting-edge technology to deliver the fastest and most reliable
-                credentialing services.
+                Our dedicated behavioral health RCM specialists combine deep payer knowledge, data-driven workflows, and rigorous compliance standards to secure your insurance claims for therapists faster and more reliably than any generic billing company.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -2590,17 +2505,16 @@ export default function CredentialingPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
               <span className="inline-block bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-4 border border-white/20">
-                Common Challenges
+                Enrollment Barriers Eliminated
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4">
-                Credentialing Challenges We Solve
+                Provider Enrollment Obstacles Our Therapy Billing Services Conquer
               </h2>
               <p
                 className="max-w-2xl mx-auto text-lg"
                 style={{ color: "#bfdbfe" }}
               >
-                Many practices struggle with credentialing. Here's how we turn
-                common pain points into smooth processes.
+                Behavioral health practices routinely lose revenue to stalled enrollments and payer rejections. Our mental health billing and behavioral health RCM experts transform these administrative roadblocks into streamlined approvals, ensuring your insurance claims for therapists get paid without unnecessary delays.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -2664,18 +2578,16 @@ export default function CredentialingPage() {
                 className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                 style={{ background: ptbGradient }}
               >
-                FAQ
+                Credentialing & RCM FAQs
               </span>
               <h2
                 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Frequently Asked Questions About Provider Credentialing &
-                Enrollment Services
+                Expert Answers on Therapy Billing Services and Provider Enrollment
               </h2>
               <p className="text-gray-600 text-lg">
-                Find answers to the most common questions about our credentialing
-                and provider enrollment services.
+                Get clarity on how our mental health billing and behavioral health RCM solutions simplify insurance claims for therapists and accelerate your practice's revenue cycle.
               </p>
             </div>
             <div className="space-y-4">
@@ -2767,16 +2679,13 @@ export default function CredentialingPage() {
           </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
-              Ready to Get Credentialed?
+              Prepared to Streamline Your Mental Health Billing and Credentialing?
             </h2>
             <p
               className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
               style={{ color: "#bfdbfe" }}
             >
-              Don't let credentialing delays hold back your practice. Start the
-              enrollment process today and begin receiving insurance
-              reimbursements in as little as 60 days with Prime Therapy
-              Billing's proven credentialing system.
+              Payer enrollment bottlenecks shouldn't restrict your clinical growth. Our specialized therapy billing services ensure your insurance claims for therapists are processed without delay. Partner with us to activate your behavioral health RCM pipeline and start receiving accurate reimbursements in as few as 60 days.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
@@ -2784,7 +2693,7 @@ export default function CredentialingPage() {
                 className="bg-white px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-lg group inline-flex items-center justify-center gap-2 cursor-pointer border-none"
                 style={{ color: "#0e3256" }}
               >
-                Start Credentialing Today
+                Initiate Your Credentialing
                 <span className="group-hover:translate-x-1 transition-transform duration-300">
                   →
                 </span>
@@ -2814,11 +2723,11 @@ export default function CredentialingPage() {
               style={{ color: "#bfdbfe" }}
             >
               {[
-                "99% Approval Rate",
-                "60-90 Day Enrollment",
-                "All 50 States",
-                "200+ Insurance Payers",
-                "Free Consultation",
+                "99% Approval Success",
+                "60-90 Day Onboarding",
+                "Nationwide Coverage",
+                "200+ Payer Networks",
+                "Complimentary Strategy Session",
               ].map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <svg
@@ -2853,13 +2762,13 @@ export default function CredentialingPage() {
                   className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4"
                   style={{ background: ptbGradient }}
                 >
-                  Get Started
+                  Begin Your Enrollment
                 </span>
                 <h2
                   className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
                   style={{ color: "#0e3256" }}
                 >
-                  Start Your{" "}
+                  Accelerate Your{" "}
                   <span
                     style={{
                       background: ptbGradient,
@@ -2867,14 +2776,12 @@ export default function CredentialingPage() {
                       WebkitTextFillColor: "transparent",
                     }}
                   >
-                    Credentialing
+                    Mental Health Billing
                   </span>{" "}
-                  Today
+                  & Credentialing
                 </h2>
                 <p className="text-gray-600 text-lg mb-10 leading-relaxed">
-                  Fill out the form and our credentialing specialists will
-                  contact you within 24 hours with a customized enrollment plan
-                  for your practice.
+                  Share your practice details and our behavioral health RCM specialists will reach out within one business day to design a customized enrollment strategy that keeps your insurance claims for therapists flowing without interruption.
                 </p>
                 <div className="space-y-6">
                   {contactItems.map((contact, index) => (
@@ -2950,17 +2857,17 @@ export default function CredentialingPage() {
                       className="text-2xl font-extrabold mb-3"
                       style={{ color: "#0e3256" }}
                     >
-                      Thank You!
+                      Request Received!
                     </h3>
                     <p className="text-gray-500 text-sm leading-relaxed mb-2">
-                      Your credentialing consultation request has been received.
+                      We have your inquiry regarding our therapy billing services.
                     </p>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      A specialist will contact you within{" "}
+                      A behavioral health RCM expert will reach out within{" "}
                       <span className="font-semibold text-gray-700">
                         24 hours
                       </span>{" "}
-                      with a customized enrollment plan.
+                      to outline your personalized credentialing roadmap.
                     </p>
                     <div
                       className="mt-6 p-4 rounded-2xl border"
@@ -2973,7 +2880,7 @@ export default function CredentialingPage() {
                         className="text-xs font-medium"
                         style={{ color: "#1a5fa8" }}
                       >
-                        💡 For immediate assistance, call us at{" "}
+                        💡 Need urgent support with your insurance claims for therapists? Call us directly at{" "}
                         <a
                           href="tel:+13464604441"
                           className="font-bold underline"
@@ -2988,7 +2895,7 @@ export default function CredentialingPage() {
                       className="mt-6 px-6 py-2.5 rounded-xl text-white text-sm font-semibold hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 border-none cursor-pointer"
                       style={{ background: ptbGradient }}
                     >
-                      Send Another Request
+                      Submit Another Inquiry
                     </button>
                   </div>
                 ) : (
@@ -2998,7 +2905,7 @@ export default function CredentialingPage() {
                       className="text-2xl font-bold mb-6 relative z-10"
                       style={{ color: "#0e3256" }}
                     >
-                      Request Free Credentialing Consultation
+                      Claim Your Complimentary Credentialing Strategy Session
                     </h3>
 
                     {bottomError && (
@@ -3014,12 +2921,12 @@ export default function CredentialingPage() {
                       <div className="grid sm:grid-cols-2 gap-5">
                         <div>
                           <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Provider First Name
+                            First Name
                           </label>
                           <input
                             type="text"
                             name="firstName"
-                            placeholder="John"
+                            placeholder="Jane"
                             required
                             value={bottomForm.firstName}
                             onChange={handleBottomChange}
@@ -3030,12 +2937,12 @@ export default function CredentialingPage() {
                         </div>
                         <div>
                           <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Provider Last Name
+                            Last Name
                           </label>
                           <input
                             type="text"
                             name="lastName"
-                            placeholder="Doe"
+                            placeholder="Smith"
                             required
                             value={bottomForm.lastName}
                             onChange={handleBottomChange}
@@ -3052,7 +2959,7 @@ export default function CredentialingPage() {
                         <input
                           type="email"
                           name="email"
-                          placeholder="john@practice.com"
+                          placeholder="jane@therapypractice.com"
                           required
                           value={bottomForm.email}
                           onChange={handleBottomChange}
@@ -3093,7 +3000,7 @@ export default function CredentialingPage() {
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                          Provider Type
+                          Specialty / Provider Type
                         </label>
                         <select
                           name="providerType"
@@ -3103,7 +3010,7 @@ export default function CredentialingPage() {
                           onFocus={focusStyle}
                           onBlur={blurStyle}
                         >
-                          <option value="">Select provider type</option>
+                          <option value="">Select your specialty</option>
                           {providerTypes.map((p, i) => (
                             <option key={i} value={p.title}>
                               {p.title}
@@ -3113,7 +3020,7 @@ export default function CredentialingPage() {
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                          Number of Providers
+                          Practice Size
                         </label>
                         <select
                           name="numProviders"
@@ -3123,7 +3030,7 @@ export default function CredentialingPage() {
                           onFocus={focusStyle}
                           onBlur={blurStyle}
                         >
-                          <option value="">Select number</option>
+                          <option value="">Select number of providers</option>
                           <option value="1">1 Provider</option>
                           <option value="2-5">2-5 Providers</option>
                           <option value="6-10">6-10 Providers</option>
@@ -3133,12 +3040,12 @@ export default function CredentialingPage() {
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                          Additional Details
+                          Details About Your Mental Health Billing Needs
                         </label>
                         <textarea
                           name="message"
                           rows={3}
-                          placeholder="Tell us about your credentialing needs..."
+                          placeholder="Share your goals for insurance claims for therapists and enrollment..."
                           value={bottomForm.message}
                           onChange={handleBottomChange}
                           className={`${inputClass} resize-none`}
@@ -3175,11 +3082,11 @@ export default function CredentialingPage() {
                                   d="M4 12a8 8 0 018-8v8H4z"
                                 />
                               </svg>
-                              Submitting...
+                              Processing...
                             </>
                           ) : (
                             <>
-                              Submit Credentialing Request
+                              Start My Credentialing
                               <span className="group-hover:translate-x-1 transition-transform duration-300">
                                 →
                               </span>
@@ -3188,7 +3095,7 @@ export default function CredentialingPage() {
                         </span>
                       </button>
                       <p className="text-center text-xs text-gray-400">
-                        🔒 Your information is 100% secure and HIPAA compliant
+                        🔒 Your data is strictly protected under HIPAA regulations
                       </p>
                     </form>
                   </>

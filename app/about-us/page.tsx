@@ -796,13 +796,13 @@ export default function AboutPage() {
           <div className="relative z-10 max-w-4xl mx-auto animate-fade-up">
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              #1 Therapy Billing Company in the USA
+              Trusted Mental Health Billing Experts Nationwide
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-              Built for Therapists.{" "}
+              Specialized Therapy Billing Services for Modern Practices.{" "}
               <span className="shimmer-text block mt-2">
-                Obsessed with Your Revenue.
+                Maximize Every Claim.
               </span>
             </h1>
 
@@ -810,11 +810,7 @@ export default function AboutPage() {
               className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
               style={{ color: "#bfdbfe" }}
             >
-              Prime Therapy Billing is the most affordable and reliable medical
-              billing company for therapy practices across all 50 states. We
-              combine cutting-edge AI technology with certified human expertise
-              to protect your revenue, reduce your denials, and give you back
-              your time.
+              Prime Therapy Billing delivers comprehensive mental health billing and behavioral health RCM solutions to practices across all 50 states. By merging advanced automation with certified billing specialists, we eliminate claim denials, accelerate reimbursement timelines, and handle your insurance claims for therapists—so you can focus entirely on patient care.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
@@ -823,7 +819,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 bg-white text-sm font-bold px-6 py-3 rounded-full shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
                 style={{ color: "#0e3256" }}
               >
-                Schedule Free Consultation
+                Claim Your Free Billing Audit
                 <span>→</span>
               </button>
               <a
@@ -847,8 +843,8 @@ export default function AboutPage() {
             <StatCard
               target={99}
               suffix="%"
-              label="First-Pass Claim Acceptance"
-              sub="Clean claims submitted daily"
+              label="First-Submission Approval Rate"
+              sub="Optimized insurance claims for therapists"
               duration={2000}
             />
             {/* ✅ FIXED: target=99.8, decimals=1 → animates 0.0 → 99.8% */}
@@ -856,23 +852,23 @@ export default function AboutPage() {
               target={99.8}
               suffix="%"
               decimals={1}
-              label="Coding Accuracy Rate"
-              sub="Certified coders on every claim"
+              label="Clinical Coding Accuracy"
+              sub="Dedicated mental health billing specialists"
               duration={2000}
             />
             <StatCard
               target={40}
               suffix="%"
-              label="Denial Rate Reduction"
-              sub="Avg. improvement after onboarding"
+              label="Denial Ratio Decreased"
+              sub="Proven behavioral health RCM uplift"
               duration={2000}
             />
             <StatCard
               target={3.99}
               suffix="%"
               decimals={2}
-              label="Simple Billing Rate"
-              sub="No hidden fees, ever"
+              label="Flat-Rate Billing Fee"
+              sub="Transparent therapy billing services"
               duration={2000}
             />
           </div>
@@ -895,32 +891,22 @@ export default function AboutPage() {
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                 </svg>
-                Our Mission
+                Our Commitment
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight"
                 style={{ color: "#0e3256" }}
               >
-                We Free Therapists to Do What They Do Best — Heal
+                Empowering Therapists to Focus on Patient Care, Not Paperwork
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Prime Therapy Billing was founded with a simple mission: remove
-                the financial and administrative burden from therapy practices
-                so clinicians can focus entirely on their patients.
+                Prime Therapy Billing exists to eliminate the operational and financial roadblocks that distract mental health professionals from their true calling—delivering exceptional patient care.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                We saw how independent therapists, group practices, and
-                behavioral health organizations were losing thousands of dollars
-                each month to claim errors, denials, and slow credentialing —
-                not because they lacked skill, but because billing is a
-                full-time job that requires specialized expertise.
+                Decades of experience in the healthcare sector showed us a recurring problem: private practices, group clinics, and behavioral health facilities were hemorrhaging revenue due to coding mistakes, recurring denials, and delayed credentialing. The root cause was never a lack of clinical talent; it was the impossibility of mastering complex insurance claims for therapists without dedicated support.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                So we built a team of certified coders, credentialing
-                specialists, and AR experts — all dedicated exclusively to the
-                therapy industry. Today, we serve practices across all 50
-                states, handling every aspect of the revenue cycle so you never
-                have to worry about a claim again.
+                To bridge this gap, we assembled a dedicated task force of certified medical coders, credentialing specialists, and accounts receivable veterans—all exclusively trained in therapy billing services and behavioral health RCM. Today, our team manages the complete revenue lifecycle for practices spanning all 50 states, ensuring your claims are paid accurately and on time.
               </p>
               <button
                 onClick={() => setModalOpen(true)}
@@ -930,7 +916,7 @@ export default function AboutPage() {
                     "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
                 }}
               >
-                Work With Us
+                Partner With Our Team
                 <span>→</span>
               </button>
             </div>
@@ -945,13 +931,13 @@ export default function AboutPage() {
                 }}
               >
                 <p className="text-xs font-semibold opacity-70 mb-1">
-                  MONTHLY REVENUE RECOVERED
+                  REVENUE RECLAIMED MONTHLY
                 </p>
                 <p className="text-4xl font-extrabold mb-3">$2.4M+</p>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-xs opacity-80">
-                    Across active practices
+                    For active therapy practices
                   </span>
                 </div>
               </div>
@@ -963,7 +949,7 @@ export default function AboutPage() {
                   className="text-xs font-semibold mb-1"
                   style={{ color: "#1a5fa8" }}
                 >
-                  CLAIMS PROCESSED
+                  CLAIMS MANAGED
                 </p>
                 <p
                   className="text-4xl font-extrabold mb-3"
@@ -974,7 +960,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-blue-400" />
                   <span className="text-xs text-gray-500">
-                    Since founding in 2018
+                    Processed since 2018
                   </span>
                 </div>
               </div>
@@ -986,7 +972,7 @@ export default function AboutPage() {
                   className="text-xs font-semibold mb-1"
                   style={{ color: "#1a5fa8" }}
                 >
-                  PRACTICES SERVED
+                  CLIENT PARTNERSHIPS
                 </p>
                 <p
                   className="text-4xl font-extrabold mb-3"
@@ -997,7 +983,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-xs text-gray-500">
-                    Across all 50 states
+                    Spanning all 50 states
                   </span>
                 </div>
               </div>
@@ -1006,7 +992,7 @@ export default function AboutPage() {
                 className="absolute top-28 right-0 bg-white rounded-xl shadow-lg px-4 py-2.5 text-xs font-bold animate-float border"
                 style={{ color: "#0e3256", borderColor: "#e5e7eb" }}
               >
-                ⭐ 4.9 / 5 Client Rating
+                ⭐ 4.9 / 5 Average Client Rating
               </div>
             </div>
           </div>
@@ -1029,17 +1015,16 @@ export default function AboutPage() {
                   borderColor: "rgba(14,50,86,0.15)",
                 }}
               >
-                What Drives Us
+                Our Guiding Principles
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Our Core Values
+                Principles That Drive Our Therapy Billing Services
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                These principles guide every decision we make — from how we
-                handle a claim to how we talk to our clients.
+                Every insurance claim for therapists we process and every behavioral health RCM strategy we deploy is anchored in these foundational beliefs. We go beyond standard medical billing to protect your practice's financial integrity with transparent, results-driven mental health billing solutions.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1086,16 +1071,16 @@ export default function AboutPage() {
                   borderColor: "rgba(14,50,86,0.15)",
                 }}
               >
-                What We Do
+                End-to-End RCM Solutions
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Everything Your Practice Needs
+                Comprehensive Therapy Billing Services for Growing Practices
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                From first claim to final payment — and everything in between.
+                Eliminate revenue leaks at every stage. We manage the full spectrum of mental health billing and behavioral health RCM—handling insurance claims for therapists from initial submission through final reimbursement—so you can focus entirely on patient outcomes.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1147,17 +1132,16 @@ export default function AboutPage() {
                   borderColor: "rgba(14,50,86,0.15)",
                 }}
               >
-                How We Stack Up
+                Behavioral Health RCM Benchmark
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Prime vs. The Industry Average
+                How Our Therapy Billing Services Outperform Standard Providers
               </h2>
               <p className="text-gray-500 text-sm max-w-lg mx-auto">
-                See why hundreds of therapy practices choose Prime Therapy
-                Billing over traditional billing companies.
+                Discover why mental health practices nationwide rely on our specialized mental health billing expertise to maximize revenue and process insurance claims for therapists far more effectively than conventional agencies.
               </p>
             </div>
 
@@ -1169,9 +1153,9 @@ export default function AboutPage() {
                     "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
                 }}
               >
-                <span>Feature</span>
+                <span>Performance Metric</span>
                 <span className="text-center">Prime Therapy Billing</span>
-                <span className="text-center">Industry Average</span>
+                <span className="text-center">Typical Billing Agency</span>
               </div>
               {comparisonRows.map((row, i) => (
                 <div
@@ -1212,17 +1196,16 @@ export default function AboutPage() {
                   borderColor: "rgba(14,50,86,0.15)",
                 }}
               >
-                The Experts Behind the Work
+                Behavioral Health RCM Leaders
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                Meet Our Leadership Team
+                The Authorities Behind Your Therapy Billing Success
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Our team combines decades of healthcare billing experience with
-                a passion for helping therapy practices thrive.
+                Decades of specialized expertise in mental health billing and behavioral health RCM power our commitment to maximizing your practice's revenue. Every leader on our team is dedicated to delivering superior therapy billing services and streamlining insurance claims for therapists.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1278,14 +1261,17 @@ export default function AboutPage() {
                   borderColor: "rgba(14,50,86,0.15)",
                 }}
               >
-                Real Clients, Real Results
+                Verified Practice Outcomes
               </div>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-4"
                 style={{ color: "#0e3256" }}
               >
-                What Therapists Say About Us
+                Why Providers Trust Our Therapy Billing Services
               </h2>
+              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
+                Discover why practices nationwide rely on our mental health billing solutions. From accelerating insurance claims for therapists to executing comprehensive behavioral health RCM strategies, see the real financial impact our clients achieve.
+              </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((t) => (
@@ -1360,18 +1346,16 @@ export default function AboutPage() {
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-white mb-6 border border-white/25">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Start in as little as 48 hours
+              Launch Your Billing Upgrade in 48 Hours
             </div>
             <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
-              Ready to Stop Leaving Money on the Table?
+              Ready to Maximize Your Behavioral Health RCM?
             </h2>
             <p
               className="text-base sm:text-lg mb-10 leading-relaxed"
               style={{ color: "#bfdbfe" }}
             >
-              Join 200+ therapy practices that trust Prime Therapy Billing to
-              protect their revenue, reduce their denials, and simplify their
-              operations — all at the industry&apos;s lowest rate.
+              Over 200 therapy practices rely on our comprehensive therapy billing services to accelerate reimbursements, eliminate claim denials, and streamline mental health billing operations. We manage your insurance claims for therapists end-to-end, delivering unmatched financial results at the industry&apos;s most competitive rate.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <button
@@ -1379,7 +1363,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 bg-white font-bold px-8 py-4 rounded-full shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300 text-sm"
                 style={{ color: "#0e3256" }}
               >
-                Schedule My Free Consultation
+                Claim Your Free Billing Audit
                 <span>→</span>
               </button>
               <a
@@ -1393,7 +1377,7 @@ export default function AboutPage() {
               </a>
             </div>
             <p className="text-xs mt-6" style={{ color: "#93c5fd" }}>
-              Free consultation · No contracts · HIPAA-compliant
+              Complimentary audit · Zero contracts · Strictly HIPAA-compliant
             </p>
           </div>
         </section>
@@ -1401,27 +1385,27 @@ export default function AboutPage() {
         {/* ════════════════════════════════════════════════
             STATS STRIP
         ════════════════════════════════════════════════ */}
-        <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
+      <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
         <StatCard
           target={3.99}
           suffix="%"
-          label="Billing Rate"
-          sub="Most competitive in the USA"
+          label="Therapy Billing Rate"
+          sub="Unmatched mental health billing cost"
           duration={1800}
           decimals={2}
         />
         <StatCard
           target={99.8}
           suffix="%"
-          label="Coding Accuracy Rate"
-          sub="Industry-leading precision"
+          label="Behavioral Health Coding Precision"
+          sub="Certified therapy coding accuracy"
           duration={1600}
           decimals={1}
         />
-        <StatCard target={99} suffix="%" label="Clean Claim Rate" sub="Paid on first submission" duration={1600} />
-        <StatCard target={40} suffix="%" label="Denial Reduction" sub="Achieved within 90 days" duration={1400} />
-        <StatCard target={99} prefix="$" label="Credentialing Fee" sub="Flat rate per insurance payer" duration={1200} />
+        <StatCard target={99} suffix="%" label="First-Pass Claim Acceptance" sub="Insurance claims for therapists approved instantly" duration={1600} />
+        <StatCard target={40} suffix="%" label="Denial Rate Drop" sub="Behavioral health RCM optimized in 90 days" duration={1400} />
+        <StatCard target={99} prefix="$" label="Therapist Credentialing Cost" sub="Flat fee per behavioral health payer" duration={1200} />
       </div>
     </section>
 
@@ -1438,44 +1422,33 @@ export default function AboutPage() {
               className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
               style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
             >
-              Who We Are
+              Dedicated Billing Partners
             </span>
             <h2
               className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
               style={{ color: "#0e3256" }}
             >
-              Your Practice&apos;s Invisible{" "}
-              <span style={{ color: "#3e8ad6" }}>Revenue Engine</span>
+              The Behavioral Health RCM Engine Powering{" "}
+              <span style={{ color: "#3e8ad6" }}>Your Practice</span>
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Prime Therapy Billing is a team of certified RCM specialists,
-              therapy coding experts, and compliance officers — built
-              exclusively to serve mental health, physical therapy,
-              occupational therapy, and behavioral health practices across
-              the United States.
+              Prime Therapy Billing unites certified revenue cycle specialists, compliance officers, and therapy coding authorities—exclusively supporting mental health, physical therapy, occupational therapy, and behavioral health practices across the country.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              We exist because independent therapy practices deserve the
-              same enterprise-level billing support that large hospital
-              networks enjoy — without the enterprise price tag. We are your
-              invisible back office: handling ICD-10 coding, denial
-              management, payer negotiations, and everything in between so
-              you can focus entirely on your patients.
+              Independent therapy practices deserve the same high-tier billing infrastructure that large hospital networks rely on—without the exorbitant costs. We function as your seamless back-office, executing ICD-10 coding, overturning denials, and negotiating payer contracts so you can dedicate your energy to clinical outcomes.
             </p>
             <blockquote
               className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
               style={{ borderColor: "#3e8ad6" }}
             >
-              &ldquo;We don&apos;t wait for denials to happen. We scrub every claim
-              using advanced algorithms to ensure it is paid on the first
-              submission — every single time.&rdquo;
+              &ldquo;We never wait for denials to occur. Our team audits every single insurance claim for therapists using predictive analytics to secure first-pass reimbursement—without exception.&rdquo;
             </blockquote>
             <div className="mt-8 flex flex-wrap gap-3">
               {[
-                "HIPAA Compliant",
-                "No Long-Term Contracts",
-                "All 50 States",
-                "5-Star Rated",
+                "Strict HIPAA Security",
+                "Month-to-Month Flexibility",
+                "Nationwide Coverage",
+                "5-Star Client Rating",
               ].map((badge) => (
                 <span
                   key={badge}
@@ -1515,8 +1488,8 @@ export default function AboutPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% Clean Claims</p>
-                    <p className="text-xs text-gray-400">First submission</p>
+                    <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% First-Pass Approval</p>
+                    <p className="text-xs text-gray-400">Optimized claims delivery</p>
                   </div>
                 </div>
               </div>
@@ -1539,16 +1512,16 @@ export default function AboutPage() {
                     </svg>
                   </div>
                   <h3 className="text-2xl font-extrabold mb-4">
-                    Why Therapists Choose Us
+                    Why Providers Rely on Our Mental Health Billing
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Therapy-exclusive billing expertise",
-                      "Lowest billing rate in the industry at 3.99%",
-                      "Dedicated account manager from day one",
-                      "Real-time reporting and financial dashboards",
-                      "Proven denial reduction within 90 days",
-                      "No setup fees. No hidden charges.",
+                      "Exclusive focus on therapy billing services",
+                      "Industry-leading rate of just 3.99%",
+                      "Personal account manager assigned immediately",
+                      "Transparent, real-time financial analytics",
+                      "Measurable denial drops within 90 days",
+                      "Zero setup costs or hidden penalties",
                     ].map((point, i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1567,9 +1540,9 @@ export default function AboutPage() {
 
               {/* Floating accent — BOTTOM LEFT */}
               <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
-                <p className="text-xs font-semibold text-gray-500 mb-1">Average Revenue Increase</p>
+                <p className="text-xs font-semibold text-gray-500 mb-1">Average Collection Uplift</p>
                 <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
-                <p className="text-xs text-gray-400 mt-1">Within the first 6 months</p>
+                <p className="text-xs text-gray-400 mt-1">Realized within 6 months</p>
               </div>
 
             </div>
@@ -1592,10 +1565,10 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            Our Purpose
+            Our Foundation
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
-            Mission &amp; <span style={{ color: "#3e8ad6" }}>Vision</span>
+            Advancing the Future of <span style={{ color: "#3e8ad6" }}>Therapy Billing</span>
           </h2>
         </div>
 
@@ -1607,15 +1580,9 @@ export default function AboutPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Mission</h3>
+            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Driving Mission</h3>
             <p className="text-gray-600 leading-relaxed">
-              To democratize access to high-quality revenue cycle management
-              for therapy providers. We are committed to delivering
-              enterprise-level billing solutions at a price point that
-              empowers small and mid-sized therapy practices to thrive.
-              Transparency, speed, and accuracy are not optional extras —
-              they are the foundation of everything we do. No provider
-              should ever leave money on the table.
+              Our mission is to level the playing field for independent therapy practices by delivering elite behavioral health RCM capabilities at an accessible price point. We believe every mental health provider deserves a seamless billing infrastructure that ensures maximum reimbursement without the corporate overhead. By prioritizing precision, rapid turnaround, and total transparency, we guarantee that no earned dollar is left uncollected for the practices that need it most.
             </p>
           </div>
 
@@ -1627,15 +1594,9 @@ export default function AboutPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Vision</h3>
+            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Strategic Vision</h3>
             <p className="text-gray-600 leading-relaxed">
-              To become the automatic recommendation for every therapy
-              provider in the United States seeking reliable, fast, and
-              affordable billing. We envision a future where Prime Therapy
-              Billing is synonymous with practice growth — universally
-              recognized for our 3.99% billing model, our commitment to
-              therapist success, and our unwavering standard of excellence
-              in revenue cycle management.
+              We are building a future where Prime Therapy Billing is the definitive standard for therapy billing services across the nation. Our goal is to be the first name providers trust when optimizing insurance claims for therapists. We strive to make our 3.99% billing model synonymous with financial empowerment—recognized nationwide for helping mental health billing operations thrive, scale, and achieve uncompromising financial health.
             </p>
           </div>
         </div>
@@ -1652,14 +1613,13 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            The Prime Advantage
+            The Prime Billing Edge
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            How We Are <span style={{ color: "#3e8ad6" }}>Different</span>
+            What Sets Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Apart
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Six principles that define every client relationship and every
-            claim we submit on your behalf.
+            Six foundational pillars that govern every client partnership and ensure your insurance claims for therapists are optimized for maximum reimbursement through our specialized behavioral health RCM strategies.
           </p>
         </div>
 
@@ -1693,15 +1653,14 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            Side by Side
+            Performance Benchmark
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            Prime Therapy Billing vs{" "}
-            <span style={{ color: "#3e8ad6" }}>Industry Average</span>
+            How Our Mental Health Billing Outperforms the{" "}
+            <span style={{ color: "#3e8ad6" }}>Industry Standard</span>
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            See exactly why hundreds of therapy practices across the country
-            are making the switch.
+            Discover why therapy practices nationwide rely on our therapy billing services to maximize revenue, accelerate insurance claims for therapists, and deliver superior behavioral health RCM outcomes compared to conventional billing partners.
           </p>
         </div>
 
@@ -1710,9 +1669,9 @@ export default function AboutPage() {
             className="grid grid-cols-3 text-white text-sm font-bold"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            <div className="p-5">Feature</div>
+            <div className="p-5">Capability</div>
             <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
-            <div className="p-5 text-center border-l border-white/20">Industry Average</div>
+            <div className="p-5 text-center border-l border-white/20">Industry Standard</div>
           </div>
 
           {comparisonRows.map((row, i) => (
@@ -1749,15 +1708,14 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            Our Services
+            Expert RCM Solutions
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            Full-Service Therapy{" "}
-            <span style={{ color: "#3e8ad6" }}>Revenue Cycle Management</span>
+            Comprehensive Mental Health{" "}
+            <span style={{ color: "#3e8ad6" }}>Billing & RCM</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Everything your therapy practice needs to bill accurately, get
-            paid faster, and grow confidently — starting at just 3.99%.
+            From precise claim submission to aggressive denial management, our therapy billing services handle every aspect of your revenue cycle. We optimize insurance claims for therapists to accelerate reimbursements and drive sustainable practice growth — starting at just 3.99%.
           </p>
         </div>
 
@@ -1795,15 +1753,14 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            Our Team
+            Behavioral Health RCM Leaders
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            The Experts Behind{" "}
-            <span style={{ color: "#3e8ad6" }}>Your Revenue</span>
+            The Specialists Driving Your{" "}
+            <span style={{ color: "#3e8ad6" }}>Therapy Billing Success</span>
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Certified coders, credentialing specialists, and compliance
-            officers who treat your practice as if it were their own.
+            Our dedicated team of mental health billing experts, certified coders, and compliance strategists delivers exceptional therapy billing services and manages your insurance claims for therapists with the same precision they would their own practice.
           </p>
         </div>
 
@@ -1835,15 +1792,13 @@ export default function AboutPage() {
             className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
             style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
           >
-            Client Testimonials
+            Therapist Success Stories
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            What Our Clients{" "}
-            <span style={{ color: "#3e8ad6" }}>Say About Us</span>
+            Proven Results From Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Clients
           </h2>
           <p className="text-gray-500 max-w-xl mx-auto">
-            Consistently rated 5 stars for reliability, affordability, and
-            results.
+            Therapists nationwide trust our therapy billing services to optimize insurance claims for therapists, accelerate payments, and strengthen their behavioral health RCM. Discover their experiences below.
           </p>
         </div>
 
@@ -1899,22 +1854,19 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-          No Long-Term Contracts — Cancel Anytime
+          Flexible Terms — Cancel Anytime
         </div>
 
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-          Ready to Stop Leaving{" "}
-          <span className="shimmer-text">Money on the Table?</span>
+          Prepared to Maximize Every Dollar from Your{" "}
+          <span className="shimmer-text">Mental Health Billing?</span>
         </h2>
 
         <p
           className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
           style={{ color: "#bfdbfe" }}
         >
-          Join hundreds of therapy practices across the United States that
-          trust Prime Therapy Billing to protect their revenue, reduce their
-          denials, and handle the billing complexity they shouldn&apos;t
-          have to deal with.
+          Therapy practices nationwide depend on our specialized therapy billing services to streamline behavioral health RCM, resolve insurance claims for therapists faster, and eliminate the administrative roadblocks draining your time and revenue.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1923,7 +1875,7 @@ export default function AboutPage() {
             className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
             style={{ color: "#0e3256" }}
           >
-            Schedule Your Free Consultation
+            Request Your Free Billing Audit
             <span>→</span>
           </button>
           <a
@@ -1940,10 +1892,10 @@ export default function AboutPage() {
         <div className="flex flex-wrap justify-center gap-6 mt-10">
           {[
             "HIPAA Compliant",
-            "100% Secure",
-            "No Hidden Fees",
+            "Fully Secure",
+            "Zero Hidden Costs",
             "5-Star Rated",
-            "All 50 States",
+            "Nationwide Coverage",
           ].map((badge) => (
             <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
               <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

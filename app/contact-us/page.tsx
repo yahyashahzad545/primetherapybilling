@@ -214,16 +214,16 @@ export default function ContactPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              Fast Response. Real Results.
+              Accelerate Your Reimbursement
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-              Let&apos;s Grow Your{" "}
-              <span className="shimmer-text block mt-2">Therapy Practice Revenue</span>
+              Elevate Your Behavioral Health RCM and{" "}
+              <span className="shimmer-text block mt-2">Mental Health Billing Performance</span>
             </h1>
 
             <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto leading-relaxed" style={{ color: "#bfdbfe" }}>
-              Have questions about therapy billing, credentialing, or revenue cycle optimization? Connect with the experts at Prime Therapy Billing and get clear, actionable answers — fast.
+              Struggling with denied insurance claims for therapists or complex credentialing hurdles? Partner with Prime Therapy Billing for data-driven therapy billing services that transform your revenue cycle into a predictable, high-performing asset.
             </p>
 
             {/* Clickable pills */}
@@ -295,27 +295,27 @@ export default function ContactPage() {
                   className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
                   style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                 >
-                  Contact Us
+                  Therapy Billing Experts
                 </span>
 
                 <h2
                   className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
                   style={{ color: "#0e3256" }}
                 >
-                  Ready to Optimize Your{" "}
-                  <span style={{ color: "#3e8ad6" }}>Revenue Cycle?</span>
+                  Prepared to Elevate Your{" "}
+                  <span style={{ color: "#3e8ad6" }}>Behavioral Health RCM?</span>
                 </h2>
 
                 <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                  Whether you need full-service billing, credentialing help, or just a consultation to understand where you are losing money, we are here to help. Fill out the form and a specialist will contact you within 24 hours.
+                  Whether your practice requires end-to-end therapy billing services, provider credentialing assistance, or a detailed consultation to uncover hidden revenue leaks, our specialists are equipped to help. Complete the form below, and a mental health billing expert will reach out within 24 hours with a tailored strategy.
                 </p>
 
                 {/* Feature list */}
                 <div className="space-y-5 mb-10">
                   {[
                     {
-                      title: "Free Billing Audit",
-                      desc: "Let us review your current billing process for free and identify revenue gaps.",
+                      title: "Complimentary Revenue Audit",
+                      desc: "We evaluate your existing therapy billing workflows at no cost, pinpointing exact areas where your practice loses revenue.",
                       icon: (
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -323,8 +323,8 @@ export default function ContactPage() {
                       ),
                     },
                     {
-                      title: "HIPAA Compliant",
-                      desc: "Your data is secure with enterprise-grade encryption and HIPAA-trained staff.",
+                      title: "Strict HIPAA Compliance",
+                      desc: "Rest easy knowing your data is protected by enterprise-level encryption and staff fully trained in HIPAA security protocols.",
                       icon: (
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -332,8 +332,8 @@ export default function ContactPage() {
                       ),
                     },
                     {
-                      title: "Dedicated Support",
-                      desc: "Get a dedicated account manager assigned to your practice from day one.",
+                      title: "Dedicated Billing Partner",
+                      desc: "Your practice receives a dedicated account manager from day one, ensuring personalized oversight of your insurance claims for therapists.",
                       icon: (
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -370,7 +370,7 @@ export default function ContactPage() {
                   }}
                 >
                   <h4 className="font-extrabold text-base" style={{ color: "#0e3256" }}>
-                    Reach Us Directly
+                    Connect With Us Directly
                   </h4>
 
                   {/* Phone */}
@@ -475,16 +475,16 @@ export default function ContactPage() {
                       className="text-2xl font-extrabold mb-3"
                       style={{ color: "#0e3256" }}
                     >
-                      Thank You!
+                      Message Received!
                     </h3>
 
                     <p className="text-gray-500 text-sm leading-relaxed mb-1">
-                      Your message has been received successfully.
+                      We’ve successfully received your inquiry.
                     </p>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      A specialist will contact you within{" "}
+                      A therapy billing specialist will connect with you within{" "}
                       <span className="font-semibold text-gray-700">24 hours</span>{" "}
-                      with a customized solution for your practice.
+                      to discuss a custom approach for your practice.
                     </p>
 
                     <div
@@ -492,7 +492,7 @@ export default function ContactPage() {
                       style={{ background: "#f0f6ff", borderColor: "#d0e4f7" }}
                     >
                       <p className="text-xs font-medium" style={{ color: "#1a5fa8" }}>
-                        💡 In the meantime, feel free to call us at{" "}
+                        💡 Need answers now? Call us directly at{" "}
                         <a
                           href="tel:+13464604441"
                           className="font-bold underline"
@@ -500,7 +500,7 @@ export default function ContactPage() {
                         >
                           (346) 460-4441
                         </a>{" "}
-                        for immediate assistance.
+                        for immediate support.
                       </p>
                     </div>
 
@@ -509,7 +509,7 @@ export default function ContactPage() {
                       className="mt-6 px-6 py-2.5 rounded-xl text-white text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                       style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                     >
-                      Send Another Message
+                      Submit Another Request
                     </button>
                   </div>
 
@@ -520,10 +520,10 @@ export default function ContactPage() {
                       className="text-2xl sm:text-3xl font-extrabold mb-1 relative z-10"
                       style={{ color: "#0e3256" }}
                     >
-                      Send Us a Message
+                      Request Your Billing Consultation
                     </h3>
                     <p className="text-gray-500 text-sm mb-7 relative z-10">
-                      Fill in the details below and we&apos;ll get back to you within 24 hours.
+                      Provide your details below and our behavioral health RCM team will respond within one business day.
                     </p>
 
                     {/* Error banner */}
@@ -642,7 +642,7 @@ export default function ContactPage() {
                           onChange={handleChange}
                           required
                           rows={4}
-                          placeholder="I need help with claim denials and credentialing..."
+                          placeholder="We need help reducing claim denials and streamlining credentialing..."
                           className={`${inputClass} resize-none`}
                           onFocus={focusStyle}
                           onBlur={blurStyle}
@@ -681,7 +681,7 @@ export default function ContactPage() {
                             </>
                           ) : (
                             <>
-                              Send Message
+                              Request My Consultation
                               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                             </>
                           )}
@@ -689,7 +689,7 @@ export default function ContactPage() {
                       </button>
 
                       <p className="text-center text-xs text-gray-400">
-                        🔒 Your information is 100% secure and HIPAA compliant. By submitting this form, you agree to our privacy policy.
+                        🔒 Your data remains 100% secure and HIPAA compliant. By submitting this form, you agree to our privacy policy.
                       </p>
                     </form>
                   </>
@@ -713,10 +713,10 @@ export default function ContactPage() {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="text-center lg:text-left">
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-                  Prefer to Reach Us Directly?
+                  Speak Directly with a Therapy Billing Specialist
                 </h3>
                 <p className="text-sm" style={{ color: "#bfdbfe" }}>
-                  Our billing specialists are available Monday – Friday, 9am – 6pm EST.
+                  Get immediate answers about our therapy billing services, insurance claims for therapists, and behavioral health RCM solutions. Our experts are standing by Monday – Friday, 9 AM – 6 PM EST.
                 </p>
               </div>
 
