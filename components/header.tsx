@@ -400,32 +400,10 @@ export default function Header() {
               </div>
             </DesktopDropdown>
 
-            {/* ── SPECIALTIES DROPDOWN ── */}
-            <DesktopDropdown label="Specialties" width={720}>
-              <div className="my-3 lg:my-4 mx-0 lg:mx-3">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 mb-3">
-                  {THERAPY_SPECIALTIES.map((group, idx) => (
-                    <div key={group.category} className={idx > 0 ? "hidden lg:block" : ""}>
-                      <ul className="list-none">
-                        {group.items.map((item) => (
-                          <li key={item.href} className="mb-3 border-b border-gray-200 pb-2">
-                            <Link href={item.href} className="flex items-center text-gray-700 hover:text-[#113356] transition-colors text-sm">
-                              <IconPlaceholder />
-                              <span className="ml-3">{item.label}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-                <div className="text-center">
-                  <Link href="/specialties" className="inline-block px-5 py-1.5 bg-[#113356] text-white text-[13px] font-semibold rounded hover:bg-[#0d2645] transition-colors">
-                    View all Specialties
-                  </Link>
-                </div>
-              </div>
-            </DesktopDropdown>
+            {/* ── SPECIALTIES — Simple Link ── */}
+            <Link href="/specialties" className="flex items-center h-full px-3 xl:px-4 text-sm font-semibold text-gray-700 hover:text-[#113356] transition-colors">
+              Specialties
+            </Link>
 
             <Link href="/payers" className="flex items-center h-full px-3 xl:px-4 text-sm font-semibold text-gray-700 hover:text-[#113356] transition-colors">
               Private Payers
@@ -522,30 +500,10 @@ export default function Header() {
               About Us
             </Link>
 
-            {/* Specialties accordion */}
-            <MobileAccordion label="Specialties">
-              {THERAPY_SPECIALTIES.map((group) => (
-                <div key={group.category} className="ml-4 mb-2">
-                  <p className="text-[10px] font-bold text-[#113356] uppercase tracking-widest px-2 py-1">
-                    {group.category}
-                  </p>
-                  <ul className="border-l-2 border-[#113356]/20 pl-3 space-y-0.5">
-                    {group.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center gap-2 py-1.5 px-2 text-sm text-gray-600 hover:text-[#113356] hover:bg-gray-50 rounded transition-colors"
-                        >
-                          <div className="w-5 h-5 flex-shrink-0 bg-gray-100 border border-dashed border-gray-300 rounded" />
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </MobileAccordion>
+            {/* Specialties — Simple Link */}
+            <Link href="/specialties" onClick={() => setMobileOpen(false)} className="py-3 px-4 border-b border-gray-100 text-gray-800 font-semibold hover:text-[#113356] hover:bg-gray-50 transition-colors rounded">
+              Specialties
+            </Link>
 
             {/* Services accordion */}
             <MobileAccordion label="Services">
