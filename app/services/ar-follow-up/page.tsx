@@ -860,10 +860,10 @@ export default function DenialManagementPage() {
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             {[
-              { icon: ShieldCheck, label: "HIPAA Compliant" },
-              { icon: Award, label: "AAPC Certified Coders" },
-              { icon: Clock, label: "24/7 Expert Support" },
-              { icon: Users, label: "4,000+ Healthcare Clients" },
+              { icon: ShieldCheck, label: "HIPAA-Compliant Security" },
+              { icon: Award, label: "AAPC-Certified Mental Health Billing Experts" },
+              { icon: Clock, label: "Round-the-Clock RCM Support" },
+              { icon: Users, label: "4,000+ Behavioral Health Practices Served" },
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
@@ -878,40 +878,21 @@ export default function DenialManagementPage() {
               </div>
             ))}
           </div>
-
-          {/* Alert banner */}
-          <div className="flex justify-center mb-8">
-            <div
-              className="flex items-center gap-2 rounded-full px-5 py-2 text-sm"
-              style={{
-                background: "rgba(239,68,68,0.2)",
-                border: "1px solid rgba(239,68,68,0.3)",
-                color: "#fca5a5",
-              }}
-            >
-              <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-              Industry denial rates have climbed to 12% in 2026 — payer AI is
-              rejecting claims faster than ever
-            </div>
-          </div>
-
+          
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-              Expert{" "}
-              <span style={{ color: "#4689c8" }}>Denial Management</span>{" "}
-              Services That Recover Your Lost Revenue
+              Specialized Denial Management for{" "}
+              <span style={{ color: "#4689c8" }}>Therapy Billing Services</span>{" "}
+              That Reclaims Your Revenue
             </h1>
 
             <p
               className="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
               style={{ color: "#bfdbfe" }}
             >
-              Reduce denial rates to{" "}
-              <strong className="text-white">&lt;4%</strong>, recover up to{" "}
-              <strong className="text-white">35% more revenue</strong>, and stop
-              leaving earned money on the table. PrimeTherapy Billing fights
-              back with smarter denial management solutions built for how payers
-              operate in 2026.
+              Drive your denial rate below{" "}
+              <strong className="text-white">4%</strong> and recover up to{" "}
+              <strong className="text-white">35% more revenue</strong>. Our behavioral health RCM specialists reverse rejected insurance claims for therapists using data-driven appeals designed to outsmart modern payer algorithms and protect your bottom line.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
@@ -920,7 +901,7 @@ export default function DenialManagementPage() {
                 className="px-9 py-4 text-base"
               >
                 <Target className="w-5 h-5" />
-                Get Free Denial Assessment
+                Request Your Free Denial Audit
               </GoldBtn>
               <a
                 href="tel:+13464604441"
@@ -943,7 +924,7 @@ export default function DenialManagementPage() {
               </a>
             </div>
             <p style={{ color: "#4689c8" }} className="text-sm">
-              No cost · No obligation · Results within 30 days
+              Zero cost · Zero obligation · Measurable results in 30 days
             </p>
           </div>
         </div>
@@ -957,15 +938,15 @@ export default function DenialManagementPage() {
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <Badge color="blue">Proven Performance Metrics</Badge>
+            <Badge color="blue">Behavioral Health RCM Metrics</Badge>
             <h2
               className="text-3xl font-bold mb-3"
               style={{ color: "#113356" }}
             >
-              Numbers That Speak for Themselves
+              Data-Driven Results From Our Therapy Billing Services
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto text-sm">
-              Measured results across 4,000+ healthcare clients nationwide.
+              Verified financial outcomes powering 4,000+ mental health billing operations across the country.
             </p>
           </div>
 
@@ -973,53 +954,53 @@ export default function DenialManagementPage() {
             <StatCard
               value={s1}
               suffix="%"
-              label="Clean Claim Rate"
+              label="First-Pass Clean Claims"
               inView={statsRef.inView}
               highlight
             />
             <StatCard
               value={s2}
               suffix="%"
-              label="Denial Rate"
+              label="Average Denial Rate"
               inView={statsRef.inView}
             />
             <StatCard
               value={s3}
               suffix="%"
-              label="Net Collections"
+              label="Net Revenue Collected"
               inView={statsRef.inView}
             />
             <StatCard
               value={s4}
               suffix="hrs"
-              label="Turnaround Time"
+              label="Payment Turnaround"
               inView={statsRef.inView}
             />
             <StatCard
               value={s5}
-              label="AR Days"
+              label="Days in A/R"
               inView={statsRef.inView}
             />
             <StatCard
               value={s6}
               suffix="%"
-              label="Appeal Success"
+              label="Appeal Win Rate"
               inView={statsRef.inView}
             />
             <StatCard
               value={s7}
               suffix="%"
-              label="Timely Filing"
+              label="On-Time Filing Rate"
               inView={statsRef.inView}
             />
           </div>
 
           <div className="text-center">
             <GoldBtn
-              onClick={() => openModal("See How We Achieve These Numbers")}
+              onClick={() => openModal("Discover How We Optimize Insurance Claims for Therapists")}
             >
               <BarChart3 className="w-4 h-4" />
-              See How We Achieve These Numbers
+              Discover How We Optimize Insurance Claims for Therapists
             </GoldBtn>
           </div>
         </div>
@@ -1030,36 +1011,27 @@ export default function DenialManagementPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge color="blue">Healthcare Revenue Cycle Management</Badge>
+              <Badge color="blue">Behavioral Health Revenue Cycle Management</Badge>
               <h2
                 className="text-3xl md:text-4xl font-bold mb-6 leading-tight"
                 style={{ color: "#113356" }}
               >
-                What Is Denial Management in Healthcare?
+                Understanding Denial Management in Behavioral Health RCM
               </h2>
               <p className="text-gray-600 text-lg mb-5 leading-relaxed">
-                Denial management is the systematic process of identifying,
-                analyzing, and resolving insurance claims that payers have
-                refused to pay. It is a mission-critical function within your
-                healthcare revenue cycle — and one that most practices
-                underinvest in until it is already costing them six figures.
+                Denial management is the structured approach to detecting, evaluating, and overturning insurance claims for therapists that payers have rejected. Within behavioral health RCM, it serves as your primary defense against revenue leakage—yet many mental health billing operations overlook it until recoverable losses exceed six figures.
               </p>
               <p className="text-gray-500 mb-8 leading-relaxed text-sm">
-                The work involves investigating why claims were rejected,
-                correcting errors, filing appeals with the right documentation,
-                and building safeguards that prevent the same problems from
-                recurring. Our philosophy prioritizes prevention over correction
-                — because stopping a denial before submission is always cheaper
-                than recovering it after.
+                Our methodology goes beyond simply reacting to rejections. We drill down into the exact reasons claims fail, rectify documentation gaps, submit robust appeals backed by clinical evidence, and implement systemic safeguards to eliminate repeat failures. We champion a proactive stance—preventing a denial before it hits the payer is infinitely more profitable than chasing it after the fact.
               </p>
 
               <div className="space-y-3 mb-8">
                 {[
-                  "Identify and analyze denied claims within 24 hours of payer adjudication",
-                  "Determine root causes before filing deadlines become a factor",
-                  "File bulletproof appeals with payer-specific clinical documentation",
-                  "Track denial patterns and fix the source, not just the symptom",
-                  "Train your front-end team to prevent recurring denial types",
+                  "Pinpoint and triage rejected claims within 24 hours of payer adjudication",
+                  "Isolate underlying root causes long before timely filing deadlines approach",
+                  "Submit evidence-based appeals tailored to each payer's specific clinical requirements",
+                  "Aggregate denial trend data to resolve systemic issues, not just individual errors",
+                  "Equip your clinical and administrative staff to preempt common rejection triggers",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle
@@ -1073,11 +1045,11 @@ export default function DenialManagementPage() {
 
               <GoldBtn
                 onClick={() =>
-                  openModal("Learn How Denial Management Works For You")
+                  openModal("Discover How We Protect Your Practice Revenue")
                 }
               >
                 <ArrowRight className="w-4 h-4" />
-                Learn How It Works for Your Practice
+                Discover How We Protect Your Practice Revenue
               </GoldBtn>
             </div>
 
@@ -1090,8 +1062,8 @@ export default function DenialManagementPage() {
                   iconColor: "text-red-500",
                   stat: "90%",
                   statColor: "text-red-600",
-                  title: "Of denials are preventable",
-                  sub: "Yet most practices never address root causes",
+                  title: "Of claim denials are entirely avoidable",
+                  sub: "Most therapy practices lack the analytics to stop them",
                 },
                 {
                   bg: "bg-orange-50 border-orange-200",
@@ -1100,8 +1072,8 @@ export default function DenialManagementPage() {
                   iconColor: "text-orange-500",
                   stat: "65%",
                   statColor: "text-orange-600",
-                  title: "Of denied claims are never reworked",
-                  sub: "Permanent write-offs due to bandwidth limitations",
+                  title: "Of rejected claims go unchallenged",
+                  sub: "Practices simply absorb the loss due to staff bandwidth constraints",
                 },
                 {
                   bg: "bg-amber-50 border-amber-200",
@@ -1110,8 +1082,8 @@ export default function DenialManagementPage() {
                   iconColor: "text-amber-600",
                   stat: "$181",
                   statColor: "text-amber-600",
-                  title: "Average cost per appeal in staff time",
-                  sub: "Prevention is always more cost-effective than correction",
+                  title: "Average labor cost to rework a single denied claim",
+                  sub: "Front-end prevention yields substantially higher ROI",
                 },
               ].map((card) => {
                 const Icon = card.icon;
@@ -1151,15 +1123,15 @@ export default function DenialManagementPage() {
                     className="w-4 h-4"
                     style={{ color: "#4689c8" }}
                   />
-                  The Denial Death Cycle
+                  The Revenue Erosion Cycle
                 </h4>
                 <div className="space-y-2">
                   {[
-                    "Claim gets denied",
-                    "Sits in an unworked queue",
-                    "Higher priorities take over",
-                    "Timely filing deadline expires",
-                    "Permanent write-off",
+                    "Payer rejects the claim",
+                    "Claim stalls in an unmonitored workqueue",
+                    "Staff shifts focus to new submissions",
+                    "Filing window closes permanently",
+                    "Revenue becomes a total loss",
                   ].map((stepText, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div
@@ -1190,14 +1162,12 @@ export default function DenialManagementPage() {
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <Badge color="lightblue">The 2026 Denial Landscape</Badge>
+            <Badge color="lightblue">2026 Claims Denial Reality</Badge>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Denial Management Crisis Every Provider Must Understand
+              Why Mental Health Billing Faces an Unprecedented Denial Crisis This Year
             </h2>
             <p className="max-w-2xl mx-auto text-sm" style={{ color: "#bfdbfe" }}>
-              The rules changed fast. If your denial strategy has not evolved to
-              match, you are fighting a losing battle against AI-powered payer
-              systems.
+              Payer adjudication rules have shifted drastically. Without a modernized behavioral health RCM strategy, your practice is bleeding revenue to automated payer rejection engines.
             </p>
           </div>
 
@@ -1217,18 +1187,14 @@ export default function DenialManagementPage() {
                   <TrendingUp className="w-6 h-6 text-red-400" />
                 </div>
                 <h3 className="text-xl font-bold">
-                  Payer AI Is Rejecting Claims Faster Than Ever
+                  Automated Payer Systems Are Accelerating Rejections
                 </h3>
               </div>
               <p
                 className="text-sm leading-relaxed mb-5"
                 style={{ color: "#bfdbfe" }}
               >
-                Initial denial rates now average 12%, up from 10% just two
-                years ago — a 20% increase. Payers deploy AI systems that flag
-                high-dollar procedures and challenge medical necessity within
-                seconds of submission. Your claim hits their system and software
-                decides its fate before a human ever reviews it.
+                Initial denial rates have surged to 12%—a 20% jump in just 24 months. Insurance carriers now leverage artificial intelligence to scrutinize insurance claims for therapists the moment they arrive, challenging medical necessity and flagging high-value codes before a human reviewer ever sees them.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div
@@ -1242,7 +1208,7 @@ export default function DenialManagementPage() {
                     12%
                   </div>
                   <div className="text-gray-400 text-xs mt-1">
-                    Current average denial rate
+                    Current average initial denial rate
                   </div>
                 </div>
                 <div
@@ -1259,7 +1225,7 @@ export default function DenialManagementPage() {
                     2.8%
                   </div>
                   <div className="text-gray-400 text-xs mt-1">
-                    Final write-off rate (industry avg)
+                    Industry average final write-off rate
                   </div>
                 </div>
               </div>
@@ -1280,18 +1246,14 @@ export default function DenialManagementPage() {
                   <Calendar className="w-6 h-6" style={{ color: "#4689c8" }} />
                 </div>
                 <h3 className="text-xl font-bold">
-                  New CMS Prior Authorization Rules (Effective 2026)
+                  Navigating the 2026 CMS Prior Authorization Mandates
                 </h3>
               </div>
               <p
                 className="text-sm leading-relaxed mb-5"
                 style={{ color: "#bfdbfe" }}
               >
-                The CMS Interoperability and Prior Authorization Final Rule
-                (CMS-0057-F) requires payers to respond to urgent requests
-                within 72 hours and standard requests within 7 calendar days.
-                Sounds like progress — until payers use automated algorithms
-                that instantly deny claims missing even minor documentation.
+                Under the CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F), payers must now process urgent authorizations within 72 hours and standard requests within seven days. While this sounds beneficial, carriers are responding with instantaneous algorithmic denials for any claim missing even the slightest documentation detail.
               </p>
               <div
                 className="rounded-xl p-4"
@@ -1304,12 +1266,10 @@ export default function DenialManagementPage() {
                   className="font-semibold text-sm mb-1"
                   style={{ color: "#4689c8" }}
                 >
-                  WISeR Model Impact
+                  WISeR Model Implications
                 </div>
                 <div className="text-gray-400 text-xs leading-relaxed">
-                  Active in NJ, OH, OK, TX, AZ, and WA — requires new
-                  authorization workflows most providers have not built yet,
-                  creating fresh denial exposure.
+                  Now active across New Jersey, Ohio, Oklahoma, Texas, Arizona, and Washington — this model demands completely new authorization workflows that most therapy billing services have yet to implement, exposing your practice to a fresh wave of preventable denials.
                 </div>
               </div>
             </div>
@@ -1317,8 +1277,7 @@ export default function DenialManagementPage() {
 
           <div className="text-center">
             <p className="text-sm mb-5" style={{ color: "#bfdbfe" }}>
-              PrimeTherapy Billing monitors payer policy updates daily —
-              ensuring your claims meet current requirements before submission.
+              Our therapy billing services team audits payer policy changes every single day — ensuring your claims satisfy the latest requirements before they ever leave your system.
             </p>
             <GoldBtn
               onClick={() =>
@@ -1337,17 +1296,15 @@ export default function DenialManagementPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <Badge color="blue">Complete Denial Resolution</Badge>
+            <Badge color="blue">Comprehensive Denial Recovery</Badge>
             <h2
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: "#113356" }}
             >
-              Every Type of Healthcare Claim Denial We Resolve
+              Insurance Claim Denials Our Therapy Billing Services Conquer
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Not all denials work the same way. Some resolve in hours. Others
-              require clinical expertise and multi-level appeals. Understanding
-              the denial type determines the fastest resolution path.
+              Every rejected claim demands a distinct recovery strategy. From simple data entry oversights to complex medical necessity disputes, pinpointing the exact denial category is the critical first step toward reclaiming your behavioral health RCM revenue.
             </p>
           </div>
 
@@ -1356,44 +1313,44 @@ export default function DenialManagementPage() {
               {
                 num: "01",
                 title: "Hard Denials",
-                badge: "Permanent Rejections",
+                badge: "Non-Covered Services",
                 badgeColor: "bg-red-100 text-red-700",
-                desc: "Permanent rejections for non-covered services or excluded procedures. We identify hard denial patterns, advise on appropriate patient billing procedures, and prevent recurrence by updating eligibility verification protocols at intake.",
+                desc: "These occur when a payer outright rejects a claim due to policy exclusions or non-covered services. Our mental health billing team audits these hard stops, advises on compliant patient billing pathways, and fortifies your front-end eligibility verification to eliminate repeat occurrences.",
               },
               {
                 num: "02",
                 title: "Soft Denials",
-                badge: "Correctable Errors",
+                badge: "Fixable Rejections",
                 badgeColor: "bg-yellow-100 text-yellow-700",
-                desc: "Temporary rejections caused by incorrect patient information, missing documentation, or coding inconsistencies. Our specialists correct soft denials within 24-48 hours by fixing errors, attaching required documentation, and resubmitting clean claims.",
+                desc: "Temporary holds triggered by missing data, documentation gaps, or minor coding inconsistencies. Our therapy billing services specialists resolve soft denials within 24 to 48 hours by rectifying the errors, appending required documents, and resubmitting flawless insurance claims for therapists.",
               },
               {
                 num: "03",
                 title: "Clinical Denials",
                 badge: "Medical Necessity",
                 badgeColor: "bg-purple-100 text-purple-700",
-                desc: "Denials questioning medical necessity, level of care, or treatment appropriateness. Our CDI specialists build evidence-based appeal packages using current clinical guidelines, LCD/NCD references, and peer-reviewed literature.",
+                desc: "Payers frequently challenge the medical necessity or appropriateness of behavioral therapy sessions. Our Clinical Documentation Improvement experts construct evidence-based appeals fortified with LCD/NCD references, clinical guidelines, and peer-reviewed literature to overturn these behavioral health RCM barriers.",
               },
               {
                 num: "04",
                 title: "Technical Denials",
                 badge: "Administrative Errors",
                 badgeColor: "bg-blue-100 text-blue-700",
-                desc: "Rejections from invalid CPT codes, incorrect modifiers, missing prior authorization, or timely filing violations. Our automated scrubbing catches these before submission. For existing denials, we correct and resubmit with proper documentation.",
+                desc: "Triggered by invalid modifiers, missing prior auth, or missed filing deadlines. Our advanced claim scrubbing technology intercepts these issues pre-submission. For active technical denials, we rapidly correct the administrative failures and resubmit with airtight supporting documentation.",
               },
               {
                 num: "05",
                 title: "Coding Denials",
-                badge: "ICD-10 / CPT Errors",
+                badge: "ICD-10 / CPT Issues",
                 badgeColor: "bg-emerald-100 text-emerald-700",
-                desc: "Denials from code mismatches, bundling issues, or unsupported diagnosis codes. AAPC and AHIMA certified coders review denied claims, identify deficiencies, and ensure corrected claims meet payer-specific requirements before resubmission.",
+                desc: "Stemming from ICD-10/CPT mismatches, unbundling errors, or unsupported diagnosis pairings. Our AAPC and AHIMA certified coding professionals audit rejected claims, pinpoint the exact coding deficiencies, and realign them with strict payer guidelines before resubmission.",
               },
               {
                 num: "06",
                 title: "Authorization Denials",
-                badge: "Prior Auth Issues",
+                badge: "Prior Auth Gaps",
                 badgeColor: "bg-orange-100 text-orange-700",
-                desc: "Denials when required prior authorization was not obtained or has expired. Proactive authorization tracking prevents these before you deliver care. For existing denials, we handle retroactive authorization requests to recover the revenue.",
+                desc: "Arising when required prior authorizations are missing, expired, or mismatched to the rendered service. We deploy proactive auth tracking to prevent these before care delivery. If a claim is already denied, we aggressively pursue retroactive authorizations to recover your earned revenue.",
               },
             ].map((item) => (
               <div
@@ -1437,11 +1394,11 @@ export default function DenialManagementPage() {
           <div className="text-center">
             <GoldBtn
               onClick={() =>
-                openModal("Get Help With Your Specific Denial Type")
+                openModal("Resolve Your Most Complex Denials Today")
               }
             >
               <ArrowRight className="w-4 h-4" />
-              Get Help With Your Specific Denial Type
+              Resolve Your Most Complex Denials Today
             </GoldBtn>
           </div>
         </div>
@@ -1451,17 +1408,15 @@ export default function DenialManagementPage() {
       <section className="py-20" style={{ background: "#f0f6ff" }}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <Badge color="red">Common Denial Reason Codes</Badge>
+            <Badge color="red">High-Impact Denial Codes</Badge>
             <h2
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: "#113356" }}
             >
-              The 8 Denial Codes Costing Providers the Most Revenue
+              8 Payer Denial Codes Draining Your Behavioral Health RCM Revenue
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Most claim denials trace back to the same handful of reason codes.
-              Once you understand what triggers them, prevention becomes
-              straightforward.
+              The majority of lost revenue in mental health billing stems from a narrow set of recurring payer denial codes. Mastering the root triggers behind these specific rejections is the most direct path to safeguarding your insurance claims for therapists.
             </p>
           </div>
 
@@ -1544,15 +1499,11 @@ export default function DenialManagementPage() {
                       className="font-semibold text-sm"
                       style={{ color: "#113356" }}
                     >
-                      How PrimeTherapy Billing Resolves This
+                      How Our Therapy Billing Services Eliminate This Denial
                     </span>
                   </div>
                   <p className="text-gray-700 text-sm leading-relaxed">
-                    Our RAPID process identifies this denial type within 24
-                    hours, assigns it to the appropriate specialist, and
-                    resolves it before timely filing deadlines become a factor.
-                    Root cause analysis feeds back to your front-end team to
-                    prevent recurrence.
+                    Our behavioral health RCM specialists flag this exact denial category within 24 hours of adjudication, route it to a dedicated expert, and execute a targeted resolution well ahead of timely filing deadlines. We then loop the root-cause data back to your clinical and administrative teams to permanently block future occurrences.
                   </p>
                 </div>
 
@@ -1564,7 +1515,7 @@ export default function DenialManagementPage() {
                   }
                 >
                   <ArrowRight className="w-4 h-4" />
-                  Get Help With This Denial Type
+                  Resolve This Denial Code Now
                 </GoldBtn>
               </div>
             </div>
@@ -1576,18 +1527,15 @@ export default function DenialManagementPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <Badge color="blue">Our Proven Methodology</Badge>
+            <Badge color="blue">Proven RCM Methodology</Badge>
             <h2
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: "#113356" }}
             >
-              The PrimeTherapy Billing RAPID Denial Management Process
+              The RAPID Denial Resolution Framework Behind Our Therapy Billing Services
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Most billing teams handle denials reactively. By the time someone
-              reviews a denied claim, timely filing windows are closing. Our
-              RAPID process is built for speed, prevention, and measurable
-              outcomes.
+              Standard mental health billing operations typically react to rejections only after filing windows have already narrowed. Our RAPID framework deploys a proactive, data-driven approach—protecting your insurance claims for therapists through accelerated resolution, root-cause elimination, and measurable behavioral health RCM performance.
             </p>
           </div>
 
@@ -1670,7 +1618,7 @@ export default function DenialManagementPage() {
                   className="text-sm font-bold mb-1"
                   style={{ color: "#113356" }}
                 >
-                  Step {rapidSteps[activeStep].step} —{" "}
+                  Phase {rapidSteps[activeStep].step} —{" "}
                   {rapidSteps[activeStep].timeframe}
                 </div>
                 <h3
@@ -1689,15 +1637,15 @@ export default function DenialManagementPage() {
           <div className="text-center">
             <GoldBtn
               onClick={() =>
-                openModal("Implement the RAPID Denial Management Process")
+                openModal("Deploy the RAPID Framework for Your Practice")
               }
               className="px-9 py-4 text-base"
             >
               <ArrowRight className="w-5 h-5" />
-              Start the RAPID Process for Your Practice
+              Deploy the RAPID Framework for Your Practice
             </GoldBtn>
             <p className="mt-3 text-gray-400 text-xs">
-              Free consultation · No commitment required
+              Complimentary audit · Zero obligation
             </p>
           </div>
         </div>
@@ -1705,772 +1653,750 @@ export default function DenialManagementPage() {
 
       {/* ══ SERVICES ══════════════════════════════════════════════════════ */}
       <section className="py-20" style={{ background: "#f0f6ff" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="blue">End-to-End Denial Resolution</Badge>
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="blue">Denial Recovery for Therapy Practices</Badge>
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: "#113356" }}
+      >
+        Full-Cycle Denial Management Built for Therapy & Behavioral Health Billing
+      </h2>
+      <p className="text-gray-500 max-w-2xl mx-auto text-sm">
+        Claim denials in mental health and behavioral therapy billing don't resolve themselves — they demand a coordinated approach spanning root-cause analysis, targeted appeals, payer negotiation, and proactive prevention. Our team handles every stage so your practice recovers more and loses less.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {services.map((service, i) => {
+        const Icon = service.icon;
+        return (
+          <div
+            key={i}
+            className="bg-white border border-gray-200 rounded-2xl p-7 transition-all"
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#4689c8";
+              (e.currentTarget as HTMLDivElement).style.boxShadow =
+                "0 4px 20px rgba(17,51,86,0.12)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#e5e7eb";
+              (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+            }}
+          >
+            <div
+              className="rounded-xl p-3 w-fit mb-5"
+              style={{ background: "#f0f6ff" }}
+            >
+              <Icon className="w-6 h-6" style={{ color: "#113356" }} />
+            </div>
+            <div
+              className="font-extrabold text-sm mb-2"
+              style={{ color: "#4689c8" }}
+            >
+              0{i + 1}
+            </div>
+            <h3
+              className="text-lg font-bold mb-3"
               style={{ color: "#113356" }}
             >
-              Our Complete Denial Management Services
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Fixing denials is not one task — it is six different skill sets
-              working together, from initial identification to long-term
-              prevention.
+              {service.title}
+            </h3>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              {service.desc}
             </p>
           </div>
+        );
+      })}
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {services.map((service, i) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={i}
-                  className="bg-white border border-gray-200 rounded-2xl p-7 transition-all"
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#4689c8";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow =
-                      "0 4px 20px rgba(17,51,86,0.12)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#e5e7eb";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                  }}
-                >
-                  <div
-                    className="rounded-xl p-3 w-fit mb-5"
-                    style={{ background: "#f0f6ff" }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: "#113356" }} />
-                  </div>
-                  <div
-                    className="font-extrabold text-sm mb-2"
-                    style={{ color: "#4689c8" }}
-                  >
-                    0{i + 1}
-                  </div>
-                  <h3
-                    className="text-lg font-bold mb-3"
-                    style={{ color: "#113356" }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {service.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
-            <GoldBtn
-              onClick={() => openModal("Get a Free Denial Audit")}
-              className="px-9 py-4 text-base"
-            >
-              <Target className="w-5 h-5" />
-              Get Your Free Denial Audit
-            </GoldBtn>
-            <p className="mt-3 text-gray-400 text-xs">
-              Free consultation · No commitment required · Results within 30
-              days
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="text-center">
+      <GoldBtn
+        onClick={() => openModal("Get a Free Denial Audit")}
+        className="px-9 py-4 text-base"
+      >
+        <Target className="w-5 h-5" />
+        Claim Your Free Denial Analysis
+      </GoldBtn>
+      <p className="mt-3 text-gray-400 text-xs">
+        No contracts to sign · Zero upfront cost · Measurable recovery in 30 days
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* ══ WHO WE SERVE ══════════════════════════════════════════════════ */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="blue">Specialty-Specific Expertise</Badge>
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              style={{ color: "#113356" }}
-            >
-              Healthcare Providers We Serve Across the USA
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Denial patterns are not the same across every practice type. Our
-              healthcare denial management services are built around the specific
-              challenges each provider type actually faces.
-            </p>
-          </div>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="blue">Specialty-Driven Revenue Recovery</Badge>
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: "#113356" }}
+      >
+        Denial Management Solutions for Therapy Practices & Healthcare Providers Nationwide
+      </h2>
+      <p className="text-gray-500 max-w-2xl mx-auto text-sm">
+        Every medical discipline encounters unique reimbursement roadblocks. From mental health billing complexities to high-volume surgical claim rejections, our denial management strategies are engineered to address the exact payer pushback your specialty experiences.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            {[
-              {
-                num: "01",
-                title: "Physician Practices & Medical Groups",
-                desc: "Small practices and multi-specialty groups share one problem: limited staff wearing too many hats. Denials pile up because there is no bandwidth to work them properly. We step in as your dedicated denial team, keeping resolution moving without pulling your staff away from patient care.",
-                icon: Stethoscope,
-              },
-              {
-                num: "02",
-                title: "Hospitals & Health Systems",
-                desc: "Hospital denial management is a different challenge. DRG downgrades, inpatient versus observation disputes, and medical necessity challenges on high-dollar cases require physician advisor coordination, peer-to-peer review support, and stratification by dollar value.",
-                icon: Activity,
-              },
-              {
-                num: "03",
-                title: "Specialty Clinics & ASCs",
-                desc: "High-volume procedures and specialty-specific payer rules create denial exposure that general billing teams often miss. We handle ASC prior authorization demonstrations, CMS requirements, and payer-specific nuances that keep your surgical cases paid correctly.",
-                icon: Syringe,
-              },
-              {
-                num: "04",
-                title: "Behavioral Health & Ancillary Providers",
-                desc: "Behavioral health sees some of the highest denial rates in the industry. Level-of-care disputes, authorization complexities, and documentation standards that vary wildly between payers make this space uniquely challenging.",
-                icon: Brain,
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.num}
-                  className="flex gap-5 p-7 border border-gray-200 rounded-2xl transition-all"
-                  style={{ background: "#f0f6ff" }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#4689c8";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow =
-                      "0 2px 12px rgba(17,51,86,0.1)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#e5e7eb";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                  }}
-                >
-                  <div className="flex-shrink-0">
-                    <div
-                      className="rounded-xl p-3"
-                      style={{ background: "#113356" }}
-                    >
-                      <Icon className="w-6 h-6" style={{ color: "#4689c8" }} />
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="font-bold text-xs mb-1"
-                      style={{ color: "#4689c8" }}
-                    >
-                      {item.num}
-                    </div>
-                    <h3
-                      className="text-lg font-bold mb-2"
-                      style={{ color: "#113356" }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
+    <div className="grid md:grid-cols-2 gap-6 mb-12">
+      {[
+        {
+          num: "01",
+          title: "Independent Physicians & Medical Groups",
+          desc: "Independent physicians and multi-specialty groups often lack the dedicated bandwidth to chase down rejected insurance claims for therapists and general practitioners alike. We operate as your specialized denial resolution arm, recovering lost revenue without disrupting your front-office workflow or patient care standards.",
+          icon: Stethoscope,
+        },
+        {
+          num: "02",
+          title: "Hospitals & Integrated Health Systems",
+          desc: "Large health systems face high-stakes revenue leakage through DRG downgrades and medical necessity disputes. Our behavioral health RCM and hospital billing experts coordinate peer-to-peer reviews, leverage physician advisor insights, and prioritize high-dollar claim recoveries to protect your bottom line.",
+          icon: Activity,
+        },
+        {
+          num: "03",
+          title: "Ambulatory Surgery Centers & Specialty Clinics",
+          desc: "Ambulatory surgery centers and specialty clinics navigate intricate, payer-specific authorization rules that frequently trigger wrongful denials. We manage ASC demonstrations, enforce strict CMS compliance, and resolve complex procedural claim rejections to safeguard your surgical revenue.",
+          icon: Syringe,
+        },
+        {
+          num: "04",
+          title: "Mental Health, ABA & Ancillary Providers",
+          desc: "Mental health and ABA providers face disproportionately high claim rejection rates due to fluctuating documentation standards and level-of-care disputes. Our therapy billing services are purpose-built to tackle authorization hurdles and overturn behavioral health denials so you can focus on patient outcomes.",
+          icon: Brain,
+        },
+      ].map((item) => {
+        const Icon = item.icon;
+        return (
           <div
-            className="rounded-2xl p-8 border border-gray-200 mb-10"
+            key={item.num}
+            className="flex gap-5 p-7 border border-gray-200 rounded-2xl transition-all"
             style={{ background: "#f0f6ff" }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#4689c8";
+              (e.currentTarget as HTMLDivElement).style.boxShadow =
+                "0 2px 12px rgba(17,51,86,0.1)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#e5e7eb";
+              (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+            }}
           >
-            <h3
-              className="text-center text-xl font-bold mb-6"
-              style={{ color: "#113356" }}
-            >
-              Denial Management Expertise Across 50+ Medical Specialties
-            </h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {specialties.map(({ name, icon: Icon }) => (
-                <div
-                  key={name}
-                  className="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-700 font-medium transition-colors cursor-default"
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#4689c8";
-                    (e.currentTarget as HTMLDivElement).style.color = "#113356";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#e5e7eb";
-                    (e.currentTarget as HTMLDivElement).style.color = "#374151";
-                  }}
-                >
-                  <Icon className="w-3.5 h-3.5" style={{ color: "#4689c8" }} />
-                  {name}
-                </div>
-              ))}
+            <div className="flex-shrink-0">
+              <div
+                className="rounded-xl p-3"
+                style={{ background: "#113356" }}
+              >
+                <Icon className="w-6 h-6" style={{ color: "#4689c8" }} />
+              </div>
             </div>
-            <p className="text-center text-gray-500 text-xs mt-6">
-              Do not see your specialty?{" "}
-              <button
-                onClick={() => openModal("Ask About Your Specialty")}
-                className="font-bold hover:underline"
+            <div>
+              <div
+                className="font-bold text-xs mb-1"
+                style={{ color: "#4689c8" }}
+              >
+                {item.num}
+              </div>
+              <h3
+                className="text-lg font-bold mb-2"
                 style={{ color: "#113356" }}
               >
-                Ask us — we have likely handled your denial patterns before.
-              </button>
-            </p>
+                {item.title}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
           </div>
+        );
+      })}
+    </div>
 
-          <div className="text-center">
-            <GoldBtn
-              onClick={() =>
-                openModal("Find Out What You Are Losing to Denials")
-              }
-            >
-              <DollarSign className="w-4 h-4" />
-              Find Out What You Are Losing to Denials
-            </GoldBtn>
-            <p className="mt-2 text-gray-400 text-xs">
-              Free denial analysis · All 50 states · No obligation
-            </p>
+    <div
+      className="rounded-2xl p-8 border border-gray-200 mb-10"
+      style={{ background: "#f0f6ff" }}
+    >
+      <h3
+        className="text-center text-xl font-bold mb-6"
+        style={{ color: "#113356" }}
+      >
+        Proven Denial Recovery Across 50+ Medical Specialties
+      </h3>
+      <div className="flex flex-wrap gap-3 justify-center">
+        {specialties.map(({ name, icon: Icon }) => (
+          <div
+            key={name}
+            className="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 text-xs text-gray-700 font-medium transition-colors cursor-default"
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#4689c8";
+              (e.currentTarget as HTMLDivElement).style.color = "#113356";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#e5e7eb";
+              (e.currentTarget as HTMLDivElement).style.color = "#374151";
+            }}
+          >
+            <Icon className="w-3.5 h-3.5" style={{ color: "#4689c8" }} />
+            {name}
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+      <p className="text-center text-gray-500 text-xs mt-6">
+        Don't see your discipline listed?{" "}
+        <button
+          onClick={() => openModal("Ask About Your Specialty")}
+          className="font-bold hover:underline"
+          style={{ color: "#113356" }}
+        >
+          Reach out — our team has likely navigated your exact payer challenges.
+        </button>
+      </p>
+    </div>
+
+    <div className="text-center">
+      <GoldBtn
+        onClick={() =>
+          openModal("Find Out What You Are Losing to Denials")
+        }
+      >
+        <DollarSign className="w-4 h-4" />
+        Uncover Your Lost Revenue from Denied Claims
+      </GoldBtn>
+      <p className="mt-2 text-gray-400 text-xs">
+        Complimentary audit · Nationwide coverage · Zero commitment
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* ══ WHY PRIMETHERAPY BILLING ═══════════════════════════════════════════════════ */}
       <section
-        className="py-20 text-white"
-        style={{
-          background: "linear-gradient(135deg,#0d2640,#113356)",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="lightblue">Why PrimeTherapy Billing</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Healthcare Providers Choose PrimeTherapy Billing
-            </h2>
-            <p className="max-w-2xl mx-auto text-sm" style={{ color: "#bfdbfe" }}>
-              When you outsource denial management, you are trusting someone
-              else with your revenue. Here is what makes the difference.
-            </p>
-          </div>
+  className="py-20 text-white"
+  style={{
+    background: "linear-gradient(135deg,#0d2640,#113356)",
+  }}
+>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="lightblue">The PrimeTherapy Billing Advantage</Badge>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        Why Behavioral Health Practices Trust PrimeTherapy Billing for Revenue Recovery
+      </h2>
+      <p className="max-w-2xl mx-auto text-sm" style={{ color: "#bfdbfe" }}>
+        Handing over your revenue cycle to an external partner requires absolute confidence. Our approach to behavioral health RCM combines deep industry expertise with measurable accountability to protect your practice's financial health.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                icon: TrendingDown,
-                title: "Proven Results",
-                desc: "Denial rates below 4% vs. the 12% industry average. Appeal success above 85%. Revenue recovery improvements of 20-35% within the first year.",
-              },
-              {
-                icon: Clock,
-                title: "48-Hour Turnaround",
-                desc: "Every denied claim enters our workflow within 48 hours. Payer appeal windows are strict — every day a denial ages is a day closer to permanent write-off.",
-              },
-              {
-                icon: Award,
-                title: "Certified Expertise",
-                desc: "AAPC and AHIMA certified coders, CDI specialists, and RCM professionals with 10+ years of experience — without the cost of hiring in-house.",
-              },
-              {
-                icon: Zap,
-                title: "Technology + Human Judgment",
-                desc: "AI flags at-risk claims before submission. Complex appeals get human experts who understand clinical context, documentation requirements, and peer-to-peer reviews.",
-              },
-              {
-                icon: BarChart3,
-                title: "Complete Transparency",
-                desc: "Real-time dashboards, monthly performance reports by payer and category, and a dedicated team you can reach any time — not a faceless ticketing system.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "HIPAA Compliance & Security",
-                desc: "Strict HIPAA protocols, enterprise-grade security infrastructure, and regular third-party audits protect your patient data at every step.",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-2xl p-6 transition-colors"
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                  onMouseEnter={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.background =
-                      "rgba(255,255,255,0.1)")
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.currentTarget as HTMLDivElement).style.background =
-                      "rgba(255,255,255,0.05)")
-                  }
-                >
-                  <div
-                    className="rounded-xl p-3 w-fit mb-4"
-                    style={{ background: "rgba(70,137,200,0.2)" }}
-                  >
-                    <Icon className="w-5 h-5" style={{ color: "#4689c8" }} />
-                  </div>
-                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                  <p
-                    className="text-sm leading-relaxed"
-                    style={{ color: "#bfdbfe" }}
-                  >
-                    {item.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
-            <GoldBtn
-              onClick={() => openModal("Schedule Your Free Assessment")}
-              className="px-9 py-4 text-base"
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {[
+        {
+          icon: TrendingDown,
+          title: "Measurable Revenue Gains",
+          desc: "We maintain claim denial rates under 4%—a fraction of the 12% industry norm. Our clients routinely see a 20-35% increase in recovered revenue within their first year, driven by an 85%+ appeal overturn success rate.",
+        },
+        {
+          icon: Clock,
+          title: "Rapid 48-Hour Response",
+          desc: "Rejected insurance claims for therapists get worked within 48 hours. Because payer deadlines are unforgiving, we immediately intervene on aged denials to prevent permanent revenue write-offs and protect your cash flow.",
+        },
+        {
+          icon: Award,
+          title: "Board-Certified Specialists",
+          desc: "Gain access to AAPC and AHIMA certified medical coders, clinical documentation improvement specialists, and seasoned mental health billing professionals—all delivering a decade of expertise without the overhead of in-house hiring.",
+        },
+        {
+          icon: Zap,
+          title: "Smart Automation Backed by Clinical Insight",
+          desc: "Our advanced algorithms intercept vulnerable claims pre-submission, while our dedicated human specialists navigate complex clinical contexts, documentation mandates, and peer-to-peer discussions for your therapy billing services.",
+        },
+        {
+          icon: BarChart3,
+          title: "Full Financial Clarity",
+          desc: "Access live performance dashboards and detailed monthly reports categorized by payer and denial type. You get a dedicated, responsive team—not an anonymous help desk—ensuring your behavioral health RCM remains entirely transparent.",
+        },
+        {
+          icon: ShieldCheck,
+          title: "Ironclad Data Security",
+          desc: "Your patients' protected health information is safeguarded by rigorous HIPAA frameworks, enterprise-level encryption, and routine independent security audits woven into every phase of our therapy billing services.",
+        },
+      ].map((item) => {
+        const Icon = item.icon;
+        return (
+          <div
+            key={item.title}
+            className="rounded-2xl p-6 transition-colors"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.background =
+                "rgba(255,255,255,0.1)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLDivElement).style.background =
+                "rgba(255,255,255,0.05)")
+            }
+          >
+            <div
+              className="rounded-xl p-3 w-fit mb-4"
+              style={{ background: "rgba(70,137,200,0.2)" }}
             >
-              <Target className="w-5 h-5" />
-              Schedule Your Free Assessment
-            </GoldBtn>
-            <p className="mt-3 text-xs" style={{ color: "#4689c8" }}>
-              No commitment · Results within 30 days · All 50 states
+              <Icon className="w-5 h-5" style={{ color: "#4689c8" }} />
+            </div>
+            <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+            <p
+              className="text-sm leading-relaxed"
+              style={{ color: "#bfdbfe" }}
+            >
+              {item.desc}
             </p>
           </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+
+    <div className="text-center">
+      <GoldBtn
+        onClick={() => openModal("Schedule Your Free Assessment")}
+        className="px-9 py-4 text-base"
+      >
+        <Target className="w-5 h-5" />
+        Book Your Complimentary Revenue Assessment
+      </GoldBtn>
+      <p className="mt-3 text-xs" style={{ color: "#4689c8" }}>
+        Zero obligations · Noticeable impact in 30 days · Serving all 50 states
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* ══ PERFORMANCE METRICS + TESTIMONIALS ═══════════════════════════ */}
       <section className="py-20 bg-white" ref={metricsRef.ref}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="emerald">Verified Outcomes</Badge>
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              style={{ color: "#113356" }}
-            >
-              The Results Our Denial Management Clients Achieve
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Not promises. Not projections. Actual results from practices and
-              hospitals dealing with the same denial problems you are facing
-              right now.
-            </p>
-          </div>
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="emerald">Measurable Practice Growth</Badge>
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: "#113356" }}
+      >
+        Real Revenue Impact for Mental Health Billing & Therapy Practices
+      </h2>
+      <p className="text-gray-500 max-w-2xl mx-auto text-sm">
+        Concrete data — not empty promises. These are the exact outcomes achieved by behavioral health RCM clients who partnered with us to conquer their most persistent claim denials.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-            {metrics.map((m) => (
-              <div
-                key={m.label}
-                className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <h3 className="text-xs font-semibold text-gray-400 mb-4 uppercase tracking-wide">
-                  {m.label}
-                </h3>
-                <div className="flex items-end justify-between mb-4">
-                  <div>
-                    <div className="text-xs text-gray-400 mb-0.5">
-                      Industry Average
-                    </div>
-                    <div className="text-2xl font-bold text-gray-400">
-                      {m.industry}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs text-gray-400 mb-0.5">
-                      Our Clients
-                    </div>
-                    <div
-                      className="text-2xl font-bold"
-                      style={{ color: "#113356" }}
-                    >
-                      {m.ours}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full w-fit"
-                  style={
-                    m.positive
-                      ? { background: "#dbeafe", color: "#1e3a5f" }
-                      : {
-                          background: "rgba(70,137,200,0.15)",
-                          color: "#113356",
-                        }
-                  }
-                >
-                  {m.direction === "down" ? (
-                    <TrendingDown className="w-3.5 h-3.5" />
-                  ) : (
-                    <TrendingUp className="w-3.5 h-3.5" />
-                  )}
-                  {m.improvement}
-                </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
+      {metrics.map((m) => (
+        <div
+          key={m.label}
+          className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h3 className="text-xs font-semibold text-gray-400 mb-4 uppercase tracking-wide">
+            {m.label}
+          </h3>
+          <div className="flex items-end justify-between mb-4">
+            <div>
+              <div className="text-xs text-gray-400 mb-0.5">
+                Industry Standard
               </div>
-            ))}
+              <div className="text-2xl font-bold text-gray-400">
+                {m.industry}
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-xs text-gray-400 mb-0.5">
+                Our Partners
+              </div>
+              <div
+                className="text-2xl font-bold"
+                style={{ color: "#113356" }}
+              >
+                {m.ours}
+              </div>
+            </div>
           </div>
-
           <div
-            className="rounded-2xl p-8 text-white text-center mb-12"
-            style={{
-              background: "linear-gradient(135deg,#0d2640,#113356)",
-            }}
+            className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full w-fit"
+            style={
+              m.positive
+                ? { background: "#dbeafe", color: "#1e3a5f" }
+                : {
+                    background: "rgba(70,137,200,0.15)",
+                    color: "#113356",
+                  }
+            }
           >
-            <DollarSign
-              className="w-10 h-10 mx-auto mb-3"
-              style={{ color: "#4689c8" }}
-            />
-            <h3 className="text-2xl font-bold mb-3">
-              That 5% Improvement in Net Collections
-            </h3>
-            <p
-              className="max-w-xl mx-auto text-sm mb-5"
-              style={{ color: "#bfdbfe" }}
-            >
-              Looks small on paper. For a practice collecting $2 million
-              annually, it is{" "}
-              <strong style={{ color: "#4689c8" }}>$100,000 per year</strong>{" "}
-              that was previously walking out the door. Most clients see
-              measurable improvement within the first 60 days.
-            </p>
-            <GoldBtn
-              onClick={() =>
-                openModal("Calculate Your Revenue Recovery Potential")
-              }
-            >
-              <DollarSign className="w-4 h-4" />
-              Calculate Your Revenue Recovery Potential
-            </GoldBtn>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {testimonials.map((t) => (
-              <div
-                key={t.name}
-                className="border border-gray-200 rounded-2xl p-7"
-                style={{ background: "#f0f6ff" }}
-              >
-                <div className="flex mb-4">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4"
-                      style={{ color: "#4689c8", fill: "#4689c8" }}
-                    />
-                  ))}
-                </div>
-                <p className="text-gray-700 italic text-sm leading-relaxed mb-5">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="border-t border-gray-200 pt-4">
-                  <div className="font-bold" style={{ color: "#113356" }}>
-                    {t.name}
-                  </div>
-                  <div className="text-sm" style={{ color: "#4689c8" }}>
-                    {t.title}
-                  </div>
-                  <div className="text-gray-400 text-xs">{t.org}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <GoldBtn
-              onClick={() => openModal("Get Your Free Denial Assessment")}
-            >
-              <Target className="w-4 h-4" />
-              Get Your Free Denial Assessment
-            </GoldBtn>
+            {m.direction === "down" ? (
+              <TrendingDown className="w-3.5 h-3.5" />
+            ) : (
+              <TrendingUp className="w-3.5 h-3.5" />
+            )}
+            {m.improvement}
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+    <div
+      className="rounded-2xl p-8 text-white text-center mb-12"
+      style={{
+        background: "linear-gradient(135deg,#0d2640,#113356)",
+      }}
+    >
+      <DollarSign
+        className="w-10 h-10 mx-auto mb-3"
+        style={{ color: "#4689c8" }}
+      />
+      <h3 className="text-2xl font-bold mb-3">
+        What a 5% Leap in Net Collections Actually Means
+      </h3>
+      <p
+        className="max-w-xl mx-auto text-sm mb-5"
+        style={{ color: "#bfdbfe" }}
+      >
+        It might read like a minor shift on a spreadsheet. But for a practice bringing in $2 million annually, that equals{" "}
+        <strong style={{ color: "#4689c8" }}>$100,000 in reclaimed revenue</strong>{" "}
+        — money payers would otherwise withhold. Most practices leveraging our therapy billing services see this financial shift materialize within 60 days.
+      </p>
+      <GoldBtn
+        onClick={() =>
+          openModal("Calculate Your Revenue Recovery Potential")
+        }
+      >
+        <DollarSign className="w-4 h-4" />
+        Calculate Your Lost Revenue Recovery
+      </GoldBtn>
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-6 mb-10">
+      {testimonials.map((t) => (
+        <div
+          key={t.name}
+          className="border border-gray-200 rounded-2xl p-7"
+          style={{ background: "#f0f6ff" }}
+        >
+          <div className="flex mb-4">
+            {Array.from({ length: t.stars }).map((_, i) => (
+              <Star
+                key={i}
+                className="w-4 h-4"
+                style={{ color: "#4689c8", fill: "#4689c8" }}
+              />
+            ))}
+          </div>
+          <p className="text-gray-700 italic text-sm leading-relaxed mb-5">
+            &ldquo;{t.quote}&rdquo;
+          </p>
+          <div className="border-t border-gray-200 pt-4">
+            <div className="font-bold" style={{ color: "#113356" }}>
+              {t.name}
+            </div>
+            <div className="text-sm" style={{ color: "#4689c8" }}>
+              {t.title}
+            </div>
+            <div className="text-gray-400 text-xs">{t.org}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="text-center">
+      <GoldBtn
+        onClick={() => openModal("Get Your Free Denial Assessment")}
+      >
+        <Target className="w-4 h-4" />
+        Request Your No-Cost Denial Audit
+      </GoldBtn>
+    </div>
+  </div>
+</section>
 
       {/* ══ TECHNOLOGY ════════════════════════════════════════════════════ */}
       <section className="py-20" style={{ background: "#f0f6ff" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="lightblue">Advanced Technology</Badge>
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="lightblue">Data-Driven Billing Infrastructure</Badge>
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: "#113356" }}
+      >
+        Proprietary Technology That Protects Your Behavioral Health RCM
+      </h2>
+      <p className="text-gray-500 max-w-2xl mx-auto text-sm">
+        Insurance carriers leverage automated systems to reject insurance claims for therapists at scale. If your practice relies on manual tracking or basic spreadsheets to manage denials, you are fighting an uphill battle. Our advanced technology bridges that gap, giving your practice the upper hand in revenue recovery.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6 mb-12">
+      {[
+        {
+          icon: Target,
+          title: "Pre-Submission Claim Scrubber",
+          iconBg: "#113356",
+          iconColor: "#4689c8",
+          desc: "Our predictive scoring algorithm evaluates every claim prior to submission, identifying those at the highest risk of rejection. Missing behavioral therapy modifiers, documentation gaps, and coding discrepancies are resolved proactively. Practices leveraging our therapy billing services experience up to a 25% drop in initial claim rejections.",
+          stat: "25%",
+          statLabel: "decrease in first-pass denials",
+        },
+        {
+          icon: Zap,
+          title: "Intelligent Appeals Automation",
+          iconBg: "#4689c8",
+          iconColor: "#fff",
+          desc: "Generating appeals no longer requires hours of manual labor. Our system automatically compiles clinical data, CPT codes, and supporting records into payer-specific templates. Built-in compliance checks verify that every appeal meets strict carrier requirements before it goes out the door.",
+          stat: "48hrs",
+          statLabel: "average turnaround to resolution",
+        },
+        {
+          icon: BarChart3,
+          title: "Live Revenue Intelligence Dashboard",
+          iconBg: "#0d2640",
+          iconColor: "#fff",
+          desc: "Gain instant insight into your mental health billing metrics, including rejection rates, appeal progression, and recovered revenue. Want to pinpoint the exact carrier responsible for the majority of your denials? It takes just two clicks. This level of transparency empowers data-driven decisions for payer contracts and workflow optimization.",
+          stat: "100%",
+          statLabel: "transparency into claim status",
+        },
+      ].map((item) => {
+        const Icon = item.icon;
+        return (
+          <div
+            key={item.title}
+            className="bg-white border border-gray-200 rounded-2xl p-7 transition-all"
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#4689c8";
+              (e.currentTarget as HTMLDivElement).style.boxShadow =
+                "0 4px 20px rgba(17,51,86,0.12)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLDivElement).style.borderColor =
+                "#e5e7eb";
+              (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+            }}
+          >
+            <div
+              className="rounded-xl p-3 w-fit mb-5"
+              style={{ background: item.iconBg }}
+            >
+              <Icon className="w-6 h-6" style={{ color: item.iconColor }} />
+            </div>
+            <h3
+              className="text-lg font-bold mb-3"
               style={{ color: "#113356" }}
             >
-              Denial Management Technology That Levels the Playing Field
-            </h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-sm">
-              Payers are using algorithms to deny claims faster than your staff
-              can work them. If your denial process still runs on spreadsheets,
-              you are bringing a clipboard to a software fight.
+              {item.title}
+            </h3>
+            <p className="text-gray-500 text-sm leading-relaxed mb-5">
+              {item.desc}
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {[
-              {
-                icon: Target,
-                title: "Denial Prediction Engine",
-                iconBg: "#113356",
-                iconColor: "#4689c8",
-                desc: "Our prediction engine scores every claim before submission, flagging the ones most likely to be rejected. Missing modifiers, documentation gaps, coding mismatches — caught while there is still time to fix them. Practices using this technology see initial denial rates drop by up to 25%.",
-                stat: "25%",
-                statLabel: "reduction in initial denials",
-              },
-              {
-                icon: Zap,
-                title: "Automated Appeals Workflow",
-                iconBg: "#4689c8",
-                iconColor: "#fff",
-                desc: "Our automated workflow pulls claim data, diagnosis codes, and supporting documentation into payer-specific appeal templates. Validation checks run before anything gets sent, confirming the appeal meets submission requirements.",
-                stat: "48hrs",
-                statLabel: "average resolution time",
-              },
-              {
-                icon: BarChart3,
-                title: "Real-Time Analytics Dashboard",
-                iconBg: "#0d2640",
-                iconColor: "#fff",
-                desc: "Live visibility into denial rates, appeal status, recovery amounts, and trending patterns. Need to know which payer drives 40% of your denials? Two clicks. That kind of clarity drives smarter decisions about payer negotiations and workflows.",
-                stat: "100%",
-                statLabel: "denial visibility",
-              },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={item.title}
-                  className="bg-white border border-gray-200 rounded-2xl p-7 transition-all"
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#4689c8";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow =
-                      "0 4px 20px rgba(17,51,86,0.12)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.borderColor =
-                      "#e5e7eb";
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                  }}
-                >
-                  <div
-                    className="rounded-xl p-3 w-fit mb-5"
-                    style={{ background: item.iconBg }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: item.iconColor }} />
-                  </div>
-                  <h3
-                    className="text-lg font-bold mb-3"
-                    style={{ color: "#113356" }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-5">
-                    {item.desc}
-                  </p>
-                  <div
-                    className="rounded-xl px-4 py-2.5 inline-flex items-center gap-3 border border-gray-200"
-                    style={{ background: "#f0f6ff" }}
-                  >
-                    <span
-                      className="text-2xl font-extrabold"
-                      style={{ color: "#113356" }}
-                    >
-                      {item.stat}
-                    </span>
-                    <span className="text-xs text-gray-500 font-medium">
-                      {item.statLabel}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center">
-            <GoldBtn
-              onClick={() => openModal("Request a Live Technology Demo")}
-              className="px-9 py-4 text-base"
+            <div
+              className="rounded-xl px-4 py-2.5 inline-flex items-center gap-3 border border-gray-200"
+              style={{ background: "#f0f6ff" }}
             >
-              <Zap className="w-5 h-5" />
-              Request a Live Technology Demo
-            </GoldBtn>
+              <span
+                className="text-2xl font-extrabold"
+                style={{ color: "#113356" }}
+              >
+                {item.stat}
+              </span>
+              <span className="text-xs text-gray-500 font-medium">
+                {item.statLabel}
+              </span>
+            </div>
           </div>
-        </div>
-      </section>
+        );
+      })}
+    </div>
+
+    <div className="text-center">
+      <GoldBtn
+        onClick={() => openModal("Request a Live Technology Demo")}
+        className="px-9 py-4 text-base"
+      >
+        <Zap className="w-5 h-5" />
+        See Our Platform in Action
+      </GoldBtn>
+    </div>
+  </div>
+</section>
 
       {/* ══ FAQ ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <Badge color="blue">Support Center</Badge>
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
-              style={{ color: "#113356" }}
-            >
-              Frequently Asked Questions About Denial Management
-            </h2>
-            <p className="text-gray-500 text-sm">
-              Answers to the most common questions from healthcare providers
-              evaluating denial management services.
-            </p>
-          </div>
+  <div className="max-w-4xl mx-auto px-6">
+    <div className="text-center mb-14">
+      <Badge color="blue">Therapy Billing Insights</Badge>
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-4"
+        style={{ color: "#113356" }}
+      >
+        Essential Questions About Mental Health Billing and Denial Recovery
+      </h2>
+      <p className="text-gray-500 text-sm">
+        Straightforward answers for therapists, counselors, and behavioral health clinics looking to resolve rejected insurance claims and strengthen their revenue cycle.
+      </p>
+    </div>
 
-          <div className="mb-10">
-            {faqs.map((faq) => (
-              <FAQItem key={faq.q} q={faq.q} a={faq.a} />
-            ))}
-          </div>
+    <div className="mb-10">
+      {faqs.map((faq) => (
+        <FAQItem key={faq.q} q={faq.q} a={faq.a} />
+      ))}
+    </div>
 
-          <div className="text-center">
-            <p className="text-gray-400 mb-4 text-sm">
-              Still have questions about denial management?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <GoldBtn
-                onClick={() => openModal("Ask Our Denial Management Team")}
-              >
-                <Mail className="w-4 h-4" />
-                Contact Our Team
-              </GoldBtn>
-              <a
-                href="tel:+13464604441"
-                className="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all text-sm"
-                style={{
-                  border: "2px solid #113356",
-                  color: "#113356",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "#113356";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background =
-                    "transparent";
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#113356";
-                }}
-              >
-                <Phone className="w-4 h-4" />
-                Call +1 (346) 460-4441
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="text-center">
+      <p className="text-gray-400 mb-4 text-sm">
+        Have specific questions about how our therapy billing services fit your practice?
+      </p>
+      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <GoldBtn
+          onClick={() => openModal("Ask Our Denial Management Team")}
+        >
+          <Mail className="w-4 h-4" />
+          Ask Our Billing Experts
+        </GoldBtn>
+        <a
+          href="tel:+13464604441"
+          className="inline-flex items-center justify-center gap-2 font-bold px-7 py-3.5 rounded-xl transition-all text-sm"
+          style={{
+            border: "2px solid #113356",
+            color: "#113356",
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background =
+              "#113356";
+            (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.background =
+              "transparent";
+            (e.currentTarget as HTMLAnchorElement).style.color = "#113356";
+          }}
+        >
+          <Phone className="w-4 h-4" />
+          Call +1 (346) 460-4441
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ══ FINAL CTA ═════════════════════════════════════════════════════ */}
       <section
-        className="py-24 text-white"
-        style={{
-          background: "linear-gradient(135deg,#0d2640 0%,#113356 100%)",
-        }}
+  className="py-24 text-white"
+  style={{
+    background: "linear-gradient(135deg,#0d2640 0%,#113356 100%)",
+  }}
+>
+  <div className="max-w-4xl mx-auto px-6 text-center">
+
+    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+      Stop Revenue Leakage from{" "}
+      <span style={{ color: "#4689c8" }}>Rejected Mental Health Claims</span>
+    </h2>
+
+    <p
+      className="text-lg mb-4 max-w-2xl mx-auto leading-relaxed"
+      style={{ color: "#bfdbfe" }}
+    >
+      Unresolved claim rejections won't wait for your schedule. As payer filing
+      deadlines close, reimbursements that were fully recoverable yesterday can
+      transform into permanent financial write-offs for your practice.
+    </p>
+
+    <p
+      className="text-sm mb-10 max-w-xl mx-auto"
+      style={{ color: "#4689c8" }}
+    >
+      Our specialized therapy billing services empower behavioral health RCM
+      teams and independent practitioners nationwide to push denial rates below
+      4% and recapture revenue you may have already given up on. From resolving
+      complex insurance claims for therapists to optimizing mental health billing
+      workflows, we will pinpoint exactly where your income is leaking—at zero
+      cost to you.
+    </p>
+
+    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+      <GoldBtn
+        onClick={() => openModal("Get Your Free Denial Assessment")}
+        className="px-9 py-4 text-base"
       >
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <div
-            className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm mb-8"
-            style={{
-              background: "rgba(239,68,68,0.2)",
-              border: "1px solid rgba(239,68,68,0.3)",
-              color: "#fca5a5",
-            }}
-          >
-            <AlertTriangle className="w-4 h-4 flex-shrink-0" />
-            Every day denials go unworked, appeal windows shrink — act now
-          </div>
+        <Target className="w-5 h-5" />
+        Claim Your Complimentary Denial Audit
+      </GoldBtn>
+      <a
+        href="tel:+13464604441"
+        className="inline-flex items-center justify-center gap-2 text-white font-bold px-9 py-4 rounded-xl transition-all text-base"
+        style={{
+          background: "rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.3)",
+        }}
+        onMouseEnter={(e) =>
+          ((e.currentTarget as HTMLAnchorElement).style.background =
+            "rgba(255,255,255,0.2)")
+        }
+        onMouseLeave={(e) =>
+          ((e.currentTarget as HTMLAnchorElement).style.background =
+            "rgba(255,255,255,0.1)")
+        }
+      >
+        <Phone className="w-5 h-5" />
+        Call +1 (346) 460-4441
+      </a>
+    </div>
 
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-            Stop Losing Revenue to{" "}
-            <span style={{ color: "#4689c8" }}>Denied Claims</span>
-          </h2>
+    <div
+      className="flex flex-wrap justify-center gap-6 text-sm mb-14"
+      style={{ color: "#bfdbfe" }}
+    >
+      {[
+        { icon: ShieldCheck, text: "Complimentary audit" },
+        { icon: Lock, text: "HIPAA secure" },
+        { icon: CheckCircle, text: "Zero commitment" },
+        { icon: TrendingUp, text: "Impact in 30 days" },
+      ].map(({ icon: Icon, text }) => (
+        <div key={text} className="flex items-center gap-2">
+          <Icon className="w-4 h-4" style={{ color: "#4689c8" }} />
+          {text}
+        </div>
+      ))}
+    </div>
 
-          <p
-            className="text-lg mb-4 max-w-2xl mx-auto leading-relaxed"
-            style={{ color: "#bfdbfe" }}
-          >
-            Denied claims do not wait for you to get around to them. Every day
-            they sit untouched, timely filing windows shrink. What was
-            recoverable last week becomes a permanent write-off next month.
-          </p>
-
-          <p
-            className="text-sm mb-10 max-w-xl mx-auto"
-            style={{ color: "#4689c8" }}
-          >
-            Our denial management services help providers across all 50 states
-            cut denial rates below 4% and recover revenue they had already
-            written off. We will show you exactly where the leaks are — at no
-            cost.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <GoldBtn
-              onClick={() => openModal("Get Your Free Denial Assessment")}
-              className="px-9 py-4 text-base"
+    <div
+      className="border-t pt-10"
+      style={{ borderColor: "rgba(255,255,255,0.2)" }}
+    >
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {[
+          { value: "4,000+", label: "Therapy & Medical Practices" },
+          { value: "<4%", label: "Client Denial Rate" },
+          { value: "85%+", label: "Appeal Overturn Rate" },
+          { value: "35%", label: "Revenue Recaptured" },
+        ].map((item) => (
+          <div key={item.label} className="text-center">
+            <div
+              className="text-2xl font-extrabold"
+              style={{ color: "#4689c8" }}
             >
-              <Target className="w-5 h-5" />
-              Get Your Free Denial Assessment
-            </GoldBtn>
-            <a
-              href="tel:+13464604441"
-              className="inline-flex items-center justify-center gap-2 text-white font-bold px-9 py-4 rounded-xl transition-all text-base"
-              style={{
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.3)",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.2)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLAnchorElement).style.background =
-                  "rgba(255,255,255,0.1)")
-              }
-            >
-              <Phone className="w-5 h-5" />
-              Call +1 (346) 460-4441
-            </a>
-          </div>
-
-          <div
-            className="flex flex-wrap justify-center gap-6 text-sm mb-14"
-            style={{ color: "#bfdbfe" }}
-          >
-            {[
-              { icon: ShieldCheck, text: "No cost assessment" },
-              { icon: Lock, text: "HIPAA compliant" },
-              { icon: CheckCircle, text: "No obligation" },
-              { icon: TrendingUp, text: "Results within 30 days" },
-            ].map(({ icon: Icon, text }) => (
-              <div key={text} className="flex items-center gap-2">
-                <Icon className="w-4 h-4" style={{ color: "#4689c8" }} />
-                {text}
-              </div>
-            ))}
-          </div>
-
-          <div
-            className="border-t pt-10"
-            style={{ borderColor: "rgba(255,255,255,0.2)" }}
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { value: "4,000+", label: "Healthcare Clients" },
-                { value: "<4%", label: "Average Denial Rate" },
-                { value: "85%+", label: "Appeal Success Rate" },
-                { value: "35%", label: "Revenue Recovery Improvement" },
-              ].map((item) => (
-                <div key={item.label} className="text-center">
-                  <div
-                    className="text-2xl font-extrabold"
-                    style={{ color: "#4689c8" }}
-                  >
-                    {item.value}
-                  </div>
-                  <div className="text-xs mt-1" style={{ color: "#bfdbfe" }}>
-                    {item.label}
-                  </div>
-                </div>
-              ))}
+              {item.value}
+            </div>
+            <div className="text-xs mt-1" style={{ color: "#bfdbfe" }}>
+              {item.label}
             </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ══ MODAL ═════════════════════════════════════════════════════════ */}
       <ContactModal
