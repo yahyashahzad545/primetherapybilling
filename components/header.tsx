@@ -42,17 +42,52 @@ const THERAPY_SPECIALTIES = [
 ];
 
 const BILLING_SERVICES = [
-  { href: "/services/medical-billing", label: "Medical Billing" },
-  { href: "/services/medical-coding", label: "Medical Coding" },
-  { href: "/services/credentialing", label: "Credentialing & Contracting" },
-  { href: "/services/billing-audit", label: "Billing Audit" },
-  { href: "/services/eligibility-verification", label: "Verification of Benefits" },
-  { href: "/services/payment-posting", label: "Payment Posting" },
-  { href: "/services/denial-management", label: "Denial Management" },
-  { href: "/services/ar-follow-up", label: "AR Follow-Up" },
-  { href: "/services/claim-submission", label: "Claim Submission" },
-  { href: "/services/prior-authorization", label: "Prior Authorization" },
-  { href: "/services/healthcare-marketing", label: "Healthcare Marketing" },
+  {
+    href: "/services/medical-billing",
+    label: "Medical Billing",
+    iconPaths: [
+      "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z",
+      "M14 2v6h6",
+      "M16 13H8",
+      "M16 17H8",
+      "M10 9H8",
+    ],
+  },
+  {
+    href: "/services/revenue-cycle-management",
+    label: "Revenue Cycle Management",
+    iconPaths: [
+      "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+    ],
+  },
+  {
+    href: "/services/credentialing",
+    label: "Credentialing & Contracting",
+    iconPaths: [
+      "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+    ],
+  },
+  {
+    href: "/services/denial-management",
+    label: "Denial Management",
+    iconPaths: [
+      "M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01",
+    ],
+  },
+  {
+    href: "/services/ar-follow-up",
+    label: "AR Follow-Up",
+    iconPaths: [
+      "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z",
+    ],
+  },
+  {
+    href: "/services/claim-submission",
+    label: "Claim Submission",
+    iconPaths: [
+      "M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5",
+    ],
+  },
 ];
 
 const SOCIAL_LINKS = [
@@ -79,26 +114,71 @@ const SOCIAL_LINKS = [
 ];
 
 // ─── Services split into 3 columns ────────────────────────────────────────────
-const servicesCol1 = BILLING_SERVICES.slice(0, 3);
-const servicesCol2 = BILLING_SERVICES.slice(3, 6);
-const servicesCol3 = BILLING_SERVICES.slice(6, 9);
+const servicesCol1 = BILLING_SERVICES.slice(0, 2);
+const servicesCol2 = BILLING_SERVICES.slice(2, 4);
+const servicesCol3 = BILLING_SERVICES.slice(4, 6);
 
-// ─── Icon Placeholder ─────────────────────────────────────────────────────────
-function IconPlaceholder() {
+// ─── Service Icon ─────────────────────────────────────────────────────────────
+function ServiceIcon({ paths }: { paths: string[] }) {
   return (
     <div
       style={{
         width: 35,
         height: 35,
         flexShrink: 0,
-        background: "#f9fafb",
-        border: "1px dashed #d1d5db",
+        background: "#EFF6FF",
+        borderRadius: 6,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <svg
+        className="w-5 h-5 text-[#113356]"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {paths.map((d, i) => (
+          <path key={i} d={d} />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+// ─── Mobile Service Icon (smaller) ────────────────────────────────────────────
+function MobileServiceIcon({ paths }: { paths: string[] }) {
+  return (
+    <div
+      style={{
+        width: 20,
+        height: 20,
+        flexShrink: 0,
+        background: "#EFF6FF",
         borderRadius: 4,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
-    />
+    >
+      <svg
+        className="w-3 h-3 text-[#113356]"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {paths.map((d, i) => (
+          <path key={i} d={d} />
+        ))}
+      </svg>
+    </div>
   );
 }
 
@@ -351,14 +431,14 @@ export default function Header() {
             {/* ── SERVICES DROPDOWN ── */}
             <DesktopDropdown label="Services" width={560}>
               <div className="my-3 lg:my-4 mx-0 lg:mx-3">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4 mb-3">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-4">
                   {/* Column 1 */}
                   <div>
                     <ul className="list-none">
                       {servicesCol1.map((item) => (
                         <li key={item.href} className="mb-3 border-b border-gray-200 pb-2">
                           <Link href={item.href} className="flex items-center text-gray-700 hover:text-[#113356] transition-colors text-sm">
-                            <IconPlaceholder />
+                            <ServiceIcon paths={item.iconPaths} />
                             <span className="ml-3">{item.label}</span>
                           </Link>
                         </li>
@@ -371,7 +451,7 @@ export default function Header() {
                       {servicesCol2.map((item) => (
                         <li key={item.href} className="mb-3 border-b border-gray-200 pb-2">
                           <Link href={item.href} className="flex items-center text-gray-700 hover:text-[#113356] transition-colors text-sm">
-                            <IconPlaceholder />
+                            <ServiceIcon paths={item.iconPaths} />
                             <span className="ml-3">{item.label}</span>
                           </Link>
                         </li>
@@ -384,18 +464,13 @@ export default function Header() {
                       {servicesCol3.map((item) => (
                         <li key={item.href} className="mb-3 border-b border-gray-200 pb-2">
                           <Link href={item.href} className="flex items-center text-gray-700 hover:text-[#113356] transition-colors text-sm">
-                            <IconPlaceholder />
+                            <ServiceIcon paths={item.iconPaths} />
                             <span className="ml-3">{item.label}</span>
                           </Link>
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
-                <div className="text-center">
-                  <Link href="/services" className="inline-block px-5 py-1.5 bg-[#113356] text-white text-[13px] font-semibold rounded hover:bg-[#0d2645] transition-colors">
-                    View all Services
-                  </Link>
                 </div>
               </div>
             </DesktopDropdown>
@@ -515,7 +590,7 @@ export default function Header() {
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center gap-2 py-1.5 px-2 text-sm text-gray-600 hover:text-[#113356] hover:bg-gray-50 rounded transition-colors"
                   >
-                    <div className="w-5 h-5 flex-shrink-0 bg-gray-100 border border-dashed border-gray-300 rounded" />
+                    <MobileServiceIcon paths={item.iconPaths} />
                     {item.label}
                   </Link>
                 ))}
