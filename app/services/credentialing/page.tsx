@@ -525,6 +525,7 @@ function CredentialingFormSection({
           name: `${formData.first_name} ${formData.last_name}`,
           email: formData.work_email,
           phone: formData.phone,
+          practice: "",
           message: formData.contact_message_custom,
           source: "Credentialing Page — Top Form",
         }),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ─── Icon Paths (8 unique medical-themed SVG paths) ─────────────────────────
 const ICON_PATHS = [
@@ -108,11 +108,25 @@ const TRUST_BADGES = [
   { label: "Free Revenue Audit", icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" },
 ];
 
+// ─── Phone Formatting Helper ────────────────────────────────────────────────
+function formatPhone(value: string): string {
+  let input = value.replace(/\D/g, "");
+  if (input.length > 10) input = input.slice(0, 10);
+  if (input.length > 6) {
+    return `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
+  } else if (input.length > 3) {
+    return `(${input.slice(0, 3)}) ${input.slice(3)}`;
+  } else if (input.length > 0) {
+    return `(${input}`;
+  }
+  return input;
+}
+
 // ─── Main Component ──────────────────────────────────────────────────────────
 export default function SpecialtiesPage() {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [auditForm, setAuditForm] = useState({ name: "", phone: "", email: "", specialty: "", message: "" });
-  const [ctaForm, setCtaForm] = useState({ specialty: "", name: "", email: "", phone: "", message: "" });
+  const [auditForm, setAuditForm] = useState({ name: "", phone: "", email: "", practice: "", message: "" });
+  const [ctaForm, setCtaForm] = useState({ practice: "", name: "", email: "", phone: "", message: "" });
   const [auditLoading, setAuditLoading] = useState(false);
   const [ctaLoading, setCtaLoading] = useState(false);
   const [auditSuccess, setAuditSuccess] = useState(false);
@@ -125,6 +139,26 @@ export default function SpecialtiesPage() {
   const [specialtyLoading, setSpecialtyLoading] = useState(false);
   const [specialtySuccess, setSpecialtySuccess] = useState(false);
   const [specialtyError, setSpecialtyError] = useState("");
+
+  // ── Body scroll lock + Escape key for specialty modal ──
+  useEffect(() => {
+    document.body.style.overflow = specialtyModalOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [specialtyModalOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSpecialtyModalOpen(false);
+        setSelectedSpecialty(null);
+        setSpecialtyForm({ name: "", phone: "", email: "", message: "" });
+        setSpecialtySuccess(false);
+        setSpecialtyError("");
+      }
+    };
+    if (specialtyModalOpen) window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [specialtyModalOpen]);
 
   const filtered = activeFilter === "all" ? SPECIALTIES : SPECIALTIES.filter((s) => s.category === activeFilter);
 
@@ -144,7 +178,7 @@ export default function SpecialtiesPage() {
         return;
       }
       setAuditSuccess(true);
-      setAuditForm({ name: "", phone: "", email: "", specialty: "", message: "" });
+      setAuditForm({ name: "", phone: "", email: "", practice: "", message: "" });
     } catch {
       setAuditError("Failed to send. Please check your connection and try again.");
     } finally {
@@ -168,7 +202,7 @@ export default function SpecialtiesPage() {
         return;
       }
       setCtaSuccess(true);
-      setCtaForm({ specialty: "", name: "", email: "", phone: "", message: "" });
+      setCtaForm({ practice: "", name: "", email: "", phone: "", message: "" });
     } catch {
       setCtaError("Failed to send. Please check your connection and try again.");
     } finally {
@@ -194,7 +228,7 @@ export default function SpecialtiesPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...specialtyForm,
-          specialty: selectedSpecialty,
+          practice: selectedSpecialty,
           source: `Specialties Page — ${selectedSpecialty} Card Click`,
         }),
       });
@@ -412,7 +446,7 @@ export default function SpecialtiesPage() {
                       </div>
                       <div>
                         <label className={labelClass}>Phone</label>
-                        <input type="tel" value={auditForm.phone} onChange={(e) => setAuditForm({ ...auditForm, phone: e.target.value })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
+                        <input type="tel" value={auditForm.phone} onChange={(e) => setAuditForm({ ...auditForm, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
                       </div>
                     </div>
                     <div>
@@ -421,7 +455,7 @@ export default function SpecialtiesPage() {
                     </div>
                     <div>
                       <label className={labelClass}>Specialty</label>
-                      <select value={auditForm.specialty} onChange={(e) => setAuditForm({ ...auditForm, specialty: e.target.value })} className={inputClass} onFocus={focusStyle} onBlur={blurStyle}>
+                      <select value={auditForm.practice} onChange={(e) => setAuditForm({ ...auditForm, practice: e.target.value })} className={inputClass} onFocus={focusStyle} onBlur={blurStyle}>
                         <option value="">Select your therapy specialty</option>
                         {SPECIALTY_OPTIONS.map((s, i) => <option key={i} value={s}>{s}</option>)}
                       </select>
@@ -601,7 +635,7 @@ export default function SpecialtiesPage() {
                     )}
                     <div>
                       <label className={labelClass}>Your Therapy Discipline</label>
-                      <input type="text" value={ctaForm.specialty} onChange={(e) => setCtaForm({ ...ctaForm, specialty: e.target.value })} placeholder="e.g., Art Therapy, Dance/Movement Therapy, Hypnotherapy..." className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
+                      <input type="text" value={ctaForm.practice} onChange={(e) => setCtaForm({ ...ctaForm, practice: e.target.value })} placeholder="e.g., Art Therapy, Dance/Movement Therapy, Hypnotherapy..." className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
@@ -615,7 +649,7 @@ export default function SpecialtiesPage() {
                     </div>
                     <div>
                       <label className={labelClass}>Phone</label>
-                      <input type="tel" value={ctaForm.phone} onChange={(e) => setCtaForm({ ...ctaForm, phone: e.target.value })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
+                      <input type="tel" value={ctaForm.phone} onChange={(e) => setCtaForm({ ...ctaForm, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
                     </div>
                     <div>
                       <label className={labelClass}>Describe the revenue cycle challenges affecting your practice</label>
@@ -793,7 +827,7 @@ export default function SpecialtiesPage() {
                       <input
                         type="tel"
                         value={specialtyForm.phone}
-                        onChange={(e) => setSpecialtyForm({ ...specialtyForm, phone: e.target.value })}
+                        onChange={(e) => setSpecialtyForm({ ...specialtyForm, phone: formatPhone(e.target.value) })}
                         placeholder="(555) 123-4567"
                         className={inputClass}
                         onFocus={focusStyle}

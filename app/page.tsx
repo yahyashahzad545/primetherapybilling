@@ -635,6 +635,18 @@ export default function Home() {
   // ── NEW: Hero form success state ─────────────────────────────────────
   const [heroSuccess, setHeroSuccess] = useState(false);
 
+  // ── CTA form state ─────────────────────────────────────────────────────
+  const [ctaForm, setCtaForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    practice: "",
+    message: "",
+  });
+  const [loadingCta, setLoadingCta] = useState(false);
+  const [ctaSuccess, setCtaSuccess] = useState(false);
+
   // ── Popup state ────────────────────────────────────────────────────────
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupTitle, setPopupTitle] = useState("");
@@ -2129,129 +2141,244 @@ export default function Home() {
               FINAL CTA SECTION
           ================================================================ */}
           <section
-            className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 relative overflow-hidden"
-            style={{ background: "linear-gradient(135deg, #0e3256 0%, #1b5fa0 50%, #3e8ad6 100%)" }}
+  className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 relative overflow-hidden"
+  style={{ background: "linear-gradient(135deg, #0e3256 0%, #1b5fa0 50%, #3e8ad6 100%)" }}
+>
+  <FloatingParticles />
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "#3e8ad6" }} />
+    <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "#0e3256" }} />
+    <div className="absolute top-20 right-20 w-16 h-16 border-2 border-white/10 rounded-xl rotate-12 animate-rotateSlow" />
+    <div className="absolute bottom-20 left-20 w-10 h-10 border-2 border-white/10 rounded-full animate-bounceGentle" />
+  </div>
+
+  <div ref={ctaRef} className="max-w-7xl mx-auto relative z-10">
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Left */}
+      <div
+        className={`transition-all duration-700 ${ctaInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+      >
+        <Badge light>Behavioral Health RCM Audit</Badge>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 leading-tight">
+          Claims Get Submitted Daily.{" "}
+          <span className="shimmer-text block mt-2">
+            But Is Every Earned Dollar Hitting Your Bank Account?
+          </span>
+        </h2>
+        <p className="text-blue-100 text-base sm:text-lg mb-6 leading-relaxed">
+          Therapists who switch to our therapy billing services don't get guesswork—they receive a granular revenue leak diagnostic during their very first billing cycle. We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix.
+        </p>
+        <p className="text-blue-100 text-base mb-8 leading-relaxed">
+          In just 20 minutes, our specialists will map out your revenue bottlenecks and quantify the income you’re leaving on the table. Zero obligations, no high-pressure sales tactics—just the hard numbers your practice needs to scale confidently.
+        </p>
+
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          {[
+            { icon: "🚫", label: "Zero Onboarding Fees" },
+            { icon: "📋", label: "No Lock-In Agreements" },
+            { icon: "🔒", label: "Strict HIPAA Security" },
+            { icon: "⚡", label: "First-Cycle Impact" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center gap-3 glass-card rounded-xl p-3 card-hover"
+            >
+              <span className="text-xl">{item.icon}</span>
+              <span className="text-white text-sm font-semibold">{item.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button
+            onClick={() => openPopup(
+              "Claim My Free Revenue Analysis",
+              "We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix."
+            )}
+            className="group bg-white px-7 py-4 rounded-xl font-bold shadow-2xl hover:-translate-y-1 hover:shadow-white/20 transition-all duration-300 text-base relative overflow-hidden"
+            style={{ color: "#0e3256" }}
           >
-            <FloatingParticles />
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-10 blur-3xl" style={{ background: "#3e8ad6" }} />
-              <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "#0e3256" }} />
-              <div className="absolute top-20 right-20 w-16 h-16 border-2 border-white/10 rounded-xl rotate-12 animate-rotateSlow" />
-              <div className="absolute bottom-20 left-20 w-10 h-10 border-2 border-white/10 rounded-full animate-bounceGentle" />
+            <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative flex items-center justify-center gap-2">
+              Claim My Free Revenue Analysis
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </button>
+          <a
+            href="tel:+13464604441"
+            className="flex items-center justify-center gap-2 border-2 border-white/50 text-white px-7 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 text-base backdrop-blur-sm"
+          >
+            <Icons.Phone />
+            (346) 460-4441
+          </a>
+        </div>
+
+        <div className="mt-6 flex gap-4 flex-wrap">
+          {[
+            { value: "@3.99%", label: "Therapy Billing" },
+            { value: "$99", label: "Provider Credentialing" },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-2 glass-card rounded-xl px-4 py-2.5 card-hover">
+              <div className="text-white font-extrabold text-lg">{item.value}</div>
+              <div className="text-blue-200 text-xs">{item.label}</div>
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div ref={ctaRef} className="max-w-7xl mx-auto relative z-10">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                {/* Left */}
-                <div
-                  className={`transition-all duration-700 ${ctaInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
-                >
-                  <Badge light>Behavioral Health RCM Audit</Badge>
-                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5 leading-tight">
-                    Claims Get Submitted Daily.{" "}
-                    <span className="shimmer-text block mt-2">
-                      But Is Every Earned Dollar Hitting Your Bank Account?
-                    </span>
-                  </h2>
-                  <p className="text-blue-100 text-base sm:text-lg mb-6 leading-relaxed">
-                    Therapists who switch to our therapy billing services don't get guesswork—they receive a granular revenue leak diagnostic during their very first billing cycle. We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix.
-                  </p>
-                  <p className="text-blue-100 text-base mb-8 leading-relaxed">
-                    In just 20 minutes, our specialists will map out your revenue bottlenecks and quantify the income you’re leaving on the table. Zero obligations, no high-pressure sales tactics—just the hard numbers your practice needs to scale confidently.
-                  </p>
+      {/* Right: Contact Form */}
+      <div
+        className={`bg-white rounded-3xl p-7 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-700 delay-300 ${ctaInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+      >
+        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
 
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    {[
-                      { icon: "🚫", label: "Zero Onboarding Fees" },
-                      { icon: "📋", label: "No Lock-In Agreements" },
-                      { icon: "🔒", label: "Strict HIPAA Security" },
-                      { icon: "⚡", label: "First-Cycle Impact" },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-3 glass-card rounded-xl p-3 card-hover"
-                      >
-                        <span className="text-xl">{item.icon}</span>
-                        <span className="text-white text-sm font-semibold">{item.label}</span>
-                      </div>
-                    ))}
-                  </div>
+        {ctaSuccess ? (
+          /* ── CTA Form Thank You Message ── */
+          <div className="py-8 text-center">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+              <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-extrabold mb-3" style={{ color: "#0e3256" }}>
+              Request Received!
+            </h3>
+            <p className="text-gray-500 text-sm leading-relaxed mb-2">
+              Your free revenue audit request has been submitted successfully.
+            </p>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              A specialist will reach out within{" "}
+              <span className="font-semibold text-gray-700">24–48 business hours</span>{" "}
+              to walk through your billing performance and identify revenue opportunities.
+            </p>
+            <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+              <p className="text-xs text-blue-700 font-medium">
+                💡 While you wait, browse our therapy billing services or call us directly for immediate support.
+              </p>
+            </div>
+          </div>
+        ) : (
+          /* ── CTA Form ── */
+          <>
+            <h3 className="text-xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
+              Optimize Your Mental Health Billing Today
+            </h3>
+            <p className="text-gray-500 text-sm mb-6">
+              Share your practice details below. One of our insurance claims for therapists specialists will craft a customized revenue recovery strategy within 24 hours.
+            </p>
 
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button
-                      onClick={() => openPopup(
-                        "Claim My Free Revenue Analysis",
-                        "We analyze your actual claims data to expose exactly where your behavioral health RCM is breaking down, then deploy a targeted fix."
-                      )}
-                      className="group bg-white px-7 py-4 rounded-xl font-bold shadow-2xl hover:-translate-y-1 hover:shadow-white/20 transition-all duration-300 text-base relative overflow-hidden"
-                      style={{ color: "#0e3256" }}
-                    >
-                      <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="relative flex items-center justify-center gap-2">
-                        Claim My Free Revenue Analysis
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                      </span>
-                    </button>
-                    <a
-                      href="tel:+13464604441"
-                      className="flex items-center justify-center gap-2 border-2 border-white/50 text-white px-7 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 text-base backdrop-blur-sm"
-                    >
-                      <Icons.Phone />
-                      (346) 460-4441
-                    </a>
-                  </div>
-
-                  <div className="mt-6 flex gap-4 flex-wrap">
-                    {[
-                      { value: "@3.99%", label: "Therapy Billing" },
-                      { value: "$99", label: "Provider Credentialing" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2 glass-card rounded-xl px-4 py-2.5 card-hover">
-                        <div className="text-white font-extrabold text-lg">{item.value}</div>
-                        <div className="text-blue-200 text-xs">{item.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right: Contact Form */}
-                <div
-                  className={`bg-white rounded-3xl p-7 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-700 delay-300 ${ctaInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
-                >
-                  <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
-
-                  <h3 className="text-xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
-                    Optimize Your Mental Health Billing Today
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-6">
-                    Share your practice details below. One of our insurance claims for therapists specialists will craft a customized revenue recovery strategy within 24 hours.
-                  </p>
-
-                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <StyledInput type="text" placeholder="John" label="First Name" />
-                      <StyledInput type="text" placeholder="Doe" label="Last Name" />
-                    </div>
-                    <StyledInput type="email" placeholder="john@practice.com" label="Email Address" />
-                    <StyledInput type="tel" placeholder="(555) 123-4567" label="Phone Number" />
-                    <StyledSelect label="Practice Specialty" options={specialtyNames} />
-                    <StyledTextarea placeholder="Tell us about your billing needs..." label="Message" />
-                    <button
-                      type="submit"
-                      className="w-full text-white py-4 rounded-xl font-bold text-base hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
-                      style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                    >
-                      <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span className="relative">
-                        Request My Free Analysis →
-                      </span>
-                    </button>
-                    <p className="text-center text-xs text-gray-400">🔒 100% HIPAA-Compliant Data Security</p>
-                  </form>
-                </div>
+            <form 
+              className="space-y-4" 
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setLoadingCta(true);
+                try {
+                  const res = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      name: `${ctaForm.firstName} ${ctaForm.lastName}`.trim(),
+                      email: ctaForm.email,
+                      phone: ctaForm.phone,
+                      practice: ctaForm.practice,
+                      message: ctaForm.message,
+                      source: "CTA Section Form",
+                    }),
+                  });
+                  const data = await res.json();
+                  if (!res.ok) {
+                    alert(data.error || "Something went wrong");
+                    return;
+                  }
+                  setCtaSuccess(true);
+                  setCtaForm({
+                    firstName: "",
+                    lastName: "",
+                    email: "",
+                    phone: "",
+                    practice: "",
+                    message: "",
+                  });
+                } catch (err) {
+                  alert("❌ Failed to send");
+                } finally {
+                  setLoadingCta(false);
+                }
+              }}
+            >
+              <div className="grid sm:grid-cols-2 gap-4">
+                <StyledInput 
+                  type="text" 
+                  placeholder="John" 
+                  label="First Name" 
+                  value={ctaForm.firstName}
+                  onChange={(e: any) => setCtaForm({ ...ctaForm, firstName: e.target.value })}
+                />
+                <StyledInput 
+                  type="text" 
+                  placeholder="Doe" 
+                  label="Last Name" 
+                  value={ctaForm.lastName}
+                  onChange={(e: any) => setCtaForm({ ...ctaForm, lastName: e.target.value })}
+                />
               </div>
-            </div>
-          </section>
+              <StyledInput 
+                type="email" 
+                placeholder="john@practice.com" 
+                label="Email Address" 
+                value={ctaForm.email}
+                onChange={(e: any) => setCtaForm({ ...ctaForm, email: e.target.value })}
+              />
+              <StyledInput 
+                type="tel" 
+                placeholder="(555) 123-4567" 
+                label="Phone Number" 
+                value={ctaForm.phone}
+                onChange={(e: any) => {
+                  let input = e.target.value.replace(/\D/g, "");
+                  if (input.length > 10) input = input.slice(0, 10);
+                  let formatted = input;
+                  if (input.length > 6) {
+                    formatted = `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
+                  } else if (input.length > 3) {
+                    formatted = `(${input.slice(0, 3)}) ${input.slice(3)}`;
+                  } else if (input.length > 0) {
+                    formatted = `(${input}`;
+                  }
+                  setCtaForm({ ...ctaForm, phone: formatted });
+                }}
+              />
+              <StyledSelect 
+                label="Practice Specialty" 
+                options={specialtyNames} 
+                value={ctaForm.practice}
+                onChange={(e: any) => setCtaForm({ ...ctaForm, practice: e.target.value })}
+              />
+              <StyledTextarea 
+                placeholder="Tell us about your billing needs..." 
+                label="Message" 
+                value={ctaForm.message}
+                onChange={(e: any) => setCtaForm({ ...ctaForm, message: e.target.value })}
+              />
+              <button
+                type="submit"
+                disabled={loadingCta}
+                className="w-full text-white py-4 rounded-xl font-bold text-base hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 group relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative">
+                  {loadingCta ? "Submitting..." : "Request My Free Analysis →"}
+                </span>
+              </button>
+              <p className="text-center text-xs text-gray-400">🔒 100% HIPAA-Compliant Data Security</p>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
 
         </main>
       </>
