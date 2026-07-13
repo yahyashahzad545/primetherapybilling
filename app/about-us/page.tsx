@@ -551,19 +551,19 @@ export default function AboutPage() {
     },
     {
       name: "Sarah Mitchell",
-      role: "Director of Billing Operations",
+      role: "",
       bio: "Certified Professional Coder (CPC) with deep expertise in mental health, physical therapy, and occupational therapy billing under all major payers.",
       initials: "SM",
     },
     {
       name: "Noah Ramirez",
-      role: "Head of Credentialing",
+      role: "",
       bio: "Specializes in rapid provider enrollment and payer contracting, helping therapy practices get credentialed and start seeing patients without costly delays.",
       initials: "NR",
     },
     {
       name: "Matthew Chen",
-      role: "RCM Technology Lead",
+      role: "",
       bio: "Leads our AI-driven claim scrubbing and denial prevention systems, ensuring a 99% clean claim rate through intelligent automation and expert review.",
       initials: "MC",
     },
@@ -847,7 +847,6 @@ export default function AboutPage() {
               sub="Optimized insurance claims for therapists"
               duration={2000}
             />
-            {/* ✅ FIXED: target=99.8, decimals=1 → animates 0.0 → 99.8% */}
             <StatCard
               target={99.8}
               suffix="%"
@@ -1024,7 +1023,7 @@ export default function AboutPage() {
                 Principles That Drive Our Therapy Billing Services
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Every insurance claim for therapists we process and every behavioral health RCM strategy we deploy is anchored in these foundational beliefs. We go beyond standard medical billing to protect your practice's financial integrity with transparent, results-driven mental health billing solutions.
+                Every insurance claim for therapists we process and every behavioral health RCM strategy we deploy is anchored in these foundational beliefs. We go beyond standard medical billing to protect your practice&apos;s financial integrity with transparent, results-driven mental health billing solutions.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1205,7 +1204,7 @@ export default function AboutPage() {
                 The Authorities Behind Your Therapy Billing Success
               </h2>
               <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Decades of specialized expertise in mental health billing and behavioral health RCM power our commitment to maximizing your practice's revenue. Every leader on our team is dedicated to delivering superior therapy billing services and streamlining insurance claims for therapists.
+                Decades of specialized expertise in mental health billing and behavioral health RCM power our commitment to maximizing your practice&apos;s revenue. Every leader on our team is dedicated to delivering superior therapy billing services and streamlining insurance claims for therapists.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -1385,529 +1384,525 @@ export default function AboutPage() {
         {/* ════════════════════════════════════════════════
             STATS STRIP
         ════════════════════════════════════════════════ */}
-      <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-        <StatCard
-          target={3.99}
-          suffix="%"
-          label="Therapy Billing Rate"
-          sub="Unmatched mental health billing cost"
-          duration={1800}
-          decimals={2}
-        />
-        <StatCard
-          target={99.8}
-          suffix="%"
-          label="Behavioral Health Coding Precision"
-          sub="Certified therapy coding accuracy"
-          duration={1600}
-          decimals={1}
-        />
-        <StatCard target={99} suffix="%" label="First-Pass Claim Acceptance" sub="Insurance claims for therapists approved instantly" duration={1600} />
-        <StatCard target={40} suffix="%" label="Denial Rate Drop" sub="Behavioral health RCM optimized in 90 days" duration={1400} />
-        <StatCard target={99} prefix="$" label="Therapist Credentialing Cost" sub="Flat fee per behavioral health payer" duration={1200} />
-      </div>
-    </section>
+        <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-5">
+            <StatCard
+              target={3.99}
+              suffix="%"
+              label="Therapy Billing Rate"
+              sub="Unmatched mental health billing cost"
+              duration={1800}
+              decimals={2}
+            />
+            <StatCard
+              target={99.8}
+              suffix="%"
+              label="Behavioral Health Coding Precision"
+              sub="Certified therapy coding accuracy"
+              duration={1600}
+              decimals={1}
+            />
+            <StatCard target={99} suffix="%" label="First-Pass Claim Acceptance" sub="Insurance claims for therapists approved instantly" duration={1600} />
+            <StatCard target={40} suffix="%" label="Denial Rate Drop" sub="Behavioral health RCM optimized in 90 days" duration={1400} />
+            <StatCard target={99} prefix="$" label="Therapist Credentialing Cost" sub="Flat fee per behavioral health payer" duration={1200} />
+          </div>
+        </section>
 
-    {/* ════════════════════════════════════════════════
-        WHO WE ARE
-    ════════════════════════════════════════════════ */}
-    <section className="py-16 sm:py-20 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        {/* ════════════════════════════════════════════════
+            WHO WE ARE
+        ════════════════════════════════════════════════ */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
-          {/* Left — text */}
-          <div>
-            <span
-              className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
-              style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-            >
-              Dedicated Billing Partners
-            </span>
-            <h2
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
-              style={{ color: "#0e3256" }}
-            >
-              The Behavioral Health RCM Engine Powering{" "}
-              <span style={{ color: "#3e8ad6" }}>Your Practice</span>
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Prime Therapy Billing unites certified revenue cycle specialists, compliance officers, and therapy coding authorities—exclusively supporting mental health, physical therapy, occupational therapy, and behavioral health practices across the country.
-            </p>
-            <p className="text-gray-600 text-lg leading-relaxed mb-6">
-              Independent therapy practices deserve the same high-tier billing infrastructure that large hospital networks rely on—without the exorbitant costs. We function as your seamless back-office, executing ICD-10 coding, overturning denials, and negotiating payer contracts so you can dedicate your energy to clinical outcomes.
-            </p>
-            <blockquote
-              className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
-              style={{ borderColor: "#3e8ad6" }}
-            >
-              &ldquo;We never wait for denials to occur. Our team audits every single insurance claim for therapists using predictive analytics to secure first-pass reimbursement—without exception.&rdquo;
-            </blockquote>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {[
-                "Strict HIPAA Security",
-                "Month-to-Month Flexibility",
-                "Nationwide Coverage",
-                "5-Star Client Rating",
-              ].map((badge) => (
+              {/* Left — text */}
+              <div>
                 <span
-                  key={badge}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border"
-                  style={{
-                    color: "#1a5fa8",
-                    borderColor: "#d0e4f7",
-                    background: "#f0f6ff",
-                  }}
+                  className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
+                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                 >
-                  <span
-                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "#3e8ad6" }}
-                  />
-                  {badge}
+                  Dedicated Billing Partners
                 </span>
+                <h2
+                  className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
+                  style={{ color: "#0e3256" }}
+                >
+                  The Behavioral Health RCM Engine Powering{" "}
+                  <span style={{ color: "#3e8ad6" }}>Your Practice</span>
+                </h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  Prime Therapy Billing unites certified revenue cycle specialists, compliance officers, and therapy coding authorities—exclusively supporting mental health, physical therapy, occupational therapy, and behavioral health practices across the country.
+                </p>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                  Independent therapy practices deserve the same high-tier billing infrastructure that large hospital networks rely on—without the exorbitant costs. We function as your seamless back-office, executing ICD-10 coding, overturning denials, and negotiating payer contracts so you can dedicate your energy to clinical outcomes.
+                </p>
+                <blockquote
+                  className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
+                  style={{ borderColor: "#3e8ad6" }}
+                >
+                  &ldquo;We never wait for denials to occur. Our team audits every single insurance claim for therapists using predictive analytics to secure first-pass reimbursement—without exception.&rdquo;
+                </blockquote>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {[
+                    "Strict HIPAA Security",
+                    "Month-to-Month Flexibility",
+                    "Nationwide Coverage",
+                    "5-Star Client Rating",
+                  ].map((badge) => (
+                    <span
+                      key={badge}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border"
+                      style={{
+                        color: "#1a5fa8",
+                        borderColor: "#d0e4f7",
+                        background: "#f0f6ff",
+                      }}
+                    >
+                      <span
+                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        style={{ background: "#3e8ad6" }}
+                      />
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right — card stack */}
+              <div className="relative">
+                <div className="pt-10 pb-16 px-8">
+
+                  {/* Floating accent — TOP RIGHT */}
+                  <div
+                    className="absolute top-0 right-0 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 animate-float z-20"
+                    style={{ animationDelay: "1.5s" }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
+                        style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% First-Pass Approval</p>
+                        <p className="text-xs text-gray-400">Optimized claims delivery</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Main card */}
+                  <div
+                    className="rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl z-10"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #0e3256 0%, #1a5fa8 60%, #3e8ad6 100%)",
+                    }}
+                  >
+                    <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#ffffff" }} />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#3e8ad6" }} />
+
+                    <div className="relative z-10">
+                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                      </div>
+                      <h3 className="text-2xl font-extrabold mb-4">
+                        Why Providers Rely on Our Mental Health Billing
+                      </h3>
+                      <ul className="space-y-3">
+                        {[
+                          "Exclusive focus on therapy billing services",
+                          "Industry-leading rate of just 3.99%",
+                          "Personal account manager assigned immediately",
+                          "Transparent, real-time financial analytics",
+                          "Measurable denial drops within 90 days",
+                          "Zero setup costs or hidden penalties",
+                        ].map((point, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </span>
+                            <span className="text-sm leading-relaxed" style={{ color: "#bfdbfe" }}>
+                              {point}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Floating accent — BOTTOM LEFT */}
+                  <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
+                    <p className="text-xs font-semibold text-gray-500 mb-1">Average Collection Uplift</p>
+                    <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
+                    <p className="text-xs text-gray-400 mt-1">Realized within 6 months</p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            MISSION & VISION
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-16 sm:py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                Our Foundation
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
+                Advancing the Future of <span style={{ color: "#3e8ad6" }}>Therapy Billing</span>
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Driving Mission</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our mission is to level the playing field for independent therapy practices by delivering elite behavioral health RCM capabilities at an accessible price point. We believe every mental health provider deserves a seamless billing infrastructure that ensures maximum reimbursement without the corporate overhead. By prioritizing precision, rapid turnaround, and total transparency, we guarantee that no earned dollar is left uncollected for the practices that need it most.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #3e8ad6, #0e3256)" }} />
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #3e8ad6, #0e3256)" }}>
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Strategic Vision</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  We are building a future where Prime Therapy Billing is the definitive standard for therapy billing services across the nation. Our goal is to be the first name providers trust when optimizing insurance claims for therapists. We strive to make our 3.99% billing model synonymous with financial empowerment—recognized nationwide for helping mental health billing operations thrive, scale, and achieve uncompromising financial health.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            CORE VALUES
+        ════════════════════════════════════════════════ */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                The Prime Billing Edge
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+                What Sets Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Apart
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                Six foundational pillars that govern every client partnership and ensure your practice&apos;s revenue is optimized for maximum reimbursement through our specialized behavioral health RCM strategies.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+              {values.map((val, i) => (
+                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover group">
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
+                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                  >
+                    {val.icon}
+                  </div>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: "#0e3256" }}>{val.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
+                </div>
               ))}
             </div>
           </div>
+        </section>
 
-          {/* Right — card stack */}
-          <div className="relative">
-            <div className="pt-10 pb-16 px-8">
-
-              {/* Floating accent — TOP RIGHT */}
-              <div
-                className="absolute top-0 right-0 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 animate-float z-20"
-                style={{ animationDelay: "1.5s" }}
+        {/* ════════════════════════════════════════════════
+            COMPARISON TABLE (SECOND)
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-16 sm:py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
+        >
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
               >
-                <div className="flex items-center gap-2">
+                Performance Benchmark
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+                How Our Mental Health Billing Outperforms the <span style={{ color: "#3e8ad6" }}>Industry Standard</span>
+              </h2>
+              <p className="text-gray-500 max-w-xl mx-auto">
+                Discover why therapy practices nationwide rely on our therapy billing services to maximize revenue, accelerate insurance claims for therapists, and deliver superior behavioral health RCM outcomes compared to conventional billing partners.
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+              <div
+                className="grid grid-cols-3 text-white text-sm font-bold"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                <div className="p-5">Capability</div>
+                <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
+                <div className="p-5 text-center border-l border-white/20">Industry Standard</div>
+              </div>
+
+              {comparisonRows.map((row, i) => (
+                <div
+                  key={i}
+                  className={`grid grid-cols-3 text-sm border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}`}
+                >
+                  <div className="p-5 font-semibold" style={{ color: "#0e3256" }}>{row.feature}</div>
+                  <div className="p-5 text-center border-l border-gray-100">
+                    <span
+                      className="inline-flex items-center gap-1.5 font-bold text-sm px-3 py-1 rounded-full"
+                      style={{ color: "#0e6633", background: "#d1fae5" }}
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {row.prime}
+                    </span>
+                  </div>
+                  <div className="p-5 text-center border-l border-gray-100 text-gray-400 font-medium">{row.industry}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            SERVICES OVERVIEW
+        ════════════════════════════════════════════════ */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                Expert RCM Solutions
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+                Comprehensive Mental Health <span style={{ color: "#3e8ad6" }}>Billing & RCM</span>
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                From precise claim submission to aggressive denial management, our therapy billing services handle every aspect of your revenue cycle. We optimize insurance claims for therapists to accelerate reimbursements and drive sustainable practice growth — starting at just 3.99%.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+              {services.map((svc, i) => (
+                <div key={i} className="group rounded-2xl p-7 border border-gray-100 bg-gray-50 card-hover cursor-default relative overflow-hidden">
                   <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
+                    className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
+                  />
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
                     style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    {svc.icon}
                   </div>
-                  <div>
-                    <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% First-Pass Approval</p>
-                    <p className="text-xs text-gray-400">Optimized claims delivery</p>
-                  </div>
+                  <h3 className="text-base font-bold mb-2" style={{ color: "#0e3256" }}>{svc.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
                 </div>
-              </div>
-
-              {/* Main card */}
-              <div
-                className="rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl z-10"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 60%, #3e8ad6 100%)",
-                }}
-              >
-                <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#ffffff" }} />
-                <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                    <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-2xl font-extrabold mb-4">
-                    Why Providers Rely on Our Mental Health Billing
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      "Exclusive focus on therapy billing services",
-                      "Industry-leading rate of just 3.99%",
-                      "Personal account manager assigned immediately",
-                      "Transparent, real-time financial analytics",
-                      "Measurable denial drops within 90 days",
-                      "Zero setup costs or hidden penalties",
-                    ].map((point, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </span>
-                        <span className="text-sm leading-relaxed" style={{ color: "#bfdbfe" }}>
-                          {point}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Floating accent — BOTTOM LEFT */}
-              <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
-                <p className="text-xs font-semibold text-gray-500 mb-1">Average Collection Uplift</p>
-                <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
-                <p className="text-xs text-gray-400 mt-1">Realized within 6 months</p>
-              </div>
-
+              ))}
             </div>
           </div>
+        </section>
 
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        MISSION & VISION
-    ════════════════════════════════════════════════ */}
-    <section
-      className="py-16 sm:py-20 px-4 sm:px-6"
-      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            Our Foundation
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
-            Advancing the Future of <span style={{ color: "#3e8ad6" }}>Therapy Billing</span>
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Driving Mission</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Our mission is to level the playing field for independent therapy practices by delivering elite behavioral health RCM capabilities at an accessible price point. We believe every mental health provider deserves a seamless billing infrastructure that ensures maximum reimbursement without the corporate overhead. By prioritizing precision, rapid turnaround, and total transparency, we guarantee that no earned dollar is left uncollected for the practices that need it most.
-            </p>
-          </div>
-
-          <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #3e8ad6, #0e3256)" }} />
-            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #3e8ad6, #0e3256)" }}>
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
-            </div>
-            <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Strategic Vision</h3>
-            <p className="text-gray-600 leading-relaxed">
-              We are building a future where Prime Therapy Billing is the definitive standard for therapy billing services across the nation. Our goal is to be the first name providers trust when optimizing insurance claims for therapists. We strive to make our 3.99% billing model synonymous with financial empowerment—recognized nationwide for helping mental health billing operations thrive, scale, and achieve uncompromising financial health.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        CORE VALUES
-    ════════════════════════════════════════════════ */}
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            The Prime Billing Edge
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            What Sets Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Apart
-          </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Six foundational pillars that govern every client partnership and ensure your insurance claims for therapists are optimized for maximum reimbursement through our specialized behavioral health RCM strategies.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-          {values.map((val, i) => (
-            <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover group">
-              <div
-                className="w-14 h-14 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                {val.icon}
-              </div>
-              <h3 className="text-lg font-bold mb-2" style={{ color: "#0e3256" }}>{val.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        COMPARISON TABLE
-    ════════════════════════════════════════════════ */}
-    <section
-      className="py-16 sm:py-20 px-4 sm:px-6"
-      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-    >
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            Performance Benchmark
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            How Our Mental Health Billing Outperforms the{" "}
-            <span style={{ color: "#3e8ad6" }}>Industry Standard</span>
-          </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Discover why therapy practices nationwide rely on our therapy billing services to maximize revenue, accelerate insurance claims for therapists, and deliver superior behavioral health RCM outcomes compared to conventional billing partners.
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-          <div
-            className="grid grid-cols-3 text-white text-sm font-bold"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            <div className="p-5">Capability</div>
-            <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
-            <div className="p-5 text-center border-l border-white/20">Industry Standard</div>
-          </div>
-
-          {comparisonRows.map((row, i) => (
-            <div
-              key={i}
-              className={`grid grid-cols-3 text-sm border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}`}
-            >
-              <div className="p-5 font-semibold" style={{ color: "#0e3256" }}>{row.feature}</div>
-              <div className="p-5 text-center border-l border-gray-100">
-                <span
-                  className="inline-flex items-center gap-1.5 font-bold text-sm px-3 py-1 rounded-full"
-                  style={{ color: "#0e6633", background: "#d1fae5" }}
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                  {row.prime}
-                </span>
-              </div>
-              <div className="p-5 text-center border-l border-gray-100 text-gray-400 font-medium">{row.industry}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        SERVICES OVERVIEW
-    ════════════════════════════════════════════════ */}
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            Expert RCM Solutions
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            Comprehensive Mental Health{" "}
-            <span style={{ color: "#3e8ad6" }}>Billing & RCM</span>
-          </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            From precise claim submission to aggressive denial management, our therapy billing services handle every aspect of your revenue cycle. We optimize insurance claims for therapists to accelerate reimbursements and drive sustainable practice growth — starting at just 3.99%.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-          {services.map((svc, i) => (
-            <div key={i} className="group rounded-2xl p-7 border border-gray-100 bg-gray-50 card-hover cursor-default relative overflow-hidden">
-              <div
-                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
-              />
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                {svc.icon}
-              </div>
-              <h3 className="text-base font-bold mb-2" style={{ color: "#0e3256" }}>{svc.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        TEAM
-    ════════════════════════════════════════════════ */}
-    <section
-      className="py-16 sm:py-20 px-4 sm:px-6"
-      style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            Behavioral Health RCM Leaders
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            The Specialists Driving Your{" "}
-            <span style={{ color: "#3e8ad6" }}>Therapy Billing Success</span>
-          </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Our dedicated team of mental health billing experts, certified coders, and compliance strategists delivers exceptional therapy billing services and manages your insurance claims for therapists with the same precision they would their own practice.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
-          {teamMembers.map((member, i) => (
-            <div key={i} className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100 card-hover text-center group">
-              <div
-                className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                {member.initials}
-              </div>
-              <h3 className="text-base font-extrabold mb-1" style={{ color: "#0e3256" }}>{member.name}</h3>
-              <p className="text-xs font-semibold mb-4" style={{ color: "#3e8ad6" }}>{member.role}</p>
-              <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        TESTIMONIALS
-    ════════════════════════════════════════════════ */}
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <span
-            className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-            style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-          >
-            Therapist Success Stories
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-            Proven Results From Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Clients
-          </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Therapists nationwide trust our therapy billing services to optimize insurance claims for therapists, accelerate payments, and strengthen their behavioral health RCM. Discover their experiences below.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-7">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover relative">
-              <div className="text-6xl font-serif leading-none mb-4 select-none" style={{ color: "#d0e4f7" }}>
-                &ldquo;
-              </div>
-              <div className="flex gap-0.5 mb-4">
-                {Array.from({ length: 5 }).map((_, s) => (
-                  <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#f59e0b">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="flex items-center gap-3 mt-auto">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow"
-                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <p className="text-sm font-bold" style={{ color: "#0e3256" }}>{t.name}</p>
-                  <p className="text-xs text-gray-500">{t.role}</p>
-                  <p className="text-xs font-semibold" style={{ color: "#3e8ad6" }}>{t.practice}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* ════════════════════════════════════════════════
-        BOTTOM CTA
-    ════════════════════════════════════════════════ */}
-    <section
-      className="py-20 px-4 sm:px-6 relative overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-      }}
-    >
-      <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-      <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
-
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-          Flexible Terms — Cancel Anytime
-        </div>
-
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-          Prepared to Maximize Every Dollar from Your{" "}
-          <span className="shimmer-text">Mental Health Billing?</span>
-        </h2>
-
-        <p
-          className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
-          style={{ color: "#bfdbfe" }}
+        {/* ════════════════════════════════════════════════
+            TEAM (SECOND)
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-16 sm:py-20 px-4 sm:px-6"
+          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
         >
-          Therapy practices nationwide depend on our specialized therapy billing services to streamline behavioral health RCM, resolve insurance claims for therapists faster, and eliminate the administrative roadblocks draining your time and revenue.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={() => setModalOpen(true)}
-            className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
-            style={{ color: "#0e3256" }}
-          >
-            Request Your Free Billing Audit
-            <span>→</span>
-          </button>
-          <a
-            href="tel:+13464604441"
-            className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
-          >
-            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            (346) 460-4441
-          </a>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-6 mt-10">
-          {[
-            "HIPAA Compliant",
-            "Fully Secure",
-            "Zero Hidden Costs",
-            "5-Star Rated",
-            "Nationwide Coverage",
-          ].map((badge) => (
-            <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
-              <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-              </svg>
-              {badge}
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                Behavioral Health RCM Leaders
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+                The Specialists Driving Your <span style={{ color: "#3e8ad6" }}>Therapy Billing Success</span>
+              </h2>
+              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                Our dedicated team of mental health billing experts, certified coders, and compliance strategists delivers exceptional therapy billing services and manages your insurance claims for therapists with the same precision they would their own practice.
+              </p>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+              {teamMembers.map((member, i) => (
+                <div key={i} className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100 card-hover text-center group">
+                  <div
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                  >
+                    {member.initials}
+                  </div>
+                  <h3 className="text-base font-extrabold mb-1" style={{ color: "#0e3256" }}>{member.name}</h3>
+                  <p className="text-xs font-semibold mb-4" style={{ color: "#3e8ad6" }}>{member.role}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            TESTIMONIALS (SECOND)
+        ════════════════════════════════════════════════ */}
+        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-14">
+              <span
+                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
+                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+              >
+                Therapist Success Stories
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
+                Proven Results From Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Clients
+              </h2>
+              <p className="text-gray-500 max-w-xl mx-auto">
+                Therapists nationwide trust our therapy billing services to optimize insurance claims for therapists, accelerate payments, and strengthen their behavioral health RCM. Discover their experiences below.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-7">
+              {testimonials.map((t, i) => (
+                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover relative flex flex-col">
+                  <div className="text-6xl font-serif leading-none mb-4 select-none" style={{ color: "#d0e4f7" }}>
+                    &ldquo;
+                  </div>
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#f59e0b">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-3 mt-auto">
+                    <div
+                      className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow"
+                      style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                    >
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold" style={{ color: "#0e3256" }}>{t.name}</p>
+                      <p className="text-xs text-gray-500">{t.role}</p>
+                      <p className="text-xs font-semibold" style={{ color: "#3e8ad6" }}>{t.practice}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            BOTTOM CTA
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-20 px-4 sm:px-6 relative overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
+          }}
+        >
+          <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
+          <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
+
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
+              Flexible Terms — Cancel Anytime
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
+              Prepared to Maximize Every Dollar from Your <span className="shimmer-text">Mental Health Billing?</span>
+            </h2>
+
+            <p
+              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
+              style={{ color: "#bfdbfe" }}
+            >
+              Therapy practices nationwide depend on our specialized therapy billing services to streamline behavioral health RCM, resolve insurance claims for therapists faster, and eliminate the administrative roadblocks draining your time and revenue.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => setModalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
+                style={{ color: "#0e3256" }}
+              >
+                Request Your Free Billing Audit
+                <span>→</span>
+              </button>
+              <a
+                href="tel:+13464604441"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
+              >
+                <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                (346) 460-4441
+              </a>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6 mt-10">
+              {[
+                "HIPAA Compliant",
+                "Fully Secure",
+                "Zero Hidden Costs",
+                "5-Star Rated",
+                "Nationwide Coverage",
+              ].map((badge) => (
+                <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                  <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {badge}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
