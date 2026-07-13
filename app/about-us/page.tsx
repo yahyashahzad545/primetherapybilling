@@ -545,7 +545,7 @@ export default function AboutPage() {
   const teamMembers = [
     {
       name: "Andrew Collins",
-      role: "Chief Executive Officer",
+      role: "",
       bio: "A healthcare finance veteran with 15+ years of experience building revenue cycle systems for therapy and behavioral health practices across the United States.",
       initials: "AC",
     },
