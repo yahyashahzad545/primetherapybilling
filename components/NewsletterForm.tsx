@@ -1,4 +1,5 @@
 "use client";
+import { ValidatedForm } from "@/components/ValidatedForm";
 
 export default function NewsletterForm() {
   const handleSubmit = (e: React.FormEvent) => {
@@ -7,7 +8,7 @@ export default function NewsletterForm() {
   };
 
   return (
-    <form
+    <ValidatedForm
       className="flex gap-2"
       aria-label="Newsletter subscription"
       onSubmit={handleSubmit}
@@ -16,14 +17,16 @@ export default function NewsletterForm() {
         Your email address
       </label>
 
-      <input
-        id="newsletter-email"
-        type="email"
-        placeholder="Your email"
-        autoComplete="email"
-        required
-        className="flex-1 bg-gray-800 text-gray-300 text-sm px-3 py-2.5 rounded-lg border border-gray-700 focus:outline-none focus:border-blue-500"
-      />
+      <div className="flex-1 min-w-0">
+        <input
+          id="newsletter-email"
+          type="email"
+          placeholder="Your email"
+          autoComplete="email"
+          required
+          className="flex-1 w-full bg-gray-800 text-gray-300 text-sm px-3 py-2.5 rounded-lg border border-gray-700 focus:outline-none focus:border-blue-500"
+        />
+      </div>
 
       <button
         type="submit"
@@ -31,6 +34,6 @@ export default function NewsletterForm() {
       >
         Go
       </button>
-    </form>
+    </ValidatedForm>
   );
 }

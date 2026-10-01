@@ -1,6 +1,9 @@
 "use client";
 
+import { formatUsPhoneNumber } from "@/utils/validation";
+import { BUSINESS_PHONE } from "@/config/contact";
 import { useState, useEffect } from "react";
+import { ValidatedForm } from "@/components/ValidatedForm";
 
 // ─── Icon Paths (8 unique medical-themed SVG paths) ─────────────────────────
 const ICON_PATHS = [
@@ -110,16 +113,7 @@ const TRUST_BADGES = [
 
 // ─── Phone Formatting Helper ────────────────────────────────────────────────
 function formatPhone(value: string): string {
-  let input = value.replace(/\D/g, "");
-  if (input.length > 10) input = input.slice(0, 10);
-  if (input.length > 6) {
-    return `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
-  } else if (input.length > 3) {
-    return `(${input.slice(0, 3)}) ${input.slice(3)}`;
-  } else if (input.length > 0) {
-    return `(${input}`;
-  }
-  return input;
+  return formatUsPhoneNumber(value);
 }
 
 // ─── Main Component ──────────────────────────────────────────────────────────
@@ -330,7 +324,7 @@ export default function SpecialtiesPage() {
             HERO
         ════════════════════════════════════════════════════════════ */}
         <section
-          className="relative text-white py-24 sm:py-32 px-4 sm:px-6 text-center overflow-hidden"
+          className="relative text-white pt-[130px] pb-24 sm:pb-32 px-4 sm:px-6 text-center overflow-hidden"
           style={{ background: "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)" }}
         >
           {/* Blobs */}
@@ -350,7 +344,7 @@ export default function SpecialtiesPage() {
 
           <div className="relative z-10 max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
+            <div className="inline-flex items-center gap-2 bg-white text-[#591e60] backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-semibold mb-6 border border-[#591e60] shadow-lg animate-pulse-ring">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
               500+ Therapy Practices Trust Our Revenue Cycle Expertise
             </div>
@@ -433,7 +427,7 @@ export default function SpecialtiesPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleAuditSubmit} className="space-y-3">
+                  <ValidatedForm onSubmit={handleAuditSubmit} className="space-y-3">
                     {auditError && (
                       <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                         ⚠️ {auditError}
@@ -446,7 +440,7 @@ export default function SpecialtiesPage() {
                       </div>
                       <div>
                         <label className={labelClass}>Phone</label>
-                        <input type="tel" value={auditForm.phone} onChange={(e) => setAuditForm({ ...auditForm, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
+                        <input type="tel" value={auditForm.phone} onChange={(e) => setAuditForm({ ...auditForm, phone: formatPhone(e.target.value) })} placeholder="+1 (555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
                       </div>
                     </div>
                     <div>
@@ -472,7 +466,7 @@ export default function SpecialtiesPage() {
                     >
                       {auditLoading ? "Securing Your Audit..." : "Get My Free Audit"}
                     </button>
-                  </form>
+                  </ValidatedForm>
                 )}
               </div>
             </div>
@@ -488,8 +482,7 @@ export default function SpecialtiesPage() {
             {/* Section header */}
             <div className="text-center mb-10">
               <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                className="inline-block bg-white text-[#591e60] border border-[#591e60] text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
               >
                 100+ Therapy Disciplines Served
               </span>
@@ -627,7 +620,7 @@ export default function SpecialtiesPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleCtaSubmit} className="max-w-2xl mx-auto space-y-4">
+                  <ValidatedForm onSubmit={handleCtaSubmit} className="max-w-2xl mx-auto space-y-4">
                     {ctaError && (
                       <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                         ⚠️ {ctaError}
@@ -649,7 +642,7 @@ export default function SpecialtiesPage() {
                     </div>
                     <div>
                       <label className={labelClass}>Phone</label>
-                      <input type="tel" value={ctaForm.phone} onChange={(e) => setCtaForm({ ...ctaForm, phone: formatPhone(e.target.value) })} placeholder="(555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
+                      <input type="tel" value={ctaForm.phone} onChange={(e) => setCtaForm({ ...ctaForm, phone: formatPhone(e.target.value) })} placeholder="+1 (555) 123-4567" className={inputClass} onFocus={focusStyle} onBlur={blurStyle} />
                     </div>
                     <div>
                       <label className={labelClass}>Describe the revenue cycle challenges affecting your practice</label>
@@ -663,7 +656,7 @@ export default function SpecialtiesPage() {
                     >
                       {ctaLoading ? "Connecting You with a Specialist..." : "Connect with a Billing Specialist"}
                     </button>
-                  </form>
+                  </ValidatedForm>
                 )}
               </div>
             </div>
@@ -693,14 +686,14 @@ export default function SpecialtiesPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
                 <a
-                  href="tel:+13464604441"
+                  href={BUSINESS_PHONE.href}
                   className="inline-flex items-center justify-center gap-2 bg-white px-7 py-3.5 rounded-xl font-bold text-sm shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
                   style={{ color: "#0e3256" }}
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  (346) 460-4441
+                  {BUSINESS_PHONE.display}
                 </a>
 
                 <a
@@ -787,7 +780,7 @@ export default function SpecialtiesPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSpecialtySubmit} className="space-y-4">
+                  <ValidatedForm onSubmit={handleSpecialtySubmit} className="space-y-4">
                     {specialtyError && (
                       <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium">
                         ⚠️ {specialtyError}
@@ -828,7 +821,7 @@ export default function SpecialtiesPage() {
                         type="tel"
                         value={specialtyForm.phone}
                         onChange={(e) => setSpecialtyForm({ ...specialtyForm, phone: formatPhone(e.target.value) })}
-                        placeholder="(555) 123-4567"
+                        placeholder="+1 (555) 123-4567"
                         className={inputClass}
                         onFocus={focusStyle}
                         onBlur={blurStyle}
@@ -856,7 +849,7 @@ export default function SpecialtiesPage() {
                     >
                       {specialtyLoading ? "Sending..." : "Get Your Specialist's Insights"}
                     </button>
-                  </form>
+                  </ValidatedForm>
                 )}
               </div>
             </div>

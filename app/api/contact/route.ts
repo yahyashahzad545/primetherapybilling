@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { BUSINESS_PHONE } from "@/config/contact";
 
 // ✅ FORMAT FUNCTION (IMPORTANT FIX)
 function formatUSPhone(phone: string) {
@@ -68,6 +69,7 @@ export async function POST(req: Request) {
 
         <hr/>
         <p><b>Source:</b> ${source || "Website"}</p>
+        <p><b>Prime Therapy Billing phone:</b> <a href="${BUSINESS_PHONE.href}">${BUSINESS_PHONE.display}</a></p>
       `,
 
       replyTo: email,

@@ -48,3 +48,200 @@ body {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
+
+button {
+  position: relative;
+  isolation: isolate;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  z-index: -1;
+  width: 0;
+  border-radius: inherit;
+  background: #ffd401;
+  pointer-events: none;
+  transition: width 500ms ease-in-out;
+}
+
+button:hover::before {
+  left: 0;
+  right: auto;
+  width: 100%;
+}
+
+button:hover,
+button:hover * {
+  color: #183153;
+}
+
+:where(
+    a,
+    button,
+    input:is([type="checkbox"], [type="radio"], [type="range"], [type="file"])
+  ):focus-visible {
+  outline: 2px solid #183153;
+  outline-offset: 3px;
+}
+
+/* Form fields site-wide: one border only, never an outline or ring on top of it.
+   The border turns brand purple on hover and focus, stays purple while the field
+   holds a value, and returns to its own colour when the field is empty. */
+:is(input, select, textarea):not(
+    [type="checkbox"],
+    [type="radio"],
+    [type="range"],
+    [type="file"],
+    [type="submit"],
+    [type="button"],
+    [type="reset"],
+    [type="hidden"],
+    [type="color"]
+  ) {
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-ring-offset-shadow: 0 0 #0000;
+  }
+
+  &:enabled:hover,
+  &:enabled:focus,
+  &[placeholder]:not(:placeholder-shown),
+  &[data-filled] {
+    border-color: #591e60;
+  }
+}
+
+/* Kept as its own rule so a browser without :has() still applies the rules above. */
+select:has(option:checked:not([value=""])) {
+  border-color: #591e60;
+}
+
+.hero-button-group {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+}
+
+.hero-button-group > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 2px solid #591e60;
+  border-radius: 8px;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.hero-button-group > button {
+  background: #591e60;
+  color: white;
+}
+
+.hero-button-group > button::before {
+  display: none;
+}
+
+.hero-button-group > button:hover {
+  background: #45134b;
+  color: white;
+  opacity: 1;
+}
+
+.hero-call-button {
+  background: white;
+  color: #591e60;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.hero-call-button:hover,
+.hero-call-button:focus-visible {
+  background-color: #591e60;
+  color: white;
+}
+
+.hero-call-button svg {
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-button-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Form copy stays centered, while field text stays left aligned. */
+.hero-section form :where(label, input, select, textarea, [role="alert"]) {
+  text-align: left;
+}
+
+.hero-form-heading {
+  text-align: center;
+}
+
+/* Keep hero content and forms centered on tablets and phones. */
+@media (max-width: 1024px) {
+  .hero-button-group {
+    justify-content: center;
+  }
+
+  .hero-section,
+  .hero-section :where(h1, h2, h3, p),
+  .hero-content {
+    text-align: center;
+  }
+
+  .hero-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-layout > * {
+    grid-column: auto;
+    width: 100%;
+    min-width: 0;
+    margin-inline: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content,
+  .hero-actions {
+    align-items: center;
+  }
+
+  .hero-section img,
+  .hero-section picture,
+  .hero-media {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+

@@ -1,3 +1,4 @@
+import { BUSINESS_PHONE } from "@/config/contact";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -75,7 +76,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a1f38] text-gray-300">
       {/* ── Main Footer Body ─────────────────────────── */}
-      <div className="max-w-7xl mx-auto px-6 py-14 md:py-16">
+      <div className="w-[92%] max-w-[1320px] mx-auto py-14 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
 
 
@@ -178,7 +179,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li>
                 <a
-                  href="tel:+13464604441"
+                  href={BUSINESS_PHONE.href}
                   className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors group"
                 >
                   <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1a4a7a] transition-colors">
@@ -188,7 +189,7 @@ export default function Footer() {
                   </span>
                   <div>
                     <p className="text-xs text-gray-500 font-medium mb-0.5">Phone</p>
-                    <p className="text-sm font-semibold text-gray-300">+1 (346) 460-4441</p>
+                    <p className="text-sm font-semibold text-gray-300">+1 {BUSINESS_PHONE.display}</p>
                   </div>
                 </a>
               </li>
@@ -235,7 +236,7 @@ export default function Footer() {
 
       {/* ── Divider ──────────────────────────────────── */}
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="w-[92%] max-w-[1320px] mx-auto py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-500 text-xs text-center sm:text-left">
             © {currentYear} Prime Therapy Billing. All rights reserved.
           </p>

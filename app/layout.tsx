@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import FieldFillState from "@/components/FieldFillState";
+import PhoneFieldFormat from "@/components/PhoneFieldFormat";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +31,8 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <FieldFillState />
+        <PhoneFieldFormat />
       </body>
     </html>
   );

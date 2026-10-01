@@ -95,7 +95,7 @@ export default async function Page({
           background: "linear-gradient(to right, #2e7d6b, #3aa88f)",
           color: "white",
           padding: "40px",
-          paddingTop: "120px",
+          paddingTop: "130px",
           textAlign: "center",
         }}
       >
@@ -196,7 +196,7 @@ export default async function Page({
 
             <input placeholder="Name" style={inputStyle} />
             <input placeholder="Email" style={inputStyle} />
-            <input placeholder="Phone" style={inputStyle} />
+            <input type="tel" placeholder="Phone" style={inputStyle} />
             <textarea placeholder="Message" style={inputStyle} />
 
             <button

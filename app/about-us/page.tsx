@@ -1,79 +1,87 @@
 "use client";
 
+import { formatUsPhoneNumber } from "@/utils/validation";
 import { useEffect, useRef, useState } from "react";
+import { HeroActions } from "@/components/HeroActions";
+import { ValidatedForm } from "@/components/ValidatedForm";
 
-// ── Animated counter hook ─────────────────────────────────────────
-function useCountUp(target: number, duration = 2000, decimals = 0) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+// Hero image on the right of the hero section.
+// Put the image path or link between the quotes, e.g. "/about-hero.webp" for a file in the public folder.
+const HERO_IMAGE_SRC = "";
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started) setStarted(true);
-      },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [started]);
+// Image on the left of the "What's Already Built" section.
+// Put the image path or link between the quotes, same as the hero image above.
+const SPECIALIZATION_IMAGE_SRC = "";
 
-  useEffect(() => {
-    if (!started) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(parseFloat(start.toFixed(decimals)));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [started, target, duration, decimals]);
-
-  return { count, ref };
+// ── Card icon ───────────────────────────────────────────────────
+// Shows the icon image once a card's `icon` link is filled in; until then an
+// empty dashed slot of the same size holds its place.
+function CardIcon({ src, className }: { src: string; className: string }) {
+  return src ? (
+    <img src={src} alt="" className={`${className} object-contain`} />
+  ) : (
+    <div
+      aria-hidden="true"
+      className={`${className} rounded-md border border-dashed border-[#591e60]/40`}
+    />
+  );
 }
 
-// ── Stat card ─────────────────────────────────────────────────────
-function StatCard({
-  target,
-  suffix,
-  prefix,
-  label,
-  sub,
-  duration,
-  decimals,
+// ── Discipline card ──────────────────────────────────────────────
+// Same look as the original drawing (purple number tile, white card with a coral
+// outline and tab), built in CSS so the card grows with its text.
+function DisciplineCard({
+  item,
 }: {
-  target: number;
-  suffix?: string;
-  prefix?: string;
-  label: string;
-  sub: string;
-  duration?: number;
-  decimals?: number;
+  item: { number: string; title: string; desc: string };
 }) {
-  const resolvedDecimals = decimals ?? 0;
-  const { count, ref } = useCountUp(target, duration ?? 2000, resolvedDecimals);
-
-  const displayValue =
-    resolvedDecimals > 0 ? count.toFixed(resolvedDecimals) : count;
-
   return (
-    <div
-      ref={ref}
-      className="bg-white rounded-2xl p-7 text-center shadow-xl border border-gray-100 hover:-translate-y-2 transition-transform duration-300"
-    >
-      <p className="text-4xl font-extrabold mb-1" style={{ color: "#0e3256" }}>
-        {`${prefix ?? ""}${displayValue}${suffix ?? ""}`}
-      </p>
-      <p className="text-base font-bold mb-1" style={{ color: "#1a5fa8" }}>
-        {label}
-      </p>
-      <p className="text-xs text-gray-500">{sub}</p>
+    <div className="relative w-full h-full max-w-[429px] pt-[34px] pl-[61px] pr-[18px] pb-[14px] transition-transform duration-300 hover:-translate-y-1">
+      <div className="absolute top-0 left-0 w-[89px] h-[83px] rounded-[24px] bg-[#591e60]" />
+      <span className="font-heading absolute top-0 left-0 w-[66px] h-[62px] flex items-center justify-center text-white font-black text-2xl sm:text-3xl select-none leading-none">
+        {item.number}
+      </span>
+
+      <div className="relative h-full flex flex-col justify-center bg-white border border-[#d95959] rounded-[24px] shadow-[6px_6px_10px_rgba(0,0,0,0.3)] px-5 pt-7 pb-5 text-center">
+        <div className="absolute top-0 left-[18.5%] w-[58%] h-[7px] bg-[#d95959] rounded-b-[7px]" />
+        <h3 className="font-extrabold text-[22px] md:text-[26px] mb-2 tracking-tight leading-[1.25] text-[#591e60]">
+          {item.title}
+        </h3>
+        <p className="text-center text-[16px] leading-[1.6] text-[#3d2e42]">
+          {item.desc}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ── Service card ─────────────────────────────────────────────────
+// Outlined rounded box with a rounded title bar, built in CSS so the box grows
+// with its text.
+function ServiceCard({
+  card,
+}: {
+  card: { title: string; desc: string; icon: string };
+}) {
+  return (
+    <div className="relative w-full max-w-[520px] transition-transform duration-200 hover:-translate-y-1">
+      <div className="relative h-full min-h-[152px] bg-white border-2 border-[#591e60] rounded-[24px] p-4">
+        {/* Title bar: tall enough for two lines so the bars line up across a row */}
+        <div className="bg-[#591e60] rounded-2xl px-4 py-1.5 flex items-center justify-center lg:min-h-[80px]">
+          <h3 className="text-white text-[22px] md:text-[26px] font-extrabold leading-[1.25] tracking-tight text-center">
+            {card.title}
+          </h3>
+        </div>
+
+        <div className="flex items-start gap-2.5 pt-4">
+          <div className="flex-shrink-0 mt-0.5" style={{ color: "#381042" }}>
+            <CardIcon src={card.icon} className="w-7 h-7 sm:w-8 sm:h-8" />
+          </div>
+          <p className="text-left text-[16px] leading-[1.6] font-normal text-[#3e2446]">
+            {card.desc}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -145,16 +153,7 @@ function ConsultationModal({
 
   // USA phone formatter
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let input = e.target.value.replace(/\D/g, "");
-    if (input.length > 10) input = input.slice(0, 10);
-    let formatted = input;
-    if (input.length > 6) {
-      formatted = `(${input.slice(0, 3)}) ${input.slice(3, 6)}-${input.slice(6)}`;
-    } else if (input.length > 3) {
-      formatted = `(${input.slice(0, 3)}) ${input.slice(3)}`;
-    } else if (input.length > 0) {
-      formatted = `(${input}`;
-    }
+    const formatted = formatUsPhoneNumber(e.target.value);
     setFormData((prev) => ({ ...prev, phone: formatted }));
   };
 
@@ -193,23 +192,20 @@ function ConsultationModal({
   };
 
   return (
-    /* ── Backdrop ── */
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+      className="about-fonts fixed inset-0 z-[9999] flex items-center justify-center p-4"
       style={{
         backgroundColor: "rgba(14,50,86,0.75)",
         backdropFilter: "blur(6px)",
       }}
       onClick={onClose}
     >
-      {/* ── Modal Box ── */}
       <div
         ref={modalRef}
         className="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
         style={{ animation: "fadeUp 0.35s ease both" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* ── Modal Header ── */}
         <div
           className="relative p-7 pb-6 rounded-t-3xl overflow-hidden"
           style={{
@@ -217,7 +213,6 @@ function ConsultationModal({
               "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
           }}
         >
-          {/* Decorative blobs */}
           <div
             className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10 blur-2xl pointer-events-none"
             style={{ background: "#ffffff" }}
@@ -227,7 +222,6 @@ function ConsultationModal({
             style={{ background: "#3e8ad6" }}
           />
 
-          {/* ── Close button ── */}
           <button
             type="button"
             onClick={(e) => {
@@ -235,7 +229,6 @@ function ConsultationModal({
               onClose();
             }}
             className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/35 flex items-center justify-center transition-colors duration-200 cursor-pointer"
-            style={{ zIndex: 9999 }}
             aria-label="Close modal"
           >
             <svg
@@ -267,10 +260,8 @@ function ConsultationModal({
           </div>
         </div>
 
-        {/* ── Modal Body ── */}
         <div className="p-7">
           {submitted ? (
-            /* ── Thank-you screen ── */
             <div className="text-center py-8">
               <div
                 className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg"
@@ -317,9 +308,7 @@ function ConsultationModal({
               </button>
             </div>
           ) : (
-            /* ── Form ── */
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name + Phone */}
+            <ValidatedForm onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label
@@ -355,7 +344,7 @@ function ConsultationModal({
                     required
                     value={formData.phone}
                     onChange={handlePhoneChange}
-                    placeholder="(555) 000-0000"
+                    placeholder="+1 (555) 000-0000"
                     className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none transition-all duration-200"
                     onFocus={(e) =>
                       (e.currentTarget.style.borderColor = "#3e8ad6")
@@ -365,7 +354,6 @@ function ConsultationModal({
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <label
                   className="block text-xs font-semibold mb-1.5"
@@ -388,7 +376,6 @@ function ConsultationModal({
                 />
               </div>
 
-              {/* Practice Name */}
               <div>
                 <label
                   className="block text-xs font-semibold mb-1.5"
@@ -411,7 +398,6 @@ function ConsultationModal({
                 />
               </div>
 
-              {/* Practice Type */}
               <div>
                 <label
                   className="block text-xs font-semibold mb-1.5"
@@ -441,7 +427,6 @@ function ConsultationModal({
                 </select>
               </div>
 
-              {/* Message */}
               <div>
                 <label
                   className="block text-xs font-semibold mb-1.5"
@@ -463,7 +448,6 @@ function ConsultationModal({
                 />
               </div>
 
-              {/* Error message */}
               {errorMsg && (
                 <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-600 text-xs rounded-xl px-4 py-3">
                   <svg
@@ -483,7 +467,6 @@ function ConsultationModal({
                 </div>
               )}
 
-              {/* Submit */}
               <button
                 type="submit"
                 disabled={loading}
@@ -528,7 +511,7 @@ function ConsultationModal({
                 🔒 HIPAA-compliant &amp; 100% secure. We never share your
                 information.
               </p>
-            </form>
+            </ValidatedForm>
           )}
         </div>
       </div>
@@ -542,225 +525,158 @@ function ConsultationModal({
 export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const teamMembers = [
+  // ── Five Disciplines Cards data (Section 2) ──────────────────────
+  const fiveDisciplines = [
     {
-      name: "Andrew Collins",
-      role: "",
-      bio: "A healthcare finance veteran with 15+ years of experience building revenue cycle systems for therapy and behavioral health practices across the United States.",
-      initials: "AC",
+      number: "01",
+      title: "Physical Therapy",
+      desc: "Timed and untimed codes under the 8-minute rule, with a KX modifier tracked against an annual Medicare threshold.",
     },
     {
-      name: "Sarah Mitchell",
-      role: "",
-      bio: "Certified Professional Coder (CPC) with deep expertise in mental health, physical therapy, and occupational therapy billing under all major payers.",
-      initials: "SM",
+      number: "02",
+      title: "Occupational Therapy",
+      desc: "Tiered evaluative complexity, functional limitation reporting, and precise GO modifier compliance for all plans.",
     },
     {
-      name: "Noah Ramirez",
-      role: "",
-      bio: "Specializes in rapid provider enrollment and payer contracting, helping therapy practices get credentialed and start seeing patients without costly delays.",
-      initials: "NR",
+      number: "03",
+      title: "Speech-Language Pathology",
+      desc: "Per-session untimed codes (92507), distinct GN modifiers, and cognitive-communication protocol safeguards.",
     },
     {
-      name: "Matthew Chen",
-      role: "",
-      bio: "Leads our AI-driven claim scrubbing and denial prevention systems, ensuring a 99% clean claim rate through intelligent automation and expert review.",
-      initials: "MC",
-    },
-  ];
-
-  const values = [
-    {
-      title: "Transparency First",
-      desc: "No hidden fees, no surprise invoices. Our 3.99% billing rate and $99 credentialing fee are straightforward — what you see is exactly what you pay.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-      ),
+      number: "04",
+      title: "Applied Behavior Analysis (ABA)",
+      desc: "Category I adaptive behavior codes (97151–97158), authorized unit conversions, and ongoing protocol updates.",
     },
     {
-      title: "Therapist-Centered",
-      desc: "We were built exclusively for therapy and behavioral health practices. We understand your payers, your codes, and your patients — unlike generic billing companies.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-        </svg>
-      ),
-    },
-    {
-      title: "Speed & Accuracy",
-      desc: "We submit claims daily and scrub every submission using advanced algorithms. A 99% clean claim rate means your payments arrive faster and your cash flow stays strong.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-        </svg>
-      ),
-    },
-    {
-      title: "Compliance & Security",
-      desc: "Every process we run is HIPAA-compliant. Our staff are trained, our systems are encrypted, and your patient data is protected at every touchpoint.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-    },
-    {
-      title: "No Long-Term Contracts",
-      desc: "We earn your business every month. There are no lock-in agreements or cancellation penalties — just consistent results that make you want to stay.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
-      ),
-    },
-    {
-      title: "Relentless Follow-Up",
-      desc: "We don't abandon aging claims. Our AR team pursues every dollar at 30, 60, and 90+ days, recovering revenue that most billing companies simply write off.",
-      icon: (
-        <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-        </svg>
-      ),
+      number: "05",
+      title: "Mental Health & Counseling",
+      desc: "Time-based psychotherapy (90832–90837), diagnostic evals, crisis coding, and interactive complexity compliance.",
     },
   ];
 
-  const services = [
+  // ── Six Services Data (Section 3) ────────────────────────────────
+  // icon: put the icon image path or link between the quotes, e.g. "/icons/billing.svg" for a file in the public folder.
+  const sixServices = [
     {
-      title: "Medical Billing",
-      desc: "End-to-end claim submission, charge entry, and payment posting with a 99% clean claim rate.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-        </svg>
-      ),
+      title: "Billing and Claims",
+      desc: "Coding, submission, payment posting, and denial management for whichever of the five disciplines a practice bills.",
+      icon: "",
     },
     {
-      title: "Credentialing",
-      desc: "Provider enrollment and payer contracting for just $99 per payer — the most affordable rate in the industry.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-        </svg>
-      ),
-    },
-    {
-      title: "Denial Management",
-      desc: "We analyze, appeal, and resolve denied claims within 24 hours, cutting your denial rate by up to 40%.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-      ),
+      title: "Provider Credentialing",
+      desc: "Payer enrollments, CAQH profile management, and re-attestations completed for a flat $99 per payer.",
+      icon: "",
     },
     {
       title: "Eligibility Verification",
-      desc: "Real-time insurance verification before every patient visit to prevent costly claim rejections.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
-        </svg>
-      ),
+      desc: "Real-time coverage checks prior to patient visits to prevent claim rejections and unexpected copays.",
+      icon: "",
     },
     {
       title: "Prior Authorization",
-      desc: "Our specialists secure timely payer approvals for procedures, referrals, and medications with full tracking.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-        </svg>
-      ),
+      desc: "End-to-end authorization approvals, renewals, and physician tracking to keep clinical care uninterrupted.",
+      icon: "",
     },
     {
-      title: "AR Follow-Up",
-      desc: "We aggressively pursue aging accounts receivable at 30, 60, and 90+ days so no revenue is left behind.",
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
+      title: "AR & Denial Recovery",
+      desc: "Tenacious follow-up on unpaid claims at 30, 60, and 90+ days to recover revenue standard agencies write off.",
+      icon: "",
+    },
+    {
+      title: "Practice Marketing",
+      desc: "Patient acquisition pipelines and local growth infrastructure built directly alongside your revenue cycle.",
+      icon: "",
     },
   ];
 
-  const testimonials = [
+  // ── Section 4: What's Already Built ──────────────────────────────
+  const whatsAlreadyBuiltCards = [
     {
-      name: "Yzetta Martinez",
-      role: "Licensed Mental Health Counselor",
-      practice: "House of the Sacred Journey INC",
-      quote:
-        "Their team responded quickly and thoroughly with credentialing and any insurance discrepancies. Their attention to detail has made a noticeable difference in how confidently we move forward with patient care.",
-      initials: "YM",
+      title: "Rules Already Known",
+      desc: "Discipline-specific documentation rules, timely filing limits, and therapy cap requirements mapped from day one.",
     },
     {
-      name: "Isabella Saffioti",
-      role: "Occupational Therapist",
-      practice: "Little Star Pediatric Therapy",
-      quote:
-        "My previous billing company was making costly mistakes. Prime Therapy Billing turned everything around — they even negotiated higher reimbursement rates with two insurers. I cannot wait to grow my practice with them!",
-      initials: "IS",
+      title: "Codes Already Mapped",
+      desc: "Comprehensive crosswalks between discipline-specific CPT codes, modifiers, and regional payer requirements.",
     },
     {
-      name: "Brooke Douglas",
-      role: "Registered Dietitian",
-      practice: "Nutrition Authority PLLC",
-      quote:
-        "The communication and efficiency have been remarkable. Every question is answered promptly, thoroughly, and concisely. In a world of poor follow-through, I have been extremely pleased with this experience.",
-      initials: "BD",
+      title: "Payers Already Understood",
+      desc: "Established workflows across commercial, Medicaid, and Medicare payers to prevent administrative delays.",
     },
   ];
 
-  const comparisonRows = [
-    { feature: "Billing Rate", prime: "3.99%", industry: "5–7%" },
-    { feature: "Credentialing Fee", prime: "$99/payer", industry: "$150–$400+" },
-    { feature: "Contracts Required", prime: "None", industry: "12–24 months" },
-    { feature: "Claim Turnaround", prime: "Daily", industry: "3–5 days" },
-    { feature: "Clean Claim Rate", prime: "99%", industry: "85–92%" },
-    { feature: "Denial Response", prime: "< 24 hours", industry: "5–10 days" },
+  // ── Section 5: Practice Sizes Data ───────────────────────────────
+  // icon: put the icon image path or link between the quotes, e.g. "/icons/billing.svg" for a file in the public folder.
+  const practiceSizesData = [
+    {
+      title: "Solo Practices",
+      desc: "One point of contact, a flat rate under a monthly collections threshold, and no minimum claim count required to start.",
+      icon: "",
+    },
+    {
+      title: "Group Practices",
+      desc: "Multi-provider claims tracking, shared credentialing updates, and custom clinician-level production analytics.",
+      icon: "",
+    },
+    {
+      title: "Multi-Discipline Clinics",
+      desc: "Synchronized billing across PT, OT, SLP, or ABA with unified reporting under a single reconciled account.",
+      icon: "",
+    },
+    {
+      title: "Enterprise & Expanding",
+      desc: "Multi-location payer enrollments, scalable AR management, and fast expansion onboarding across state lines.",
+      icon: "",
+    },
+  ];
+
+  // ── Section 7: What Happens Before Any Access Is Given ───────────
+  // icon: put the icon image path or link between the quotes, e.g. "/icons/billing.svg" for a file in the public folder.
+  const accessStepsData = [
+    {
+      title: "A Signed Agreement First",
+      desc: "Access starts only after a BAA is in place, defining exactly what Prime can see and what it can do with it.",
+      icon: "",
+    },
+    {
+      title: "Role-Based Account Access",
+      desc: "Permissions are strictly restricted to billing portals, clearinghouses, and relevant schedule views.",
+      icon: "",
+    },
+    {
+      title: "Encrypted Credential Transfer",
+      desc: "Payer logins and system credentials are exchanged through secure encrypted vaults, never over unencrypted channels.",
+      icon: "",
+    },
+    {
+      title: "Comprehensive Pre-Billing Audit",
+      desc: "A thorough baseline review of clearinghouse connections, open encounters, and aging AR is finalized before go-live.",
+      icon: "",
+    },
+    {
+      title: "Clear Go-Live Confirmation",
+      desc: "Direct claims submission and daily billing begin only after workflows and communication rhythms are mutually approved.",
+      icon: "",
+    },
   ];
 
   return (
     <>
       <style>{`
-        @keyframes shimmer {
-          0%   { background-position: -200% center; }
-          100% { background-position:  200% center; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+        /* Same families as the home page: Google Sans for body text, Montserrat for headings */
+        .about-fonts,
+        .font-body {
+          font-family: 'Google Sans', 'Product Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-10px); }
-        }
-        @keyframes rotateSlow {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-        @keyframes pulseRing {
-          0%   { box-shadow: 0 0 0 0 rgba(62,138,214,0.45); }
-          70%  { box-shadow: 0 0 0 12px rgba(62,138,214,0); }
-          100% { box-shadow: 0 0 0 0 rgba(62,138,214,0); }
+        .about-fonts :is(h1, h2, h3, h4, h5, h6),
+        .font-heading {
+          font-family: 'Montserrat', sans-serif;
         }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(30px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .shimmer-text {
-          background: linear-gradient(90deg, #7dd3fc, #ffffff, #bfdbfe, #7dd3fc);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shimmer 3s linear infinite;
-        }
-        .card-hover {
-          transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .card-hover:hover {
-          transform: translateY(-6px) scale(1.01);
-        }
-        .animate-float      { animation: float      4s ease-in-out infinite; }
-        .animate-rotateSlow { animation: rotateSlow 20s linear infinite; }
-        .animate-pulse-ring { animation: pulseRing   2s ease-in-out infinite; }
-        .animate-fade-up    { animation: fadeUp     0.7s ease both; }
       `}</style>
 
       {/* ── Consultation Modal ── */}
@@ -769,1139 +685,816 @@ export default function AboutPage() {
         onClose={() => setModalOpen(false)}
       />
 
-      <main className="overflow-x-hidden bg-gray-50">
+      <main className="about-fonts overflow-x-hidden bg-gray-50">
 
         {/* ════════════════════════════════════════════════
-            HERO
+            SECTION 1 (HERO)
+            (pt-24 on mobile prevents fixed header clipping)
         ════════════════════════════════════════════════ */}
-        <section
-          className="relative text-white py-28 sm:py-36 px-4 sm:px-6 text-center overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-          }}
-        >
-          <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-          <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] border border-white/5 rounded-full pointer-events-none"
-            style={{ animation: "rotateSlow 15s linear infinite reverse" }}
-          />
-          <div className="absolute top-16 right-24 w-14 h-14 border-2 border-white/10 rounded-xl rotate-12 animate-rotateSlow pointer-events-none" />
-          <div className="absolute bottom-16 left-20 w-9 h-9 border-2 border-white/10 rounded-full pointer-events-none animate-float" />
-          <div className="absolute top-32 left-1/4 w-5 h-5 bg-white/10 rounded-full pointer-events-none animate-float" style={{ animationDelay: "1s" }} />
-          <div className="absolute bottom-24 right-1/4 w-7 h-7 border border-white/15 rounded-lg rotate-45 pointer-events-none animate-float" style={{ animationDelay: "2s" }} />
+        <section className="hero-section bg-white pt-[130px] pb-[60px] overflow-hidden">
+          <div className="hero-layout mx-auto w-[92%] max-w-[1320px] grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Content Column */}
+            <div className="hero-content lg:col-span-7 xl:col-span-7 flex flex-col items-start text-left z-10">
+              
+              {/* Badge: Added mt-1 sm:mt-0 to ensure safe distance from top navigation */}
+              <div
+                className="font-heading inline-block bg-[#fdfaf8] text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-semibold px-4 py-1.5 rounded-full mb-5 sm:mb-6 mt-1 sm:mt-0 shadow-sm"
+              >
+                Why Prime Therapy Billing Exists
+              </div>
 
-          <div className="relative z-10 max-w-4xl mx-auto animate-fade-up">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg animate-pulse-ring">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              Trusted Mental Health Billing Experts Nationwide
+              {/* Main Heading */}
+              <h1
+                className="text-[clamp(36px,4vw,52px)] font-extrabold tracking-tight leading-[1.15] mb-6 sm:mb-8 text-balance max-w-[12.5em]"
+                style={{ color: "#591e60" }}
+              >
+                Everything a{" "}
+                <span style={{ color: "#cf6352" }}>Therapy Practice</span>{" "}
+                Needs to <span style={{ color: "#cf6352" }}>Get Paid</span>, in One Place
+              </h1>
+
+              {/* Paragraphs */}
+              <p
+                className="text-[16px] md:text-[18px] leading-relaxed mb-5 sm:mb-6 font-normal max-w-2xl"
+                style={{ color: "#3d2e42" }}
+              >
+                Prime Therapy Billing serves PT, OT, SLP, ABA, and mental health practices, and only those five. Each one runs on its own codes, its own modifiers, and its own payer rules, so Prime built billing, credentialing, insurance verification, and prior authorization as one service instead of four.
+              </p>
+
+              <p
+                className="text-[16px] leading-relaxed mb-6 sm:mb-8 font-normal max-w-2xl"
+                style={{ color: "#3d2e42" }}
+              >
+                That&apos;s the whole premise. One team, five specialties, everything a practice needs to get paid sitting under a single account.
+              </p>
+
+              {/* Button */}
+              <div className="w-full max-w-[580px]">
+                <HeroActions>
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className="text-white text-sm sm:text-base font-semibold px-6 py-3.5 rounded-[6px] shadow-sm hover:opacity-90 active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                  >
+                    Get My Free Billing Review
+                  </button>
+                </HeroActions>
+              </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
-              Specialized Therapy Billing Services for Modern Practices.{" "}
-              <span className="shimmer-text block mt-2">
-                Maximize Every Claim.
-              </span>
-            </h1>
+            {/* Right Side Image Column */}
+            <div className="hero-media lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end items-center relative select-none mt-2 lg:mt-0">
+              {HERO_IMAGE_SRC ? (
+                <img
+                  src={HERO_IMAGE_SRC}
+                  alt="Prime Therapy Billing team"
+                  className="w-full max-w-[220px] sm:max-w-[320px] lg:max-w-[470px] h-auto"
+                />
+              ) : (
+                // Empty slot shown until HERO_IMAGE_SRC is filled in
+                <div
+                  aria-hidden="true"
+                  className="w-full max-w-[220px] sm:max-w-[320px] lg:max-w-[470px] aspect-[6/5] rounded-2xl border-2 border-dashed border-[#591e60]/30 bg-[#fdfaf8]"
+                />
+              )}
+            </div>
 
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            SECTION 2 — "Five Disciplines, Five Rule Sets"
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-[60px] relative overflow-hidden"
+          style={{ backgroundColor: "#fbf6fa" }}
+        >
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+            
+            {/* Top Badge */}
+            <div className="flex justify-center mb-5 sm:mb-6">
+              <span
+                className="font-heading inline-block bg-white text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-semibold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
+              >
+                Dedicated Disciplines
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-4 sm:mb-5 tracking-tight leading-[1.15]">
+              <span style={{ color: "#cf6352" }}>Five</span>{" "}
+              <span style={{ color: "#591e60" }}>Disciplines,</span>{" "}
+              <span style={{ color: "#cf6352" }}>Five</span>{" "}
+              <span style={{ color: "#591e60" }}>Rule Sets</span>
+            </h2>
+
+            {/* Subtitle Paragraph */}
             <p
-              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
-              style={{ color: "#bfdbfe" }}
+              className="max-w-3xl mx-auto text-center text-[16px] leading-relaxed mb-8 sm:mb-10 font-normal px-2"
+              style={{ color: "#3d2e42" }}
             >
-              Prime Therapy Billing delivers comprehensive mental health billing and behavioral health RCM solutions to practices across all 50 states. By merging advanced automation with certified billing specialists, we eliminate claim denials, accelerate reimbursement timelines, and handle your insurance claims for therapists—so you can focus entirely on patient care.
+              Physical therapy, occupational therapy, speech-language pathology, ABA, and mental health each bill under a separate set of codes, modifiers, and payer requirements. None of the five overlap enough to treat as interchangeable.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-white text-sm font-bold px-6 py-3 rounded-full shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
-                style={{ color: "#0e3256" }}
-              >
-                Claim Your Free Billing Audit
-                <span>→</span>
-              </button>
-              <a
-                href="tel:+13464604441"
-                className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-6 py-3 rounded-full text-sm font-semibold text-white hover:bg-white/25 transition-all duration-300"
-              >
-                <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                (346) 460-4441
-              </a>
+            {/* Cards: 3 on the first row, 2 centred on the second, all the same width and height */}
+            <div className="w-full mx-auto grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-fr gap-y-2 gap-x-4 justify-items-center md:[&>div]:col-span-2 md:max-lg:[&>div:nth-child(5)]:col-start-2 lg:[&>div:nth-child(4)]:col-start-2">
+              {fiveDisciplines.map((item, idx) => (
+                <DisciplineCard key={idx} item={item} />
+              ))}
             </div>
+
+            {/* Bottom Caption */}
+            <div className="mt-12 sm:mt-16 text-center max-w-5xl mx-auto px-4">
+              <p
+                className="text-[14px] md:text-[16px] leading-relaxed font-normal"
+                style={{ color: "#68526d" }}
+              >
+                {/* One sentence per line; they only wrap below lg, where a single line no longer fits */}
+                <span className="block lg:whitespace-nowrap">
+                  Five specialties, five different rule sets, and Prime Therapy Billing bills all five and nothing beyond them.
+                </span>
+                <span className="block lg:whitespace-nowrap">
+                  That&apos;s the whole scope, and it&apos;s why each discipline gets covered at the level of detail it needs.
+                </span>
+              </p>
+            </div>
+
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            STATS
+            SECTION 3 — "Six Services, One Account"
         ════════════════════════════════════════════════ */}
-        <section className="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-            <StatCard
-              target={99}
-              suffix="%"
-              label="First-Submission Approval Rate"
-              sub="Optimized insurance claims for therapists"
-              duration={2000}
-            />
-            <StatCard
-              target={99.8}
-              suffix="%"
-              decimals={1}
-              label="Clinical Coding Accuracy"
-              sub="Dedicated mental health billing specialists"
-              duration={2000}
-            />
-            <StatCard
-              target={40}
-              suffix="%"
-              label="Denial Ratio Decreased"
-              sub="Proven behavioral health RCM uplift"
-              duration={2000}
-            />
-            <StatCard
-              target={3.99}
-              suffix="%"
-              decimals={2}
-              label="Flat-Rate Billing Fee"
-              sub="Transparent therapy billing services"
-              duration={2000}
-            />
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            MISSION
-        ════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <div>
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-5 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
+        <section className="py-[60px] relative overflow-hidden bg-white">
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+            {/* Top Badge */}
+            <div className="flex justify-center mb-5 sm:mb-6">
+              <span
+                className="font-heading inline-block bg-[#fdfaf8] text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-bold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
               >
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                </svg>
-                Our Commitment
-              </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight"
-                style={{ color: "#0e3256" }}
-              >
-                Empowering Therapists to Focus on Patient Care, Not Paperwork
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Prime Therapy Billing exists to eliminate the operational and financial roadblocks that distract mental health professionals from their true calling—delivering exceptional patient care.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Decades of experience in the healthcare sector showed us a recurring problem: private practices, group clinics, and behavioral health facilities were hemorrhaging revenue due to coding mistakes, recurring denials, and delayed credentialing. The root cause was never a lack of clinical talent; it was the impossibility of mastering complex insurance claims for therapists without dedicated support.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                To bridge this gap, we assembled a dedicated task force of certified medical coders, credentialing specialists, and accounts receivable veterans—all exclusively trained in therapy billing services and behavioral health RCM. Today, our team manages the complete revenue lifecycle for practices spanning all 50 states, ensuring your claims are paid accurately and on time.
-              </p>
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-                }}
-              >
-                Partner With Our Team
-                <span>→</span>
-              </button>
+                Comprehensive RCM
+              </span>
             </div>
 
-            {/* Visual card stack */}
-            <div className="relative h-[440px] hidden lg:block">
-              <div
-                className="absolute top-0 right-6 w-72 h-48 rounded-2xl shadow-xl p-6 text-white"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 100%)",
-                }}
-              >
-                <p className="text-xs font-semibold opacity-70 mb-1">
-                  REVENUE RECLAIMED MONTHLY
-                </p>
-                <p className="text-4xl font-extrabold mb-3">$2.4M+</p>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs opacity-80">
-                    For active therapy practices
-                  </span>
-                </div>
-              </div>
-              <div
-                className="absolute top-36 left-0 w-64 h-44 rounded-2xl shadow-xl p-6"
-                style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
-              >
-                <p
-                  className="text-xs font-semibold mb-1"
-                  style={{ color: "#1a5fa8" }}
-                >
-                  CLAIMS MANAGED
-                </p>
-                <p
-                  className="text-4xl font-extrabold mb-3"
-                  style={{ color: "#0e3256" }}
-                >
-                  500K+
-                </p>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-blue-400" />
-                  <span className="text-xs text-gray-500">
-                    Processed since 2018
-                  </span>
-                </div>
-              </div>
-              <div
-                className="absolute bottom-0 right-0 w-68 h-44 rounded-2xl shadow-xl p-6"
-                style={{ background: "#ffffff", border: "1px solid #e5e7eb" }}
-              >
-                <p
-                  className="text-xs font-semibold mb-1"
-                  style={{ color: "#1a5fa8" }}
-                >
-                  CLIENT PARTNERSHIPS
-                </p>
-                <p
-                  className="text-4xl font-extrabold mb-3"
-                  style={{ color: "#0e3256" }}
-                >
-                  200+
-                </p>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-green-400" />
-                  <span className="text-xs text-gray-500">
-                    Spanning all 50 states
-                  </span>
-                </div>
-              </div>
-              {/* Floating badge */}
-              <div
-                className="absolute top-28 right-0 bg-white rounded-xl shadow-lg px-4 py-2.5 text-xs font-bold animate-float border"
-                style={{ color: "#0e3256", borderColor: "#e5e7eb" }}
-              >
-                ⭐ 4.9 / 5 Average Client Rating
-              </div>
-            </div>
-          </div>
-        </section>
+            {/* Main Headline */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-3 sm:mb-4 tracking-tight leading-[1.15]">
+              <span style={{ color: "#591e60" }}>Six Services, </span>
+              <span style={{ color: "#d14436" }}>One Account</span>
+            </h2>
 
-        {/* ════════════════════════════════════════════════
-            VALUES
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
-              >
-                Our Guiding Principles
-              </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-4"
-                style={{ color: "#0e3256" }}
-              >
-                Principles That Drive Our Therapy Billing Services
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Every insurance claim for therapists we process and every behavioral health RCM strategy we deploy is anchored in these foundational beliefs. We go beyond standard medical billing to protect your practice&apos;s financial integrity with transparent, results-driven mental health billing solutions.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {values.map((v) => (
-                <div
-                  key={v.title}
-                  className="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100"
-                >
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-white"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
-                    }}
-                  >
-                    {v.icon}
-                  </div>
-                  <h3
-                    className="text-base font-extrabold mb-2"
-                    style={{ color: "#0e3256" }}
-                  >
-                    {v.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
+            {/* Subtitle Paragraph */}
+            <p
+              className="max-w-4xl mx-auto text-center text-[16px] leading-relaxed mb-12 sm:mb-20 font-normal px-4"
+              style={{ color: "#4d3852" }}
+            >
+              Billing, credentialing, insurance verification, prior authorization, AR follow-up, and marketing are usually six separate purchases from six different companies. Prime Therapy Billing runs them as one.
+            </p>
+
+            {/* 6 Cards Grid: 3 per row on desktop, so the six cards sit in two rows */}
+            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center items-stretch">
+              {sixServices.map((card, idx) => (
+                <ServiceCard key={idx} card={card} />
               ))}
             </div>
           </div>
         </section>
 
         {/* ════════════════════════════════════════════════
-            SERVICES
+            SECTION 4 — "What Specialization Means Here"
         ════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
+        <section className="py-[60px] bg-[#fcf7fe] relative overflow-hidden border-t border-gray-100">
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+
+            {/* Top Pill / Badge */}
+            <div className="flex justify-center mb-5">
+              <span
+                className="font-heading inline-block bg-white text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-bold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
               >
-                End-to-End RCM Solutions
+                What Specialization Means Here
+              </span>
+            </div>
+
+            {/* Main Title */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-3 sm:mb-4 tracking-tight leading-[1.15]">
+              <span style={{ color: "#591e60" }}>What&apos;s </span>
+              <span style={{ color: "#d14436" }}>Already Built</span>
+            </h2>
+
+            {/* Subtitle / Descriptive Text */}
+            <p
+              className="max-w-3xl mx-auto text-center text-[16px] leading-relaxed mb-12 sm:mb-16 font-normal px-4"
+              style={{ color: "#4d3852" }}
+            >
+              Prime Therapy Billing&apos;s specialization shows up in three places: the rules already known, the codes already mapped, and the payers already understood.
+            </p>
+
+            {/* Image on the left, the three cards staggered on the right */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+              {/* Left Column: Image */}
+              <div className="lg:col-span-4 xl:col-span-5 flex justify-center lg:justify-start items-center select-none">
+                {SPECIALIZATION_IMAGE_SRC ? (
+                  <img
+                    src={SPECIALIZATION_IMAGE_SRC}
+                    alt="Prime Therapy Billing specialization"
+                    className="w-full max-w-[260px] sm:max-w-[360px] lg:max-w-[480px] h-auto"
+                  />
+                ) : (
+                  // Placeholder shape shown until SPECIALIZATION_IMAGE_SRC is filled in
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 320.63 266.83"
+                    className="w-full max-w-[260px] sm:max-w-[360px] lg:max-w-[480px] h-auto"
+                  >
+                    <path
+                      d="M313.64,210.89s18.14-37.79-4.03-74.64c-17.67-29.37-33.29-26.87-23.54-70.86,12.51-56.45-62.95-74.57-118.31-44.63C122.32,45.34,97.03-26.92,38.87,11.5c-48.53,32.06-3.88,95.5-17.34,116.12C.37,160.01-11.21,187.53,15.62,214.95c48.62,49.67,251.59,88.03,298.02-4.05Z"
+                      fill="#8672b4"
+                      opacity="0.1"
+                    />
+                  </svg>
+                )}
               </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-4"
-                style={{ color: "#0e3256" }}
+
+              {/* Right Column: cards 1 and 3 stacked, card 2 centred beside them */}
+              <div className="lg:col-span-8 xl:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 justify-items-center items-center">
+                {whatsAlreadyBuiltCards.map((card, idx) => (
+                  <div
+                    key={idx}
+                    className={`relative w-full max-w-[360px] transition-transform duration-300 hover:-translate-y-1.5 ${
+                      idx === 1 ? "sm:row-span-2" : ""
+                    }`}
+                  >
+                    <div className="relative pt-[15px]">
+                      {/* Top Purple Arch */}
+                      <div className="absolute inset-x-0 top-0 bottom-[24px] rounded-t-[25px] bg-[#591e60]" />
+
+                      {/* White Title Card */}
+                      <div className="relative z-10 mx-[18px] min-h-[96px] flex items-center justify-center text-center bg-white border-[3px] border-[#591e60] rounded-[17px] px-4 py-3 shadow-[1.5px_1.5px_6px_rgba(0,0,0,0.08)]">
+                        <h3 className="text-[#d95959] font-extrabold text-[22px] md:text-[26px] leading-[1.25] tracking-tight">
+                          {card.title}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Description Body */}
+                    <div className="relative -mt-[24px] bg-white border border-[#591e60] rounded-b-[25px] shadow-[3px_4px_8px_rgba(0,0,0,0.14)] px-5 pt-[40px] pb-6">
+                      <p className="text-center text-[16px] leading-[1.6] text-[#2a1730] font-normal">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            SECTION 5 — "Every Practice Size"
+        ════════════════════════════════════════════════ */}
+        <section
+          className="py-[60px] relative overflow-hidden"
+          style={{ backgroundColor: "#ffffff" }}
+        >
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+            {/* Top Badge */}
+            <div className="flex justify-center mb-5 sm:mb-6">
+              <span
+                className="font-heading inline-block bg-[#fdfaf8] text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-semibold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
               >
-                Comprehensive Therapy Billing Services for Growing Practices
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Eliminate revenue leaks at every stage. We manage the full spectrum of mental health billing and behavioral health RCM—handling insurance claims for therapists from initial submission through final reimbursement—so you can focus entirely on patient outcomes.
+                Practice Sizes
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-3 sm:mb-4 tracking-tight leading-[1.15]">
+              <span style={{ color: "#591e60" }}>Every </span>
+              <span style={{ color: "#cf6352" }}>Practice Size</span>
+            </h2>
+
+            {/* Subtitle */}
+            <p
+              className="max-w-3xl mx-auto text-center text-[16px] leading-relaxed mb-10 sm:mb-16 font-normal px-4"
+              style={{ color: "#3d2e42" }}
+            >
+              Prime Therapy Billing works with practices at every stage, from a first insurance claim to a roster spread across multiple states.
+            </p>
+
+            {/* Main Content Area (Cards Grid on Left + Blob on Right) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+              
+              {/* Left Column: 2x2 Grid with Exact Inward Symmetrical SVGs */}
+              <div className="lg:col-span-8 xl:col-span-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 sm:gap-y-7 gap-x-6 sm:gap-x-7 justify-items-center">
+                  {practiceSizesData.map((item, idx) => {
+                    return (
+                      <div
+                        key={idx}
+                        className={`relative w-full max-w-[340px] sm:max-w-[360px] transition-transform duration-300 hover:-translate-y-1 ${
+                          idx === 0
+                            ? "aspect-[360.5/291.33]"
+                            : idx === 1
+                            ? "aspect-[360.5/291.33]"
+                            : idx === 2
+                            ? "aspect-[360.5/283.83]"
+                            : "aspect-[360.5/283.83]"
+                        }`}
+                      >
+                        {/* 1st Card SVG (Top Left) */}
+                        {idx === 0 && (
+                          <svg
+                            id="Layer_card_1"
+                            viewBox="0 0 360.5 291.33"
+                            className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-sm"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="20.5"
+                              y="26"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#d95959"
+                            />
+                            <rect
+                              x="0.5"
+                              y="0.5"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#fff"
+                              stroke="#d95959"
+                              strokeMiterlimit="10"
+                            />
+                          </svg>
+                        )}
+
+                        {/* 2nd Card SVG (Top Right) */}
+                        {idx === 1 && (
+                          <svg
+                            id="Layer_card_2"
+                            viewBox="0 0 360.5 291.33"
+                            className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-sm"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              y="26"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#591e60"
+                            />
+                            <rect
+                              x="20"
+                              y="0.5"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#fff"
+                              stroke="#d95959"
+                              strokeMiterlimit="10"
+                            />
+                          </svg>
+                        )}
+
+                        {/* 3rd Card SVG (Bottom Left) */}
+                        {idx === 2 && (
+                          <svg
+                            id="Layer_card_3"
+                            viewBox="0 0 360.5 283.83"
+                            className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-sm"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="20.5"
+                              y="0"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#591e60"
+                            />
+                            <rect
+                              x="0.5"
+                              y="18"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#fff"
+                              stroke="#d95959"
+                              strokeMiterlimit="10"
+                            />
+                          </svg>
+                        )}
+
+                        {/* 4th Card SVG (Bottom Right) */}
+                        {idx === 3 && (
+                          <svg
+                            id="Layer_card_4"
+                            viewBox="0 0 360.5 283.83"
+                            className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-sm"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#d95959"
+                            />
+                            <rect
+                              x="20"
+                              y="18"
+                              width="340"
+                              height="265.33"
+                              rx="25.33"
+                              ry="25.33"
+                              fill="#fff"
+                              stroke="#d95959"
+                              strokeMiterlimit="10"
+                            />
+                          </svg>
+                        )}
+
+                        {/* Card Content */}
+                        <div
+                          className={`relative z-10 p-3 sm:px-5 sm:py-3 flex flex-col items-center justify-between ${
+                            idx === 0
+                              ? "w-[94.45%] h-[91.25%] top-0 left-0"
+                              : idx === 1
+                              ? "w-[94.45%] h-[91.25%] top-0 left-[5.55%]"
+                              : idx === 2
+                              ? "w-[94.45%] h-[93.48%] top-[6.34%] left-0"
+                              : "w-[94.45%] h-[93.48%] top-[6.34%] left-[5.55%]"
+                          }`}
+                        >
+                          {/* Icon */}
+                          <div className="flex justify-center items-center mt-1">
+                            <CardIcon src={item.icon} className="w-8 h-8 sm:w-10 sm:h-10" />
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] leading-[1.25] tracking-tight text-center mt-1">
+                            {item.title}
+                          </h3>
+
+                          {/* Divider Line */}
+                          <div className="w-full h-[1px] bg-[#e8a39e]/70 my-0.5 sm:my-1" />
+
+                          {/* Description */}
+                          <p className="text-[16px] leading-[1.6] text-[#3d2e42] text-left">
+                            {item.desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column: Organic Fluid Blob Graphic (above the cards once the row stacks, hidden on phones) */}
+              <div className="lg:col-span-4 xl:col-span-4 hidden sm:flex order-first lg:order-none justify-center lg:justify-end items-center relative select-none">
+                <svg
+                  id="Layer_1"
+                  data-name="Layer 1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 320.63 266.83"
+                  className="w-full max-w-[220px] sm:max-w-[320px] lg:max-w-[460px] h-auto drop-shadow-sm transition-transform duration-700 hover:scale-[1.01]"
+                >
+                  <path
+                    d="M313.64,210.89s18.14-37.79-4.03-74.64c-17.67-29.37-33.29-26.87-23.54-70.86,12.51-56.45-62.95-74.57-118.31-44.63C122.32,45.34,97.03-26.92,38.87,11.5c-48.53,32.06-3.88,95.5-17.34,116.12C.37,160.01-11.21,187.53,15.62,214.95c48.62,49.67,251.59,88.03,298.02-4.05Z"
+                    fill="#8672b4"
+                    opacity="0.1"
+                  />
+                </svg>
+              </div>
+
+            </div>
+
+            {/* Bottom Caption Text */}
+            <div className="mt-12 sm:mt-16 text-center max-w-2xl mx-auto px-4">
+              <p
+                className="text-[14px] md:text-[16px] leading-relaxed font-normal"
+                style={{ color: "#d95959" }}
+              >
+                Same six services from Section 3, sized to whatever the practice actually looks like.
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => (
-                <div
-                  key={s.title}
-                  className="card-hover bg-white rounded-2xl p-6 shadow-md border border-gray-100 flex gap-4"
-                >
-                  <div
-                    className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center text-white mt-0.5"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
-                    }}
+
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            SECTION 6 — "The Structure / One Person, Not a Queue"
+            (Mobile view is explicitly sorted 01 -> 02 -> 03 -> 04)
+        ════════════════════════════════════════════════ */}
+        <section className="py-[60px] bg-[#fcf7fe] relative overflow-hidden">
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+
+            {/* Top Badge */}
+            <div className="flex justify-center mb-5 sm:mb-6">
+              <span
+                className="font-heading inline-block bg-white text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-semibold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
+              >
+                The Structure
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-3 sm:mb-4 tracking-tight leading-[1.15]">
+              <span style={{ color: "#cf6352" }}>One Person</span>
+              <span style={{ color: "#591e60" }}>, Not a Queue</span>
+            </h2>
+
+            {/* Subtitle Paragraph */}
+            <p
+              className="max-w-3xl mx-auto text-center text-[16px] leading-relaxed mb-12 sm:mb-20 font-normal px-4"
+              style={{ color: "#3d2e42" }}
+            >
+              Prime Therapy Billing assigns one account manager per practice, someone who knows the payer mix and the specialty behind every claim that account files.
+            </p>
+
+            {/* 4 Cards Container */}
+            <div className="relative max-w-4xl mx-auto">
+
+              {/* Central Layered Pastel Shapes Behind Cards (hidden while the cards are in a single column) */}
+              <div className="absolute inset-0 hidden md:flex items-center justify-center pointer-events-none select-none z-0">
+                <div className="w-full h-full max-w-5xl flex items-center justify-center">
+                  <svg
+                    id="Layer_1"
+                    data-name="Layer 1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 1197.99 829.62"
+                    className="w-full h-auto max-h-full"
                   >
-                    {s.icon}
-                  </div>
-                  <div>
-                    <h3
-                      className="text-sm font-extrabold mb-1"
-                      style={{ color: "#0e3256" }}
+                    {/* Plum / Purple Layer */}
+                    <rect
+                      x="322.07"
+                      y="62.58"
+                      width="591.34"
+                      height="415.85"
+                      rx="43.47"
+                      ry="43.47"
+                      fill="#591e60"
+                      opacity="0.51"
+                    />
+                    {/* Coral / Dusty Rose Layer */}
+                    <rect
+                      x="248.39"
+                      y="311.78"
+                      width="342"
+                      height="267.85"
+                      rx="43.47"
+                      ry="43.47"
+                      fill="#d95959"
+                      opacity="0.3"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Grid: On mobile displays 01 -> 02 -> 03 -> 04 using flex/order; on desktop the two columns are staggered (03 and 01 pushed to the outer edges, 04 and 02 pulled toward the centre) */}
+              <div className="relative z-10 flex flex-col md:grid md:grid-cols-2 gap-6 sm:gap-10 lg:gap-12 justify-items-center items-center md:items-start">
+                
+                {/* ── CARD 01 (Mobile: 1st, Desktop: Top of Right Column, at the right edge) ── */}
+                <div className="order-1 md:order-2 md:col-start-2 w-full max-w-[340px] sm:max-w-[370px] lg:justify-self-end">
+                  <div
+                    className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
+                    style={{ backgroundColor: "#f4edf4" }}
+                  >
+                    <div
+                      className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
+                      style={{ color: "#591e60" }}
                     >
-                      {s.title}
+                      01
+                    </div>
+                    <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] leading-[1.25] mb-2 sm:mb-2.5 tracking-tight">
+                      A Named Contact
                     </h3>
-                    <p className="text-xs text-gray-500 leading-relaxed">
-                      {s.desc}
+                    <p
+                      className="text-[16px] leading-relaxed max-w-[270px] mx-auto"
+                      style={{ color: "#3d2e42" }}
+                    >
+                      The same person handles a practice&apos;s account month over month, not a rotating queue routed to whoever is available when a question comes in.
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* ════════════════════════════════════════════════
-            COMPARISON TABLE
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
-        >
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
-              >
-                Behavioral Health RCM Benchmark
-              </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-4"
-                style={{ color: "#0e3256" }}
-              >
-                How Our Therapy Billing Services Outperform Standard Providers
-              </h2>
-              <p className="text-gray-500 text-sm max-w-lg mx-auto">
-                Discover why mental health practices nationwide rely on our specialized mental health billing expertise to maximize revenue and process insurance claims for therapists far more effectively than conventional agencies.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-              <div
-                className="grid grid-cols-3 text-xs font-bold text-white px-6 py-4"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-                }}
-              >
-                <span>Performance Metric</span>
-                <span className="text-center">Prime Therapy Billing</span>
-                <span className="text-center">Typical Billing Agency</span>
-              </div>
-              {comparisonRows.map((row, i) => (
-                <div
-                  key={row.feature}
-                  className={`grid grid-cols-3 px-6 py-4 text-sm items-center ${
-                    i % 2 === 0 ? "bg-white" : "bg-blue-50/40"
-                  }`}
-                >
-                  <span className="font-semibold text-gray-700 text-xs">
-                    {row.feature}
-                  </span>
-                  <span
-                    className="text-center font-extrabold text-sm"
-                    style={{ color: "#0e3256" }}
-                  >
-                    {row.prime}
-                  </span>
-                  <span className="text-center text-gray-400 text-xs">
-                    {row.industry}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            TEAM
-        ════════════════════════════════════════════════ */}
-        <section className="py-20 px-4 sm:px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
-              >
-                Behavioral Health RCM Leaders
-              </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-4"
-                style={{ color: "#0e3256" }}
-              >
-                The Authorities Behind Your Therapy Billing Success
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Decades of specialized expertise in mental health billing and behavioral health RCM power our commitment to maximizing your practice&apos;s revenue. Every leader on our team is dedicated to delivering superior therapy billing services and streamlining insurance claims for therapists.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {teamMembers.map((member) => (
-                <div
-                  key={member.name}
-                  className="card-hover bg-white rounded-2xl p-6 text-center shadow-md border border-gray-100"
-                >
+                {/* ── CARD 02 (Mobile: 2nd, Desktop: Bottom of Right Column, pulled toward the centre and set lower) ── */}
+                <div className="order-2 md:order-4 md:col-start-2 w-full max-w-[340px] sm:max-w-[370px] md:mt-6 lg:mt-16 lg:justify-self-start">
                   <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-white font-extrabold text-lg mx-auto mb-4 shadow-lg"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0e3256, #3e8ad6)",
-                    }}
+                    className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
+                    style={{ backgroundColor: "#f4edf4" }}
                   >
-                    {member.initials}
-                  </div>
-                  <h3
-                    className="text-sm font-extrabold mb-0.5"
-                    style={{ color: "#0e3256" }}
-                  >
-                    {member.name}
-                  </h3>
-                  <p
-                    className="text-xs font-semibold mb-3"
-                    style={{ color: "#1a5fa8" }}
-                  >
-                    {member.role}
-                  </p>
-                  <p className="text-xs text-gray-500 leading-relaxed">
-                    {member.bio}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            TESTIMONIALS
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)" }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-14">
-              <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-4 border"
-                style={{
-                  background: "rgba(14,50,86,0.07)",
-                  color: "#0e3256",
-                  borderColor: "rgba(14,50,86,0.15)",
-                }}
-              >
-                Verified Practice Outcomes
-              </div>
-              <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-4"
-                style={{ color: "#0e3256" }}
-              >
-                Why Providers Trust Our Therapy Billing Services
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto text-sm leading-relaxed">
-                Discover why practices nationwide rely on our mental health billing solutions. From accelerating insurance claims for therapists to executing comprehensive behavioral health RCM strategies, see the real financial impact our clients achieve.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {testimonials.map((t) => (
-                <div
-                  key={t.name}
-                  className="card-hover bg-white rounded-2xl p-7 shadow-md border border-gray-100 flex flex-col"
-                >
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-4 h-4"
-                        fill="#f59e0b"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1 mb-5 italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3">
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-white text-xs font-extrabold flex-shrink-0"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #0e3256, #3e8ad6)",
-                      }}
+                      className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
+                      style={{ color: "#591e60" }}
                     >
-                      {t.initials}
+                      02
                     </div>
-                    <div>
-                      <p
-                        className="text-xs font-extrabold"
-                        style={{ color: "#0e3256" }}
-                      >
-                        {t.name}
-                      </p>
-                      <p className="text-xs text-gray-400">{t.role}</p>
-                      <p
-                        className="text-xs font-semibold"
-                        style={{ color: "#1a5fa8" }}
-                      >
-                        {t.practice}
-                      </p>
-                    </div>
+                    <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] leading-[1.25] mb-2 sm:mb-2.5 tracking-tight">
+                      A Monthly Call
+                    </h3>
+                    <p
+                      className="text-[16px] leading-relaxed max-w-[270px] mx-auto"
+                      style={{ color: "#3d2e42" }}
+                    >
+                      Reports arrive with a scheduled call attached, so a practice can ask what a number means instead of reading a PDF alone.
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* ════════════════════════════════════════════════
-            CTA
-        ════════════════════════════════════════════════ */}
-        <section className="py-24 px-4 sm:px-6 text-center relative overflow-hidden">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-            }}
-          />
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
-            <div className="absolute top-10 left-1/4 w-64 h-64 rounded-full blur-3xl" style={{ background: "#ffffff" }} />
-            <div className="absolute bottom-10 right-1/4 w-48 h-48 rounded-full blur-3xl" style={{ background: "#3e8ad6" }} />
-          </div>
-
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold text-white mb-6 border border-white/25">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Launch Your Billing Upgrade in 48 Hours
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
-              Ready to Maximize Your Behavioral Health RCM?
-            </h2>
-            <p
-              className="text-base sm:text-lg mb-10 leading-relaxed"
-              style={{ color: "#bfdbfe" }}
-            >
-              Over 200 therapy practices rely on our comprehensive therapy billing services to accelerate reimbursements, eliminate claim denials, and streamline mental health billing operations. We manage your insurance claims for therapists end-to-end, delivering unmatched financial results at the industry&apos;s most competitive rate.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center gap-2 bg-white font-bold px-8 py-4 rounded-full shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300 text-sm"
-                style={{ color: "#0e3256" }}
-              >
-                Claim Your Free Billing Audit
-                <span>→</span>
-              </button>
-              <a
-                href="tel:+13464604441"
-                className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/25 px-8 py-4 rounded-full text-sm font-semibold text-white hover:bg-white/25 transition-all duration-300"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                Call (346) 460-4441
-              </a>
-            </div>
-            <p className="text-xs mt-6" style={{ color: "#93c5fd" }}>
-              Complimentary audit · Zero contracts · Strictly HIPAA-compliant
-            </p>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            STATS STRIP
-        ════════════════════════════════════════════════ */}
-        <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 -mt-14 mb-20">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-5">
-            <StatCard
-              target={3.99}
-              suffix="%"
-              label="Therapy Billing Rate"
-              sub="Unmatched mental health billing cost"
-              duration={1800}
-              decimals={2}
-            />
-            <StatCard
-              target={99.8}
-              suffix="%"
-              label="Behavioral Health Coding Precision"
-              sub="Certified therapy coding accuracy"
-              duration={1600}
-              decimals={1}
-            />
-            <StatCard target={99} suffix="%" label="First-Pass Claim Acceptance" sub="Insurance claims for therapists approved instantly" duration={1600} />
-            <StatCard target={40} suffix="%" label="Denial Rate Drop" sub="Behavioral health RCM optimized in 90 days" duration={1400} />
-            <StatCard target={99} prefix="$" label="Therapist Credentialing Cost" sub="Flat fee per behavioral health payer" duration={1200} />
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            WHO WE ARE
-        ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-
-              {/* Left — text */}
-              <div>
-                <span
-                  className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 shadow"
-                  style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                >
-                  Dedicated Billing Partners
-                </span>
-                <h2
-                  className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight"
-                  style={{ color: "#0e3256" }}
-                >
-                  The Behavioral Health RCM Engine Powering{" "}
-                  <span style={{ color: "#3e8ad6" }}>Your Practice</span>
-                </h2>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  Prime Therapy Billing unites certified revenue cycle specialists, compliance officers, and therapy coding authorities—exclusively supporting mental health, physical therapy, occupational therapy, and behavioral health practices across the country.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  Independent therapy practices deserve the same high-tier billing infrastructure that large hospital networks rely on—without the exorbitant costs. We function as your seamless back-office, executing ICD-10 coding, overturning denials, and negotiating payer contracts so you can dedicate your energy to clinical outcomes.
-                </p>
-                <blockquote
-                  className="border-l-4 pl-5 italic text-gray-600 text-base leading-relaxed"
-                  style={{ borderColor: "#3e8ad6" }}
-                >
-                  &ldquo;We never wait for denials to occur. Our team audits every single insurance claim for therapists using predictive analytics to secure first-pass reimbursement—without exception.&rdquo;
-                </blockquote>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {[
-                    "Strict HIPAA Security",
-                    "Month-to-Month Flexibility",
-                    "Nationwide Coverage",
-                    "5-Star Client Rating",
-                  ].map((badge) => (
-                    <span
-                      key={badge}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-full border"
-                      style={{
-                        color: "#1a5fa8",
-                        borderColor: "#d0e4f7",
-                        background: "#f0f6ff",
-                      }}
+                {/* ── CARD 03 (Mobile: 3rd, Desktop: Top of Left Column, at the left edge, a little below card 01) ── */}
+                <div className="order-3 md:order-1 md:col-start-1 w-full max-w-[340px] sm:max-w-[370px] lg:mt-5 lg:justify-self-start">
+                  <div
+                    className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
+                    style={{ backgroundColor: "#f4edf4" }}
+                  >
+                    <div
+                      className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
+                      style={{ color: "#591e60" }}
                     >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: "#3e8ad6" }}
-                      />
-                      {badge}
-                    </span>
-                  ))}
+                      03
+                    </div>
+                    <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] leading-[1.25] mb-2 sm:mb-2.5 tracking-tight">
+                      A Fixed Response Time
+                    </h3>
+                    <p
+                      className="text-[16px] leading-relaxed max-w-[270px] mx-auto"
+                      style={{ color: "#3d2e42" }}
+                    >
+                      One business day for a first reply, five business days between follow-ups on any claim sitting with a payer.
+                    </p>
+                  </div>
                 </div>
+
+                {/* ── CARD 04 (Mobile: 4th, Desktop: Bottom of Left Column, nudged toward the centre) ── */}
+                <div className="order-4 md:order-3 md:col-start-1 w-full max-w-[340px] sm:max-w-[370px] md:mt-6 lg:mt-0 lg:ml-9 lg:justify-self-start">
+                  <div
+                    className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
+                    style={{ backgroundColor: "#f4edf4" }}
+                  >
+                    <div
+                      className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
+                      style={{ color: "#591e60" }}
+                    >
+                      04
+                    </div>
+                    <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] leading-[1.25] mb-2 sm:mb-2.5 tracking-tight">
+                      A Rate Before Anything Starts
+                    </h3>
+                    <p
+                      className="text-[16px] leading-relaxed max-w-[270px] mx-auto"
+                      style={{ color: "#3d2e42" }}
+                    >
+                      A written quote comes before access to any system, so a practice knows the cost before committing to anything.
+                    </p>
+                  </div>
+                </div>
+
               </div>
 
-              {/* Right — card stack */}
-              <div className="relative">
-                <div className="pt-10 pb-16 px-8">
+            </div>
 
-                  {/* Floating accent — TOP RIGHT */}
+            {/* Bottom Caption / Footer text */}
+            <div className="mt-12 sm:mt-20 text-center max-w-2xl mx-auto px-4">
+              <p
+                className="text-[14px] md:text-[16px] leading-relaxed font-normal"
+                style={{ color: "#8a758e" }}
+              >
+                Four commitments, held the same way for every practice regardless of size.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════════════
+            SECTION 7 — "What Happens Before Any Access Is Given"
+            (Cards are built in CSS so the icon tab and paddings stay fixed as the text grows)
+        ════════════════════════════════════════════════ */}
+        <section className="py-[60px] bg-white relative overflow-hidden border-t border-gray-100">
+          <div className="mx-auto w-[92%] max-w-[1320px]">
+            
+            {/* Top Badge: "Your Data" */}
+            <div className="flex justify-center mb-5">
+              <span
+                className="font-heading inline-block bg-[#fdfaf8] text-[#591e60] border border-[#591e60] text-[12px] md:text-[14px] font-bold px-4 py-1.5 rounded-full shadow-sm tracking-wide"
+              >
+                Your Data
+              </span>
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-[clamp(30px,3vw,42px)] font-extrabold text-center mb-3 sm:mb-4 tracking-tight leading-[1.15]">
+              <span className="block" style={{ color: "#cf6352" }}>
+                What Happens Before Any
+              </span>
+              <span className="block" style={{ color: "#cf6352" }}>
+                Access Is Given
+              </span>
+            </h2>
+
+            {/* Subtitle Paragraph */}
+            <p
+              className="max-w-3xl mx-auto text-center text-[16px] leading-relaxed mb-8 sm:mb-10 font-normal px-4"
+              style={{ color: "#38183d" }}
+            >
+              A Business Associate Agreement is signed before Prime Therapy Billing touches any system, and everything after that follows from what the agreement allows.
+            </p>
+
+            {/* 5 Zigzag Alternating Cards Stack */}
+            <div className="flex flex-col gap-4 md:gap-1 max-w-5xl mx-auto px-1 sm:px-4">
+              {accessStepsData.map((item, idx) => {
+                const isLeft = idx % 2 === 0;
+
+                return (
                   <div
-                    className="absolute top-0 right-0 bg-white rounded-2xl p-4 shadow-xl border border-gray-100 animate-float z-20"
-                    style={{ animationDelay: "1.5s" }}
+                    key={idx}
+                    className={`relative w-full max-w-[620px] sm:max-w-[660px] md:max-w-none md:w-[74%] px-2 pb-2.5 pt-[22px] sm:pt-[30px] transition-transform duration-300 hover:-translate-y-1 ${
+                      isLeft ? "self-start mr-auto" : "self-end ml-auto"
+                    }`}
                   >
-                    <div className="flex items-center gap-2">
+                    {/* Outline Frame (starts below the part of the icon tab that sticks out on top) */}
+                    <div className="absolute inset-x-0 bottom-0 top-[14px] sm:top-[22px] rounded-[30px] border border-[#591e60] bg-[#fcf9f7]" />
+
+                    {/* Coral Corner Accents: bottom corner on the icon side, top corner on the other */}
+                    <div
+                      className={`absolute bottom-0 h-[42%] w-[12%] min-w-[56px] border-b-4 border-[#d95959] pointer-events-none ${
+                        isLeft
+                          ? "left-0 border-l-4 rounded-bl-[30px]"
+                          : "right-0 border-r-4 rounded-br-[30px]"
+                      }`}
+                    />
+                    <div
+                      className={`absolute top-[14px] sm:top-[22px] h-[42%] w-[12%] min-w-[56px] border-t-4 border-[#d95959] pointer-events-none ${
+                        isLeft
+                          ? "right-0 border-r-4 rounded-tr-[30px]"
+                          : "left-0 border-l-4 rounded-tl-[30px]"
+                      }`}
+                    />
+
+                    {/* White card and its icon tab, sharing one shadow */}
+                    <div className="relative drop-shadow-[4px_4px_5px_rgba(0,0,0,0.3)]">
+
+                      {/* Icon Tab sticking out above the card */}
                       <div
-                        className="w-8 h-8 rounded-lg flex items-center justify-center text-white flex-shrink-0"
-                        style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
+                        className={`absolute -top-[22px] sm:-top-[30px] h-[44px] sm:h-[60px] w-[56px] sm:w-[96px] lg:w-[112px] bg-white rounded-t-[13px] ${
+                          isLeft ? "left-3 sm:left-5" : "right-3 sm:right-5"
+                        }`}
+                      />
+
+                      {/* Main Content (Icon + Text): the text padding clears the full width of the icon tab */}
+                      <div
+                        className={`relative bg-white rounded-[22px] min-h-[96px] sm:min-h-[120px] lg:min-h-[132px] flex items-center py-5 sm:py-6 lg:py-7 ${
+                          isLeft
+                            ? "pl-[80px] sm:pl-[136px] lg:pl-[152px] pr-5 sm:pr-8 lg:pr-10"
+                            : "pr-[80px] sm:pr-[136px] lg:pr-[152px] pl-5 sm:pl-8 lg:pl-10"
+                        }`}
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+                        {/* Icon, centred in the tab column */}
+                        <div
+                          className={`absolute -top-[22px] sm:-top-[30px] bottom-0 w-[56px] sm:w-[96px] lg:w-[112px] flex items-center justify-center ${
+                            isLeft ? "left-3 sm:left-5" : "right-3 sm:right-5"
+                          }`}
+                        >
+                          <CardIcon
+                            src={item.icon}
+                            className="w-6 h-6 sm:w-10 sm:h-10 lg:w-[54px] lg:h-[54px]"
+                          />
+                        </div>
+
+                        {/* Card Texts */}
+                        <div className="w-full flex flex-col justify-center text-left">
+                          <h3 className="text-[#591e60] font-extrabold text-[22px] md:text-[26px] tracking-tight mb-0.5 sm:mb-1 leading-[1.25] break-words">
+                            {item.title}
+                          </h3>
+                          <p
+                            className="text-[16px] leading-[1.6] font-normal text-[#3d2e42]"
+                          >
+                            {item.desc}
+                          </p>
+                        </div>
+
                       </div>
-                      <div>
-                        <p className="text-xs font-bold" style={{ color: "#0e3256" }}>99% First-Pass Approval</p>
-                        <p className="text-xs text-gray-400">Optimized claims delivery</p>
-                      </div>
                     </div>
                   </div>
-
-                  {/* Main card */}
-                  <div
-                    className="rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl z-10"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #0e3256 0%, #1a5fa8 60%, #3e8ad6 100%)",
-                    }}
-                  >
-                    <div className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#ffffff" }} />
-                    <div className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-10 blur-2xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
-                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                      </div>
-                      <h3 className="text-2xl font-extrabold mb-4">
-                        Why Providers Rely on Our Mental Health Billing
-                      </h3>
-                      <ul className="space-y-3">
-                        {[
-                          "Exclusive focus on therapy billing services",
-                          "Industry-leading rate of just 3.99%",
-                          "Personal account manager assigned immediately",
-                          "Transparent, real-time financial analytics",
-                          "Measurable denial drops within 90 days",
-                          "Zero setup costs or hidden penalties",
-                        ].map((point, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                              </svg>
-                            </span>
-                            <span className="text-sm leading-relaxed" style={{ color: "#bfdbfe" }}>
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Floating accent — BOTTOM LEFT */}
-                  <div className="absolute bottom-0 left-0 bg-white rounded-2xl p-5 shadow-2xl border border-gray-100 animate-float z-20">
-                    <p className="text-xs font-semibold text-gray-500 mb-1">Average Collection Uplift</p>
-                    <p className="text-3xl font-extrabold" style={{ color: "#0e3256" }}>+32%</p>
-                    <p className="text-xs text-gray-400 mt-1">Realized within 6 months</p>
-                  </div>
-
-                </div>
-              </div>
-
+                );
+              })}
             </div>
+
           </div>
         </section>
 
-        {/* ════════════════════════════════════════════════
-            MISSION & VISION
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Our Foundation
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#0e3256" }}>
-                Advancing the Future of <span style={{ color: "#3e8ad6" }}>Therapy Billing</span>
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }} />
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}>
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Driving Mission</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Our mission is to level the playing field for independent therapy practices by delivering elite behavioral health RCM capabilities at an accessible price point. We believe every mental health provider deserves a seamless billing infrastructure that ensures maximum reimbursement without the corporate overhead. By prioritizing precision, rapid turnaround, and total transparency, we guarantee that no earned dollar is left uncollected for the practices that need it most.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100 card-hover relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "linear-gradient(90deg, #3e8ad6, #0e3256)" }} />
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-lg" style={{ background: "linear-gradient(135deg, #3e8ad6, #0e3256)" }}>
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-extrabold mb-4" style={{ color: "#0e3256" }}>Our Strategic Vision</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We are building a future where Prime Therapy Billing is the definitive standard for therapy billing services across the nation. Our goal is to be the first name providers trust when optimizing insurance claims for therapists. We strive to make our 3.99% billing model synonymous with financial empowerment—recognized nationwide for helping mental health billing operations thrive, scale, and achieve uncompromising financial health.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            CORE VALUES
-        ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                The Prime Billing Edge
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                What Sets Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Apart
-              </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Six foundational pillars that govern every client partnership and ensure your practice&apos;s revenue is optimized for maximum reimbursement through our specialized behavioral health RCM strategies.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {values.map((val, i) => (
-                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover group">
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                  >
-                    {val.icon}
-                  </div>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: "#0e3256" }}>{val.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{val.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            COMPARISON TABLE (SECOND)
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-        >
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Performance Benchmark
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                How Our Mental Health Billing Outperforms the <span style={{ color: "#3e8ad6" }}>Industry Standard</span>
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto">
-                Discover why therapy practices nationwide rely on our therapy billing services to maximize revenue, accelerate insurance claims for therapists, and deliver superior behavioral health RCM outcomes compared to conventional billing partners.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-              <div
-                className="grid grid-cols-3 text-white text-sm font-bold"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                <div className="p-5">Capability</div>
-                <div className="p-5 text-center border-l border-white/20">Prime Therapy Billing</div>
-                <div className="p-5 text-center border-l border-white/20">Industry Standard</div>
-              </div>
-
-              {comparisonRows.map((row, i) => (
-                <div
-                  key={i}
-                  className={`grid grid-cols-3 text-sm border-b border-gray-100 last:border-b-0 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/60"}`}
-                >
-                  <div className="p-5 font-semibold" style={{ color: "#0e3256" }}>{row.feature}</div>
-                  <div className="p-5 text-center border-l border-gray-100">
-                    <span
-                      className="inline-flex items-center gap-1.5 font-bold text-sm px-3 py-1 rounded-full"
-                      style={{ color: "#0e6633", background: "#d1fae5" }}
-                    >
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {row.prime}
-                    </span>
-                  </div>
-                  <div className="p-5 text-center border-l border-gray-100 text-gray-400 font-medium">{row.industry}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            SERVICES OVERVIEW
-        ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Expert RCM Solutions
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                Comprehensive Mental Health <span style={{ color: "#3e8ad6" }}>Billing & RCM</span>
-              </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                From precise claim submission to aggressive denial management, our therapy billing services handle every aspect of your revenue cycle. We optimize insurance claims for therapists to accelerate reimbursements and drive sustainable practice growth — starting at just 3.99%.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {services.map((svc, i) => (
-                <div key={i} className="group rounded-2xl p-7 border border-gray-100 bg-gray-50 card-hover cursor-default relative overflow-hidden">
-                  <div
-                    className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(90deg, #0e3256, #3e8ad6)" }}
-                  />
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-white mb-5 shadow-md group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                  >
-                    {svc.icon}
-                  </div>
-                  <h3 className="text-base font-bold mb-2" style={{ color: "#0e3256" }}>{svc.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            TEAM (SECOND)
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-16 sm:py-20 px-4 sm:px-6"
-          style={{ background: "linear-gradient(135deg, #f0f6ff, #e6f0fb)" }}
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Behavioral Health RCM Leaders
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                The Specialists Driving Your <span style={{ color: "#3e8ad6" }}>Therapy Billing Success</span>
-              </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Our dedicated team of mental health billing experts, certified coders, and compliance strategists delivers exceptional therapy billing services and manages your insurance claims for therapists with the same precision they would their own practice.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
-              {teamMembers.map((member, i) => (
-                <div key={i} className="bg-white rounded-2xl p-7 shadow-xl border border-gray-100 card-hover text-center group">
-                  <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-white text-xl font-extrabold mx-auto mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300"
-                    style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                  >
-                    {member.initials}
-                  </div>
-                  <h3 className="text-base font-extrabold mb-1" style={{ color: "#0e3256" }}>{member.name}</h3>
-                  <p className="text-xs font-semibold mb-4" style={{ color: "#3e8ad6" }}>{member.role}</p>
-                  <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            TESTIMONIALS (SECOND)
-        ════════════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-14">
-              <span
-                className="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 shadow"
-                style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-              >
-                Therapist Success Stories
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: "#0e3256" }}>
-                Proven Results From Our <span style={{ color: "#3e8ad6" }}>Mental Health Billing</span> Clients
-              </h2>
-              <p className="text-gray-500 max-w-xl mx-auto">
-                Therapists nationwide trust our therapy billing services to optimize insurance claims for therapists, accelerate payments, and strengthen their behavioral health RCM. Discover their experiences below.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-7">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-gray-50 rounded-2xl p-7 border border-gray-100 card-hover relative flex flex-col">
-                  <div className="text-6xl font-serif leading-none mb-4 select-none" style={{ color: "#d0e4f7" }}>
-                    &ldquo;
-                  </div>
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: 5 }).map((_, s) => (
-                      <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#f59e0b">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6 italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="flex items-center gap-3 mt-auto">
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center text-white text-sm font-bold flex-shrink-0 shadow"
-                      style={{ background: "linear-gradient(135deg, #0e3256, #3e8ad6)" }}
-                    >
-                      {t.initials}
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold" style={{ color: "#0e3256" }}>{t.name}</p>
-                      <p className="text-xs text-gray-500">{t.role}</p>
-                      <p className="text-xs font-semibold" style={{ color: "#3e8ad6" }}>{t.practice}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ════════════════════════════════════════════════
-            BOTTOM CTA
-        ════════════════════════════════════════════════ */}
-        <section
-          className="py-20 px-4 sm:px-6 relative overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #0e3256 0%, #1a5fa8 55%, #3e8ad6 100%)",
-          }}
-        >
-          <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#3e8ad6" }} />
-          <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full opacity-10 blur-3xl pointer-events-none" style={{ background: "#0e3256" }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] border border-white/5 rounded-full pointer-events-none animate-rotateSlow" />
-
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/25 shadow-lg text-white">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse flex-shrink-0" />
-              Flexible Terms — Cancel Anytime
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-              Prepared to Maximize Every Dollar from Your <span className="shimmer-text">Mental Health Billing?</span>
-            </h2>
-
-            <p
-              className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed"
-              style={{ color: "#bfdbfe" }}
-            >
-              Therapy practices nationwide depend on our specialized therapy billing services to streamline behavioral health RCM, resolve insurance claims for therapists faster, and eliminate the administrative roadblocks draining your time and revenue.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => setModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 bg-white px-8 py-4 rounded-xl font-bold text-base shadow-xl hover:-translate-y-0.5 hover:shadow-2xl transition-all duration-300"
-                style={{ color: "#0e3256" }}
-              >
-                Request Your Free Billing Audit
-                <span>→</span>
-              </button>
-              <a
-                href="tel:+13464604441"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/50 text-white px-8 py-4 rounded-xl font-bold text-base hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm"
-              >
-                <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                (346) 460-4441
-              </a>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-6 mt-10">
-              {[
-                "HIPAA Compliant",
-                "Fully Secure",
-                "Zero Hidden Costs",
-                "5-Star Rated",
-                "Nationwide Coverage",
-              ].map((badge) => (
-                <div key={badge} className="flex items-center gap-2 text-white/80 text-sm font-medium">
-                  <svg className="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                  {badge}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
       </main>
     </>
   );
