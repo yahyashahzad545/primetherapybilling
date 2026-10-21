@@ -2,6 +2,9 @@ export const runtime = "nodejs";
 
 import prisma from "@/libs/prisma";
 import { notFound } from "next/navigation";
+import { renderMarkdown } from "@/libs/markdown";
+import AuthorBox from "@/components/blog/AuthorBox";
+import AboutAuthor from "@/components/blog/AboutAuthor";
 
 // ✅ SEO (Meta Title & Description - page par show nahi honge)
 export async function generateMetadata({
@@ -17,6 +20,7 @@ export async function generateMetadata({
         equals: slug,
         mode: "insensitive",
       },
+      status: { not: "draft" },
     },
   });
 
@@ -46,6 +50,7 @@ export default async function Page({
           equals: slug,
           mode: "insensitive",
         },
+        status: { not: "draft" },
       },
     });
   } catch (error) {
@@ -56,43 +61,10 @@ export default async function Page({
 
   return (
     <div>
-      {/* ✅ Table Styles for Blog Content */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .blog-content table {
-              width: 100%;
-              border-collapse: collapse;
-              margin: 20px 0;
-              font-size: 15px;
-            }
-            .blog-content table thead {
-              background-color: #2e7d6b;
-              color: #ffffff;
-            }
-            .blog-content table th,
-            .blog-content table td {
-              border: 1px solid #ddd;
-              padding: 12px 15px;
-              text-align: left;
-            }
-            .blog-content table th {
-              font-weight: 600;
-            }
-            .blog-content table tbody tr:nth-child(even) {
-              background-color: #f9f9f9;
-            }
-            .blog-content table tbody tr:hover {
-              background-color: #f1f1f1;
-            }
-          `,
-        }}
-      />
-
       {/* ✅ HERO SECTION */}
       <div
         style={{
-          background: "linear-gradient(to right, #2e7d6b, #3aa88f)",
+          background: "linear-gradient(to right, #45134b, #591e60)",
           color: "white",
           padding: "40px",
           paddingTop: "130px",
@@ -125,6 +97,8 @@ export default async function Page({
             <img
               src={blog.featuredImg}
               alt={blog.imgAlt || blog.title}
+              fetchPriority="high"
+              decoding="async"
               style={{
                 width: "100%",
                 borderRadius: "12px",
@@ -133,11 +107,8 @@ export default async function Page({
             />
           )}
 
-          {/* Meta Info */}
-          <p style={{ marginBottom: "10px", color: "#666" }}>
-            Posted By: {blog.author || "Admin"} |{" "}
-            {new Date(blog.createdAt).toDateString()}
-          </p>
+          {/* Author and dates */}
+          <AuthorBox blog={blog} />
 
           {/* CONTENT */}
           <div
@@ -147,9 +118,12 @@ export default async function Page({
               fontSize: "16px",
             }}
             dangerouslySetInnerHTML={{
-              __html: blog.content || "",
+              __html: renderMarkdown(blog.content || ""),
             }}
           />
+
+          {/* About the author, at the end of the post */}
+          <AboutAuthor blog={blog} />
         </div>
 
         {/* ✅ RIGHT SIDEBAR */}
@@ -157,23 +131,28 @@ export default async function Page({
           {/* CTA BOX */}
           <div
             style={{
-              background: "#2e7d6b",
+              background: "#591e60",
               color: "white",
               padding: "20px",
               borderRadius: "10px",
               marginBottom: "20px",
             }}
           >
-            <h3>Certified Medical Billing Services</h3>
+            <h3 className="text-[22px]">Certified Medical Billing Services</h3>
             <p style={{ fontSize: "14px", marginTop: "10px" }}>
               Improve claim accuracy and maximize reimbursements.
             </p>
 
             <button
+              type="button"
+              data-lead-popup
+              data-popup-heading="Get Your Billing Quote"
+              data-popup-description="Tell us about your practice and we'll put together a quote built around your collections."
+              data-popup-source="Blog sidebar — Get Billing Quote"
               style={{
                 marginTop: "10px",
                 background: "white",
-                color: "#2e7d6b",
+                color: "#591e60",
                 padding: "10px",
                 borderRadius: "6px",
                 border: "none",
@@ -192,7 +171,7 @@ export default async function Page({
               borderRadius: "10px",
             }}
           >
-            <h3>Get Free Consultation</h3>
+            <h3 className="text-[22px]">Get Free Consultation</h3>
 
             <input placeholder="Name" style={inputStyle} />
             <input placeholder="Email" style={inputStyle} />
@@ -203,10 +182,10 @@ export default async function Page({
               style={{
                 marginTop: "10px",
                 width: "100%",
-                background: "#2e7d6b",
+                background: "#591e60",
                 color: "white",
                 padding: "10px",
-                borderRadius: "6px",
+                borderRadius: "8px",
                 border: "none",
                 cursor: "pointer",
               }}
@@ -226,5 +205,5 @@ const inputStyle = {
   padding: "10px",
   marginTop: "10px",
   border: "1px solid #ccc",
-  borderRadius: "6px",
+  borderRadius: "8px",
 };

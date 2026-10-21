@@ -19,4 +19,15 @@ model Blog {
   author          String?
   category        String?
   createdAt       DateTime @default(now())
+  // Author box on the post page (all optional)
+  authorImage     String?
+  authorLinkedin  String?
+  authorEmail     String?
+  authorPhone     String?
+  authorBio       String?
+  // Dates shown on the post; publishedAt is set when a post is first published if left empty
+  publishedAt     DateTime?
+  lastModifiedAt  DateTime?
+  // "draft" posts are only visible in the admin; existing posts count as published
+  status          String   @default("published")
 }

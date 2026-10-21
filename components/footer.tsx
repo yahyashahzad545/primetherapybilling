@@ -49,7 +49,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
         className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors duration-200 group"
       >
         <svg
-          className="w-3 h-3 text-[#4a7fb5] group-hover:text-blue-300 flex-shrink-0 transition-colors"
+          className="w-3 h-3 text-[#c79bcc] group-hover:text-[#e6c8ea] flex-shrink-0 transition-colors"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -74,7 +74,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="bg-[#0a1f38] text-gray-300">
+    <footer className="bg-[#591e60] text-gray-300">
       {/* ── Main Footer Body ─────────────────────────── */}
       <div className="w-[92%] max-w-[1320px] mx-auto py-14 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
@@ -86,7 +86,7 @@ export default function Footer() {
             <Image
             src="/primenewlogo.svg"
             alt="Prime Therapy Billing Logo"
-            width={260}
+            width={252}
             height={80}
             className="h-16 md:h-20 w-auto"
             />
@@ -101,11 +101,11 @@ export default function Footer() {
             {/* Social */}
             <div className="flex items-center gap-3">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/prime-therapy-billing"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#113356] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-white text-[#591e60] hover:bg-[#d95959] hover:text-white flex items-center justify-center transition-colors duration-200"
               >
                 <LinkedInIcon />
               </a>
@@ -114,25 +114,25 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter / X"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#113356] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-white text-[#591e60] hover:bg-[#d95959] hover:text-white flex items-center justify-center transition-colors duration-200"
               >
                 <TwitterIcon />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/primetherapybilling"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#113356] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-white text-[#591e60] hover:bg-[#d95959] hover:text-white flex items-center justify-center transition-colors duration-200"
               >
                 <FacebookIcon />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/primetherapybilling/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-9 h-9 rounded-lg bg-white/5 hover:bg-[#113356] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 rounded-full bg-white text-[#591e60] hover:bg-[#d95959] hover:text-white flex items-center justify-center transition-colors duration-200"
               >
                 <InstagramIcon />
               </a>
@@ -182,8 +182,8 @@ export default function Footer() {
                   href={BUSINESS_PHONE.href}
                   className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors group"
                 >
-                  <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1a4a7a] transition-colors">
-                    <svg className="w-3.5 h-3.5 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                  <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#591e60] flex items-center justify-center flex-shrink-0 group-hover:bg-[#7a2a82] transition-colors">
+                    <svg className="w-3.5 h-3.5 text-[#e6c8ea]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
                     </svg>
                   </span>
@@ -200,8 +200,8 @@ export default function Footer() {
                   href="mailto:info@primetherapybilling.com"
                   className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors group"
                 >
-                  <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1a4a7a] transition-colors">
-                    <svg className="w-3.5 h-3.5 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                  <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#591e60] flex items-center justify-center flex-shrink-0 group-hover:bg-[#7a2a82] transition-colors">
+                    <svg className="w-3.5 h-3.5 text-[#e6c8ea]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                     </svg>
                   </span>
@@ -216,8 +216,8 @@ export default function Footer() {
 
 
               <li className="flex items-start gap-3">
-                <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#113356] flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3.5 h-3.5 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                <span className="mt-0.5 w-8 h-8 rounded-lg bg-[#591e60] flex items-center justify-center flex-shrink-0">
+                  <svg className="w-3.5 h-3.5 text-[#e6c8ea]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                   </svg>
                 </span>

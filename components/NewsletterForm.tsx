@@ -9,7 +9,7 @@ export default function NewsletterForm() {
 
   return (
     <ValidatedForm
-      className="flex gap-2"
+      className="flex flex-wrap gap-2"
       aria-label="Newsletter subscription"
       onSubmit={handleSubmit}
     >
@@ -34,6 +34,14 @@ export default function NewsletterForm() {
       >
         Go
       </button>
+
+      <div className="flex basis-full flex-wrap items-start gap-x-2 pt-1">
+        <input id="newsletter-agree-terms" type="checkbox" name="agreeTerms" required className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#d95959]" />
+        <label htmlFor="newsletter-agree-terms" className="min-w-0 flex-1 cursor-pointer text-[12px] leading-relaxed text-white/90">
+          I agree to receive communications from Prime Therapy Billing. See our{" "}
+          <a href="/privacy-policy" className="font-medium text-white underline underline-offset-2 hover:text-[#f2b1b1]">Privacy Policy</a>.
+        </label>
+      </div>
     </ValidatedForm>
   );
 }

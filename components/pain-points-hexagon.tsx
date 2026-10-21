@@ -86,7 +86,7 @@ function PainPointCard({ point }: { point: PainPoint }) {
           <h4 className="font-bold text-sm mb-1" style={{ color: "#0e3256" }}>
             {point.title}
           </h4>
-          <p className="text-xs text-gray-600 leading-relaxed">{point.desc}</p>
+          <p className="text-xs text-gray-700 leading-relaxed">{point.desc}</p>
         </div>
       </div>
     </div>
@@ -121,7 +121,7 @@ export function PainPointsHexagon() {
             Is Your Practice Losing Revenue{" "}
             <span style={{ color: "#3e8ad6" }}>Without Knowing It?</span>
           </h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="max-w-3xl mx-auto leading-relaxed text-[18px]" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
             Revenue leakage happens daily, but incomplete reporting hides the full picture.
             These six pain points drain profitability across most practices.
           </p>

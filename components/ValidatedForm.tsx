@@ -136,10 +136,14 @@ export function ValidatedForm({ onSubmit, children, ...formProps }: FormProps) {
               onBlur: handleBlur,
             })}
             {error && (
+              // A checkbox sits in a row with its label text, so its message drops to a line of
+              // its own under that row (the row needs flex-wrap) instead of landing between the two
               <span
                 id={errorId}
                 role="alert"
-                className="mt-1 block text-[11px] leading-tight text-red-600"
+                className={`mt-1 block text-[11px] leading-tight text-red-600 ${
+                  props.type === "checkbox" ? "order-last basis-full" : ""
+                }`}
               >
                 {error}
               </span>
@@ -205,7 +209,9 @@ export function ValidatedForm({ onSubmit, children, ...formProps }: FormProps) {
   };
 
   return (
-    <form {...formProps} ref={formRef} noValidate onSubmit={handleSubmit}>
+    // method="post" is a safety net: if the form is submitted before React has attached its handler,
+    // the browser falls back to a native submit, and a GET would put every field in the page URL.
+    <form method="post" {...formProps} ref={formRef} noValidate onSubmit={handleSubmit}>
       {enhanceChildren(children)}
     </form>
   );

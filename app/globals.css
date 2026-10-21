@@ -23,21 +23,6 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
     transform: translateY(-8px);
   }
   to {
@@ -49,33 +34,115 @@ body {
   animation: fadeIn 0.2s ease-out;
 }
 
-button {
+/* Coral ring that pulses outward, as on the Specialties hero badge; used site-wide by the header's
+   Contact Us button (app/specialties/page.tsx keeps its own identical copy for the badge). */
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(217, 89, 89, 0.45); }
+  70%  { box-shadow: 0 0 0 12px rgba(217, 89, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 89, 89, 0); }
+}
+.animate-pulse-ring {
+  animation: pulseRing 2s ease-in-out infinite;
+}
+
+/* Button hover: a circle of colour grows from the point where the pointer enters the
+   button and shrinks back to the point where it leaves. components/ButtonHoverEffect.tsx
+   records that point (--btn-x, --btn-y) and how far the circle has to grow to cover the
+   whole button (--btn-reach).
+   The fill is the opposite of the button's own colour: a light or transparent button
+   fills with purple and its text turns white; a dark button fills with white and its
+   text takes the button's colour, with a thin ring so it keeps its shape on a white
+   background. */
+
+/* Menu toggles in the header are buttons, but they should behave like the menu links
+   beside them: no fill, the text just turns orange. */
+button.btn-plain {
+  --btn-hover-fill: transparent;
+  --btn-hover-ink: #d95959;
+}
+
+/* FAQ question toggles sit inside cards that change colour on hover themselves, and
+   .no-btn-effect buttons bring their own hover (e.g. the header dropdown's "Talk to a billing
+   specialist"), so both skip the fill and text colour entirely (see the button:not(...) selectors below). */
+
+/* Registered so the circle's radius can be animated. */
+@property --btn-radius {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+button,
+.hero-call-button,
+.btn-hover {
   position: relative;
   isolation: isolate;
+  --btn-hover-fill: #591e60;
+  --btn-hover-ink: #ffffff;
+  --btn-hover-ring: transparent;
+  --btn-x: 50%;
+  --btn-y: 50%;
+  --btn-reach: 600px;
 }
 
-button::before {
+/* Dark buttons: white text, or a coloured background of their own
+   (a leading space or the start of the class list keeps hover:bg-[#…] from matching). */
+:is(button, .btn-hover):is(
+    [class~="text-white"],
+    [class*=" bg-[#"],
+    [class^="bg-[#"],
+    [class~="bg-gradient-to-r"],
+    [class~="bg-blue-600"],
+    [class~="bg-green-600"]
+  ) {
+  --btn-hover-fill: #ffffff;
+  --btn-hover-ink: #591e60;
+  --btn-hover-ring: #591e60;
+}
+
+/* Coral buttons keep coral as their text colour on hover. */
+:is(button, .btn-hover):is([class*=" bg-[#d9"], [class^="bg-[#d9"], [class*=" bg-[#d2"], [class^="bg-[#d2"]) {
+  --btn-hover-ink: #d95959;
+  --btn-hover-ring: #d95959;
+}
+
+/* The circle is drawn as a gradient on a layer the size of the button, so it is
+   clipped to the button's shape without the button needing overflow: hidden. */
+button::before,
+.hero-call-button::before,
+.btn-hover::before {
   content: "";
   position: absolute;
-  inset-block: 0;
-  right: 0;
+  inset: 0;
   z-index: -1;
-  width: 0;
   border-radius: inherit;
-  background: #ffd401;
   pointer-events: none;
-  transition: width 500ms ease-in-out;
+  --btn-radius: 0px;
+  background: radial-gradient(
+    circle at var(--btn-x) var(--btn-y),
+    var(--btn-hover-fill) calc(var(--btn-radius) - 1px),
+    transparent var(--btn-radius)
+  );
+  transition: --btn-radius 550ms ease-out, box-shadow 300ms ease;
 }
 
-button:hover::before {
-  left: 0;
-  right: auto;
-  width: 100%;
+button:not(.faq-toggle, .no-btn-effect):hover::before,
+.btn-hover:hover::before,
+.hero-call-button:hover::before,
+.hero-call-button:focus-visible::before {
+  --btn-radius: var(--btn-reach);
+  box-shadow: inset 0 0 0 2px var(--btn-hover-ring);
 }
 
-button:hover,
-button:hover * {
-  color: #183153;
+button:not(.faq-toggle, .no-btn-effect):hover,
+button:not(.faq-toggle, .no-btn-effect):hover *,
+.btn-hover:hover,
+.btn-hover:hover *,
+.hero-call-button:hover,
+.hero-call-button:hover *,
+.hero-call-button:focus-visible,
+.hero-call-button:focus-visible * {
+  color: var(--btn-hover-ink);
 }
 
 :where(
@@ -153,26 +220,30 @@ select:has(option:checked:not([value=""])) {
   color: white;
 }
 
-.hero-button-group > button::before {
-  display: none;
+/* Both hero buttons already have a 2px purple border, so the hover ring is switched
+   off; with it the main button showed two borders on hover. The class is repeated so
+   this outranks the dark-button rule that turns the ring on. The hover fill sits inside
+   the border, so its corners use the border's inner radius (8px - 2px).
+   The main button fills white with purple text; the call button, its mirror, fills
+   purple with white text. */
+.hero-button-group.hero-button-group > button {
+  --btn-hover-ring: transparent;
+}
+
+.hero-button-group > button::before,
+.hero-button-group > .hero-call-button::before {
+  border-radius: 6px;
 }
 
 .hero-button-group > button:hover {
-  background: #45134b;
-  color: white;
+  background: #591e60;
+  color: var(--btn-hover-ink);
   opacity: 1;
 }
 
 .hero-call-button {
   background: white;
   color: #591e60;
-  transition: background-color 200ms ease, color 200ms ease;
-}
-
-.hero-call-button:hover,
-.hero-call-button:focus-visible {
-  background-color: #591e60;
-  color: white;
 }
 
 .hero-call-button svg {
@@ -244,4 +315,134 @@ select:has(option:checked:not([value=""])) {
   }
 }
 
+@keyframes software-ecosystem-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
 
+.software-ecosystem-track {
+  animation: software-ecosystem-scroll 40s linear infinite;
+}
+
+.software-ecosystem-card {
+  /* Fixed at the desktop card width, so the cards stay the same size on every screen; narrower screens simply show fewer of them. */
+  flex-basis: 207px;
+}
+
+.software-ecosystem-scroller:hover .software-ecosystem-track {
+  animation-play-state: paused;
+}
+
+/* Section headings and intros on laptops and desktops (1024px and up).
+   An H2 that wraps is split into lines of about equal width, so one to three words never
+   sit alone on the second row. The intro paragraph under an H2 is evened out the same way,
+   which pulls stray last-row words back up into full lines. Phones and tablets are unaffected. */
+@media (min-width: 1024px) {
+  h2 {
+    text-wrap: balance;
+  }
+
+  h2 + p,
+  h2 + div > p,
+  div:has(> h2:only-child) + p {
+    text-wrap: balance;
+  }
+}
+
+/* Chevron step cards, "rotate" option (desktop row only): the open card's details rise in just after the
+   card has finished turning anticlockwise into its upward-pointing shape. */
+@keyframes chevron-details-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.chevron-details-in {
+  animation: chevron-details-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.48s both;
+}
+
+/* Blog post body (rendered Markdown). Used on /blog/[slug] and in the admin editor's Preview,
+   so the preview looks exactly like the published post. */
+.blog-content {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.blog-content > * + * {
+  margin-top: 1em;
+}
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  color: #591e60;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 1.6em;
+}
+.blog-content h1 { font-size: 30px; }
+.blog-content h2 { font-size: 26px; }
+.blog-content h3 { font-size: 22px; }
+.blog-content h4 { font-size: 19px; }
+.blog-content a {
+  color: #d95959;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-content strong { color: #2d1b36; }
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.4em;
+}
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li + li { margin-top: 0.35em; }
+.blog-content li::marker { color: #d95959; }
+.blog-content blockquote {
+  border-left: 4px solid #d95959;
+  background: #fbf6fa;
+  padding: 0.75em 1em;
+  border-radius: 0 8px 8px 0;
+  color: #4a3b4e;
+}
+.blog-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.blog-content hr {
+  border: 0;
+  border-top: 1px solid #eadfec;
+  margin: 2em 0;
+}
+.blog-content code {
+  background: #f6eff6;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.9em;
+}
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  display: block;
+  overflow-x: auto;
+}
+.blog-content table thead {
+  background-color: #591e60;
+  color: #ffffff;
+}
+.blog-content table th,
+.blog-content table td {
+  border: 1px solid #e3d6e6;
+  padding: 10px 14px;
+  text-align: left;
+}
+.blog-content table th { font-weight: 600; }
+.blog-content table tbody tr:nth-child(even) { background-color: #fbf6fa; }
