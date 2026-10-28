@@ -163,18 +163,17 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 min-[490px]:max-[896px]:grid-cols-2 min-[490px]:max-[561px]:gap-3 min-[896px]:grid-cols-6 min-[896px]:[&>div]:col-span-2 min-[896px]:max-xl:[&>div:nth-child(7)]:row-start-3 min-[896px]:max-xl:[&>div:nth-child(7)]:col-start-2 min-[896px]:max-xl:[&>div:nth-child(8)]:row-start-3 min-[896px]:max-xl:[&>div:nth-child(8)]:col-start-4 min-[1024px]:max-[1024px]:w-[calc(100%_+_64px)] min-[1024px]:max-[1024px]:-mx-8 xl:grid-cols-4 xl:[&>div]:col-span-1">
+        <div className="grid grid-cols-1 auto-rows-fr gap-6 min-[490px]:max-[896px]:grid-cols-2 min-[490px]:max-[561px]:gap-3 min-[896px]:grid-cols-6 min-[896px]:[&>div]:col-span-2 min-[896px]:max-xl:[&>div:nth-child(7)]:row-start-3 min-[896px]:max-xl:[&>div:nth-child(7)]:col-start-2 min-[896px]:max-xl:[&>div:nth-child(8)]:row-start-3 min-[896px]:max-xl:[&>div:nth-child(8)]:col-start-4 min-[1024px]:max-[1024px]:w-[calc(100%_+_64px)] min-[1024px]:max-[1024px]:-mx-8 xl:grid-cols-4 xl:[&>div]:col-span-1">
           {serviceCards.map((card) => {
             const isPurple = card.theme === 'purple';
             const outerBg = isPurple ? 'bg-[#b79cb9]' : 'bg-[#f0b1b1]';
             const innerBg = isPurple ? 'bg-[#EFEBF1]' : 'bg-[#FBF2F2]';
-            const tagBg = isPurple ? 'bg-[#591e60]' : 'bg-[#d95959]';
             const offsetClass = card.offset ? 'xl:translate-y-12' : '';
 
             return (
               <div
                 key={card.id}
-                className={`relative flex h-[clamp(280px,22vw,320px)] w-full flex-col justify-between p-3.5 pb-4.5 rounded-[40px] ${outerBg} ${offsetClass} scale-[1.04] min-[490px]:max-[561px]:scale-[1.01] transition-transform duration-300 max-[1320px]:hover:scale-[1.05] shadow-sm`}
+                className={`relative flex min-h-[clamp(280px,22vw,320px)] w-full flex-col justify-between p-3.5 pb-4.5 rounded-[40px] ${outerBg} ${offsetClass} scale-[1.04] min-[490px]:max-[561px]:scale-[1.01] transition-transform duration-300 max-[1320px]:hover:scale-[1.05] shadow-sm`}
               >
                 <div
                   className={`flex-1 flex flex-col items-center text-center px-3 pt-6 pb-6 rounded-[30px] ${innerBg} relative overflow-hidden z-0 group`}
@@ -191,31 +190,12 @@ export default function Services() {
                   />
 
                   <div className="flex-1 min-h-0 flex flex-col justify-center items-center w-full relative mt-4">
-                    <div className="flex-1 min-h-0 flex flex-col justify-center-safe gap-2.5 w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
-                      {/* Icon above the tags; it hides together with them on hover. It grows into the card's free
+                    <div className="flex-1 min-h-0 flex flex-col items-center justify-center w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
+                      {/* Icon centred horizontally and vertically in the card's free space; it hides on hover. It grows into that
                           space (48px at least, 112px at most) without ever making the fixed-height card overflow.
                           It is drawn 40% larger than its box (scale doesn't change the layout, so the card keeps its size);
                           the box is capped at 96px so even the largest icon only spills into the gaps around it */}
-                      <CardIcon src={card.icon ?? ""} className="mb-1 w-full h-12 grow min-h-12 max-h-24 self-center scale-[1.4] drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
-                      <div className="flex flex-row justify-center items-center gap-1.5 w-full flex-nowrap overflow-hidden">
-                        <span
-                          className={`text-[9px] xl:text-[10px] font-bold text-white px-2.5 py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[0]?.text}
-                        </span>
-                        <span
-                          className={`text-[9px] xl:text-[10px] font-bold text-white px-2.5 py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[1]?.text}
-                        </span>
-                      </div>
-                      <div className="flex justify-center items-center w-full">
-                        <span
-                          className={`text-[9px] xl:text-[10px] font-bold text-white px-3.5 py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[2]?.text}
-                        </span>
-                      </div>
+                      <CardIcon src={card.icon ?? ""} className="w-full h-12 grow min-h-12 max-h-24 scale-[1.4] drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
                     </div>
 
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none md:group-hover:opacity-100 md:transition-opacity md:duration-300 px-2 min-[1024px]:max-[1024px]:px-0 mt-4 md:mt-0">

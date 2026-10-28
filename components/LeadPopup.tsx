@@ -227,7 +227,7 @@ export default function LeadPopup() {
           <div className="flex h-full w-full items-center justify-center drop-shadow-[0_8px_16px_rgba(89,30,96,0.22)]">
             <img
               src="/imgs/popup/get%20started%20form%20img.webp"
-              alt=""
+              alt="Prime Therapy Billing specialist holding a tablet, ready to help you get started"
               decoding="async"
               className="block max-h-full w-[112%] max-w-none shrink-0 object-contain select-none"
             />
@@ -236,7 +236,7 @@ export default function LeadPopup() {
 
         {submitted ? (
           <div className="min-w-0 flex-1 overflow-y-auto px-6 py-12 text-center sm:px-10 md:py-16">
-            <img src="/prime%20nav.png" alt="" className="mx-auto mb-3 h-12 w-12 object-contain md:hidden" />
+            <img src="/prime%20nav.png" alt="Prime Therapy Billing logo" className="mx-auto mb-3 h-12 w-12 object-contain md:hidden" />
             <h3 id="lead-popup-heading" className="font-heading mb-2 text-xl font-extrabold text-[#591e60]">
               Thank You, {formData.name}
             </h3>

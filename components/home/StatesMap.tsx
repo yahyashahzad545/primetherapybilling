@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Container, FluidSection } from "@/components/FluidLayout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 // 18 State items (4 + 3 + 4 + 3 + 4 pattern)
 const statesData = [
@@ -62,47 +63,53 @@ export default function StatesMap() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,360px),1fr))] items-center gap-10">
 
           {/* LEFT SIDE - Text Content */}
-          <div className="w-full flex flex-col items-center lg:items-start text-center lg:text-left">
+          <RevealGroup stagger={0.12} amount={0.3} className="w-full flex flex-col items-center lg:items-start text-center lg:text-left">
             {/* Eyebrow: 14px Desktop / 12px Mobile */}
-            <span className="font-heading bg-white text-[#591e60] border border-[#591e60] mb-4 sm:mb-5 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
+            <RevealItem as="span" preset="blurUp" className="font-heading bg-white text-[#591e60] border border-[#591e60] mb-4 sm:mb-5 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
               All 50 States
-            </span>
+            </RevealItem>
 
             {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-            <h2 className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-4">
+            <RevealItem as="h2" preset="blurUp" className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-4">
               Therapy Billing Services in{" "}
               <span className="lg:whitespace-nowrap">
                 <span className="text-[#d95959]">Every State</span> You're{" "}
                 <span className="text-[#591e60]">Licensed In</span>
               </span>
-            </h2>
+            </RevealItem>
 
             {/* Body Regular: 16px */}
-            <p className="font-body text-[18px] leading-relaxed mb-6" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+            <RevealItem as="p" preset="blurUp" className="font-body text-[18px] leading-relaxed mb-6" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
               Commercial claims run about the same everywhere. Four things change at the state line: Medicaid and its managed care layer, workers comp fee schedules set by state law, no-fault auto rules that only exist in PIP states, and telehealth place-of-service requirements that follow the patient rather than the provider.
               We track all four per state, per payer.
-            </p>
+            </RevealItem>
 
-            {/* Button Text: 16px. Shown here only while the two columns sit side by side */}
+            {/* Button Text: 16px. Shown here only while the two columns sit side by side.
+                Its wrapper takes the animation, so the button's own hover effect stays as it was */}
+            <RevealItem>
             <Link
               href="/states"
               className="btn-hover hidden min-[827px]:inline-block font-body bg-[#591e60] text-white text-[16px] font-semibold leading-none px-7 py-3 rounded-lg shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
             >
               See All 50 States
             </Link>
-          </div>
+            </RevealItem>
+          </RevealGroup>
 
           {/* RIGHT SIDE - 4-3-4-3-4 Hexagon Columns */}
           <div className="w-full flex justify-center items-center overflow-x-auto py-4 px-2">
             {/* --hex is the hexagon width; spacing and text sizes below are derived from it.
-                Columns and rows are stepped as a true honeycomb so the gap is 8px on every side. */}
-            <div className="flex flex-row items-start justify-center min-w-max [--hex:clamp(56px,calc(22.3vw_-_11px),144px)] min-[826px]:[--hex:clamp(70px,9.2vw,144px)] lg:[--hex:clamp(90px,9.6vw,144px)]">
+                Columns and rows are stepped as a true honeycomb so the gap is 8px on every side.
+                The columns pop in left to right; the hexagons inside keep their own hover zoom. */}
+            <RevealGroup stagger={0.09} delay={0.2} amount={0.3} className="flex flex-row items-start justify-center min-w-max [--hex:clamp(56px,calc(22.3vw_-_11px),144px)] min-[826px]:[--hex:clamp(70px,9.2vw,144px)] lg:[--hex:clamp(90px,9.6vw,144px)]">
               {columns.map((colStates, colIdx) => {
                 const isOddCol = colIdx % 2 === 1;
 
                 return (
-                  <div
+                  <RevealItem
                     key={colIdx}
+                    preset="pop"
+                    duration={0.7}
                     className={`flex flex-col items-center ${
                       isOddCol ? "mt-[calc(var(--hex)_*_0.45_+_4px)]" : "mt-0"
                     } ${colIdx > 0 ? "ml-[calc(6.93px_-_var(--hex)_*_0.2206)]" : ""}`}
@@ -163,7 +170,7 @@ export default function StatesMap() {
                             </div>
 
                             <span
-                              className="relative z-10 font-body text-[max(8px,calc(var(--hex)_*_0.105))] leading-[1.15] font-bold text-center truncate max-w-[76%] transition-colors duration-200"
+                              className="relative z-10 font-body text-[max(8px,calc(var(--hex)_*_0.105))] leading-[1.15] font-bold text-center truncate max-w-[88%] transition-colors duration-200"
                               style={{
                                 color: isHovered ? "#d95959" : "#591e60",
                               }}
@@ -174,21 +181,21 @@ export default function StatesMap() {
                         </div>
                       );
                     })}
-                  </div>
+                  </RevealItem>
                 );
               })}
-            </div>
+            </RevealGroup>
           </div>
 
           {/* Once the columns stack (mobile and tablet), the button moves below the hexagon grid */}
-          <div className="flex justify-center min-[827px]:hidden">
+          <Reveal className="flex justify-center min-[827px]:hidden">
             <Link
               href="/states"
               className="btn-hover font-body bg-[#591e60] text-white text-[16px] font-semibold leading-none px-7 py-3 rounded-lg shadow-sm hover:shadow transition-all duration-200 cursor-pointer"
             >
               See All 50 States
             </Link>
-          </div>
+          </Reveal>
 
         </div>
       </Container>

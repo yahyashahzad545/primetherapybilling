@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, type CSSProperties } from "react";
 import CardIcon from "@/components/about-us/CardIcon";
+import { altFromSrc } from "@/utils/altFromSrc";
 
 export type ChevronStep = {
   id: number;
@@ -31,12 +32,17 @@ type ChevronStepsProps = {
   className?: string;
   // Desktop row only: an opening card turns 90 degrees anticlockwise so its point faces up, then shows its details centred
   rotateOnHover?: boolean;
+  // Desktop row only: makes the opened (hovered) card this many cqw narrower than the default open width
+  openWidthReduction?: number;
+  // Rotate mode, desktop row only: lays the open card's details out at the card's final width from the first frame,
+  // so the card never grows taller while it widens and the section keeps the same height before, during and after hover
+  steadyHeight?: boolean;
 };
 
 // Chevron step cards shared by the "Switching Over" timelines.
 // Below 64rem every card shows its details and grows with the text. From 64rem the cards overlap in one row
 // and the hovered, focused or tapped one opens; an open card is as tall as its text needs, so nothing is cut off.
-export default function ChevronSteps({ steps, iconSrc, imageClassName = "", className = "", rotateOnHover = false }: ChevronStepsProps) {
+export default function ChevronSteps({ steps, iconSrc, imageClassName = "", className = "", rotateOnHover = false, openWidthReduction = 0, steadyHeight = false }: ChevronStepsProps) {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [focusedStep, setFocusedStep] = useState<number | null>(null);
   const expandedStep = hoveredStep ?? focusedStep;
@@ -49,7 +55,7 @@ export default function ChevronSteps({ steps, iconSrc, imageClassName = "", clas
     const combinedIconClassName = `${iconClassName} ${imageClassName}`;
 
     return iconSrc ? (
-      <Image src={iconSrc} alt="" aria-hidden="true" width={64} height={64} className={combinedIconClassName} />
+      <Image src={iconSrc} alt={altFromSrc(iconSrc)} width={64} height={64} className={combinedIconClassName} />
     ) : (
       <CardIcon src={step.icon ?? ""} className={combinedIconClassName} />
     );
@@ -64,7 +70,7 @@ export default function ChevronSteps({ steps, iconSrc, imageClassName = "", clas
         {steps.map((step, index) => {
           const isLast = index === steps.length - 1;
           const isExpanded = expandedStep === step.id;
-          const openWidth = openIndex === 0 ? layout.firstOpenWidth : layout.openWidth;
+          const openWidth = (openIndex === 0 ? layout.firstOpenWidth : layout.openWidth) - openWidthReduction;
           const openShift = openIndex === 0 ? 0 : 2;
           const desktopOffset = !anyOpen
             ? index * layout.closedStep
@@ -145,17 +151,13 @@ export default function ChevronSteps({ steps, iconSrc, imageClassName = "", clas
                   After the first card the left edge sits under the previous arrow tip, and the card just before an
                   open one has its right edge under that open card, so the text is kept clear of both */}
               <div className={`absolute inset-0 z-10 hidden flex-col items-center justify-center text-center ${index === 0 ? "pl-[1.5cqw]" : "pl-[3.5cqw]"} ${index === openIndex - 1 ? "pr-[3.5cqw]" : index === 0 ? "pr-[1.5cqw]" : "pr-[2.5cqw]"} ${rotateOnHover ? `min-[64rem]:flex min-[64rem]:transition-opacity min-[64rem]:duration-200 ${isExpanded ? "min-[64rem]:pointer-events-none min-[64rem]:opacity-0" : "min-[64rem]:opacity-100 min-[64rem]:delay-300"}` : isExpanded ? "" : "min-[64rem]:flex"}`}>
-                {renderIcon(step, "mb-2 h-12 w-12 min-[64rem]:h-[4.5cqw] min-[64rem]:w-[4.5cqw]")}
-                <h4 className="min-h-[2.4em] font-heading whitespace-pre-line text-[22px] font-extrabold leading-tight tracking-tight text-[#d95959] min-[64rem]:text-[length:clamp(16px,1.8cqw,22px)]">
+                {/* Icons are scaled up by the pages (scale-[1.35]), which overflows into the gap below them, so the
+                    desktop margin covers that overflow plus a little visible space; the heading spans the full width
+                    and is centred, so its centre lines up with the icon's */}
+                {renderIcon(step, "mb-2 h-12 w-12 shrink-0 min-[64rem]:mb-[1.6cqw] min-[64rem]:h-[4.5cqw] min-[64rem]:w-[4.5cqw]")}
+                <h4 className="w-full min-h-[2.4em] text-center font-heading whitespace-pre-line text-[22px] font-extrabold leading-tight tracking-tight text-[#d95959] min-[64rem]:text-[length:clamp(16px,1.8cqw,22px)]">
                   {step.title}
                 </h4>
-                <div className="mt-3 flex min-h-[76px] flex-col items-center gap-2 min-[64rem]:min-h-[5.5cqw]">
-                  {step.highlights.map((highlight) => (
-                    <span key={highlight} className="whitespace-nowrap rounded-full bg-[#591e60] px-3 py-1 text-[11px] font-semibold leading-none text-white min-[64rem]:px-[0.8em] min-[64rem]:py-[0.4em] min-[64rem]:text-[length:clamp(9px,0.72cqw,10px)]">
-                      {highlight}
-                    </span>
-                  ))}
-                </div>
               </div>
 
               {/* Details: in normal flow so the card grows with them; the right padding keeps every line clear of the arrow point */}
@@ -177,7 +179,10 @@ export default function ChevronSteps({ steps, iconSrc, imageClassName = "", clas
               </div>
 
               {rotateOnHover && isExpanded && (
-                <div className="chevron-details-in relative z-10 hidden flex-col items-center gap-[0.7cqw] px-[3cqw] pt-[2.2cqw] pb-[3cqw] text-center min-[64rem]:flex">
+                <div
+                  style={steadyHeight ? ({ "--details-width": `${openWidth}cqw` } as CSSProperties) : undefined}
+                  className={`chevron-details-in relative z-10 hidden flex-col items-center gap-[0.7cqw] px-[3cqw] pt-[2.2cqw] pb-[3cqw] text-center min-[64rem]:flex ${steadyHeight ? "min-[64rem]:w-[var(--details-width)]" : ""}`}
+                >
                   {renderIcon(step, `h-[4.5cqw] w-[4.5cqw] shrink-0 ${iconSrc ? "brightness-0 invert" : ""}`)}
                   <div className="mt-[0.6cqw] font-heading text-[length:clamp(22px,2.6cqw,34px)] font-extrabold leading-none text-white">
                     {step.dayLabel.replace("\n", " ")}
@@ -202,7 +207,7 @@ export default function ChevronSteps({ steps, iconSrc, imageClassName = "", clas
             <div
               key={`reserve-${step.id}`}
               aria-hidden="true"
-              style={{ "--reserve-width": `${layout.openWidth}cqw` } as CSSProperties}
+              style={{ "--reserve-width": `${layout.openWidth - openWidthReduction}cqw` } as CSSProperties}
               className="pointer-events-none invisible hidden min-[64rem]:block min-[64rem]:[grid-area:1/1] min-[64rem]:self-end min-[64rem]:w-[var(--reserve-width)]"
             >
               <div className="flex flex-col items-center gap-[0.7cqw] px-[3cqw] pt-[2.2cqw] pb-[3cqw] text-center">

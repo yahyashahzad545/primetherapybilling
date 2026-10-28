@@ -5,13 +5,34 @@ import { notFound } from "next/navigation";
 import { renderMarkdown } from "@/libs/markdown";
 import AuthorBox from "@/components/blog/AuthorBox";
 import AboutAuthor from "@/components/blog/AboutAuthor";
+import type { Metadata } from "next";
+import type { Blog } from "@prisma/client";
+import { ORGANIZATION_ID, PageSchema, absoluteUrl, pageMetadata } from "@/libs/seo";
+
+// The post's search details: its meta title and description, or its title and opening text
+function postDetails(blog: Blog) {
+  const opening = (blog.content || "")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[#>*_`|~-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const description = blog.metaDescription || (opening.length > 155 ? `${opening.slice(0, 152).replace(/\s+\S*$/, "")}...` : opening);
+  return {
+    title: blog.metaTitle || `${blog.title} | Prime Therapy Billing`,
+    description,
+    path: `/blog/${blog.slug}`,
+    published: (blog.publishedAt ?? blog.createdAt).toISOString(),
+    modified: (blog.lastModifiedAt ?? blog.publishedAt ?? blog.createdAt).toISOString(),
+  };
+}
 
 // ✅ SEO (Meta Title & Description - page par show nahi honge)
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
 
   const blog = await prisma.blog.findFirst({
@@ -26,9 +47,19 @@ export async function generateMetadata({
 
   if (!blog) return {};
 
+  const details = postDetails(blog);
+  const metadata = pageMetadata({ ...details, type: "article", image: blog.featuredImg || undefined });
   return {
-    title: blog.metaTitle || blog.title,
-    description: blog.metaDescription || "",
+    ...metadata,
+    authors: blog.author ? [{ name: blog.author }] : undefined,
+    openGraph: {
+      ...metadata.openGraph,
+      type: "article",
+      publishedTime: details.published,
+      modifiedTime: details.modified,
+      ...(blog.author ? { authors: [blog.author] } : {}),
+      ...(blog.category ? { section: blog.category } : {}),
+    },
   };
 }
 
@@ -59,8 +90,30 @@ export default async function Page({
 
   if (!blog) return notFound();
 
+  const details = postDetails(blog);
+
   return (
     <div>
+      <PageSchema
+        {...details}
+        crumbs={[{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: blog.title, path: details.path }]}
+        extra={[{
+          "@type": "BlogPosting",
+          "@id": `${absoluteUrl(details.path)}#article`,
+          headline: blog.title,
+          description: details.description,
+          mainEntityOfPage: { "@id": `${absoluteUrl(details.path)}#webpage` },
+          datePublished: details.published,
+          dateModified: details.modified,
+          ...(blog.featuredImg ? { image: blog.featuredImg } : {}),
+          ...(blog.category ? { articleSection: blog.category } : {}),
+          author: blog.author
+            ? { "@type": "Person", name: blog.author, ...(blog.authorLinkedin ? { sameAs: [blog.authorLinkedin] } : {}) }
+            : { "@id": ORGANIZATION_ID },
+          publisher: { "@id": ORGANIZATION_ID },
+          inLanguage: "en-US",
+        }]}
+      />
       {/* ✅ HERO SECTION */}
       <div
         style={{

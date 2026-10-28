@@ -1,4 +1,13 @@
 import React from "react";
+import { pageMetadata } from "@/libs/seo";
+
+// An internal test page: kept out of search results
+export const metadata = pageMetadata({
+  title: "Testing | Prime Therapy Billing",
+  description: "Internal test page.",
+  path: "/testing",
+  noindex: true,
+});
 
 const WorkingProcessSection: React.FC = () => {
   return (

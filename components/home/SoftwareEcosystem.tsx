@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/motion/Reveal";
+
 // SECTION 11: SOFTWARE ECOSYSTEM
 export default function SoftwareEcosystem() {
   // logo: a file in public/logos/platforms (transparent SVG, or PNG where no vector exists).
@@ -24,22 +26,23 @@ export default function SoftwareEcosystem() {
     <section className="w-full bg-[#fbf6fa] py-[clamp(48px,7vw,60px)] overflow-hidden">
       <div className="mx-auto w-[92%] max-w-[1320px] flex flex-col items-center text-center">
         {/* Eyebrow: 14px Desktop / 12px Mobile */}
-        <div className="mb-4 sm:mb-5">
+        <Reveal preset="blurUp" className="mb-4 sm:mb-5">
           <span className="font-heading bg-[#fdfaf8] text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
             Your Platform
           </span>
-        </div>
+        </Reveal>
 
         {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-        <h2 className="font-heading max-w-[900px] mx-auto text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
+        <Reveal as="h2" preset="blurUp" delay={0.1} className="font-heading max-w-[900px] mx-auto text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
           One Billing Team Across <span className="text-[#d95959]">Every Therapy</span> Software Ecosystem
-        </h2>
+        </Reveal>
         {/* Body Regular: 16px */}
-        <p className="font-body max-w-5xl text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+        <Reveal as="p" preset="blurUp" delay={0.2} className="font-body max-w-5xl text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
           A PT clinic runs WebPT. A mental health practice runs SimplePractice. An ABA center runs CentralReach. Those are three separate software worlds, and most billing companies live in one of them. We work in all three, because we bill all five specialties.
-        </p>
+        </Reveal>
 
-        <div className="software-ecosystem-scroller w-full overflow-hidden pb-3">
+        {/* The logo strip fades up as one piece; its own scrolling animation runs on the track inside */}
+        <Reveal delay={0.25} amount={0.4} className="software-ecosystem-scroller w-full overflow-hidden pb-3">
           <div className="software-ecosystem-track flex w-max">
             {[0, 1].map((copy) => (
               <div key={copy} className="flex w-max gap-4 pr-4" aria-hidden={copy === 1}>
@@ -73,7 +76,7 @@ export default function SoftwareEcosystem() {
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

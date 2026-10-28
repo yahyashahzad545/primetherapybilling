@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Reveal } from "@/components/motion/Reveal";
+import { FaqSchema } from "@/libs/seo";
 
 const stepsData = [
   {
     id: "01",
-    text: "What specialties does Prime bill for?",
+    text: "What specialties does Prime Therapy bill for?",
     answer:
       "Physical therapy, occupational therapy, speech-language pathology, ABA, and mental health, including psychology and PMHNP practices. Therapy is the only thing we bill. No cardiology, no urgent care, no general medical.",
     theme: "purple",
@@ -181,21 +183,24 @@ export default function FAQ() {
 
   return (
     <section className="w-full bg-white py-[clamp(48px,7vw,60px)] overflow-hidden relative z-10">
+      {/* Search engines read every question and answer of this FAQ (all pages of it) */}
+      <FaqSchema items={stepsData.map((item) => ({ question: item.text, answer: item.answer }))} />
       <div className="mx-auto w-[92%] max-w-[1320px]">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-16 max-w-4xl mx-auto">
           {/* Eyebrow: 14px Desktop / 12px Mobile */}
-          <span className="font-heading bg-white text-[#591e60] border border-[#591e60] mb-5 sm:mb-6 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
+          <Reveal as="span" preset="blurUp" className="font-heading bg-white text-[#591e60] border border-[#591e60] mb-5 sm:mb-6 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
             Straight Answers
-          </span>
+          </Reveal>
           {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-          <h2 className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold leading-[1.15] tracking-tight">
+          <Reveal as="h2" preset="blurUp" delay={0.1} className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold leading-[1.15] tracking-tight">
             <span className="text-[#591e60]">What Therapy </span><span className="text-[#d95959]">Practices Ask </span><br />
             <span className="text-[#591e60]">Before Switching</span>
-          </h2>
+          </Reveal>
         </div>
 
         <div className="w-full grid grid-cols-1 min-[1131px]:grid-cols-2 gap-8 items-stretch">
-          <div className="hidden min-[1131px]:flex items-center justify-center">
+          {/* Image glides in from the left while the questions rise in on the right */}
+          <Reveal preset="fadeLeft" duration={1} amount={0.3} className="hidden min-[1131px]:flex items-center justify-center">
             <img
               src="/fqa%20image.webp"
               alt="Therapists discussing billing questions"
@@ -203,14 +208,15 @@ export default function FAQ() {
               decoding="async"
               className="w-full aspect-[4/3] -translate-y-4 rounded-[8px] object-contain drop-shadow-[0_8px_16px_rgba(89,30,96,0.22)] md:w-full"
             />
-          </div>
+          </Reveal>
 
           <div className="mx-auto flex w-full max-w-[900px] flex-col justify-between space-y-4 sm:space-y-6">
             <div className="@container space-y-3 sm:space-y-4">
-              {currentSteps.map((step) => {
+              {currentSteps.map((step, position) => {
                 const isPurple = step.theme === "purple";
                 return (
-                  <div key={step.id} className="relative group">
+                  // Each question has its own trigger, so the second page of questions animates in too
+                  <Reveal key={step.id} delay={0.15 + position * 0.1} amount={0.4} className="relative group">
                     <div className={`absolute top-0 bottom-0 right-0 w-16 sm:w-24 rounded-r-[24px] translate-x-[4px] z-0 ${isPurple ? "bg-[#591e60]" : "bg-[#d95959]"}`} />
 
                     <div className={`relative min-h-[76px] w-full rounded-l-[36px] sm:min-h-[88px] sm:rounded-l-[48px] rounded-r-[20px] sm:rounded-r-[24px] border flex items-center justify-between p-0 py-2 pr-2 sm:py-3 @xl:pr-6 shadow-[0_6px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] z-10 overflow-hidden transform hover:scale-[1.01] md:hover:scale-[1.025] hover:z-20 transition-all duration-700 ease-out ${isPurple ? "bg-white border-gray-100 md:group-hover:bg-[#591e60] md:group-hover:border-[#591e60]" : "bg-white border-gray-100 md:group-hover:bg-[#d95959] md:group-hover:border-[#d95959]"}`}>
@@ -231,33 +237,17 @@ export default function FAQ() {
 
                         <div className="flex flex-col justify-center pr-1 @xl:pr-4 transform md:group-hover:-translate-y-1 transition-all duration-700 text-left py-2">
                           {/* Card / Step Title */}
-                          <h3 className="font-heading text-[#591e60] md:group-hover:text-white font-semibold text-[20px] leading-[1.25] transition-colors duration-700">
+                          <h3 className="font-heading text-[#591e60] md:group-hover:text-white font-semibold text-[17px] sm:text-[20px] leading-[1.25] transition-colors duration-700">
                             {step.text}
                           </h3>
                           {/* Body Regular / Readable description */}
-                          <p className="font-body text-gray-600 md:group-hover:text-white/95 font-normal text-[16px] leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-out md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:mt-2.5">
+                          <p className="font-body text-gray-600 md:group-hover:text-white/95 font-normal text-[15px] sm:text-[16px] leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-out md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:mt-2.5">
                             {step.answer}
                           </p>
                         </div>
                       </div>
-
-                      <div className="relative z-10 w-11 h-11 sm:w-14 sm:h-14 @xl:w-16 @xl:h-16 flex-shrink-0 flex items-center justify-center transition-transform duration-700 origin-[20%_50%] @xl:origin-center md:group-hover:scale-[1.4] @xl:md:group-hover:scale-[1.7] mr-1 sm:mr-2 @xl:mr-0">
-                        {step.iconImage ? (
-                          <img
-                            src={step.iconImage}
-                            alt=""
-                            width={64}
-                            height={64}
-                            loading="lazy"
-                            decoding="async"
-                            className="h-full w-full object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
-                          />
-                        ) : (
-                          step.icon
-                        )}
-                      </div>
                     </div>
-                  </div>
+                  </Reveal>
                 );
               })}
 
@@ -267,7 +257,7 @@ export default function FAQ() {
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between pt-4 px-2">
+            <Reveal delay={0.5} amount={0.6} className="flex items-center justify-between pt-4 px-2">
               <div className="flex gap-2.5">
                 {[1, 2].map((page) => (
                   <span
@@ -292,7 +282,7 @@ export default function FAQ() {
                   </button>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

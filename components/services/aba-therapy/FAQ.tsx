@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { FaqSchema } from "@/libs/seo";
 
 type FAQItem = {
   id: string;
@@ -125,7 +126,7 @@ const FAQ_ITEMS: FAQItem[] = [
     answer: (
       <div className="space-y-3">
         <p>
-          Between 2.99% and 3.99% of monthly collections depending on volume, with a flat $399 for practices collecting under $10,000 a month. Credentialing is priced separately at $149 per payer.
+          Between 2.99% and 3.99% of monthly collections depending on volume, with a flat $499 for practices collecting under $10,000 a month. Credentialing is priced separately at $149 per payer.
         </p>
         <p>
           Authorization management and EVV verification are included at every tier, not billed as add-ons. Full pricing is on the pricing page.
@@ -170,6 +171,8 @@ export default function FAQ() {
 
   return (
     <section className="w-full bg-[#fbf6fa] py-[clamp(48px,7vw,60px)] overflow-hidden relative z-10">
+      {/* Search engines read every question and answer of this FAQ (all pages of it) */}
+      <FaqSchema items={FAQ_ITEMS} />
       <div className="mx-auto w-[92%] max-w-[1320px]">
         <div className="flex flex-col items-center text-center mb-10 sm:mb-16 max-w-4xl mx-auto">
           <span className="font-heading bg-white text-[#591e60] border border-[#591e60] mb-5 sm:mb-6 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
@@ -260,7 +263,7 @@ export default function FAQ() {
                           }`}
                         >
                           <h3
-                            className={`font-heading font-semibold text-[20px] leading-[1.25] transition-colors duration-700 ${
+                            className={`font-heading font-semibold text-[17px] sm:text-[20px] leading-[1.25] transition-colors duration-700 ${
                               isPurple
                                 ? "text-[#591e60] md:group-hover:text-white"
                                 : "text-[#591e60] md:group-hover:text-white"
@@ -270,7 +273,7 @@ export default function FAQ() {
                             {item.question}
                           </h3>
                           <div
-                            className={`font-body text-gray-600 md:group-hover:text-white/95 font-normal text-[16px] leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-out md:group-hover:max-h-[440px] md:group-hover:opacity-100 md:group-hover:mt-2.5 ${
+                            className={`font-body text-gray-600 md:group-hover:text-white/95 font-normal text-[15px] sm:text-[16px] leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-700 ease-out md:group-hover:max-h-[440px] md:group-hover:opacity-100 md:group-hover:mt-2.5 ${
                               isExpanded ? "max-h-[700px] opacity-100 mt-2.5" : ""
                             }`}
                             style={{ color: isExpanded ? "rgba(255,255,255,.95)" : undefined }}
@@ -280,17 +283,6 @@ export default function FAQ() {
                         </div>
                       </div>
 
-                      <div className="relative z-10 w-11 h-11 sm:w-14 sm:h-14 @xl:w-16 @xl:h-16 flex-shrink-0 flex items-center justify-center transition-transform duration-700 origin-[20%_50%] @xl:origin-center md:group-hover:scale-[1.4] @xl:md:group-hover:scale-[1.7] mr-1 sm:mr-2 @xl:mr-0">
-                        <img
-                          src={item.icon}
-                          alt=""
-                          width={64}
-                          height={64}
-                          loading="lazy"
-                          decoding="async"
-                          className="h-full w-full object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
-                        />
-                      </div>
                     </button>
                   </div>
                 );

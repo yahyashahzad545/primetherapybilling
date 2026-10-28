@@ -4,7 +4,8 @@
 const pricingPlans = [
   {
     id: 1,
-    price: '$499 / mo',
+    name: 'Starter',
+    price: '$499 / month',
     headingLine1: 'Under $10,000',
     headingLine2: 'monthly collections',
     description:
@@ -13,30 +14,33 @@ const pricingPlans = [
   },
   {
     id: 2,
-    price: '5.9% / mo',
-    headingLine1: '$10,000 – $25,000',
-    headingLine2: 'monthly collections',
+    name: 'Growth',
+    price: '3.99% of collections',
+    headingLine1: '$10,000 to $50,000',
+    headingLine2: 'per month',
     description:
-      'Ideal for growing solo therapists and small partnerships needing dedicated billing, claim scrubbing, and accelerated insurance reimbursements.',
+      'For full-caseload solos and small groups adding providers. You pay on what actually gets collected, so slow months cost less and growth never triggers a renegotiation.',
     buttonText: 'Get Started',
   },
   {
     id: 3,
-    price: '4.9% / mo',
-    headingLine1: '$25,000 – $50,000',
-    headingLine2: 'monthly collections',
+    name: 'Practice',
+    price: '3.49% of collections',
+    headingLine1: '$50,000 to $150,000',
+    headingLine2: 'per month',
     description:
-      'Designed for established therapy practices looking to reduce days in AR, maximize allowable rates, and eliminate denial backlogs completely.',
+      'For established groups running multiple providers across several payers. Adds per-clinician reporting so you can see which providers and payers drive your denials.',
     buttonText: 'Get Started',
   },
   {
     id: 4,
-    price: '3.99% / mo',
-    headingLine1: 'Over $50,000',
-    headingLine2: 'monthly collections',
+    name: 'Group',
+    price: '2.99% of collections',
+    headingLine1: 'Over $150,000',
+    headingLine2: 'per month',
     description:
-      'Tailored for high-volume group practices and clinics requiring comprehensive multi-provider RCM, dedicated account management, and priority support.',
-    buttonText: 'Get Started',
+      'For multi-provider and multi-location practices. One rate across every location, a dedicated account manager, and reporting built around how you track performance.',
+    buttonText: 'Talk to Us',
   },
 ];
 
@@ -56,7 +60,7 @@ export default function PricingPlans() {
         {pricingPlans.map((plan) => (
           <div
             key={plan.id}
-            className="relative h-[320px] min-[400px]:max-[767px]:h-[280px] md:max-[849px]:h-[320px] min-[850px]:max-[1279px]:h-[280px] xl:h-[320px] w-full transition-transform duration-300 hover:-translate-y-1.5"
+            className="relative min-h-[320px] min-[400px]:max-[767px]:min-h-[280px] md:max-[849px]:min-h-[320px] min-[850px]:max-[1279px]:min-h-[280px] xl:min-h-[320px] w-full transition-transform duration-300 hover:-translate-y-1.5"
           >
             <div
               className="relative h-full bg-white rounded-[26px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] border border-purple-50/60 pt-8 pb-2.5 px-6 flex flex-col justify-between"
@@ -73,6 +77,7 @@ export default function PricingPlans() {
                 style={{ transform: 'skewX(3.5deg)' }}
               >
                 <div className="mt-2 mb-3 px-1">
+                  <p className="font-heading mb-1 text-[13px] font-bold uppercase tracking-[0.14em] text-[#591e60]">{plan.name}</p>
                   <h3 className="font-heading text-[22px] text-[#C05745] font-bold italic leading-snug">
                     {plan.headingLine1}
                     <br />
@@ -92,7 +97,7 @@ export default function PricingPlans() {
                     data-lead-popup
                     data-popup-heading="Get Started With Prime"
                     data-popup-description={`Tell us about your practice. This plan: ${plan.price} for ${plan.headingLine1.toLowerCase()} ${plan.headingLine2}.`}
-                    data-popup-source={`Pricing plan — ${plan.headingLine1} ${plan.headingLine2}`}
+                    data-popup-source={`Pricing plan — ${plan.name} (${plan.headingLine1} ${plan.headingLine2})`}
                     className="group inline-flex items-center justify-center gap-1.5 px-6 py-1.5 rounded-[8px] border-[1.5px] border-[#521C58] text-[#521C58] text-[13.5px] font-bold tracking-wide bg-transparent hover:bg-[#521C58] hover:text-white transition-all duration-200 cursor-pointer shadow-xs active:scale-95"
                   >
                     <span className="font-bold">{plan.buttonText}</span>

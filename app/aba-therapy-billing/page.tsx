@@ -1,1 +1,1 @@
-export { default } from "../services/aba-therapy/page";
+export { default, metadata } from "../services/aba-therapy/page";

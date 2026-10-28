@@ -1,1 +1,1 @@
-export { default } from "../services/mental-health-billing/page";
+export { default, metadata } from "../services/mental-health-billing/page";

@@ -9,10 +9,25 @@ import SwitchingOver from "@/components/services/physical-therapy/SwitchingOver"
 import PlatformIntegrations from "@/components/services/physical-therapy/PlatformIntegrations";
 import FAQ from "@/components/services/physical-therapy/FAQ";
 import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
+import { PageSchema, pageMetadata, serviceSchema } from "@/libs/seo";
+
+const PAGE = {
+  title: "Physical Therapy Billing Services | Prime Therapy Billing",
+  description:
+    "Physical therapy billing for PT and PTA practices: 8-minute rule unit calculation, KX and CQ modifiers, claim submission, denial management, and AR follow-up.",
+  path: "/physical-therapy-billing",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 export default function PtHeroAndServices() {
   return (
     <>
+      <PageSchema
+        {...PAGE}
+        crumbs={[{ name: "Home", path: "/" }, { name: "Physical Therapy Billing", path: PAGE.path }]}
+        extra={[serviceSchema({ name: "Physical Therapy Billing Services", description: PAGE.description, path: PAGE.path, serviceType: "Physical therapy billing" })]}
+      />
       {/* Site fonts for the sections restyled so far: Montserrat for headings (.font-heading), Google Sans for body text (.font-body) */}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`

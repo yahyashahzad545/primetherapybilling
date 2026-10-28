@@ -161,17 +161,7 @@ export default function Services() {
             const isPurple = card.theme === "purple";
             const outerBg = isPurple ? "bg-[#b79cb9]" : "bg-[#f0b1b1]";
             const innerBg = isPurple ? "bg-[#EFEBF1]" : "bg-[#FBF2F2]";
-            const tagBg = isPurple ? "bg-[#591e60]" : "bg-[#d95959]";
             const offsetClass = card.offset ? "xl:translate-y-12" : "";
-            // The longest tag sits alone on the second row; the other two share the first.
-            const longestTagIndex = card.tags.reduce(
-              (longest, tag, index) => (tag.text.length > card.tags[longest].text.length ? index : longest),
-              0
-            );
-            const firstRowTags = card.tags.filter((_, index) => index !== longestTagIndex);
-            const secondRowTag = card.tags[longestTagIndex];
-            // Tag text follows the card's width (up to 12px) so two tags always fit side by side.
-            const tagClassName = `text-[clamp(7px,3.5cqw,12px)] font-semibold text-white px-[1em] py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`;
 
             return (
               <div
@@ -193,23 +183,10 @@ export default function Services() {
                   />
 
                   <div className="@container flex-1 min-h-0 grid grid-rows-[minmax(0,1fr)] w-full relative mt-3">
-                    <div className="col-start-1 row-start-1 h-full flex flex-col justify-center-safe gap-2 w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
-                      {/* Icon above the tags; it hides together with them on hover. It grows into the card's free
-                          space (80px at least, 112px at most) without ever making the card taller */}
-                      <CardIcon src={card.icon ?? ""} className="mb-1 w-full h-20 grow min-h-20 max-h-28 self-center drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
-                      {/* Two shorter tags on the first row, the longest alone on the second */}
-                      <div className="flex flex-row justify-center items-center gap-1.5 w-full flex-nowrap">
-                        {firstRowTags.map((tag) => (
-                          <span key={tag.text} className={tagClassName}>
-                            {tag.text}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex justify-center items-center w-full">
-                        <span className={tagClassName}>
-                          {secondRowTag?.text}
-                        </span>
-                      </div>
+                    <div className="col-start-1 row-start-1 h-full flex flex-col items-center justify-center w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
+                      {/* Icon centred horizontally and vertically in the card's free space; it hides on hover.
+                          It grows into that space (80px at least, 112px at most) without ever making the card taller */}
+                      <CardIcon src={card.icon ?? ""} className="w-full h-20 grow min-h-20 max-h-28 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
                     </div>
 
                     <div className="col-start-1 row-start-1 hidden md:flex items-center justify-center opacity-0 pointer-events-none md:group-hover:opacity-100 md:transition-opacity md:duration-300 px-2">

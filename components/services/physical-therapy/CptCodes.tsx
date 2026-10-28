@@ -1,3 +1,5 @@
+import { altFromSrc } from "@/utils/altFromSrc";
+
 type CptCodeItem = {
   code: string;
   label: string;
@@ -62,7 +64,7 @@ export default function CptCodes() {
         <div className="flex items-center justify-center w-full min-h-[48px]">
           <img
             src={icon}
-            alt=""
+            alt={altFromSrc(icon)}
             loading="lazy"
             decoding="async"
             className="h-12 w-12 object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"

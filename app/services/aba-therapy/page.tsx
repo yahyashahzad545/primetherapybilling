@@ -8,10 +8,25 @@ import SwitchingOver from "@/components/services/aba-therapy/SwitchingOver";
 import PlatformIntegrations from "@/components/services/aba-therapy/PlatformIntegrations";
 import FAQ from "@/components/services/aba-therapy/FAQ";
 import FinalCTA from "@/components/about-us/FinalCTA";
+import { PageSchema, pageMetadata, serviceSchema } from "@/libs/seo";
+
+const PAGE = {
+  title: "ABA Therapy Billing Services | Prime Therapy Billing",
+  description:
+    "ABA billing for BCBA-led practices: prior authorization, CPT 97151 to 97158 coding, unit-level claims, Medicaid EVV, denial management, and AR follow-up.",
+  path: "/aba-therapy-billing",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 export default function AbaHeroSection() {
   return (
     <div className="therapy-fonts">
+      <PageSchema
+        {...PAGE}
+        crumbs={[{ name: "Home", path: "/" }, { name: "ABA Therapy Billing", path: PAGE.path }]}
+        extra={[serviceSchema({ name: "ABA Therapy Billing Services", description: PAGE.description, path: PAGE.path, serviceType: "ABA therapy billing" })]}
+      />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */

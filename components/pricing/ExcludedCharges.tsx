@@ -1,3 +1,5 @@
+import { altFromSrc } from "@/utils/altFromSrc";
+
 const primeInvoiceCharges = [
   {
     id: 1,
@@ -65,7 +67,7 @@ export default function ExcludedCharges() {
             <div className="relative z-10 h-full bg-[#E8DEEA] rounded-[24px] p-5 flex items-center gap-4 text-left shadow-[0_12px_26px_rgba(50,15,60,0.13)] border border-[#DDD0E2]">
               <img
                 src={charge.icon}
-                alt=""
+                alt={altFromSrc(charge.icon)}
                 loading="lazy"
                 decoding="async"
                 className="h-16 w-16 sm:h-20 sm:w-20 shrink-0 object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"

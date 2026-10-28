@@ -36,7 +36,7 @@ export default function WhyPrime() {
   return (
     <section className="w-full bg-[#fbf6fa] py-[60px] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden relative">
       <div className="max-w-[1320px] mx-auto">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-10 sm:mb-14">
+        <div className="flex flex-col items-center text-center max-w-[1100px] mx-auto mb-10 sm:mb-14">
           <div className="mb-3 sm:mb-4">
             <span className="font-heading bg-white text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
               Why Prime
@@ -49,7 +49,7 @@ export default function WhyPrime() {
             Billing
           </h2>
 
-          <p className="font-normal leading-[1.6] max-w-[820px] px-2 text-[18px]" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+          <p className="font-normal leading-[1.6] max-w-[1100px] px-2 text-[18px]" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
             Prime Therapy Billing is a therapy-only billing and credentialing company serving PT, OT, SLP, ABA, and mental health practices nationwide. Behavioral health is a specialty inside that, not a category we picked up along the way.
           </p>
         </div>

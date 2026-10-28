@@ -1,3 +1,5 @@
+import { altFromSrc } from "@/utils/altFromSrc";
+
 type WhyPrimeFeature = {
   id: number;
   title: string;
@@ -94,7 +96,7 @@ export default function WhyPrime() {
                   <div className="mb-1.5 flex items-center gap-2 sm:mb-2 sm:gap-3">
                     <img loading="lazy" decoding="async"
                       src={card.icon}
-                      alt=""
+                      alt={altFromSrc(card.icon)}
                       className="h-10 w-12 shrink-0 origin-right scale-[1.35] object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)] sm:h-12 sm:w-14"
                     />
                     <h3 className="font-heading text-[22px] font-extrabold leading-[1.25] tracking-tight text-[#591e60]">

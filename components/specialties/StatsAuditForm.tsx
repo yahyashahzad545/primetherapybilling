@@ -5,6 +5,7 @@ import { ValidatedForm } from "@/components/ValidatedForm";
 import { labelClass, inputClass, focusStyle, blurStyle, formatPhone } from "@/components/specialties/formHelpers";
 import { SPECIALTIES } from "@/components/specialties/data";
 import { goToThankYou } from "@/utils/thankYou";
+import { altFromSrc } from "@/utils/altFromSrc";
 
 // ─── Specialty Options for Forms ─────────────────────────────────────────────
 const SPECIALTY_OPTIONS = SPECIALTIES.map((s) => s.name).sort();
@@ -68,7 +69,7 @@ export default function StatsAuditForm() {
                 <div key={i} className="text-center">
                   <img
                     src={stat.icon}
-                    alt=""
+                    alt={altFromSrc(stat.icon)}
                     loading="lazy"
                     decoding="async"
                     className="w-16 h-16 sm:w-20 sm:h-20 object-contain mx-auto mb-3 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"

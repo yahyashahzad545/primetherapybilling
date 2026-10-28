@@ -27,7 +27,7 @@ export default function ThreeSteps() {
               </h3>
               <img
                 src="/icons/contact-us-page/after%20you%20sumit/Within%20One%20Business%20Day.webp"
-                alt=""
+                alt="Within One Business Day icon"
                 width={88}
                 height={88}
                 loading="lazy"
@@ -69,7 +69,7 @@ export default function ThreeSteps() {
               </h3>
               <img
                 src="/icons/contact-us-page/after%20you%20sumit/The%20Audit%20Call.webp"
-                alt=""
+                alt="The Audit Call icon"
                 width={104}
                 height={104}
                 loading="lazy"
@@ -111,7 +111,7 @@ export default function ThreeSteps() {
               </h3>
               <img
                 src="/icons/contact-us-page/after%20you%20sumit/A%20Written%20Quote.webp"
-                alt=""
+                alt="A Written Quote icon"
                 width={88}
                 height={88}
                 loading="lazy"

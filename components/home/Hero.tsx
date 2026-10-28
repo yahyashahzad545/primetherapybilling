@@ -2,6 +2,7 @@
 
 import { HeroActions } from "@/components/HeroActions";
 import { Container, FluidSection } from "@/components/FluidLayout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 const HERO_VIDEO_URL = ""; // Add the direct video file URL here.
 
@@ -13,42 +14,43 @@ export default function Hero() {
       <div className="hero-layout grid grid-cols-1 min-[1025px]:grid-cols-2 gap-8 sm:gap-10 items-center">
 
         {/* ================= LEFT CONTENT COLUMN ================= */}
-        <div className="hero-content flex flex-col text-center items-center min-[1025px]:text-left min-[1025px]:items-start w-full max-w-2xl min-[1000px]:max-[1025px]:max-w-[84vw] mx-auto">
+        {/* On page load the badge, heading, text and buttons arrive one after another */}
+        <RevealGroup onMount stagger={0.12} delay={0.1} className="hero-content flex flex-col text-center items-center min-[1025px]:text-left min-[1025px]:items-start w-full max-w-2xl min-[1000px]:max-[1025px]:max-w-[84vw] mx-auto">
           {/* Tag Badge */}
-          <div className="mb-3 sm:mb-4">
+          <RevealItem preset="blurUp" className="mb-3 sm:mb-4">
             <span className="font-heading bg-[#fdfaf8] text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
               Therapy Practices Only
             </span>
-          </div>
+          </RevealItem>
 
           {/* Main H1 Heading */}
-          <h1 className="font-heading text-[clamp(36px,4vw,52px)] font-extrabold leading-[1.15] tracking-tight mb-4">
+          <RevealItem as="h1" preset="blurUp" duration={0.9} className="font-heading text-[clamp(36px,4vw,52px)] font-extrabold leading-[1.15] tracking-tight mb-4">
             <span className="text-[#d95959]">Therapy Billing Services</span>{" "}
             <span className="text-[#591e60]">for</span>{" "}
             <span className="text-[#591e60]">
               PT, OT, SLP, ABA, and Mental Health
             </span>{" "}
             <span className="text-[#d95959]">Practices</span>
-          </h1>
+          </RevealItem>
 
           {/* Subheading / Body Large */}
-          <p className="font-body text-[16px] md:text-[18px] text-[#591e60] font-medium leading-relaxed mb-3 sm:mb-4">
+          <RevealItem as="p" className="font-body text-[16px] md:text-[18px] text-[#591e60] font-medium leading-relaxed mb-3 sm:mb-4">
             Five specialties. One team that bills nothing else. Your practice
             keeps its own NPI, its own contracts, and its own rates.
-          </p>
+          </RevealItem>
 
           {/* Description / Body Regular */}
-          <p className="font-body text-[16px] text-gray-700 leading-relaxed mb-5 sm:mb-6 font-normal">
+          <RevealItem as="p" className="font-body text-[16px] text-gray-700 leading-relaxed mb-5 sm:mb-6 font-normal">
             Every therapy specialty bills on rules that don't exist anywhere
             else in medicine. The 8-minute rule in PT. Authorization balances in
             ABA. Behavioral health carve-outs that route a claim to a payer
             entity nobody names on the insurance card. Prime Therapy Billing
             handles all five, plus credentialing, under one percentage of what
             you actually collect.
-          </p>
+          </RevealItem>
 
           {/* CTA Button & SLA Note */}
-          <div className="hero-actions flex flex-col gap-2 w-full min-[1000px]:max-[1025px]:max-w-[560px] items-center min-[1025px]:items-start">
+          <RevealItem className="hero-actions flex flex-col gap-2 w-full min-[1000px]:max-[1025px]:max-w-[560px] items-center min-[1025px]:items-start">
             <HeroActions>
               <button
                 type="button"
@@ -63,11 +65,12 @@ export default function Hero() {
             <p className="font-body text-[12px] text-[#591e60] italic tracking-tight pt-1">
               A specialist replies in one business day.
             </p>
-          </div>
-        </div>
+          </RevealItem>
+        </RevealGroup>
 
         {/* ================= RIGHT SIDE: VIDEO PLACEHOLDER ================= */}
-        <div className="hidden w-full items-center justify-center min-[1025px]:flex min-[1025px]:justify-end">
+        {/* Zooms in softly while the text arrives */}
+        <Reveal onMount preset="zoomIn" delay={0.35} duration={1.1} className="hidden w-full items-center justify-center min-[1025px]:flex min-[1025px]:justify-end">
           <div
             role={HERO_VIDEO_URL ? undefined : "img"}
             aria-label={HERO_VIDEO_URL ? undefined : "Video placeholder"}
@@ -98,7 +101,7 @@ export default function Hero() {
               </div>
             )}
           </div>
-        </div>
+        </Reveal>
 
       </div>
     </Container>

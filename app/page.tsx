@@ -1,4 +1,4 @@
-import DocumentMeta from "@/components/home/DocumentMeta";
+import { PageSchema, pageMetadata } from "@/libs/seo";
 import Hero from "@/components/home/Hero";
 import StatsBar from "@/components/home/StatsBar";
 import Services from "@/components/home/Services";
@@ -13,6 +13,15 @@ import SoftwareEcosystem from "@/components/home/SoftwareEcosystem";
 import FAQ from "@/components/home/FAQ";
 import FinalCTA from "@/components/home/FinalCTA";
 
+const PAGE = {
+  title: "Therapy Billing Services | PT, OT, SLP, ABA & Mental Health | Prime Therapy Billing",
+  description:
+    "Prime Therapy Billing offers full-cycle medical billing, credentialing, and RCM services built for PT, OT, SLP, ABA, and mental health practices nationwide.",
+  path: "/",
+};
+
+export const metadata = pageMetadata(PAGE);
+
 export default function TherapyHero() {
   return (
     <div
@@ -22,7 +31,7 @@ export default function TherapyHero() {
       }}
       suppressHydrationWarning
     >
-      <DocumentMeta />
+      <PageSchema {...PAGE} />
 
       {/* Import Montserrat for Headings */}
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />

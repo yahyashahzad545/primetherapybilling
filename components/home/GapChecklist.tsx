@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ValidatedForm } from "@/components/ValidatedForm";
 import { Container, FluidSection } from "@/components/FluidLayout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 const checklistItems = [
   "Claims go out days after the session, not the same week",
@@ -29,36 +30,37 @@ export default function GapChecklist() {
     <FluidSection className="bg-[#591e60] text-white">
       <Container>
         {/* Eyebrow: 14px Desktop / 12px Mobile */}
-        <div className="font-heading w-fit max-[861px]:mx-auto bg-white border border-[#591e60] mb-3 text-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full shadow-sm">
+        <Reveal preset="blurUp" className="font-heading w-fit max-[861px]:mx-auto bg-white border border-[#591e60] mb-3 text-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full shadow-sm">
           THE GAP
-        </div>
+        </Reveal>
 
         {/* Section Heading H2: Desktop 42px, Mobile 30-34px. Sits above the two columns, left aligned */}
-        <h2 className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold tracking-tight leading-[1.15] text-left max-[861px]:text-center lg:max-w-[60%] mb-6">
+        <Reveal as="h2" preset="blurUp" delay={0.1} className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold tracking-tight leading-[1.15] text-left max-[861px]:text-center lg:max-w-[60%] mb-6">
           You Know How Many Sessions You Delivered Last Month. Do You Know How Many{" "}
           <span className="text-[#d95959]">Got Paid?</span>
-        </h2>
+        </Reveal>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] gap-8 lg:gap-x-[clamp(48px,8vw,120px)] items-start">
-          <div className="flex flex-col">
+          {/* Text, then the checklist rows one after another */}
+          <RevealGroup stagger={0.08} amount={0.15} className="flex flex-col">
             {/* Body Regular: 16px */}
-            <p className="font-body text-[18px] text-white/90 leading-relaxed max-[861px]:text-center mb-4">
+            <RevealItem as="p" className="font-body text-[18px] text-white/90 leading-relaxed max-[861px]:text-center mb-4">
               Those are two different numbers in almost every therapy practice, and the space between them doesn't show up anywhere. Not in your EHR, not on a remittance, not in a monthly total that looks roughly like last month's.
-            </p>
-            <p className="font-body text-[18px] text-white/85 leading-relaxed max-[861px]:text-center mb-8">
+            </RevealItem>
+            <RevealItem as="p" className="font-body text-[18px] text-white/85 leading-relaxed max-[861px]:text-center mb-8">
               It shows up as sessions that never got billed, units that came in lower than the note supports, and claims that aged past the point anyone was going to chase them.
-            </p>
+            </RevealItem>
 
             {/* H3 Card Heading: Desktop 32px, Mobile 22-26px */}
-            <h3 className="font-heading text-[22px] font-extrabold leading-[1.25] mb-5 text-white">
+            <RevealItem as="h3" className="font-heading text-[22px] font-extrabold leading-[1.25] mb-5 text-white">
               What Does This Sound Like at Your Practice?
-            </h3>
+            </RevealItem>
 
             <div className="space-y-4">
               {checklistItems.map((item, index) => {
                 const isChecked = selectedOptions.includes(item);
                 return (
-                  <label key={index} className="flex items-start space-x-3 cursor-pointer group pb-3 border-b border-white/10">
+                  <RevealItem as="label" preset="fadeLeft" key={index} className="flex items-start space-x-3 cursor-pointer group pb-3 border-b border-white/10">
                     <div className="relative flex items-center justify-center mt-1 flex-shrink-0">
                       <input type="checkbox" checked={isChecked} onChange={() => handleCheckboxChange(item)} className="peer sr-only" />
                       <div className={`w-5 h-5 rounded-[3px] border flex items-center justify-center transition-all ${isChecked ? "bg-[#d95959] border-[#d95959]" : "bg-white border-white group-hover:border-[#d95959]"}`}>
@@ -73,13 +75,13 @@ export default function GapChecklist() {
                     <span className="font-body text-[16px] text-white/90 group-hover:text-white select-none">
                       {item}
                     </span>
-                  </label>
+                  </RevealItem>
                 );
               })}
             </div>
-          </div>
+          </RevealGroup>
 
-          <div className="w-full">
+          <Reveal preset="fadeRight" delay={0.2} duration={0.9} amount={0.2} className="w-full">
             <div className="bg-white text-[#591e60] p-6 sm:p-8 rounded-2xl shadow-2xl relative border-t-4 border-[#d95959]">
               {/* Badge: 12px */}
               <div className="font-heading w-fit bg-white border border-[#591e60] mb-2 text-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full shadow-sm">
@@ -115,7 +117,7 @@ export default function GapChecklist() {
                 <p className="font-body text-[12px] md:text-[14px] text-center text-[#591e60] mt-3">No setup fee. No contract. Nothing starts until you say so.</p>
               </ValidatedForm>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </FluidSection>

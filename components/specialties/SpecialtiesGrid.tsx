@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SPECIALTIES } from "@/components/specialties/data";
+import { altFromSrc } from "@/utils/altFromSrc";
 
 // ─── Icon Paths (8 unique medical-themed SVG paths) ─────────────────────────
 const ICON_PATHS = [
@@ -167,7 +168,7 @@ export default function SpecialtiesGrid() {
                 {specialtyIcon(spec.name) ? (
                   <img
                     src={specialtyIcon(spec.name)}
-                    alt=""
+                    alt={altFromSrc(specialtyIcon(spec.name) ?? "")}
                     loading="lazy"
                     decoding="async"
                     className="w-12 h-12 shrink-0 mb-4 object-contain scale-[1.45] group-hover:scale-[1.55] transition-transform duration-300 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"

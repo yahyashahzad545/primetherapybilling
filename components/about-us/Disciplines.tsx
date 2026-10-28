@@ -83,7 +83,7 @@ export default function Disciplines() {
 
         {/* Subtitle Paragraph */}
         <p
-          className="max-w-3xl mx-auto text-center text-[18px] leading-relaxed mb-8 sm:mb-10 font-normal px-2"
+          className="max-w-[1100px] mx-auto text-center text-[18px] leading-relaxed mb-8 sm:mb-10 font-normal px-2"
           style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}
         >
           Physical therapy, occupational therapy, speech-language pathology, ABA, and mental health each bill under a separate set of codes, modifiers, and payer requirements. None of the five overlap enough to treat as interchangeable.

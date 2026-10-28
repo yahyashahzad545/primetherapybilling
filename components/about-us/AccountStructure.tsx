@@ -73,8 +73,8 @@ export default function AccountStructure() {
             {/* ── CARD 01 (Mobile: 1st, Desktop: Top of Right Column, at the right edge) ── */}
             <div className="order-1 md:order-2 md:col-start-2 w-full max-w-[340px] sm:max-w-[370px] lg:justify-self-end">
               <div
-                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
-                style={{ backgroundColor: "#f4edf4" }}
+                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.16)] transition-transform duration-300 hover:-translate-y-1.5"
+                style={{ backgroundColor: "#ffffff" }}
               >
                 <div
                   className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
@@ -97,8 +97,8 @@ export default function AccountStructure() {
             {/* ── CARD 02 (Mobile: 2nd, Desktop: Bottom of Right Column, pulled toward the centre and set lower) ── */}
             <div className="order-2 md:order-4 md:col-start-2 w-full max-w-[340px] sm:max-w-[370px] md:mt-6 lg:mt-16 lg:justify-self-start">
               <div
-                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
-                style={{ backgroundColor: "#f4edf4" }}
+                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.16)] transition-transform duration-300 hover:-translate-y-1.5"
+                style={{ backgroundColor: "#ffffff" }}
               >
                 <div
                   className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
@@ -121,8 +121,8 @@ export default function AccountStructure() {
             {/* ── CARD 03 (Mobile: 3rd, Desktop: Top of Left Column, at the left edge, a little below card 01) ── */}
             <div className="order-3 md:order-1 md:col-start-1 w-full max-w-[340px] sm:max-w-[370px] lg:mt-5 lg:justify-self-start">
               <div
-                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
-                style={{ backgroundColor: "#f4edf4" }}
+                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.16)] transition-transform duration-300 hover:-translate-y-1.5"
+                style={{ backgroundColor: "#ffffff" }}
               >
                 <div
                   className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"
@@ -145,8 +145,8 @@ export default function AccountStructure() {
             {/* ── CARD 04 (Mobile: 4th, Desktop: Bottom of Left Column, nudged toward the centre) ── */}
             <div className="order-4 md:order-3 md:col-start-1 w-full max-w-[340px] sm:max-w-[370px] md:mt-6 lg:mt-0 lg:ml-9 lg:justify-self-start">
               <div
-                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.06)] transition-transform duration-300 hover:-translate-y-1.5"
-                style={{ backgroundColor: "#f4edf4" }}
+                className="w-full rounded-[28px] sm:rounded-[34px] p-6 sm:p-9 text-center shadow-[0_10px_25px_-5px_rgba(56,24,61,0.16)] transition-transform duration-300 hover:-translate-y-1.5"
+                style={{ backgroundColor: "#ffffff" }}
               >
                 <div
                   className="text-4xl sm:text-6xl font-black mb-2.5 sm:mb-3.5 tracking-tight leading-none"

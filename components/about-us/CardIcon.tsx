@@ -1,9 +1,12 @@
+import { altFromSrc } from "@/utils/altFromSrc";
+
 // ── Card icon ───────────────────────────────────────────────────
 // Shows the icon image once a card's `icon` link is filled in; until then an
-// empty dashed slot of the same size holds its place.
-export default function CardIcon({ src, className }: { src: string; className: string }) {
+// empty dashed slot of the same size holds its place. Alt text comes from the
+// icon's file name unless one is passed.
+export default function CardIcon({ src, className, alt }: { src: string; className: string; alt?: string }) {
   return src ? (
-    <img src={src} alt="" loading="lazy" decoding="async" className={`${className} object-contain`} />
+    <img src={src} alt={alt ?? altFromSrc(src)} loading="lazy" decoding="async" className={`${className} object-contain`} />
   ) : (
     <div
       aria-hidden="true"

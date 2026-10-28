@@ -1,4 +1,5 @@
 import { Container, FluidSection } from "@/components/FluidLayout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 // SECTION 7: PRICING
 export default function Pricing() {
@@ -6,32 +7,33 @@ export default function Pricing() {
     <FluidSection className="bg-[#fbf6fa] overflow-hidden">
       <Container className="flex flex-col items-center text-center">
         {/* Eyebrow: 14px Desktop / 12px Mobile */}
-        <div className="mb-4">
+        <Reveal preset="blurUp" className="mb-4">
           <span className="font-heading bg-[#fdfaf8] text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
             Pricing
           </span>
-        </div>
+        </Reveal>
 
-        {/* On desktop the one-line heading sets this block's width, and the description fills that same width */}
-        <div className="flex flex-col items-center max-w-full lg:w-fit">
+        {/* On desktop the heading stays on one line and the description gets up to 1100px so it wraps into two rows */}
+        <RevealGroup stagger={0.1} delay={0.1} amount={0.3} className="flex flex-col items-center max-w-full lg:w-fit">
           {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-          <h2 className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-5 lg:whitespace-nowrap">
+          <RevealItem as="h2" preset="blurUp" className="font-heading text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-5 lg:whitespace-nowrap">
             One Percentage, Eight Services,<br className="lg:hidden" />{" "}
             No <span className="text-[#d95959]">Add-Ons</span>
-          </h2>
+          </RevealItem>
 
-          {/* Body Large / Regular: 16-18px */}
-          <p className="font-body text-[18px] leading-relaxed max-w-3xl lg:w-0 lg:min-w-full lg:max-w-none mb-4 font-normal" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+          {/* Body Large / Regular: 16-18px. On desktop each paragraph is wide enough to sit in two balanced rows */}
+          <RevealItem as="p" preset="blurUp" className="font-body text-[18px] leading-relaxed max-w-3xl lg:max-w-[1100px] lg:text-balance mb-4 font-normal" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
             Verification, prior authorizations, denial appeals, patient statements, and monthly reporting are all in the rate. Most billing companies quote four of those separately, which is why a lower percentage often lands on a higher invoice.
-          </p>
+          </RevealItem>
 
-          <p className="font-body text-[18px] leading-relaxed max-w-3xl lg:w-0 lg:min-w-full lg:max-w-none mb-10 font-normal" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+          <RevealItem as="p" preset="blurUp" className="font-body text-[18px] leading-relaxed max-w-3xl lg:max-w-[1100px] lg:text-balance mb-10 font-normal" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
             Billing prices as a percentage of what you collect, with a flat monthly rate for smaller practices. Credentialing is priced per payer.
-          </p>
-        </div>
+          </RevealItem>
+        </RevealGroup>
 
-        {/* Banner: illustration on the left, statement and three pills on the right */}
-        <div className="relative isolate w-full max-w-[1040px] overflow-hidden bg-[#591e60] text-white rounded-[20px] px-8 md:px-14 py-10 md:py-[60px] shadow-lg flex flex-col md:flex-row items-center gap-3 md:gap-10">
+        {/* Banner: illustration on the left, statement and three pills on the right. It zooms in softly,
+            then its three points pop in one after another */}
+        <Reveal preset="zoomIn" duration={0.9} amount={0.35} className="relative isolate w-full max-w-[1040px] overflow-hidden bg-[#591e60] text-white rounded-[20px] px-8 md:px-14 py-10 md:py-[60px] shadow-lg flex flex-col md:flex-row items-center gap-3 md:gap-10">
           {/* Corner circles. From md: the two SVG groups below. On phones: the same circles as separate dots, spread
               from top to bottom down each side and kept inside the 32px side padding, so they never touch the text */}
           {[
@@ -63,19 +65,22 @@ export default function Pricing() {
               You pay <span className="text-[#f5a5a5]">after the panel approves you.</span> A denied application or a closed panel costs you nothing.
             </h4>
 
-            <ul className="w-full list-none m-0 p-0 flex flex-wrap items-center justify-center gap-4 md:gap-7">
+            <RevealGroup as="ul" stagger={0.12} delay={0.45} amount={0.5} className="w-full list-none m-0 p-0 flex flex-wrap items-center justify-center gap-4 md:gap-7">
               {["No setup fee", "No minimum", "No long-term contract"].map((label) => (
-                <li
+                <RevealItem
+                  as="li"
+                  preset="pop"
+                  duration={0.6}
                   key={label}
                   className="font-body inline-flex items-center gap-2.5 text-white text-[14px] md:text-[16px] font-semibold leading-none"
                 >
                   <span aria-hidden="true" className="w-3 h-3 rounded-full bg-[#d95959] shrink-0" />
                   {label}
-                </li>
+                </RevealItem>
               ))}
-            </ul>
+            </RevealGroup>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </FluidSection>
   );

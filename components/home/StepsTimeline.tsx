@@ -1,4 +1,5 @@
 import { Container, FluidSection } from "@/components/FluidLayout";
+import { Reveal } from "@/components/motion/Reveal";
 
 // SECTION 9: 5 STEPS TIMELINE
 export default function StepsTimeline() {
@@ -6,20 +7,20 @@ export default function StepsTimeline() {
     <FluidSection className="bg-[#fbf6fa] overflow-hidden">
       <Container className="flex flex-col items-center text-center">
         {/* Eyebrow: 14px Desktop / 12px Mobile */}
-        <div className="mb-4 sm:mb-5">
+        <Reveal preset="blurUp" className="mb-4 sm:mb-5">
           <span className="font-heading bg-[#fdfaf8] text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
             Five Steps
           </span>
-        </div>
+        </Reveal>
 
         {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-        <h2 className="font-heading max-w-3xl text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
+        <Reveal as="h2" preset="blurUp" delay={0.1} className="font-heading max-w-3xl text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
           From First Call to <span className="text-[#d95959]">Live Claims</span> in Under a Week
-        </h2>
+        </Reveal>
         {/* Body Regular: 16px */}
-        <p className="font-body max-w-3xl lg:max-w-none lg:whitespace-nowrap text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+        <Reveal as="p" preset="blurUp" delay={0.2} className="font-body max-w-3xl lg:max-w-none lg:whitespace-nowrap text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
           Switching billers shouldn't cost you a month of revenue. Here's the whole process, start to finish.
-        </p>
+        </Reveal>
 
         <div className="w-full max-w-5xl flex flex-col gap-3">
           {[
@@ -30,8 +31,9 @@ export default function StepsTimeline() {
             { title: "Your First Report", desc: "Day 30. Collection rate by payer, denial rate by code, AR aging, and first-pass rate, with recovered AR shown next to your first month of Prime claims." }
           ].map((item, index) => {
             const isPurple = index % 2 === 0;
+            // Purple rows slide in from the left, white rows from the right
             return (
-              <div key={index} className={`relative ${isPurple ? "z-10" : "z-0"} w-full h-[225px] md:h-[135px] flex flex-col md:flex-row ${!isPurple ? "md:flex-row-reverse rotate-[-2deg]" : "rotate-[1deg]"} rounded-2xl overflow-visible shadow-sm border ${isPurple ? "bg-[#591e60] border-[#591e60]" : "bg-white border-[#591e60]/10"}`}>
+              <Reveal key={index} preset={isPurple ? "fadeLeft" : "fadeRight"} duration={0.9} amount={0.5} className={`relative ${isPurple ? "z-10" : "z-0"} w-full h-[225px] md:h-[135px] flex flex-col md:flex-row ${!isPurple ? "md:flex-row-reverse rotate-[-2deg]" : "rotate-[1deg]"} rounded-2xl overflow-visible shadow-sm border ${isPurple ? "bg-[#591e60] border-[#591e60]" : "bg-white border-[#591e60]/10"}`}>
                 <span className={`absolute z-20 -top-6 h-12 w-12 rounded-full border-4 flex items-center justify-center font-heading text-[18px] font-extrabold ${isPurple ? "right-4 border-[#d95959] bg-white text-[#591e60]" : "left-4 border-[#d95959] bg-[#591e60] text-white"}`} aria-hidden="true">
                   {index + 1}
                 </span>
@@ -47,7 +49,7 @@ export default function StepsTimeline() {
                     {item.desc}
                   </p>
                 </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

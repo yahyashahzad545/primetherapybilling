@@ -65,6 +65,8 @@ export default function SwitchingOver() {
           imageClassName="scale-[1.35] drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
           className="pt-1"
           rotateOnHover
+          openWidthReduction={3}
+          steadyHeight
         />
         <div className="relative overflow-hidden max-w-[1020px] mx-auto mt-8 sm:mt-10 rounded-[24px] bg-[#591e60] px-6 sm:px-8 py-6 sm:py-7 text-white shadow-lg">
           {/* Decorative circles and rings on the left and right edges, behind the text */}

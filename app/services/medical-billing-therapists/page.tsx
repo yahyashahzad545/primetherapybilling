@@ -9,6 +9,16 @@ import Specialties from "@/components/services/medical-billing-therapists/Specia
 import SecurityCompliance from "@/components/services/medical-billing-therapists/SecurityCompliance";
 import FAQ from "@/components/services/medical-billing-therapists/FAQ";
 import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
+import { PageSchema, pageMetadata, serviceSchema } from "@/libs/seo";
+
+const PAGE = {
+  title: "Medical Billing for Therapists | Prime Therapy Billing",
+  description:
+    "Full-cycle medical billing for PT, OT, SLP, ABA, and mental health practices, from eligibility checks to posted payments. No long-term contracts.",
+  path: "/services/medical-billing-therapists",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 // ============================================================================
 // MAIN COMPONENT
@@ -16,6 +26,11 @@ import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
 export default function PtHeroAndServices() {
   return (
     <div className="therapy-fonts">
+      <PageSchema
+        {...PAGE}
+        crumbs={[{ name: "Home", path: "/" }, { name: "Medical Billing for Therapists", path: PAGE.path }]}
+        extra={[serviceSchema({ name: "Medical Billing Services for Therapists", description: PAGE.description, path: PAGE.path, serviceType: "Medical billing and revenue cycle management" })]}
+      />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */

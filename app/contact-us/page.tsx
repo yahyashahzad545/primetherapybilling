@@ -4,10 +4,21 @@ import ThreeSteps from "@/components/contact-us/ThreeSteps";
 import BookingForm from "@/components/contact-us/BookingForm";
 import SkipTheForm from "@/components/contact-us/SkipTheForm";
 import ExistingClients from "@/components/contact-us/ExistingClients";
+import { PageSchema, pageMetadata } from "@/libs/seo";
+
+const PAGE = {
+  title: "Contact Prime Therapy Billing | Free Billing Review",
+  description:
+    "Send last month's claims and denials for a free review. A therapy billing specialist replies within one business day. Call (346) 460-4441.",
+  path: "/contact-us",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 export default function ContactPage() {
   return (
     <main className="contact-page overflow-x-hidden bg-white">
+      <PageSchema {...PAGE} type="ContactPage" crumbs={[{ name: "Home", path: "/" }, { name: "Contact Us", path: PAGE.path }]} />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         .contact-page {

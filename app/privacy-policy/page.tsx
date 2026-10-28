@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { BUSINESS_PHONE } from "@/config/contact";
+import { PageSchema, pageMetadata } from "@/libs/seo";
 
-export const metadata: Metadata = {
+const PAGE = {
   title: "Privacy Policy | Prime Therapy Billing",
   description:
     "How Prime Therapy Billing collects, uses, discloses and protects information while providing credentialing, medical billing and revenue cycle management services.",
+  path: "/privacy-policy",
 };
+
+export const metadata = pageMetadata(PAGE);
 
 const EMAIL = "info@primetherapybilling.com";
 
@@ -108,6 +111,7 @@ const SECTIONS: PolicySection[] = [
 export default function PrivacyPolicyPage() {
   return (
     <div className="therapy-fonts">
+      <PageSchema {...PAGE} crumbs={[{ name: "Home", path: "/" }, { name: "Privacy Policy", path: PAGE.path }]} />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */

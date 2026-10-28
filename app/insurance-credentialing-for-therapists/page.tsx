@@ -1,1 +1,1 @@
-export { default } from "../services/insurance-credentialing-therapists/page";
+export { default, metadata } from "../services/insurance-credentialing-therapists/page";

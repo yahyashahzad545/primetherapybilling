@@ -28,7 +28,7 @@ const STATS: StatItem[] = [
 export default function StatsBar() {
   return (
     <>
-      <StatsPanel items={STATS} className="!bg-[#fbf6fa]" variant="soft" />
+      <StatsPanel items={STATS} className="!bg-[#fbf6fa]" variant="soft" animated />
       <StatsBarForm />
     </>
   );

@@ -164,7 +164,6 @@ export default function Services() {
             const isPurple = card.theme === "purple";
             const outerBg = isPurple ? "bg-[#b79cb9]" : "bg-[#f0b1b1]";
             const innerBg = isPurple ? "bg-[#EFEBF1]" : "bg-[#FBF2F2]";
-            const tagBg = isPurple ? "bg-[#591e60]" : "bg-[#d95959]";
             const offsetClass = card.offset ? "md:translate-y-12" : "";
 
             return (
@@ -187,29 +186,10 @@ export default function Services() {
                   />
 
                   <div className="@container flex-1 min-h-0 flex flex-col justify-center items-center w-full relative mt-4">
-                    <div className="flex-1 min-h-0 flex flex-col justify-center-safe gap-2.5 w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
-                      {/* Icon above the tags; it hides together with them on hover. It grows into the card's free
-                          space (64px at least, 112px at most) without ever making the fixed-height card overflow */}
-                      <CardIcon src={card.icon ?? ""} className="mb-1 w-full h-16 grow min-h-16 max-h-28 self-center drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
-                      <div className="flex flex-row justify-center items-center gap-1.5 w-full flex-nowrap overflow-hidden">
-                        <span
-                          className={`text-[clamp(8.5px,3.5cqw,12px)] font-semibold px-[1em] text-white py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[0]?.text}
-                        </span>
-                        <span
-                          className={`text-[clamp(8.5px,3.5cqw,12px)] font-semibold px-[1em] text-white py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[1]?.text}
-                        </span>
-                      </div>
-                      <div className="flex justify-center items-center w-full">
-                        <span
-                          className={`text-[clamp(8.5px,3.5cqw,12px)] font-semibold px-[1em] text-white py-1.5 rounded-full whitespace-nowrap tracking-wide leading-none ${tagBg}`}
-                        >
-                          {card.tags[2]?.text}
-                        </span>
-                      </div>
+                    <div className="flex-1 min-h-0 flex flex-col items-center justify-center w-full transition-all duration-300 md:group-hover:opacity-0 md:group-hover:translate-y-4 md:group-hover:scale-95">
+                      {/* Icon centred horizontally and vertically in the card's free space; it hides on hover.
+                          It grows into that space (64px at least, 112px at most) without ever making the fixed-height card overflow */}
+                      <CardIcon src={card.icon ?? ""} className="w-full h-16 grow min-h-16 max-h-28 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
                     </div>
 
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 pointer-events-none md:group-hover:opacity-100 md:transition-opacity md:duration-300 px-2 mt-4 md:mt-0">

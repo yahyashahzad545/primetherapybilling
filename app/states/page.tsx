@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import StatesDirectory from "@/components/states/StatesDirectory";
+import { pageMetadata } from "@/libs/seo";
 
-export const metadata: Metadata = {
+const PAGE = {
   title: "Therapy Billing Across All 50 States | Prime Therapy Billing",
   description:
     "Explore therapy billing support for practices across all 50 states. Select your state to contact Prime Therapy Billing.",
-  robots: { index: false, follow: true },
+  path: "/states",
 };
+
+export const metadata = pageMetadata({ ...PAGE, noindex: true });
 
 export default function StatesPage() {
   return (
@@ -29,7 +31,7 @@ export default function StatesPage() {
             </p>
             <a
               href="#state-directory"
-              className="mt-7 inline-flex items-center justify-center rounded-lg bg-[#591e60] px-7 py-3.5 text-[15px] font-bold text-white shadow-md transition-colors hover:bg-[#45134b]"
+              className="btn-hover mt-7 inline-flex items-center justify-center rounded-lg bg-[#591e60] px-7 py-3.5 text-[15px] font-bold text-white shadow-md transition-colors hover:bg-[#45134b]"
             >
               Explore the states
             </a>

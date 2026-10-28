@@ -6,9 +6,18 @@ import PayerRules from "@/components/services/mental-health-billing/PayerRules";
 import LicenseTypes from "@/components/services/mental-health-billing/LicenseTypes";
 import CptCodes from "@/components/services/mental-health-billing/CptCodes";
 import SwitchingOver from "@/components/services/mental-health-billing/SwitchingOver";
-import ClientFeedback from "@/components/services/mental-health-billing/ClientFeedback";
 import FAQ from "@/components/services/mental-health-billing/FAQ";
 import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
+import { PageSchema, pageMetadata, serviceSchema } from "@/libs/seo";
+
+const PAGE = {
+  title: "Mental Health Billing Services | Prime Therapy Billing",
+  description:
+    "Mental health billing for LCSWs, LPCs, LMFTs, psychologists, and PMHNPs: eligibility, CPT coding, claims, prior authorization, denials, and AR follow-up.",
+  path: "/mental-health-billing-services",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 // ============================================================================
 // MAIN PAGE COMPONENT
@@ -16,6 +25,11 @@ import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
 export default function PtHeroAndServices() {
   return (
     <div className="therapy-fonts">
+      <PageSchema
+        {...PAGE}
+        crumbs={[{ name: "Home", path: "/" }, { name: "Mental Health Billing Services", path: PAGE.path }]}
+        extra={[serviceSchema({ name: "Mental Health Billing Services", description: PAGE.description, path: PAGE.path, serviceType: "Behavioral health billing" })]}
+      />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */
@@ -67,11 +81,6 @@ export default function PtHeroAndServices() {
           SECTION 8: SWITCHING OVER
           ========================================================================= */}
       <SwitchingOver />
-
-      {/* =========================================================================
-          SECTION 9: CLIENT FEEDBACK (REVIEW SLIDER)
-          ========================================================================= */}
-      <ClientFeedback />
 
       {/* =========================================================================
           SECTION 10: COMMON QUESTIONS

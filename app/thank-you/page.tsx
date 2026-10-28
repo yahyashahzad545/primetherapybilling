@@ -1,12 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { BUSINESS_PHONE } from "@/config/contact";
+import { pageMetadata } from "@/libs/seo";
 
-export const metadata: Metadata = {
+const PAGE = {
   title: "Thank You | Prime Therapy Billing",
-  description: "We received your request. A Prime Therapy Billing specialist will be in touch.",
-  robots: { index: false, follow: false },
+  description:
+    "We received your request. A Prime Therapy Billing specialist will be in touch.",
+  path: "/thank-you",
 };
+
+export const metadata = pageMetadata({ ...PAGE, noindex: true });
 
 const TRUST_POINTS = [
   "HIPAA compliant",

@@ -1,4 +1,5 @@
 import { BUSINESS_PHONE } from "@/config/contact";
+import { altFromSrc } from "@/utils/altFromSrc";
 
 const BUSINESS_EMAIL = "info@primetherapybilling.com";
 
@@ -45,7 +46,7 @@ export default function BottomCTA() {
           <ul className="mt-6 flex flex-wrap justify-center gap-x-7 gap-y-3 text-[12px] font-semibold text-white/85 sm:text-[13px]">
             {TRUST_BADGES.map((badge) => (
               <li key={badge.label} className="flex items-center gap-2">
-                <img src={badge.icon} alt="" loading="lazy" decoding="async" className="h-8 w-8 flex-shrink-0 object-contain drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]" />
+                <img src={badge.icon} alt={altFromSrc(badge.icon)} loading="lazy" decoding="async" className="h-8 w-8 flex-shrink-0 object-contain drop-shadow-[0_4px_6px_rgba(0,0,0,0.3)]" />
                 {badge.label}
               </li>
             ))}

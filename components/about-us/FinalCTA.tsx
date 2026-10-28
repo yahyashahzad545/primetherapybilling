@@ -105,7 +105,7 @@ export default function AboutUsFinalCTA({
           </p>
 
           {leftCtaLabel && (
-            <a href={`#${formId}`} className="font-body mb-6 inline-flex min-h-[48px] w-fit items-center justify-center gap-5 self-center rounded-lg bg-[#d95959] px-6 text-[16px] font-semibold text-white transition-colors hover:bg-[#d95959] sm:px-8">
+            <a href={`#${formId}`} className="btn-hover font-body mb-6 inline-flex min-h-[48px] w-fit items-center justify-center gap-5 self-center rounded-lg bg-[#d95959] px-6 text-[16px] font-semibold text-white transition-colors hover:bg-[#d95959] sm:px-8">
               {leftCtaLabel}
               <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
             </a>
@@ -115,7 +115,7 @@ export default function AboutUsFinalCTA({
             <div className="mb-4 grid grid-cols-1 gap-x-[20px] gap-y-3 sm:grid-cols-[repeat(2,minmax(0,280px))] max-lg:justify-center">
               {stats.map((stat) => (
                 <div key={stat.value} className="grid min-h-[88px] w-full min-w-0 grid-cols-[64px_minmax(0,1fr)] items-center gap-3 rounded-2xl bg-[#fffaf8] p-3 shadow-[0_6px_12px_rgba(25,6,29,0.18)]">
-                  <img src={stat.cardIcon} alt="" aria-hidden="true" loading="lazy" decoding="async" className="h-14 w-14 object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
+                  <img src={stat.cardIcon} alt={`${stat.value} ${stat.label} icon`} loading="lazy" decoding="async" className="h-14 w-14 object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
                   <span className="min-w-0 text-left">
                     <strong className="font-heading block text-[16px] font-extrabold leading-tight text-[#591e60] sm:text-[18px]">{stat.value}</strong>
                     <small className="font-body mt-1 block text-[12px] leading-snug text-[#3d2e42] sm:text-[14px]">{stat.label}</small>
@@ -128,7 +128,7 @@ export default function AboutUsFinalCTA({
               {stats.map((stat, index) => (
                 <div key={stat.value} className={`flex min-w-0 items-center gap-3 px-2 py-2 sm:px-4 ${index < stats.length - 1 ? "sm:border-r sm:border-white/20" : ""}`}>
                   <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white/10 text-[#d95959]">
-                    <img loading="lazy" decoding="async" src={stat.icon} alt="" className="h-8 w-8 object-contain" />
+                    <img loading="lazy" decoding="async" src={stat.icon} alt={`${stat.value} ${stat.label} icon`} className="h-8 w-8 object-contain" />
                   </span>
                   <span className="min-w-0 text-left">
                     <strong className="font-heading block text-[14px] font-extrabold leading-tight sm:text-[16px]">{stat.value}</strong>
@@ -140,7 +140,7 @@ export default function AboutUsFinalCTA({
           )}
 
           <div className={`font-body flex w-full flex-wrap items-center gap-3 text-[16px] sm:text-[18px] ${aboutDesign ? `max-w-[580px] ${phoneCtaAlign === "left" ? "justify-start" : "mx-auto justify-center lg:-translate-x-12"}` : "justify-center"}`}>
-            <a className={`inline-flex min-h-[48px] items-center justify-center gap-3 rounded-lg px-6 text-[16px] font-semibold text-white transition-all hover:shadow-md sm:px-8 ${aboutDesign ? "bg-[#d95959] hover:bg-[#c94c4c]" : "font-bold text-[#d95959]"}`} href="tel:+13464604441">
+            <a className={`btn-hover inline-flex min-h-[48px] items-center justify-center gap-3 rounded-lg px-6 text-[16px] font-semibold text-white transition-all hover:shadow-md sm:px-8 ${aboutDesign ? "bg-[#d95959] hover:bg-[#c94c4c]" : "font-bold text-[#d95959]"}`} href="tel:+13464604441">
               (346) 460-4441<span aria-hidden="true">→</span>
             </a>
           </div>

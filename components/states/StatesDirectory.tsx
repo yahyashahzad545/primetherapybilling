@@ -81,10 +81,10 @@ export default function StatesDirectory() {
                 style={{ backgroundColor: accent }}
                 aria-hidden="true"
               >
-                {/* Flag of the state fills the circle; the name is printed beside it, so the image is decorative */}
+                {/* Flag of the state fills the circle; the name is printed beside it */}
                 <img
                   src={`/flags/states/${state.code.toLowerCase()}.webp`}
-                  alt=""
+                  alt={`${state.name} state flag`}
                   width={112}
                   height={112}
                   loading="lazy"
@@ -113,7 +113,7 @@ export default function StatesDirectory() {
           </div>
           <Link
             href="/contact-us"
-            className="inline-flex shrink-0 items-center justify-center rounded-lg bg-[#d95959] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#c94c4c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#591e60]"
+            className="btn-hover inline-flex shrink-0 items-center justify-center rounded-lg bg-[#d95959] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#c94c4c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#591e60]"
           >
             Request billing support
           </Link>

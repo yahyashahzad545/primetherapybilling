@@ -66,6 +66,8 @@ export default function SwitchingOver() {
           imageClassName="scale-[1.35] drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
           className="pt-1"
           rotateOnHover
+          openWidthReduction={3}
+          steadyHeight
         />
       </div>
     </section>

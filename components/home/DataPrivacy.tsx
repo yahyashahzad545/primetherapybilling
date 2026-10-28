@@ -1,3 +1,6 @@
+import { altFromSrc } from "@/utils/altFromSrc";
+import { Reveal } from "@/components/motion/Reveal";
+
 // icon: a file in the public folder; cards without one keep the dashed placeholder
 const secondaryCardsData: { id: number; title: string; description: string; icon?: string }[] = [
   {
@@ -43,25 +46,28 @@ export default function DataPrivacy() {
     <section className="w-full bg-white py-[clamp(48px,7vw,60px)] overflow-hidden">
       <div className="mx-auto w-[92%] max-w-[1320px] flex flex-col items-center text-center">
         {/* Eyebrow: 14px Desktop / 12px Mobile */}
-        <div className="mb-4 sm:mb-5">
+        <Reveal preset="blurUp" className="mb-4 sm:mb-5">
           <span className="font-heading bg-white text-[#591e60] border border-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
             Your Data
           </span>
-        </div>
+        </Reveal>
 
         {/* Section Heading H2: Desktop 42px, Mobile 30-34px */}
-        <h2 className="font-heading max-w-[840px] mx-auto text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
+        <Reveal as="h2" preset="blurUp" delay={0.1} className="font-heading max-w-[840px] mx-auto text-[clamp(30px,3vw,42px)] font-extrabold text-[#591e60] tracking-tight leading-[1.15] mb-3">
           What Happens to <span className="text-[#d95959]">Patient Information</span> Once We Have Access
-        </h2>
+        </Reveal>
         {/* Body Regular: 16px */}
-        <p className="font-body max-w-5xl text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
+        <Reveal as="p" preset="blurUp" delay={0.2} className="font-body max-w-5xl text-[18px] leading-relaxed tracking-normal mb-12" style={{ color: "lab(27.1134 -0.956401 -12.3224)" }}>
           Handing a billing company access to your EHR means handing them protected health information. Here is exactly what governs that, and what it means for a therapy practice specifically.
-        </p>
+        </Reveal>
 
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 auto-rows-fr gap-6 mx-auto lg:[&>div]:col-span-2 lg:[&>div:nth-child(4)]:col-start-2 lg:[&>div:nth-child(5)]:col-start-4 sm:max-lg:[&>div:last-child]:col-span-2 sm:max-lg:[&>div:last-child]:w-[calc(50%-12px)] sm:max-lg:[&>div:last-child]:justify-self-center">
-          {secondaryCardsData.map((card) => (
-              <div
+        <div className="[perspective:1400px] w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 auto-rows-fr gap-6 mx-auto lg:[&>div]:col-span-2 lg:[&>div:nth-child(4)]:col-start-2 lg:[&>div:nth-child(5)]:col-start-4 sm:max-lg:[&>div:last-child]:col-span-2 sm:max-lg:[&>div:last-child]:w-[calc(50%-12px)] sm:max-lg:[&>div:last-child]:justify-self-center">
+          {secondaryCardsData.map((card, index) => (
+              <Reveal
                 key={card.id}
+                preset="flipUp"
+                index={index}
+                columns={[[1024, 3], [640, 2]]}
                 className="relative bg-white rounded-[8px] shadow-[0_10px_8px_-6px_rgba(0,0,0,0.3)] flex flex-col text-left transition-[box-shadow] duration-200 hover:shadow-[0_14px_12px_-6px_rgba(0,0,0,0.42)] border border-[#e5dede] overflow-hidden w-full"
               >
                 <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-xl" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -77,7 +83,7 @@ export default function DataPrivacy() {
                     {card.icon ? (
                       <img
                         src={encodeURI(card.icon)}
-                        alt=""
+                        alt={altFromSrc(encodeURI(card.icon))}
                         loading="lazy"
                         decoding="async"
                         className="h-20 w-20 scale-[1.75] flex-shrink-0 object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
@@ -95,7 +101,7 @@ export default function DataPrivacy() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Reveal>
           ))}
         </div>
       </div>

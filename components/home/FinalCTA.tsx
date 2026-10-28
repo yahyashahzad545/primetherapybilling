@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { goToThankYou } from "@/utils/thankYou";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 type CtaIconName = "shield" | "document" | "send" | "people" | "chart" | "pie" | "bolt" | "lock";
 
@@ -147,21 +148,22 @@ export default function FinalCTA() {
 
   return (
     <section className="w-full overflow-hidden bg-[#fbf6fa] px-3 py-[60px] sm:px-5">
-      <div className="relative mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-8 overflow-hidden rounded-md bg-[#591e60] p-5 text-white shadow-[0_16px_45px_rgba(61,20,71,0.18)] sm:p-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8 lg:p-8 xl:p-10">
-        <div className="flex min-w-0 flex-col justify-center lg:pr-2 xl:pr-6">
-          <div className="font-heading mb-5 inline-flex w-fit items-center gap-2 bg-white text-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full shadow-sm">
+      {/* The panel zooms in softly; its left side then arrives piece by piece and the form glides in from the right */}
+      <Reveal preset="zoomIn" duration={0.9} amount={0.15} className="relative mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-8 overflow-hidden rounded-md bg-[#591e60] p-5 text-white shadow-[0_16px_45px_rgba(61,20,71,0.18)] sm:p-8 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8 lg:p-8 xl:p-10">
+        <RevealGroup stagger={0.1} delay={0.3} amount={0.15} className="flex min-w-0 flex-col justify-center lg:pr-2 xl:pr-6">
+          <RevealItem preset="blurUp" className="font-heading mb-5 inline-flex w-fit items-center gap-2 bg-white text-[#591e60] px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full shadow-sm">
             Our Services
-          </div>
+          </RevealItem>
 
-          <h2 className="font-heading mb-4 max-w-[620px] text-[clamp(30px,3vw,42px)] font-extrabold leading-[1.04] tracking-tight text-white">
+          <RevealItem as="h2" preset="blurUp" className="font-heading mb-4 max-w-[620px] text-[clamp(30px,3vw,42px)] font-extrabold leading-[1.04] tracking-tight text-white">
             Pick Your Services. We&apos;ll Handle <span className="text-[#d95959]">the Rest.</span>
-          </h2>
+          </RevealItem>
 
-          <p className="mb-6 max-w-[620px] text-[18px] leading-relaxed text-white/95 sm:text-[20px]">
+          <RevealItem as="p" preset="blurUp" className="mb-6 max-w-[620px] text-[18px] leading-relaxed text-white/95 sm:text-[20px]">
             Take the full billing cycle or start with one service. Either way, the same specialist handles it.
-          </p>
+          </RevealItem>
 
-          <div className="mb-6 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2">
+          <RevealItem className="mb-6 grid grid-cols-1 gap-x-8 gap-y-1 sm:grid-cols-2">
             {serviceFeatures.map((feature) => {
               const isSelected = selectedChecklist.includes(feature.title);
               return (
@@ -182,28 +184,28 @@ export default function FinalCTA() {
                 </label>
               );
             })}
-          </div>
+          </RevealItem>
 
-          <div className="mb-4 grid grid-cols-2 rounded-xl bg-[#fffaf8] px-3 py-4 text-[#241438] sm:grid-cols-4 sm:px-4">
+          <RevealItem className="mb-4 grid grid-cols-2 rounded-xl bg-[#fffaf8] px-3 py-4 text-[#241438] sm:grid-cols-4 sm:px-4">
             <div className="flex items-center justify-center gap-2 border-white/70 px-2 py-2 sm:border-r">
-              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/500%2B%20Therapy%20Practices.webp" alt="" aria-hidden="true" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
+              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/500%2B%20Therapy%20Practices.webp" alt="500+ Therapy Practices icon" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
               <span><strong className="block text-[16px] font-extrabold">500+</strong><small className="block text-[11px] leading-tight">therapy practices</small></span>
             </div>
             <div className="flex items-center justify-center gap-2 border-white/70 px-2 py-2 sm:border-r">
-              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/98%25%20First-Pass%20Rate.webp" alt="" aria-hidden="true" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
+              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/98%25%20First-Pass%20Rate.webp" alt="98% First-Pass Rate icon" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
               <span><strong className="block text-[16px] font-extrabold">98%</strong><small className="block text-[11px] leading-tight">first-pass rate</small></span>
             </div>
             <div className="flex items-center justify-center gap-2 border-white/70 px-2 py-2 sm:border-r">
-              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/5%E2%80%937%20Days%20to%20First%20Claim.webp" alt="" aria-hidden="true" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
+              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/5%E2%80%937%20Days%20to%20First%20Claim.webp" alt="5–7 Days to First Claim icon" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
               <span><strong className="block whitespace-nowrap text-[15px] font-extrabold">5 to 7 days</strong><small className="block text-[11px] leading-tight">to first claim</small></span>
             </div>
             <div className="flex items-center justify-center gap-2 px-2 py-2">
-              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/HIPAA%20Compliant,%20BAA%20First.webp" alt="" aria-hidden="true" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
+              <img loading="lazy" decoding="async" src="/icons/Home-page/our%20services/HIPAA%20Compliant,%20BAA%20First.webp" alt="HIPAA Compliant, BAA First icon" className="h-11 w-11 max-[361px]:h-7 max-[361px]:w-7 min-[361px]:max-[390px]:h-8 min-[361px]:max-[390px]:w-8 min-[640px]:max-[720px]:h-7 min-[640px]:max-[720px]:w-7 min-[720px]:max-[1024px]:h-10 min-[720px]:max-[1024px]:w-10 min-[1024px]:max-[1280px]:h-7 min-[1024px]:max-[1280px]:w-7 min-[1280px]:max-[1440px]:h-10 min-[1280px]:max-[1440px]:w-10 shrink-0 drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" />
               <span><strong className="block text-[14px] font-extrabold">HIPAA compliant,</strong><small className="block text-[11px] leading-tight">BAA first</small></span>
             </div>
-          </div>
+          </RevealItem>
 
-          <div className="flex justify-center py-2 text-white sm:justify-end">
+          <RevealItem className="flex justify-center py-2 text-white sm:justify-end">
             <span className="flex items-center gap-2 text-[14px] leading-snug sm:text-[15px]">
               <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-[#d95959] drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.31.56 3.58.56.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.6 21 3 13.4 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.27.19 2.46.56 3.58a1 1 0 0 1-.24 1.02l-2.22 2.2Z" /></svg>
               <span>In a hurry? Call</span>
@@ -211,10 +213,10 @@ export default function FinalCTA() {
                 (346) 460-4441
               </a>
             </span>
-          </div>
-        </div>
+          </RevealItem>
+        </RevealGroup>
 
-        <div className="w-full min-w-0 rounded-md bg-white p-5 text-[#211337] shadow-[0_12px_35px_rgba(30,10,38,0.12)] sm:p-7 lg:p-6 xl:p-8">
+        <Reveal preset="fadeRight" delay={0.45} duration={0.9} amount={0.15} className="w-full min-w-0 rounded-md bg-white p-5 text-[#211337] shadow-[0_12px_35px_rgba(30,10,38,0.12)] sm:p-7 lg:p-6 xl:p-8">
           {success ? (
             <div className="flex min-h-[560px] flex-col items-center justify-center text-center">
               <span className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff1ec] text-[#d95959]">
@@ -316,8 +318,8 @@ export default function FinalCTA() {
               </form>
             </>
           )}
-        </div>
-      </div>
+        </Reveal>
+      </Reveal>
     </section>
   );
 }

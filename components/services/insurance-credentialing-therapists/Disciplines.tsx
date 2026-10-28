@@ -33,7 +33,7 @@ const CREDENTIALING_DISCIPLINES: CredentialingDiscipline[] = [
     icon: "/icons/insurance-credentialing-page/by%20disipline/Occupational%20Therapy%20(OT)%20Credentialing%20Services.webp",
     title: "Occupational Therapy (OT) Credentialing Services",
     linkText: "Occupational therapy billing →",
-    href: "/occupational-therapy-billing",
+    href: "/specialties/occupational-therapist",
     description:
       "OT licensure plus NBCOT certification, which payers verify directly at the source. Medicare enrollment follows the same PECOS path as PT. OT panels stay open more often than most, so application completeness is what sets your timeline.",
   },
@@ -42,7 +42,7 @@ const CREDENTIALING_DISCIPLINES: CredentialingDiscipline[] = [
     icon: "/icons/insurance-credentialing-page/by%20disipline/Speech-Language%20Pathology%20(SLP).webp",
     title: "Speech-Language Pathology (SLP) Credentialing Services",
     linkText: "Speech therapy billing →",
-    href: "/speech-therapy-billing",
+    href: "/specialties/speech-language-pathologist",
     description:
       "SLP licensure and ASHA CCC-SLP certification, both verified at the source. Medical-necessity documentation standards affect which panels approve quickly, and pediatric caseloads draw more scrutiny than adult ones on the first review.",
   },

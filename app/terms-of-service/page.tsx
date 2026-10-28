@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { BUSINESS_PHONE } from "@/config/contact";
+import { PageSchema, pageMetadata } from "@/libs/seo";
 
-export const metadata: Metadata = {
+const PAGE = {
   title: "Terms and Conditions | Prime Therapy Billing",
   description:
     "Terms and Conditions for the Prime Therapy Billing SMS Messaging Program: opt-in consent, message frequency, fees, opting out, help and privacy.",
+  path: "/terms-of-service",
 };
+
+export const metadata = pageMetadata(PAGE);
 
 const EMAIL = "info@primetherapybilling.com";
 
@@ -165,6 +168,7 @@ const SECTIONS: TermsSection[] = [
 export default function TermsOfServicePage() {
   return (
     <div className="therapy-fonts">
+      <PageSchema {...PAGE} crumbs={[{ name: "Home", path: "/" }, { name: "Terms and Conditions", path: PAGE.path }]} />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */

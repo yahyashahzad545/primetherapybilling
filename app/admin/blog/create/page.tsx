@@ -304,7 +304,7 @@ export default function PublishBlogPage() {
             <Field id="authorImage" label="Author Image" help="Optional. Square photo, at least 200×200px. Shown in the author box.">
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#e3d6e6] bg-[#f6eff6] text-[10px] text-[#9a8a9e]">
-                  {form.authorImage ? <img src={form.authorImage} alt="" className="h-full w-full object-cover" /> : "None"}
+                  {form.authorImage ? <img src={form.authorImage} alt={form.author ? `${form.author} photo preview` : "Author photo preview"} className="h-full w-full object-cover" /> : "None"}
                 </span>
                 <input id="authorImage" value={form.authorImage} placeholder="Upload a photo or paste its link" onChange={onInput("authorImage")} className={inputClass} />
               </div>
@@ -345,7 +345,7 @@ export default function PublishBlogPage() {
                 </button>
               </div>
               <input ref={featuredFileRef} type="file" accept="image/*" hidden onChange={(e) => void onFeaturedImage(e)} />
-              {form.featuredImg && <img src={form.featuredImg} alt="" className="mt-2 h-24 w-auto rounded-lg border border-[#e3d6e6] object-cover" />}
+              {form.featuredImg && <img src={form.featuredImg} alt={form.title ? `${form.title} featured image preview` : "Featured image preview"} className="mt-2 h-24 w-auto rounded-lg border border-[#e3d6e6] object-cover" />}
             </Field>
             <Field id="imgAlt" label="Featured Image Alt Text" count={form.imgAlt.length} help="Describe the image for screen readers and search engines.">
               <input id="imgAlt" value={form.imgAlt} placeholder="Therapist reviewing a billing report" onChange={onInput("imgAlt")} className={inputClass} />

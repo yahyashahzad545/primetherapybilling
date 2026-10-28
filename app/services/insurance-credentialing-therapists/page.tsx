@@ -11,6 +11,16 @@ import PayerContracting from "@/components/services/insurance-credentialing-ther
 import FourWays from "@/components/services/insurance-credentialing-therapists/FourWays";
 import FAQ from "@/components/services/insurance-credentialing-therapists/FAQ";
 import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
+import { PageSchema, pageMetadata, serviceSchema } from "@/libs/seo";
+
+const PAGE = {
+  title: "Insurance Credentialing for Therapists | Prime Therapy Billing",
+  description:
+    "Insurance credentialing for PT, OT, SLP, ABA, and mental health providers under your own NPI, with payer follow-up every 5 business days until approval.",
+  path: "/insurance-credentialing-for-therapists",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 // ============================================================================
 // MAIN COMPONENT
@@ -18,6 +28,11 @@ import AboutUsFinalCTA from "@/components/about-us/FinalCTA";
 export default function PtHeroAndServices() {
   return (
     <div className="therapy-fonts">
+      <PageSchema
+        {...PAGE}
+        crumbs={[{ name: "Home", path: "/" }, { name: "Insurance Credentialing for Therapists", path: PAGE.path }]}
+        extra={[serviceSchema({ name: "Insurance Credentialing for Therapists", description: PAGE.description, path: PAGE.path, serviceType: "Provider credentialing and payer enrollment" })]}
+      />
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" precedence="default" />
       <style>{`
         /* Same families as the home page: Google Sans for body text, Montserrat for headings */
@@ -96,7 +111,6 @@ export default function PtHeroAndServices() {
         headingAccent="Faster"
         headingAfter=", and Keep Your Name on Every Contract"
         description="We file in parallel under your own NPI, and you pay per payer only after the panel approves you."
-        phoneCtaAlign="left"
         source="Insurance Credentialing Therapists Final CTA"
       />
     </div>

@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion, type Variants } from "motion/react";
+import { altFromSrc } from "@/utils/altFromSrc";
 
 // ─── Navigation Data ──────────────────────────────────────────────────────────
 const THERAPY_SPECIALTIES = [
@@ -218,6 +220,23 @@ function ChevronDown({ rotated }: { rotated?: boolean }) {
   );
 }
 
+// ─── Dropdown animation ───────────────────────────────────────────────────────
+// The panel drops in from just under the trigger (fades, slides 10px, grows from 97%), then its
+// items follow one after another; closing is a short fade so the menu never vanishes abruptly.
+const DROPDOWN_EASE = [0.22, 1, 0.36, 1] as const;
+const dropdownPanel: Variants = {
+  hidden: { opacity: 0, y: 10, scale: 0.97 },
+  show: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.32, ease: DROPDOWN_EASE, staggerChildren: 0.035, delayChildren: 0.06 },
+  },
+  exit: { opacity: 0, y: 6, scale: 0.985, transition: { duration: 0.16, ease: "easeIn" } },
+};
+const dropdownItem: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: DROPDOWN_EASE } },
+};
+
 // ─── Desktop Dropdown Wrapper ─────────────────────────────────────────────────
 function DesktopDropdown({
   label,
@@ -269,11 +288,16 @@ function DesktopDropdown({
         <ChevronDown rotated={open} />
       </button>
 
+      <AnimatePresence>
       {open && (
         // The top padding bridges the gap to the trigger so the menu stays open while the pointer crosses it
-        <div
+        <motion.div
+          variants={dropdownPanel}
+          initial="hidden"
+          animate="show"
+          exit="exit"
           className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
-          style={{ width }}
+          style={{ width, originY: 0 }}
           onClick={() => setOpen(false)}
         >
           <span
@@ -286,8 +310,9 @@ function DesktopDropdown({
           >
             {children}
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -451,7 +476,7 @@ export default function Header() {
               <div className="p-5">
                 <ul className="list-none m-0 p-0 grid grid-cols-3 gap-x-3 gap-y-1">
                   {BILLING_SERVICES.map((item, index) => (
-                    <li key={item.href}>
+                    <motion.li key={item.href} variants={dropdownItem}>
                       <Link
                         href={item.href}
                         className="group flex items-start gap-3 rounded-lg p-3 hover:bg-[#fbf6fa] transition-colors"
@@ -460,7 +485,7 @@ export default function Header() {
                         {SERVICE_ICON_IMAGES[item.href] ? (
                           <img
                             src={SERVICE_ICON_IMAGES[item.href]}
-                            alt=""
+                            alt={altFromSrc(SERVICE_ICON_IMAGES[item.href])}
                             width={40}
                             height={40}
                             decoding="async"
@@ -481,10 +506,12 @@ export default function Header() {
                           </span>
                         </span>
                       </Link>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
 
+                {/* The wrapper takes the animation, so the button's own hover effect stays as it was */}
+                <motion.div variants={dropdownItem}>
                 <button
                   type="button"
                   data-lead-popup
@@ -495,6 +522,7 @@ export default function Header() {
                     <path d="M5 12h14M13 6l6 6-6 6" />
                   </svg>
                 </button>
+                </motion.div>
               </div>
             </DesktopDropdown>
 
@@ -576,6 +604,7 @@ export default function Header() {
               alt="Prime Therapy Billing"
               width={140}
               height={50}
+              loading="eager"
               className="object-contain h-8 w-auto"
             />
           </Link>
@@ -607,7 +636,7 @@ export default function Header() {
                     {SERVICE_ICON_IMAGES[item.href] ? (
                       <img
                         src={SERVICE_ICON_IMAGES[item.href]}
-                        alt=""
+                        alt={altFromSrc(SERVICE_ICON_IMAGES[item.href])}
                         width={24}
                         height={24}
                         decoding="async"

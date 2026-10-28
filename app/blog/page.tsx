@@ -4,8 +4,18 @@ import prisma from "@/libs/prisma";
 import Link from "next/link";
 import { Blog } from "@prisma/client";
 import { renderMarkdown } from "@/libs/markdown";
+import { PageSchema, absoluteUrl, pageMetadata } from "@/libs/seo";
 
 export const revalidate = 10;
+
+const PAGE = {
+  title: "Therapy Billing Blog | Prime Therapy Billing",
+  description:
+    "Guides on therapy billing, credentialing, denials, and payer rules for PT, OT, SLP, ABA, and mental health practices, from the Prime Therapy Billing team.",
+  path: "/blog",
+};
+
+export const metadata = pageMetadata(PAGE);
 
 export default async function BlogPage() {
   let blogs: Blog[] = [];
@@ -24,10 +34,24 @@ export default async function BlogPage() {
 
   return (
     <div className="min-h-screen bg-white text-[#171717]">
+      <PageSchema
+        {...PAGE}
+        type="CollectionPage"
+        crumbs={[{ name: "Home", path: "/" }, { name: "Blog", path: PAGE.path }]}
+        extra={[{
+          "@type": "ItemList",
+          itemListElement: blogs.map((blog, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: absoluteUrl(`/blog/${blog.slug}`),
+            name: blog.title,
+          })),
+        }]}
+      />
       <div className="max-w-7xl mx-auto py-16 px-6 pt-32">
-        <h2 className="text-4xl font-bold text-center mb-12 text-[#591e60]">
+        <h1 className="text-4xl font-bold text-center mb-12 text-[#591e60]">
           Our Latest Blog
-        </h2>
+        </h1>
 
         <div className="grid md:grid-cols-3 gap-8">
           {blogs.length > 0 ? (

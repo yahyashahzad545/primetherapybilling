@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FaqSchema } from "@/libs/seo";
 
 const questions = [
   {
@@ -63,6 +64,8 @@ export default function AboutFAQ() {
 
   return (
     <section className="relative z-10 w-full overflow-hidden bg-[#fbf6fa] py-[clamp(48px,7vw,60px)]">
+      {/* Search engines read every question and answer of this FAQ (all pages of it) */}
+      <FaqSchema items={questions.map((item) => ({ question: item.text, answer: item.answer }))} />
       <div className="mx-auto w-[92%] max-w-[1320px]">
         <div className="mx-auto mb-10 flex max-w-4xl flex-col items-center text-center sm:mb-16">
           <span className="font-heading mb-5 border border-[#591e60] bg-white text-[#591e60] sm:mb-6 px-4 py-1.5 text-[12px] md:text-[14px] font-semibold tracking-wide rounded-full inline-block shadow-sm">
@@ -108,27 +111,15 @@ export default function AboutFAQ() {
                         </div>
 
                         <div className="flex flex-col justify-center py-2 pr-1 text-left transition-all duration-700 md:translate-y-0 md:group-hover:-translate-y-1 @xl:pr-4">
-                          <h3 className="font-heading text-[20px] font-semibold leading-[1.25] text-[#591e60] transition-colors duration-700 md:group-hover:text-white">
+                          <h3 className="font-heading text-[17px] sm:text-[20px] font-semibold leading-[1.25] text-[#591e60] transition-colors duration-700 md:group-hover:text-white">
                             {question.text}
                           </h3>
-                          <p className="font-body max-h-0 overflow-hidden text-[16px] font-normal leading-relaxed text-gray-600 opacity-0 transition-all duration-700 ease-out md:group-hover:mt-2.5 md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:text-white/95">
+                          <p className="font-body max-h-0 overflow-hidden text-[15px] sm:text-[16px] font-normal leading-relaxed text-gray-600 opacity-0 transition-all duration-700 ease-out md:group-hover:mt-2.5 md:group-hover:max-h-40 md:group-hover:opacity-100 md:group-hover:text-white/95">
                             {question.answer}
                           </p>
                         </div>
                       </div>
 
-                      <div className="relative z-10 w-11 h-11 sm:w-14 sm:h-14 @xl:w-16 @xl:h-16 flex-shrink-0 flex items-center justify-center transition-transform duration-700 origin-[20%_50%] @xl:origin-center md:group-hover:scale-[1.4] @xl:md:group-hover:scale-[1.7] mr-1 sm:mr-2 @xl:mr-0">
-                        <img
-                          src={icons[index + (currentPage - 1) * itemsPerPage]}
-                          alt=""
-                          aria-hidden="true"
-                          width={64}
-                          height={64}
-                          loading="lazy"
-                          decoding="async"
-                          className="h-full w-full object-contain drop-shadow-[0_4px_6px_rgba(89,30,96,0.38)]"
-                        />
-                      </div>
                     </div>
                   </div>
                 );
@@ -146,7 +137,7 @@ export default function AboutFAQ() {
                     aria-label={`Go to FAQ page ${page}`}
                     aria-current={currentPage === page ? "page" : undefined}
                     onClick={() => setCurrentPage(page)}
-                    className={`h-3 w-3 cursor-pointer rounded-full transition-colors duration-300 ${currentPage === page ? "bg-[#591e60]" : "bg-gray-300 hover:bg-gray-400"}`}
+                    className={`relative h-3 w-3 cursor-pointer rounded-full transition-colors duration-300 after:absolute after:-inset-[6px] after:rounded-full ${currentPage === page ? "bg-[#591e60]" : "bg-gray-300 hover:bg-gray-400"}`}
                   />
                 ))}
               </div>

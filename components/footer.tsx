@@ -88,7 +88,7 @@ export default function Footer() {
             alt="Prime Therapy Billing Logo"
             width={252}
             height={80}
-            className="h-16 md:h-20 w-auto"
+            className="w-[202px] md:w-[252px] max-w-full h-auto"
             />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
@@ -147,10 +147,10 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col gap-3">
               <FooterLink href="/" label="Home" />
-              <FooterLink href="/about" label="About Us" />
-              <FooterLink href="/services" label="All Services" />
+              <FooterLink href="/about-us" label="About Us" />
+              <FooterLink href="/services/medical-billing-therapists" label="All Services" />
               <FooterLink href="/blog" label="Blog" />
-              <FooterLink href="/contact" label="Contact Us" />
+              <FooterLink href="/contact-us" label="Contact Us" />
             </ul>
           </div>
 
@@ -161,12 +161,13 @@ export default function Footer() {
               Services
             </h3>
             <ul className="flex flex-col gap-3">
-              <FooterLink href="/services/credentialing" label="Credentialing & Contracting" />
-              <FooterLink href="/services/ar-follow-up" label="AR Follow-Up" />
-              <FooterLink href="/services/denial-management" label="Denial Management" />
-              <FooterLink href="/services/medical-billing" label="Medical Billing" />
-              <FooterLink href="/services/medical-coding" label="Medical Coding" />
-              <FooterLink href="/services/payment-posting" label="Payment Posting" />
+              {/* The site's service pages (same as the header's Services menu) */}
+              <FooterLink href="/services/medical-billing-therapists" label="Medical Billing for Therapists" />
+              <FooterLink href="/insurance-credentialing-for-therapists" label="Insurance Credentialing" />
+              <FooterLink href="/aba-therapy-billing" label="ABA Therapy Billing" />
+              <FooterLink href="/mental-health-billing-services" label="Mental Health Billing" />
+              <FooterLink href="/physical-therapy-billing" label="Physical Therapy Billing" />
+              <FooterLink href="/services/claim-submission" label="Claim Submission" />
             </ul>
           </div>
 
@@ -253,12 +254,12 @@ export default function Footer() {
             >
               Terms of Service
             </Link>
-            <Link
-              href="/sitemap"
+            <a
+              href="/sitemap.xml"
               className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
             >
               Sitemap
-            </Link>
+            </a>
           </div>
         </div>
       </div>
